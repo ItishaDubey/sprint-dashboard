@@ -6,133 +6,81 @@
 <title>Sprint Dashboard</title>
 <style>
 *{box-sizing:border-box;margin:0;padding:0;}
-:root{
-  --bg:#f5f4f0; --surface:#fff; --border:#e8e6e0;
-  --text:#111; --muted:#888; --hint:#bbb;
-  --blue-bg:#EBF5FB; --blue-text:#0C447C; --blue-dot:#185FA5;
-  --green-bg:#EAF7E6; --green-text:#27500A; --green-dot:#3B6D11;
-  --pink-bg:#FDF0F5; --pink-text:#72243E; --pink-dot:#9E3360;
-  --amber-bg:#FFFBF0; --amber-text:#633806; --amber-dot:#854F0B;
-  --done:#2e7d32; --done-bg:#e8f5e9;
-  --qa:#388e3c; --qa-bg:#f1f8e9;
-  --prog:#1565c0; --prog-bg:#e3f2fd;
-  --rev:#e65100; --rev-bg:#fff8e1;
-  --block:#b71c1c; --block-bg:#ffebee;
-  --todo:#777; --todo-bg:#f5f4f0;
-}
-@media(prefers-color-scheme:dark){
-  :root{
-    --bg:#1a1a18; --surface:#242422; --border:#333330;
-    --text:#e8e6e0; --muted:#888; --hint:#555;
-  }
-}
-body{background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;min-height:100vh;font-size:14px;}
-
-/* header */
-.hdr{background:var(--surface);border-bottom:1px solid var(--border);padding:16px 28px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px;position:sticky;top:0;z-index:10;}
-.hdr-left h1{font-size:17px;font-weight:600;}
-.hdr-left .sub{font-size:12px;color:var(--muted);margin-top:1px;}
-.hdr-right{display:flex;align-items:center;gap:10px;flex-wrap:wrap;}
-.updated{font-size:11px;color:var(--hint);}
-
-/* stats bar */
-.stats{background:var(--surface);border-bottom:1px solid var(--border);padding:10px 28px;display:flex;gap:20px;flex-wrap:wrap;overflow-x:auto;}
-.stat{display:flex;flex-direction:column;white-space:nowrap;}
+body{background:#f5f4f0;color:#111;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;font-size:14px;}
+.hdr{background:#fff;border-bottom:1px solid #e8e6e0;padding:16px 28px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px;}
+.hdr h1{font-size:17px;font-weight:600;}
+.hdr .sub{font-size:12px;color:#888;margin-top:1px;}
+.updated{font-size:11px;color:#bbb;}
+.stats{background:#fff;border-bottom:1px solid #e8e6e0;padding:10px 28px;display:flex;gap:20px;flex-wrap:wrap;}
+.stat{display:flex;flex-direction:column;}
 .stat-n{font-size:20px;font-weight:600;line-height:1;}
-.stat-l{font-size:10px;color:var(--muted);margin-top:2px;text-transform:uppercase;letter-spacing:.05em;}
-.stat-div{width:1px;background:var(--border);flex-shrink:0;}
-
-/* main */
+.stat-l{font-size:10px;color:#888;margin-top:2px;text-transform:uppercase;letter-spacing:.05em;}
+.stat-div{width:1px;background:#e8e6e0;}
 .main{padding:20px 28px;max-width:1120px;}
-.section-lbl{font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);margin:20px 0 10px;}
+.slbl{font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:.08em;color:#888;margin:20px 0 10px;}
 .pods{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;}
-@media(max-width:680px){.pods{grid-template-columns:1fr;}.main{padding:12px 14px;}.hdr{padding:12px 14px;}.stats{padding:8px 14px;}}
-
-/* pod card */
-.pod{background:var(--surface);border-radius:10px;border:1px solid var(--border);overflow:hidden;}
-.pod-head{padding:10px 14px 8px;border-bottom:1px solid var(--border);}
+@media(max-width:680px){.pods{grid-template-columns:1fr;}.main,.hdr,.stats{padding:12px 14px;}}
+.pod{background:#fff;border-radius:10px;border:1px solid #e8e6e0;overflow:hidden;}
+.pod-head{padding:10px 14px 8px;border-bottom:1px solid #e8e6e0;}
 .pod-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:7px;}
 .pod-name{display:flex;align-items:center;gap:6px;font-size:13px;font-weight:600;}
 .dot{width:7px;height:7px;border-radius:50%;flex-shrink:0;}
-.pod-ct{font-size:11px;color:var(--muted);}
+.pod-ct{font-size:11px;color:#888;}
 .tags{display:flex;flex-wrap:wrap;gap:3px;}
-.tag{font-size:10px;padding:2px 6px;border-radius:10px;background:var(--bg);color:var(--muted);}
+.tag{font-size:10px;padding:2px 6px;border-radius:10px;background:#f5f4f0;color:#666;}
 .tag-pm{background:#111;color:#fff;}
 .tag-lead{background:#444;color:#fff;}
-
-/* items */
-.sub-lbl{padding:5px 14px 1px;font-size:9.5px;font-weight:600;text-transform:uppercase;letter-spacing:.06em;color:var(--hint);border-top:1px solid var(--border);margin-top:2px;}
+.sublbl{padding:5px 14px 1px;font-size:9.5px;font-weight:600;text-transform:uppercase;letter-spacing:.06em;color:#bbb;border-top:1px solid #f5f4f0;margin-top:2px;}
 .items{padding:2px 0 8px;}
-.item{padding:6px 14px;display:flex;gap:7px;cursor:default;border-bottom:1px solid transparent;}
-.item:hover{background:rgba(0,0,0,.025);}
-.item-dot{width:5px;height:5px;border-radius:50%;margin-top:5px;flex-shrink:0;}
-.item-body{flex:1;min-width:0;}
-.item-title{font-size:12px;line-height:1.4;}
-.item-meta{display:flex;gap:5px;margin-top:3px;flex-wrap:wrap;align-items:center;}
-.jira{font-size:9.5px;font-family:monospace;color:var(--hint);}
+.item{padding:6px 14px;display:flex;gap:7px;}
+.item:hover{background:#faf9f7;}
+.idot{width:5px;height:5px;border-radius:50%;margin-top:5px;flex-shrink:0;}
+.ibody{flex:1;min-width:0;}
+.ititle{font-size:12px;line-height:1.4;}
+.imeta{display:flex;gap:5px;margin-top:3px;flex-wrap:wrap;align-items:center;}
+.jira{font-size:9.5px;font-family:monospace;color:#bbb;}
 .pill{font-size:9.5px;padding:1px 6px;border-radius:10px;font-weight:500;}
-.pill-todo{background:var(--todo-bg);color:var(--todo);}
-.pill-done{background:var(--done-bg);color:var(--done);}
-.pill-qa{background:var(--qa-bg);color:var(--qa);}
-.pill-prog{background:var(--prog-bg);color:var(--prog);}
-.pill-rev{background:var(--rev-bg);color:var(--rev);}
-.pill-block{background:var(--block-bg);color:var(--block);font-weight:700;}
-.asgn{font-size:9.5px;color:var(--hint);}
-.blocker{font-size:9.5px;color:var(--block);background:var(--block-bg);border-radius:4px;padding:1px 5px;margin-top:2px;display:inline-block;}
-
-/* team updates */
+.p-todo{background:#f5f4f0;color:#777;}
+.p-done{background:#e8f5e9;color:#2e7d32;}
+.p-qa{background:#f1f8e9;color:#388e3c;}
+.p-prog{background:#e3f2fd;color:#1565c0;}
+.p-rev{background:#fff8e1;color:#e65100;}
+.p-block{background:#ffebee;color:#b71c1c;font-weight:700;}
+.asgn{font-size:9.5px;color:#bbb;}
+.blocker{font-size:9.5px;color:#b71c1c;background:#ffebee;border-radius:4px;padding:1px 5px;margin-top:2px;display:inline-block;}
 .updates{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:8px;margin-top:6px;}
-.update-card{background:var(--surface);border-radius:8px;border:1px solid var(--border);padding:9px 12px;}
-.update-type{font-size:9.5px;font-weight:600;text-transform:uppercase;letter-spacing:.05em;margin-bottom:3px;}
-.update-name{font-size:13px;font-weight:500;}
-.update-desc{font-size:11px;color:var(--muted);margin-top:2px;}
-.update-status{font-size:10px;margin-top:4px;}
-
-/* loading / error */
-.loader{padding:60px;text-align:center;color:var(--muted);font-size:13px;}
-.spinner{width:20px;height:20px;border:2px solid var(--border);border-top-color:var(--text);border-radius:50%;animation:spin .7s linear infinite;margin:0 auto 12px;}
-@keyframes spin{to{transform:rotate(360deg);}}
-.error{background:#ffebee;border:1px solid #ffcdd2;border-radius:8px;padding:14px;color:#c62828;font-size:12px;margin:16px 0;}
-.empty{padding:16px 14px;font-size:12px;color:var(--hint);}
+.ucard{background:#fff;border-radius:8px;border:1px solid #e8e6e0;padding:9px 12px;}
+.utype{font-size:9.5px;font-weight:600;text-transform:uppercase;letter-spacing:.05em;margin-bottom:3px;}
+.uname{font-size:13px;font-weight:500;}
+.udesc{font-size:11px;color:#888;margin-top:2px;}
+.ustatus{font-size:10px;padding:2px 7px;border-radius:10px;margin-top:4px;display:inline-block;}
+.footer{margin-top:32px;font-size:11px;color:#bbb;text-align:center;padding-bottom:24px;}
 </style>
 </head>
 <body>
-
 <div class="hdr">
-  <div class="hdr-left">
-    <h1 id="sprint-title">Loading sprint data…</h1>
-    <div class="sub" id="sprint-sub">Reading from Google Sheet</div>
+  <div>
+    <h1 id="t1">Sprint Dashboard</h1>
+    <div class="sub" id="t2">Loading…</div>
   </div>
-  <div class="hdr-right">
-    <span class="updated" id="last-updated"></span>
-  </div>
+  <div class="updated" id="t3"></div>
 </div>
-
-<div class="stats" id="stats-bar">
-  <div class="loader" style="padding:8px 0;flex-direction:row;display:flex;gap:8px;align-items:center;">
-    <div class="spinner" style="margin:0;width:14px;height:14px;"></div>
-    <span>Loading…</span>
-  </div>
-</div>
-
-<div class="main" id="main-content">
-  <div class="loader">
-    <div class="spinner"></div>
-    Fetching sprint data…
-  </div>
-</div>
+<div class="stats" id="stats"></div>
+<div class="main" id="main"></div>
 
 <script>
-function statusClass(s){
-  if(!s||s==="To Do")return"pill-todo";
-  if(s.includes("Done"))return"pill-done";
-  if(s==="In QA")return"pill-qa";
-  if(s.includes("Progress"))return"pill-prog";
-  if(s.includes("Review"))return"pill-rev";
-  if(s.includes("Block")||s==="Bug")return"pill-block";
-  return"pill-todo";
+var D = null; /* DATA_PLACEHOLDER */
+
+function sc(s){
+  if(!s||s==="To Do")return"p-todo";
+  if(s.includes("Done"))return"p-done";
+  if(s==="In QA")return"p-qa";
+  if(s.includes("Progress"))return"p-prog";
+  if(s.includes("Review"))return"p-rev";
+  if(s.includes("Block")||s==="Bug")return"p-block";
+  return"p-todo";
 }
-function dotColor(s){
+function dc(s){
   if(!s||s==="To Do")return"#ccc";
   if(s.includes("Done"))return"#2e7d32";
   if(s==="In QA")return"#388e3c";
@@ -141,112 +89,61 @@ function dotColor(s){
   if(s.includes("Block"))return"#b71c1c";
   return"#ccc";
 }
-function esc(s){return String(s||"").replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");}
+function e(s){return String(s||"").replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");}
 
-function renderItem(item){
-  const blocker=item.notes&&item.notes.includes("BLOCKED")?`<div class="blocker">${esc(item.notes.replace("BLOCKED: ",""))}</div>`:"";
-  const jira=item.jira&&item.jira!=="-"?`<span class="jira">${esc(item.jira)}</span>`:"";
-  const asgn=item.assignee&&item.assignee!=="-"?`<span class="asgn">${esc(item.assignee)}</span>`:"";
-  const pill=`<span class="pill ${statusClass(item.status)}">${esc(item.status||"To Do")}</span>`;
-  return`<div class="item">
-    <span class="item-dot" style="background:${dotColor(item.status)}"></span>
-    <div class="item-body">
-      <div class="item-title">${esc(item.feature)}</div>
-      <div class="item-meta">${jira}${pill}${asgn}</div>
-      ${blocker}
-    </div>
-  </div>`;
+function renderItem(i){
+  var bl=i.notes&&i.notes.includes("BLOCKED")?'<div class="blocker">'+e(i.notes.replace("BLOCKED: ",""))+"</div>":"";
+  var jira=i.jira&&i.jira!=="-"?'<span class="jira">'+e(i.jira)+"</span>":"";
+  var asgn=i.assignee&&i.assignee!=="-"?'<span class="asgn">'+e(i.assignee)+"</span>":"";
+  return'<div class="item"><span class="idot" style="background:'+dc(i.status)+'"></span><div class="ibody"><div class="ititle">'+e(i.feature)+'</div><div class="imeta">'+jira+'<span class="pill '+sc(i.status)+'">'+e(i.status||"To Do")+"</span>"+asgn+"</div>"+bl+"</div></div>";
 }
 
-function renderPod(pod){
-  const teamTags=pod.team.map(t=>`<span class="tag">${esc(t)}</span>`).join("");
-  const items=pod.items||[];
-  return`<div class="pod">
-    <div class="pod-head" style="background:${pod.headBg}">
-      <div class="pod-top">
-        <span class="pod-name"><span class="dot" style="background:${pod.color}"></span>${esc(pod.name)}</span>
-        <span class="pod-ct">${items.length} items</span>
-      </div>
-      <div class="tags">
-        <span class="tag tag-pm">PM: ${esc(pod.pm)}</span>
-        <span class="tag tag-lead">TL: ${esc(pod.lead)}</span>
-        ${teamTags}
-      </div>
-    </div>
-    <div class="items">${items.length?items.map(renderItem).join(""):`<div class="empty">No items this sprint</div>`}</div>
-  </div>`;
+function renderPod(p){
+  var tags=p.team.map(function(t){return'<span class="tag">'+e(t)+"</span>";}).join("");
+  var items=(p.items||[]).map(renderItem).join("");
+  return'<div class="pod"><div class="pod-head" style="background:'+p.headBg+'"><div class="pod-top"><span class="pod-name"><span class="dot" style="background:'+p.color+'"></span>'+e(p.name)+'</span><span class="pod-ct">'+(p.items||[]).length+' items</span></div><div class="tags"><span class="tag tag-pm">PM: '+e(p.pm)+'</span><span class="tag tag-lead">TL: '+e(p.lead)+"</span>"+tags+'</div></div><div class="items">'+(items||'<div style="padding:12px 14px;font-size:12px;color:#bbb">No items</div>')+"</div></div>";
 }
 
-function renderUpdateCard(u){
-  const typeStyle=u.type==="resigned"?"color:#c62828":u.type==="replacement"?"color:#e65100":"color:#888";
-  const typeLabel=u.type==="resigned"?"Resigned":u.type==="replacement"?"Replacement in progress":"Update";
-  const statusStyle=u.type==="resigned"?"background:#ffebee;color:#c62828":u.type==="replacement"?"background:#fff8e1;color:#e65100":"background:#f5f4f0;color:#888";
-  return`<div class="update-card">
-    <div class="update-type" style="${typeStyle}">${typeLabel}</div>
-    <div class="update-name">${esc(u.name)}</div>
-    <div class="update-desc">${esc(u.detail)}</div>
-    <div class="update-status"><span style="font-size:10px;padding:2px 7px;border-radius:10px;${statusStyle}">${esc(u.status)}</span></div>
-  </div>`;
+function renderUpdate(u){
+  var tc=u.type==="resigned"?"color:#c62828":u.type==="replacement"?"color:#e65100":"color:#888";
+  var tl=u.type==="resigned"?"Resigned":u.type==="replacement"?"Replacement in progress":"Update";
+  var sc2=u.type==="resigned"?"background:#ffebee;color:#c62828":u.type==="replacement"?"background:#fff8e1;color:#e65100":"background:#f5f4f0;color:#888";
+  return'<div class="ucard"><div class="utype" style="'+tc+'">'+tl+'</div><div class="uname">'+e(u.name)+'</div><div class="udesc">'+e(u.detail)+'</div><span class="ustatus" style="'+sc2+'">'+e(u.status)+"</span></div>";
 }
 
-function renderStats(s){
-  return`
-    <div class="stat"><div class="stat-n">${s.total}</div><div class="stat-l">Total items</div></div>
-    <div class="stat-div"></div>
-    <div class="stat"><div class="stat-n" style="color:#2e7d32">${s.done}</div><div class="stat-l">Done / QA</div></div>
-    <div class="stat-div"></div>
-    <div class="stat"><div class="stat-n" style="color:#1565c0">${s.inProgress}</div><div class="stat-l">In progress</div></div>
-    <div class="stat-div"></div>
-    <div class="stat"><div class="stat-n" style="color:#b71c1c">${s.blocked}</div><div class="stat-l">Blocked</div></div>
-    <div class="stat-div"></div>
-    <div class="stat"><div class="stat-n">${s.notStarted}</div><div class="stat-l">Not started</div></div>
-    <div class="stat-div"></div>
-    <div class="stat"><div class="stat-n">${(s.done/Math.max(s.total,1)*100).toFixed(0)}%</div><div class="stat-l">Completion</div></div>
-    <div class="stat-div"></div>
-    <div class="stat"><div class="stat-n">4</div><div class="stat-l">Pods</div></div>
-    <div class="stat-div"></div>
-    <div class="stat"><div class="stat-n">29</div><div class="stat-l">Engineers</div></div>
-  `;
+function render(d){
+  document.getElementById("t1").textContent="Sprint "+d.sprintNumber+" \u2014 Founder update";
+  document.getElementById("t2").textContent=d.sprintDates+" \xb7 All pods \xb7 Auto-updated daily";
+  var g=new Date(d.generatedAt);
+  document.getElementById("t3").textContent="Updated "+g.toLocaleDateString("en-IN",{day:"numeric",month:"short"})+" "+g.toLocaleTimeString("en-IN",{hour:"2-digit",minute:"2-digit"})+" IST";
+  var s=d.stats;
+  document.getElementById("stats").innerHTML=
+    '<div class="stat"><div class="stat-n">'+s.total+'</div><div class="stat-l">Total items</div></div>'+
+    '<div class="stat-div"></div>'+
+    '<div class="stat"><div class="stat-n" style="color:#2e7d32">'+s.done+'</div><div class="stat-l">Done / QA</div></div>'+
+    '<div class="stat-div"></div>'+
+    '<div class="stat"><div class="stat-n" style="color:#1565c0">'+s.inProgress+'</div><div class="stat-l">In progress</div></div>'+
+    '<div class="stat-div"></div>'+
+    '<div class="stat"><div class="stat-n" style="color:#b71c1c">'+s.blocked+'</div><div class="stat-l">Blocked</div></div>'+
+    '<div class="stat-div"></div>'+
+    '<div class="stat"><div class="stat-n">'+s.notStarted+'</div><div class="stat-l">Not started</div></div>'+
+    '<div class="stat-div"></div>'+
+    '<div class="stat"><div class="stat-n">'+Math.round(s.done/Math.max(s.total,1)*100)+'%</div><div class="stat-l">Completion</div></div>'+
+    '<div class="stat-div"></div>'+
+    '<div class="stat"><div class="stat-n">4</div><div class="stat-l">Pods</div></div>'+
+    '<div class="stat-div"></div>'+
+    '<div class="stat"><div class="stat-n">29</div><div class="stat-l">Engineers</div></div>';
+  var pods=d.pods.map(renderPod).join("");
+  var updates=(d.teamUpdates||[]).map(renderUpdate).join("");
+  document.getElementById("main").innerHTML=
+    '<div class="slbl">Pods &amp; work items</div><div class="pods">'+pods+'</div>'+
+    '<div class="slbl" style="margin-top:24px">Team updates</div><div class="updates">'+updates+'</div>'+
+    '<div class="footer">Auto-refreshed daily at 9:00 AM IST from Tech Resource Planning sheet &middot; Sprint '+d.sprintNumber+'</div>';
 }
 
-function renderDashboard(data){
-  document.getElementById("sprint-title").textContent=`Sprint ${data.sprintNumber} — Founder update`;
-  document.getElementById("sprint-sub").textContent=`${data.sprintDates}  ·  All pods  ·  Auto-updated daily from Google Sheet`;
-
-  const gen=new Date(data.generatedAt);
-  document.getElementById("last-updated").textContent=`Data as of ${gen.toLocaleDateString("en-IN",{day:"numeric",month:"short",year:"numeric"})} ${gen.toLocaleTimeString("en-IN",{hour:"2-digit",minute:"2-digit",timeZone:"Asia/Kolkata"})} IST`;
-
-  document.getElementById("stats-bar").innerHTML=renderStats(data.stats);
-
-  const podsHtml=data.pods.map(renderPod).join("");
-  const updatesHtml=(data.teamUpdates||[]).map(renderUpdateCard).join("");
-
-  document.getElementById("main-content").innerHTML=`
-    <div class="section-lbl">Pods & work items</div>
-    <div class="pods">${podsHtml}</div>
-    <div class="section-lbl" style="margin-top:24px;">Team updates</div>
-    <div class="updates">${updatesHtml}</div>
-    <div style="margin-top:32px;font-size:11px;color:var(--muted);text-align:center;padding-bottom:24px;">
-      Auto-refreshed daily at 9:00 AM IST from Tech Resource Planning sheet &middot; Sprint ${data.sprintNumber}
-    </div>
-  `;
+if(D){render(D);}else{
+  document.getElementById("main").innerHTML='<div style="padding:40px;color:#888;text-align:center">No data yet — run the GitHub Action to populate.</div>';
 }
-
-async function load(){
-  try{
-    const res=await fetch("data.json?t="+Date.now());
-    if(!res.ok)throw new Error(`HTTP ${res.status}`);
-    const data=await res.json();
-    renderDashboard(data);
-  }catch(e){
-    document.getElementById("main-content").innerHTML=`<div class="error">Could not load sprint data: ${e.message}<br>Make sure data.json exists in the same directory.</div>`;
-    document.getElementById("stats-bar").innerHTML="";
-    document.getElementById("sprint-title").textContent="Sprint Dashboard";
-    document.getElementById("sprint-sub").textContent="Data unavailable";
-  }
-}
-
-load();
 </script>
 </body>
 </html>
