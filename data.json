@@ -1,13 +1,13 @@
 {
-  "generatedAt": "2026-04-28T18:22:06.979446+00:00",
+  "generatedAt": "2026-04-28T18:23:52.435467+00:00",
   "sprintNumber": "69",
   "sprintDates": "[27 Apr - 8 May]",
   "sheetName": "SPRINT 69 [27 Apr - 8 May]",
   "stats": {
     "total": 30,
     "done": 6,
-    "inProgress": 3,
-    "blocked": 3,
+    "inProgress": 4,
+    "blocked": 2,
     "notStarted": 18
   },
   "pods": [
@@ -50,9 +50,9 @@
           "section": "HL Tasks",
           "feature": "New post-processing service for data delivery(cross account/ cross org/ copy of data to client bucket)",
           "jira": "HL-150",
-          "status": "Blocked",
+          "status": "Dev in Progress",
           "assignee": "Avinash Ramanathan",
-          "notes": "TSD is pending"
+          "notes": ""
         },
         {
           "section": "HL Tasks",
