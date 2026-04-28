@@ -1,145 +1,99 @@
 """
-fetch_data.py
-Reads the Tech Resource Planning Google Sheet and writes data.json
-for the sprint dashboard. Runs daily via GitHub Actions.
-
-Requirements:
-  pip install google-auth google-auth-httplib2 google-api-python-client openpyxl requests
-
-Env vars needed (set as GitHub Secrets):
-  GOOGLE_SERVICE_ACCOUNT_JSON  — contents of your service account key JSON
-  SPREADSHEET_ID               — the Google Sheets file ID
-  SPRINT_SHEET_NAME            — e.g. "SPRINT 69 27 Apr - 8 May"
+fetch_data.py — auto-detects the latest sprint tab, no manual secret updates needed.
 """
 
-import json
-import os
-import sys
-import re
+import json, os, sys, re
 from datetime import datetime, timezone
 
-# ── config ─────────────────────────────────────────────────────────────────
-SPREADSHEET_ID   = os.environ.get("SPREADSHEET_ID", "1Sijbuj0mhLuT5svA7uKv02Ay3o0wlArB2kv0HYo1gCY")
-SPRINT_SHEET     = os.environ.get("SPRINT_SHEET_NAME", "SPRINT 69 27 Apr - 8 May")
-RESOURCE_SHEET   = os.environ.get("RESOURCE_SHEET_NAME", "Resource Sheet")
-OUTPUT_FILE      = "data.json"
+SPREADSHEET_ID = os.environ.get("SPREADSHEET_ID", "1Sijbuj0mhLuT5svA7uKv02Ay3o0wlArB2kv0HYo1gCY")
+OUTPUT_FILE    = "data.json"
 
-# Pod definitions — maps section headers in the sheet to pod config
-POD_CONFIG = {
-    "Engage Activities": {
-        "id": "engage",
-        "name": "KGeN Engage",
-        "color": "#185FA5",
-        "headBg": "#EBF5FB",
-        "pm": "Mandeep",
-        "lead": "Guru (Kumaragurubaran)",
-    },
-    "exlr8 <> kstore": {
-        "id": "kstore",
-        "name": "KStore",
-        "color": "#3B6D11",
-        "headBg": "#EAF7E6",
-        "pm": "Shishir / Russel",
-        "lead": "Julian",
-    },
-    "HL Tasks": {
-        "id": "hl_audio",
-        "name": "Humyn Labs — Audio",
-        "color": "#9E3360",
-        "headBg": "#FDF0F5",
-        "pm": "Saksham",
-        "lead": "Yogesh",
-    },
-    "QA Items & Releases": {
-        "id": "hl_ego",
-        "name": "Humyn Labs — Egocentric",
-        "color": "#9E3360",
-        "headBg": "#FDF0F5",
-        "pm": "Adnaan",
-        "lead": "Karthik / Avinash",
-    },
-    "Devops and Security": {
-        "id": "devsec",
-        "name": "DevSec",
-        "color": "#854F0B",
-        "headBg": "#FFFBF0",
-        "pm": "Itisha (TPM)",
-        "lead": "Itisha",
-    },
+POD_SECTIONS = {
+    "Engage Activities":   {"id":"engage",   "name":"KGeN Engage",           "color":"#185FA5","headBg":"#EBF5FB","pm":"Mandeep",        "lead":"Guru"},
+    "exlr8 <> kstore":    {"id":"kstore",   "name":"KStore",                 "color":"#3B6D11","headBg":"#EAF7E6","pm":"Shishir / Russel","lead":"Julian"},
+    "HL Tasks":            {"id":"hl_audio","name":"Humyn Labs — Audio",      "color":"#9E3360","headBg":"#FDF0F5","pm":"Saksham",        "lead":"Yogesh"},
+    "QA Items & Releases": {"id":"hl_ego",  "name":"Humyn Labs — Egocentric","color":"#9E3360","headBg":"#FDF0F5","pm":"Adnaan",         "lead":"Karthik / Avinash"},
+    "Devops and Security": {"id":"devsec",  "name":"DevSec",                 "color":"#854F0B","headBg":"#FFFBF0","pm":"Itisha (TPM)",   "lead":"Itisha"},
 }
 
-# Static team roster per pod — overridden by Resource Sheet if available
 STATIC_TEAMS = {
-    "engage":   ["Harshada", "Manpreet", "Namrata", "Akshay", "Shaurya", "Swetha (QA)"],
-    "kstore":   ["Julian", "Karthik", "Jitendra", "Raghav", "Aditya", "Shahid", "Pankaj", "Relin (QA)", "Yuvaraj (QA)"],
-    "hl_audio": ["Namrata", "Nilesh", "Jaya", "Avish", "Avinash", "Kumaragurubaran", "Shaurya (FE)", "Sameer (FE)", "Pratik (FE)", "Shivam (FE)", "Kevin (QA)", "Swetha (QA)"],
-    "hl_ego":   ["Karthik", "Avinash"],
-    "devsec":   ["Arun Kumar Krishna (DevOps)", "Karan Sabharwal (Security)"],
+    "engage":   ["Harshada","Manpreet","Namrata","Akshay","Shaurya","Swetha (QA)"],
+    "kstore":   ["Julian","Karthik","Jitendra","Raghav","Aditya","Shahid","Pankaj","Relin (QA)","Yuvaraj (QA)"],
+    "hl_audio": ["Namrata","Nilesh","Jaya","Avish","Avinash","Kumaragurubaran","Shaurya (FE)","Sameer (FE)","Shivam (FE)","Kevin (QA)","Swetha (QA)"],
+    "hl_ego":   ["Karthik","Avinash"],
+    "devsec":   ["Arun Kumar Krishna (DevOps)","Karan Sabharwal (Security)"],
 }
 
 TEAM_UPDATES = [
-    {"type": "resigned",    "name": "Avish",             "detail": "Father's accident. WFH 9–17 Apr. Tasks re-routed.", "status": "WFH 9-17 Apr"},
-    {"type": "replacement", "name": "Akshay (HL Backend)","detail": "3-month notice period. Replacement hiring underway.", "status": "In Progress"},
-    {"type": "replacement", "name": "Shivam (GKMIT)",     "detail": "3-month notice period. Replacement hiring underway.", "status": "In Progress"},
-    {"type": "info",        "name": "Raghav & Pankaj (GKMIT)", "detail": "No replacement needed. Update to be sent to GKMIT.", "status": "Update to GKMIT"},
+    {"type":"resigned",    "name":"Avish",              "detail":"Father's accident. WFH 9–17 Apr. Tasks re-routed.", "status":"WFH 9-17 Apr"},
+    {"type":"replacement", "name":"Akshay (HL Backend)","detail":"3-month notice. Replacement hiring underway.",       "status":"In Progress"},
+    {"type":"replacement", "name":"Shivam (GKMIT)",     "detail":"3-month notice. Replacement hiring underway.",       "status":"In Progress"},
+    {"type":"info",        "name":"Raghav & Pankaj (GKMIT)","detail":"No replacement needed. Update to GKMIT pending.","status":"Update to GKMIT"},
 ]
 
 
-def get_sheets_service():
-    """Return an authenticated Google Sheets service client."""
+def get_service():
     from google.oauth2.service_account import Credentials
     from googleapiclient.discovery import build
-
-    sa_json = os.environ.get("GOOGLE_SERVICE_ACCOUNT_JSON")
-    if not sa_json:
-        raise RuntimeError("GOOGLE_SERVICE_ACCOUNT_JSON env var not set")
-
-    sa_info = json.loads(sa_json)
+    sa = json.loads(os.environ["GOOGLE_SERVICE_ACCOUNT_JSON"])
     creds = Credentials.from_service_account_info(
-        sa_info,
-        scopes=["https://www.googleapis.com/auth/spreadsheets.readonly"],
-    )
-    return build("sheets", "v4", credentials=creds, cache_discovery=False)
+        sa, scopes=["https://www.googleapis.com/auth/spreadsheets.readonly"])
+    return build("sheets","v4",credentials=creds,cache_discovery=False)
 
 
-def read_sheet(service, sheet_name):
-    """Read all values from a named sheet tab."""
-    result = (
-        service.spreadsheets()
-        .values()
-        .get(spreadsheetId=SPREADSHEET_ID, range=f"'{sheet_name}'")
-        .execute()
-    )
+def find_latest_sprint_tab(service):
+    """
+    Reads all sheet tab names from the spreadsheet.
+    Picks the tab whose name starts with 'SPRINT' and has the highest sprint number.
+    Falls back to any tab containing 'SPRINT' if numbering isn't found.
+    """
+    meta = service.spreadsheets().get(
+        spreadsheetId=SPREADSHEET_ID,
+        fields="sheets.properties.title"
+    ).execute()
+
+    titles = [s["properties"]["title"] for s in meta.get("sheets", [])]
+    print(f"All tabs found: {titles}")
+
+    sprint_tabs = []
+    for title in titles:
+        m = re.search(r"SPRINT\s+(\d+)", title, re.IGNORECASE)
+        if m:
+            sprint_tabs.append((int(m.group(1)), title))
+
+    if not sprint_tabs:
+        # fallback: any tab with "sprint" in the name
+        for title in titles:
+            if "sprint" in title.lower():
+                print(f"Fallback: using tab '{title}'")
+                return title
+        raise RuntimeError(f"No sprint tab found. Available tabs: {titles}")
+
+    sprint_tabs.sort(key=lambda x: x[0], reverse=True)
+    chosen = sprint_tabs[0][1]
+    print(f"Latest sprint tab: '{chosen}' (number {sprint_tabs[0][0]})")
+    return chosen
+
+
+def read_tab(service, tab_name):
+    result = service.spreadsheets().values().get(
+        spreadsheetId=SPREADSHEET_ID,
+        range=f"'{tab_name}'"
+    ).execute()
     return result.get("values", [])
 
 
-def safe(row, idx, default=""):
-    try:
-        v = row[idx]
-        return str(v).strip() if v else default
-    except IndexError:
-        return default
+def safe(row, idx):
+    try: return str(row[idx]).strip() if row[idx] else ""
+    except IndexError: return ""
 
 
-SECTION_LABELS = set(POD_CONFIG.keys())
-
-def parse_sprint_sheet(rows):
-    """
-    Parse the sprint sheet rows into a list of work items.
-    Column mapping (0-indexed):
-      0  = Module Owner
-      1  = Features
-      12 = Scrum Notes
-      23 = Space (TECH / HL / DEVSEC)
-      27 = Assignee
-      28 = Status
-      29 = Jira Key
-    Section headers: rows where col1 is empty and col0 has a section name.
-    """
+def parse_items(rows, sheet_name):
     items = []
     current_section = "Engage Activities"
+    section_keys = set(POD_SECTIONS.keys())
 
-    for row in rows[1:]:  # skip header
+    for row in rows[1:]:
         owner   = safe(row, 0)
         feature = safe(row, 1)
         notes   = safe(row, 12)
@@ -148,122 +102,83 @@ def parse_sprint_sheet(rows):
         status  = safe(row, 28)
         jira    = safe(row, 29)
 
-        # Detect section headers
+        # section header detection
         if owner and not feature:
-            for label in SECTION_LABELS:
+            for label in section_keys:
                 if label.lower() in owner.lower():
                     current_section = label
                     break
-            # Also catch labels that are only in owner col
-            if any(kw in owner for kw in ["Engage", "HL Tasks", "QA Items", "Devops", "exlr8", "kstore"]):
-                for label in SECTION_LABELS:
-                    if any(kw in owner for kw in label.split()):
-                        current_section = label
             continue
 
-        if not feature:
+        if not feature or feature in ("Features","Shield Disable???") or owner == "Module Owner":
             continue
 
-        # Skip placeholder / header rows
-        if feature in ("Features", "Shield Disable???") or owner == "Module Owner":
-            continue
+        is_blocker = any(kw in notes for kw in ["BLOCKED","TSD is pending","waiting from product"])
+        display_status = "Blocked" if is_blocker and status in ("To Do","") else (status or "To Do")
+        blocker_note = notes if is_blocker else ""
 
         items.append({
             "section":  current_section,
-            "owner":    owner,
-            "feature":  feature.replace("\n", " ").strip(),
-            "notes":    notes.replace("\n", " ").strip(),
-            "space":    space,
-            "assignee": assignee,
-            "status":   status or "To Do",
-            "jira":     jira,
+            "feature":  feature.replace("\n"," ").strip(),
+            "jira":     jira or "-",
+            "status":   display_status,
+            "assignee": assignee or "-",
+            "notes":    blocker_note.replace("\n"," ").strip(),
         })
 
     return items
 
 
-def parse_resource_sheet(rows):
-    """
-    Extract current team members per pod from the Resource Sheet tab.
-    Returns a dict: pod_id -> [name, ...]
-    This is a best-effort parse — the resource sheet format varies.
-    """
-    teams = {k: list(v) for k, v in STATIC_TEAMS.items()}  # start from static
-    # TODO: parse rows to override — for now return static defaults
-    return teams
+def build_pods(items):
+    pod_order = ["engage","kstore","hl_audio","hl_ego","devsec"]
+    sec_to_pod = {s: cfg["id"] for s, cfg in POD_SECTIONS.items()}
+    pod_items  = {pid: [] for pid in pod_order}
 
-
-def build_pods(items, teams):
-    """Group items into pod cards."""
-    pods = []
-    # Maintain order
-    pod_order = ["engage", "kstore", "hl_audio", "hl_ego", "devsec"]
-    section_to_pod = {sec: cfg["id"] for sec, cfg in POD_CONFIG.items()}
-
-    pod_items = {pid: [] for pid in pod_order}
     for item in items:
-        pid = section_to_pod.get(item["section"])
+        pid = sec_to_pod.get(item["section"])
         if pid:
             pod_items[pid].append(item)
 
+    pods = []
     for pid in pod_order:
-        # Find matching POD_CONFIG entry
-        cfg = next(c for c in POD_CONFIG.values() if c["id"] == pid)
-        pods.append({
-            **cfg,
-            "team":  teams.get(pid, []),
-            "items": pod_items[pid],
-        })
-
+        cfg = next(c for c in POD_SECTIONS.values() if c["id"] == pid)
+        pods.append({**cfg, "team": STATIC_TEAMS.get(pid,[]), "items": pod_items[pid]})
     return pods
 
 
-def count_stats(items):
+def stats(items):
     total   = len(items)
-    done    = sum(1 for i in items if "done" in i["status"].lower() or i["status"] == "In QA")
+    done    = sum(1 for i in items if "done" in i["status"].lower() or i["status"]=="In QA")
     prog    = sum(1 for i in items if "progress" in i["status"].lower() or "review" in i["status"].lower())
     blocked = sum(1 for i in items if "block" in i["status"].lower())
-    todo    = total - done - prog - blocked
-    return {"total": total, "done": done, "inProgress": prog, "blocked": blocked, "notStarted": todo}
+    return {"total":total,"done":done,"inProgress":prog,"blocked":blocked,"notStarted":total-done-prog-blocked}
 
 
 def main():
-    print(f"Fetching sheet: {SPRINT_SHEET}")
+    svc        = get_service()
+    tab        = find_latest_sprint_tab(svc)          # ← auto-detects latest sprint
+    rows       = read_tab(svc, tab)
+    items      = parse_items(rows, tab)
+    pods       = build_pods(items)
 
-    try:
-        service = get_sheets_service()
-        sprint_rows   = read_sheet(service, SPRINT_SHEET)
-        resource_rows = read_sheet(service, RESOURCE_SHEET) if RESOURCE_SHEET else []
-    except Exception as e:
-        print(f"WARNING: Could not read Google Sheets ({e}). Writing empty data.", file=sys.stderr)
-        sprint_rows = []
-        resource_rows = []
-
-    items = parse_sprint_sheet(sprint_rows) if sprint_rows else []
-    teams = parse_resource_sheet(resource_rows)
-    pods  = build_pods(items, teams)
-    stats = count_stats(items)
-
-    # Parse sprint name and dates from sheet tab name
-    # e.g. "SPRINT 69 27 Apr - 8 May" → number=69, dates="27 Apr – 8 May"
-    m = re.search(r"(\d+)\s+(.+)", SPRINT_SHEET, re.IGNORECASE)
-    sprint_number = m.group(1) if m else "?"
-    sprint_dates  = m.group(2).strip() if m else SPRINT_SHEET
+    m = re.search(r"(\d+)\s+(.+)", tab, re.IGNORECASE)
+    sprint_num  = m.group(1) if m else "?"
+    sprint_dates = m.group(2).strip() if m else tab
 
     data = {
-        "generatedAt": datetime.now(timezone.utc).isoformat(),
-        "sprintNumber": sprint_number,
+        "generatedAt":  datetime.now(timezone.utc).isoformat(),
+        "sprintNumber": sprint_num,
         "sprintDates":  sprint_dates,
-        "sheetName":    SPRINT_SHEET,
-        "stats":        stats,
+        "sheetName":    tab,
+        "stats":        stats(items),
         "pods":         pods,
         "teamUpdates":  TEAM_UPDATES,
     }
 
-    with open(OUTPUT_FILE, "w") as f:
+    with open(OUTPUT_FILE,"w") as f:
         json.dump(data, f, indent=2, ensure_ascii=False)
 
-    print(f"Written {OUTPUT_FILE}: {len(items)} items across {len(pods)} pods")
+    print(f"Done: {len(items)} items, sprint {sprint_num}, written to {OUTPUT_FILE}")
 
 
 if __name__ == "__main__":
