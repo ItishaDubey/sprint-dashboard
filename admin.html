@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Team Updates — Admin</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0;}
+body{background:#f7f6f2;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;font-size:15px;color:#111;padding:32px 24px;}
+h1{font-size:20px;font-weight:700;margin-bottom:4px;}
+.sub{font-size:13px;color:#777;margin-bottom:28px;}
+.card{background:#fff;border-radius:12px;border:1px solid #e8e6df;padding:20px;margin-bottom:16px;}
+.card-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;}
+.card-title{font-size:14px;font-weight:700;color:#444;}
+.del-btn{background:none;border:none;cursor:pointer;color:#dc2626;font-size:13px;padding:4px 8px;border-radius:6px;}
+.del-btn:hover{background:#fee2e2;}
+.field{margin-bottom:12px;}
+label{display:block;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:#777;margin-bottom:4px;}
+select,input,textarea{width:100%;padding:9px 12px;border:1px solid #e8e6df;border-radius:8px;font-size:14px;font-family:inherit;background:#fff;color:#111;}
+select:focus,input:focus,textarea:focus{outline:none;border-color:#111;}
+textarea{resize:vertical;min-height:60px;}
+.add-btn{background:#111;color:#fff;border:none;padding:10px 20px;border-radius:8px;font-size:14px;font-weight:600;cursor:pointer;margin-bottom:16px;}
+.add-btn:hover{opacity:.85;}
+.save-btn{background:#16a34a;color:#fff;border:none;padding:12px 28px;border-radius:8px;font-size:15px;font-weight:700;cursor:pointer;width:100%;}
+.save-btn:hover{opacity:.9;}
+.instructions{background:#fffbeb;border:1px solid #fcd34d;border-radius:10px;padding:16px;margin-bottom:24px;font-size:13px;line-height:1.6;color:#444;}
+.instructions strong{color:#111;}
+.instructions code{background:#f3f4f6;padding:1px 6px;border-radius:4px;font-family:monospace;font-size:12px;}
+.toast{position:fixed;bottom:24px;right:24px;background:#111;color:#fff;padding:12px 20px;border-radius:8px;font-size:14px;opacity:0;transition:opacity .3s;}
+.toast.show{opacity:1;}
+.back{display:inline-block;margin-bottom:20px;font-size:13px;color:#777;text-decoration:none;}
+.back:hover{color:#111;}
+</style>
+</head>
+<body>
+
+<a class="back" href="/">← Back to dashboard</a>
+<h1>Team Updates Admin</h1>
+<div class="sub">Add, edit or remove team announcements shown on the founder dashboard.</div>
+
+<div class="instructions">
+  <strong>How to update:</strong><br>
+  1. Edit the updates below<br>
+  2. Click <strong>Save & Copy JSON</strong><br>
+  3. Open <code>fetch_data.py</code> in your repo<br>
+  4. Replace the <code>TEAM_UPDATES</code> list with the copied JSON<br>
+  5. <code>git add fetch_data.py && git commit -m "update team" && git push</code><br>
+  Dashboard updates on next Action run (or trigger manually).
+</div>
+
+<div id="cards"></div>
+<button class="add-btn" onclick="addCard()">+ Add update</button>
+<button class="save-btn" onclick="saveAll()">Save &amp; Copy JSON</button>
+
+<div class="toast" id="toast">Copied to clipboard!</div>
+
+<script>
+var updates = [
+  {type:"resigned",    name:"Avish",               detail:"Father's accident. WFH 9-17 Apr. Tasks re-routed.", status:"WFH 9-17 Apr"},
+  {type:"replacement", name:"Akshay (HL Backend)",  detail:"3-month notice. Replacement hiring underway.",       status:"In Progress"},
+  {type:"replacement", name:"Shivam (GKMIT)",       detail:"3-month notice. Replacement hiring underway.",       status:"In Progress"},
+  {type:"info",        name:"Raghav & Pankaj (GKMIT)", detail:"No replacement needed. Update to GKMIT pending.", status:"Update to GKMIT"},
+];
+
+function renderCards(){
+  document.getElementById("cards").innerHTML = updates.map(function(u,i){
+    return '<div class="card">'+
+      '<div class="card-header"><div class="card-title">Update #'+(i+1)+'</div>'+
+      '<button class="del-btn" onclick="removeCard('+i+')">Remove</button></div>'+
+      '<div class="field"><label>Type</label>'+
+      '<select onchange="updates['+i+'].type=this.value">'+
+        ['resigned','replacement','info','joining'].map(function(t){
+          return'<option value="'+t+'"'+(u.type===t?' selected':'')+'>'+t+'</option>';
+        }).join('')+
+      '</select></div>'+
+      '<div class="field"><label>Name / Person</label>'+
+      '<input value="'+u.name+'" oninput="updates['+i+'].name=this.value"></div>'+
+      '<div class="field"><label>Detail</label>'+
+      '<textarea oninput="updates['+i+'].detail=this.value">'+u.detail+'</textarea></div>'+
+      '<div class="field"><label>Status badge</label>'+
+      '<input value="'+u.status+'" oninput="updates['+i+'].status=this.value"></div>'+
+    '</div>';
+  }).join('');
+}
+
+function addCard(){
+  updates.push({type:"info", name:"", detail:"", status:""});
+  renderCards();
+}
+
+function removeCard(i){
+  updates.splice(i,1);
+  renderCards();
+}
+
+function saveAll(){
+  var json = JSON.stringify(updates, null, 2);
+  var pyList = "TEAM_UPDATES = " + json;
+  navigator.clipboard.writeText(pyList).then(function(){
+    var t = document.getElementById("toast");
+    t.classList.add("show");
+    setTimeout(function(){t.classList.remove("show");}, 2500);
+  });
+}
+
+renderCards();
+</script>
+</body>
+</html>

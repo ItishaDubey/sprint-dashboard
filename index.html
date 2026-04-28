@@ -6,143 +6,201 @@
 <title>Sprint Dashboard</title>
 <style>
 *{box-sizing:border-box;margin:0;padding:0;}
-body{background:#f5f4f0;color:#111;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;font-size:14px;}
-.hdr{background:#fff;border-bottom:1px solid #e8e6e0;padding:16px 28px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px;}
-.hdr h1{font-size:17px;font-weight:600;}
-.hdr .sub{font-size:12px;color:#888;margin-top:1px;}
-.updated{font-size:11px;color:#bbb;}
-.stats{background:#fff;border-bottom:1px solid #e8e6e0;padding:10px 28px;display:flex;gap:20px;flex-wrap:wrap;}
-.stat{display:flex;flex-direction:column;}
-.stat-n{font-size:20px;font-weight:600;line-height:1;}
-.stat-l{font-size:10px;color:#888;margin-top:2px;text-transform:uppercase;letter-spacing:.05em;}
-.stat-div{width:1px;background:#e8e6e0;}
-.main{padding:20px 28px;max-width:1120px;}
-.slbl{font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:.08em;color:#888;margin:20px 0 10px;}
-.pods{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;}
-@media(max-width:680px){.pods{grid-template-columns:1fr;}.main,.hdr,.stats{padding:12px 14px;}}
-.pod{background:#fff;border-radius:10px;border:1px solid #e8e6e0;overflow:hidden;}
-.pod-head{padding:10px 14px 8px;border-bottom:1px solid #e8e6e0;}
-.pod-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:7px;}
-.pod-name{display:flex;align-items:center;gap:6px;font-size:13px;font-weight:600;}
-.dot{width:7px;height:7px;border-radius:50%;flex-shrink:0;}
-.pod-ct{font-size:11px;color:#888;}
-.tags{display:flex;flex-wrap:wrap;gap:3px;}
-.tag{font-size:10px;padding:2px 6px;border-radius:10px;background:#f5f4f0;color:#666;}
-.tag-pm{background:#111;color:#fff;}
-.tag-lead{background:#444;color:#fff;}
-.sublbl{padding:5px 14px 1px;font-size:9.5px;font-weight:600;text-transform:uppercase;letter-spacing:.06em;color:#bbb;border-top:1px solid #f5f4f0;margin-top:2px;}
-.items{padding:2px 0 8px;}
-.item{padding:6px 14px;display:flex;gap:7px;}
-.item:hover{background:#faf9f7;}
-.idot{width:5px;height:5px;border-radius:50%;margin-top:5px;flex-shrink:0;}
+:root{--bg:#f7f6f2;--card:#fff;--border:#e8e6df;--text:#111;--muted:#777;--hint:#bbb;}
+body{background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;font-size:15px;line-height:1.5;}
+
+/* HEADER */
+.hdr{background:var(--card);border-bottom:1px solid var(--border);padding:18px 32px;display:flex;align-items:flex-start;justify-content:space-between;flex-wrap:wrap;gap:12px;}
+.hdr-title{font-size:20px;font-weight:700;letter-spacing:-.3px;}
+.hdr-sub{font-size:13px;color:var(--muted);margin-top:3px;}
+.hdr-updated{font-size:12px;color:var(--hint);margin-top:4px;text-align:right;}
+
+/* STATS */
+.stats{background:var(--card);border-bottom:1px solid var(--border);padding:14px 32px;display:flex;gap:28px;flex-wrap:wrap;overflow-x:auto;}
+.stat{display:flex;flex-direction:column;min-width:60px;}
+.stat-n{font-size:26px;font-weight:700;line-height:1;}
+.stat-l{font-size:11px;color:var(--muted);margin-top:3px;text-transform:uppercase;letter-spacing:.06em;}
+.sdiv{width:1px;background:var(--border);align-self:stretch;}
+
+/* BLOCKERS BANNER */
+.blockers-section{margin:20px 32px 0;background:#fff5f5;border:1.5px solid #fca5a5;border-radius:12px;overflow:hidden;}
+.blockers-header{background:#fee2e2;padding:10px 18px;display:flex;align-items:center;gap:8px;font-size:13px;font-weight:700;color:#991b1b;}
+.blocker-item{padding:10px 18px;border-top:1px solid #fecaca;display:flex;gap:12px;align-items:flex-start;}
+.blocker-pod{font-size:11px;font-weight:600;color:#dc2626;background:#fee2e2;padding:2px 8px;border-radius:10px;white-space:nowrap;flex-shrink:0;margin-top:1px;}
+.blocker-feat{font-size:13px;color:#111;font-weight:500;}
+.blocker-note{font-size:12px;color:#b91c1c;margin-top:2px;}
+
+/* MAIN */
+.main{padding:20px 32px 40px;}
+.slbl{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);margin:24px 0 12px;}
+
+/* PODS GRID */
+.pods{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;}
+
+/* POD CARD */
+.pod{background:var(--card);border-radius:12px;border:1px solid var(--border);overflow:hidden;}
+.pod-head{padding:14px 18px 10px;}
+.pod-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:8px;}
+.pod-name{display:flex;align-items:center;gap:7px;font-size:15px;font-weight:700;}
+.dot{width:9px;height:9px;border-radius:50%;flex-shrink:0;}
+.pod-ct{font-size:12px;color:var(--muted);}
+.pod-meta{font-size:12px;color:var(--muted);margin-bottom:6px;}
+.pod-meta span{font-weight:600;color:#444;}
+.pod-note{font-size:11px;color:#666;font-style:italic;margin-bottom:6px;}
+.tags{display:flex;flex-wrap:wrap;gap:4px;}
+.tag{font-size:11px;padding:3px 8px;border-radius:10px;background:var(--bg);color:#555;}
+.tag-lead{background:#111;color:#fff;}
+.divider{height:1px;background:var(--border);}
+
+/* ITEMS */
+.items{padding:4px 0 10px;}
+.item{padding:7px 18px;display:flex;gap:8px;}
+.item:hover{background:#fafaf8;}
+.idot{width:6px;height:6px;border-radius:50%;margin-top:6px;flex-shrink:0;}
 .ibody{flex:1;min-width:0;}
-.ititle{font-size:12px;line-height:1.4;}
-.imeta{display:flex;gap:5px;margin-top:3px;flex-wrap:wrap;align-items:center;}
-.jira{font-size:9.5px;font-family:monospace;color:#bbb;}
-.pill{font-size:9.5px;padding:1px 6px;border-radius:10px;font-weight:500;}
-.p-todo{background:#f5f4f0;color:#777;}
-.p-done{background:#e8f5e9;color:#2e7d32;}
-.p-qa{background:#f1f8e9;color:#388e3c;}
-.p-prog{background:#e3f2fd;color:#1565c0;}
-.p-rev{background:#fff8e1;color:#e65100;}
-.p-block{background:#ffebee;color:#b71c1c;font-weight:700;}
-.asgn{font-size:9.5px;color:#bbb;}
-.blocker{font-size:9.5px;color:#b71c1c;background:#ffebee;border-radius:4px;padding:1px 5px;margin-top:2px;display:inline-block;}
-.updates{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:8px;margin-top:6px;}
-.ucard{background:#fff;border-radius:8px;border:1px solid #e8e6e0;padding:9px 12px;}
-.utype{font-size:9.5px;font-weight:600;text-transform:uppercase;letter-spacing:.05em;margin-bottom:3px;}
-.uname{font-size:13px;font-weight:500;}
-.udesc{font-size:11px;color:#888;margin-top:2px;}
-.ustatus{font-size:10px;padding:2px 7px;border-radius:10px;margin-top:4px;display:inline-block;}
-.footer{margin-top:32px;font-size:11px;color:#bbb;text-align:center;padding-bottom:24px;}
+.ititle{font-size:13px;line-height:1.4;color:#111;}
+.imeta{display:flex;gap:6px;margin-top:3px;flex-wrap:wrap;align-items:center;}
+.jira{font-size:10px;font-family:monospace;color:var(--hint);}
+.pill{font-size:10px;padding:2px 7px;border-radius:10px;font-weight:600;}
+.p-todo{background:#f3f4f6;color:#6b7280;}
+.p-done{background:#dcfce7;color:#166534;}
+.p-qa{background:#d1fae5;color:#065f46;}
+.p-prog{background:#dbeafe;color:#1e40af;}
+.p-rev{background:#fef9c3;color:#854d0e;}
+.p-block{background:#fee2e2;color:#991b1b;font-weight:700;}
+.asgn{font-size:11px;color:var(--hint);}
+.empty{padding:14px 18px;font-size:13px;color:var(--hint);}
+
+/* TEAM UPDATES */
+.updates-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:10px;margin-top:6px;}
+.ucard{background:var(--card);border-radius:10px;border:1px solid var(--border);padding:12px 16px;}
+.utype{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;margin-bottom:4px;}
+.uname{font-size:14px;font-weight:600;}
+.udesc{font-size:12px;color:var(--muted);margin-top:3px;line-height:1.4;}
+.ustatus{font-size:11px;padding:2px 8px;border-radius:10px;margin-top:6px;display:inline-block;font-weight:600;}
+
+.footer{margin-top:32px;font-size:12px;color:var(--hint);text-align:center;padding-bottom:24px;}
+.admin-link{display:inline-block;margin-top:8px;font-size:12px;color:var(--hint);text-decoration:none;border:1px solid var(--border);padding:4px 12px;border-radius:6px;}
+.admin-link:hover{color:#111;}
+
+/* RESPONSIVE */
+@media(max-width:720px){
+  .hdr,.stats,.main,.blockers-section{padding-left:16px;padding-right:16px;}
+  .blockers-section{margin-left:16px;margin-right:16px;}
+  .pods{grid-template-columns:1fr;}
+  .stat-n{font-size:22px;}
+  .hdr-title{font-size:17px;}
+}
 </style>
 </head>
 <body>
+
 <div class="hdr">
   <div>
-    <h1 id="t1">Sprint Dashboard</h1>
-    <div class="sub" id="t2">Loading…</div>
+    <div class="hdr-title" id="t1">Sprint Dashboard</div>
+    <div class="hdr-sub" id="t2">Loading…</div>
   </div>
-  <div class="updated" id="t3"></div>
+  <div class="hdr-updated" id="t3"></div>
 </div>
+
 <div class="stats" id="stats"></div>
-<div class="main" id="main"></div>
+<div id="blockers-wrap"></div>
+
+<div class="main">
+  <div class="slbl">Pods &amp; work items</div>
+  <div class="pods" id="pods"></div>
+  <div class="slbl" style="margin-top:28px">Team updates</div>
+  <div class="updates-grid" id="updates"></div>
+  <div class="footer" id="footer"></div>
+</div>
 
 <script>
-var D = {"generatedAt": "2026-04-28T17:54:07.917856+00:00", "sprintNumber": "69", "sprintDates": "[27 Apr - 8 May]", "sheetName": "SPRINT 69 [27 Apr - 8 May]", "stats": {"total": 58, "done": 6, "inProgress": 3, "blocked": 3, "notStarted": 46}, "pods": [{"id": "engage", "name": "KGeN Engage", "color": "#185FA5", "headBg": "#EBF5FB", "pm": "Mandeep", "lead": "Guru", "team": ["Harshada", "Manpreet", "Namrata", "Akshay", "Shaurya", "Swetha (QA)"], "items": [{"section": "Engage Activities", "feature": "Social connect changes - remove phone number pop-up", "jira": "TECH-21023", "status": "To Do", "assignee": "Harshada Raundal", "notes": ""}, {"section": "Engage Activities", "feature": "Shield Backend App Changes", "jira": "TECH-21024", "status": "To Do", "assignee": "Manpreet Singh", "notes": ""}, {"section": "Engage Activities", "feature": "Collect Earings BE change to block rewards collection if phone number is not present", "jira": "TECH-21029", "status": "To Do", "assignee": "Kumaragurubaran Kanagaraj", "notes": ""}]}, {"id": "kstore", "name": "KStore", "color": "#3B6D11", "headBg": "#EAF7E6", "pm": "Shishir / Russel", "lead": "Julian", "team": ["Julian", "Karthik", "Jitendra", "Raghav", "Aditya", "Shahid", "Pankaj", "Relin (QA)", "Yuvaraj (QA)"], "items": [{"section": "exlr8 <> kstore", "feature": "Add updated FAQs in KStore footer", "jira": "-", "status": "To Do", "assignee": "-", "notes": ""}, {"section": "exlr8 <> kstore", "feature": "When a product is assigned to a DP and the corresponding CP is deactivated, reactivating the CP triggers an error. Currently, the product must be reassigned to the DP to restore normal functionality.", "jira": "-", "status": "To Do", "assignee": "-", "notes": ""}, {"section": "exlr8 <> kstore", "feature": "b2c orders panel in Super Admin -add Date and time column", "jira": "-", "status": "To Do", "assignee": "-", "notes": ""}, {"section": "exlr8 <> kstore", "feature": "report generating bamboo is failed", "jira": "-", "status": "To Do", "assignee": "-", "notes": ""}, {"section": "exlr8 <> kstore", "feature": "No error if wrong login", "jira": "-", "status": "To Do", "assignee": "-", "notes": ""}, {"section": "exlr8 <> kstore", "feature": "No error if no money in wallet", "jira": "-", "status": "To Do", "assignee": "-", "notes": ""}, {"section": "exlr8 <> kstore", "feature": "Invalid utf-8 format handling", "jira": "-", "status": "To Do", "assignee": "-", "notes": ""}, {"section": "exlr8 <> kstore", "feature": "sample sheet download for every bulk upload (it will contain every header)", "jira": "-", "status": "To Do", "assignee": "-", "notes": ""}, {"section": "exlr8 <> kstore", "feature": "search issue in the cp product assignment-bug", "jira": "-", "status": "To Do", "assignee": "-", "notes": ""}, {"section": "exlr8 <> kstore", "feature": "do not return the error messages to the fe which are related to internal operations", "jira": "-", "status": "To Do", "assignee": "-", "notes": ""}, {"section": "exlr8 <> kstore", "feature": "Code generation ecosystem", "jira": "-", "status": "To Do", "assignee": "-", "notes": ""}, {"section": "exlr8 <> kstore", "feature": "denomination on the product side-super admin-seperate mrp and denomination", "jira": "-", "status": "To Do", "assignee": "-", "notes": ""}, {"section": "exlr8 <> kstore", "feature": "Reloadly Integration", "jira": "-", "status": "To Do", "assignee": "-", "notes": ""}, {"section": "exlr8 <> kstore", "feature": "Purchase Invoice for KStore customers", "jira": "-", "status": "To Do", "assignee": "-", "notes": ""}, {"section": "exlr8 <> kstore", "feature": "landing pages- make them on product level", "jira": "-", "status": "To Do", "assignee": "-", "notes": ""}, {"section": "exlr8 <> kstore", "feature": "sold out <>next drop for physical goods", "jira": "-", "status": "To Do", "assignee": "-", "notes": ""}, {"section": "exlr8 <> kstore", "feature": "entry point for HT and TN is coming wrong", "jira": "-", "status": "To Do", "assignee": "-", "notes": ""}]}, {"id": "hl_audio", "name": "Humyn Labs - Audio", "color": "#9E3360", "headBg": "#FDF0F5", "pm": "Saksham", "lead": "Yogesh", "team": ["Namrata", "Nilesh", "Jaya", "Avish", "Avinash", "Kumaragurubaran", "Shaurya (FE)", "Sameer (FE)", "Shivam (FE)", "Kevin (QA)", "Swetha (QA)"], "items": [{"section": "HL Tasks", "feature": "Standalone app for audio collection", "jira": "-", "status": "To Do", "assignee": "-", "notes": ""}, {"section": "HL Tasks", "feature": "Alerts for Validation Failures", "jira": "HL-198", "status": "To Do", "assignee": "Namrata Kesarwani", "notes": ""}, {"section": "HL Tasks", "feature": "Avoid copying recorder tool audio files to Quest system", "jira": "-", "status": "To Do", "assignee": "-", "notes": ""}, {"section": "HL Tasks", "feature": "Quest Validation to happen via API at validation tool level", "jira": "-", "status": "To Do", "assignee": "-", "notes": ""}, {"section": "HL Tasks", "feature": "New post-processing service for data delivery(cross account/ cross org/ copy of data to client bucket)", "jira": "HL-150", "status": "Blocked", "assignee": "Avinash Ramanathan", "notes": "TSD is pending"}, {"section": "HL Tasks", "feature": "Validation Retry history - Failures History is maintained", "jira": "HL-137", "status": "Review In Progress", "assignee": "Namrata Kesarwani", "notes": ""}, {"section": "HL Tasks", "feature": "Annotation pipeline for automatic submissions based on project configs", "jira": "HL-220", "status": "To Do", "assignee": "Yogesh Kumar", "notes": ""}, {"section": "HL Tasks", "feature": "HL orchestrator", "jira": "-", "status": "To Do", "assignee": "-", "notes": ""}, {"section": "HL Tasks", "feature": "Duplication Check at the Project level", "jira": "HL-138", "status": "Review In Progress", "assignee": "Namrata Kesarwani", "notes": ""}, {"section": "HL Tasks", "feature": "Annotation and QC tool enhancement: Task distribution % per cc(Vendor)", "jira": "HL-140", "status": "To Do", "assignee": "Avish Kaarthik", "notes": ""}, {"section": "HL Tasks", "feature": "International Language support(Arabic is a must)", "jira": "HL-139", "status": "Blocked", "assignee": "Jaya Kesarwani", "notes": "waiting from product for clarity ; models and solution is pending from product specifically for transliteration"}, {"section": "HL Tasks", "feature": "Annotation and QC: International Language support(Arabic is a must)", "jira": "HL-141", "status": "Blocked", "assignee": "Avish Kaarthik", "notes": "waiting from product for clarity ; models and solution is pending from product specifically for transliteration"}, {"section": "HL Tasks", "feature": "Scribe API Integration across Validation and Annotation", "jira": "HL-216", "status": "To Do", "assignee": "Yogesh Kumar", "notes": ""}, {"section": "HL Tasks", "feature": "Duplicate Content Check at validation and reuse the same to annotation", "jira": "HL-217", "status": "To Do", "assignee": "Yogesh Kumar", "notes": ""}, {"section": "HL Tasks", "feature": "Enable new recorder for single speaker audios", "jira": "HL-218", "status": "To Do", "assignee": "Kumaragurubaran Kanagaraj", "notes": ""}, {"section": "HL Tasks", "feature": "Merge the Collection and Annotation HITL tool versions", "jira": "-", "status": "To Do", "assignee": "-", "notes": ""}, {"section": "HL Tasks", "feature": "Cost and optimisation", "jira": "-", "status": "To Do", "assignee": "-", "notes": ""}, {"section": "HL Tasks", "feature": "HL Responsiveness and New Enhancements on the BD website Design", "jira": "HL-219", "status": "To Do", "assignee": "Shivam Shukla", "notes": ""}, {"section": "HL Tasks", "feature": "Enhancements/Optimisation to Making the Duplication more robust (Content & Speaker at Project level)", "jira": "-", "status": "To Do", "assignee": "-", "notes": ""}, {"section": "HL Tasks", "feature": "Annotation Events and attributes to be added", "jira": "-", "status": "To Do", "assignee": "-", "notes": ""}]}, {"id": "hl_ego", "name": "Humyn Labs - Egocentric", "color": "#9E3360", "headBg": "#FDF0F5", "pm": "Adnaan", "lead": "Karthik / Avinash", "team": ["Karthik", "Avinash"], "items": [{"section": "QA Items & Releases", "feature": "Integration to KGeN Quest & Quest journey Changes - PG Mints post quest is submitted - Click reduction on the quest journey", "jira": "HL-1", "status": "Done", "assignee": "-", "notes": ""}, {"section": "QA Items & Releases", "feature": "Validation Language detection check (Jaya) Duplicate file check Gender check Individual and combined file validation Parameter validation(already present) Contribution Check Fingerprinting (to be done later)", "jira": "HL-55", "status": "Done", "assignee": "Yogesh", "notes": ""}, {"section": "QA Items & Releases", "feature": "No phone number as part of login and guest user journey", "jira": "TECH-20888", "status": "In QA", "assignee": "Shaurya", "notes": ""}, {"section": "QA Items & Releases", "feature": "Collect Earnings KYC Change", "jira": "TECH-20900", "status": "In QA", "assignee": "Manpreet Singh", "notes": ""}, {"section": "QA Items & Releases", "feature": "Annotation Pre Annotation Multi Track Support (combined, left and right speaker) Diarization Magnet Tool (Auto selection of a segment on user initiation) Smart Keyboard: Transliteration (hinglish >> Hindi) Spell Check (partially given) Keyboard Shortcuts for common operations cuh as play, pause, skip, split, merge etc.. Collection QC Annotation QC", "jira": "HL-54", "status": "In QA", "assignee": "Yogesh", "notes": ""}, {"section": "QA Items & Releases", "feature": "Integration to KGeN Quest & Quest journey Changes - PG Mints post quest is submitted - Click reduction on the quest journey", "jira": "HL-1", "status": "Dev in Progress", "assignee": "Kumaragurubaran Kanagaraj", "notes": ""}, {"section": "QA Items & Releases", "feature": "Show User level and Pair level Contribution at quest level and block actions as per", "jira": "HL-186", "status": "To Do", "assignee": "Kumaragurubaran Kanagaraj", "notes": ""}]}, {"id": "devsec", "name": "DevSec", "color": "#854F0B", "headBg": "#FFFBF0", "pm": "Itisha (TPM)", "lead": "Itisha", "team": ["Arun Kumar Krishna (DevOps)", "Karan Sabharwal (Security)"], "items": [{"section": "Devops and Security", "feature": "Syncing assets from prod-image-bucket.indi.gg to prod-image-bucket.kgen.io", "jira": "DEVSEC-669", "status": "To Do", "assignee": "Arun Kumar Krishna", "notes": ""}, {"section": "Devops and Security", "feature": "Annotation Stage setup", "jira": "DEVSEC-670", "status": "Done", "assignee": "Arun Kumar Krishna", "notes": ""}, {"section": "Devops and Security", "feature": "Data Orchestrator migration to HL account (both stage and Prod)", "jira": "DEVSEC-672", "status": "To Do", "assignee": "Arun Kumar Krishna", "notes": ""}, {"section": "Devops and Security", "feature": "Prod Validation Admin(prod-analytics-dashboard) migration to HL account.", "jira": "DEVSEC-673", "status": "To Do", "assignee": "Arun Kumar Krishna", "notes": ""}, {"section": "Devops and Security", "feature": "HL accounts(stage and prod) migration to new Org.", "jira": "DEVSEC-671", "status": "To Do", "assignee": "Arun Kumar Krishna", "notes": ""}, {"section": "Devops and Security", "feature": "Cross Account access for task 1 to use the new validation tool", "jira": "DEVSEC-674", "status": "To Do", "assignee": "Arun Kumar Krishna", "notes": ""}, {"section": "Devops and Security", "feature": "Security Testing: Annotation Tool", "jira": "DEVSEC-675", "status": "To Do", "assignee": "Karan Sabharwal", "notes": ""}, {"section": "Devops and Security", "feature": "Security Testing: Quest with Validation and", "jira": "DEVSEC-676", "status": "To Do", "assignee": "Karan Sabharwal", "notes": ""}, {"section": "Devops and Security", "feature": "Security Testing: Login Changes", "jira": "DEVSEC-677", "status": "To Do", "assignee": "Karan Sabharwal", "notes": ""}, {"section": "Devops and Security", "feature": "Old tool Collected files migration is required to HL account?", "jira": "DEVSEC-678", "status": "To Do", "assignee": "Arun Kumar Krishna", "notes": ""}, {"section": "Devops and Security", "feature": "Email Migration from Mailmodo to SES (Clan Service & KStore)", "jira": "DEVSEC-679", "status": "To Do", "assignee": "Arun Kumar Krishna", "notes": ""}]}], "teamUpdates": [{"type": "resigned", "name": "Avish", "detail": "Father's accident. WFH 9-17 Apr. Tasks re-routed.", "status": "WFH 9-17 Apr"}, {"type": "replacement", "name": "Akshay (HL Backend)", "detail": "3-month notice. Replacement hiring underway.", "status": "In Progress"}, {"type": "replacement", "name": "Shivam (GKMIT)", "detail": "3-month notice. Replacement hiring underway.", "status": "In Progress"}, {"type": "info", "name": "Raghav & Pankaj (GKMIT)", "detail": "No replacement needed. Update to GKMIT pending.", "status": "Update to GKMIT"}]};
+var D = null; /* DATA_PLACEHOLDER */
 
 function sc(s){
   if(!s||s==="To Do")return"p-todo";
-  if(s.includes("Done"))return"p-done";
+  if(s==="Done"||s.toLowerCase().includes("done"))return"p-done";
   if(s==="In QA")return"p-qa";
-  if(s.includes("Progress"))return"p-prog";
-  if(s.includes("Review"))return"p-rev";
-  if(s.includes("Block")||s==="Bug")return"p-block";
+  if(s.toLowerCase().includes("progress"))return"p-prog";
+  if(s.toLowerCase().includes("review"))return"p-rev";
+  if(s.toLowerCase().includes("block")||s==="Bug")return"p-block";
   return"p-todo";
 }
 function dc(s){
-  if(!s||s==="To Do")return"#ccc";
-  if(s.includes("Done"))return"#2e7d32";
-  if(s==="In QA")return"#388e3c";
-  if(s.includes("Progress"))return"#1565c0";
-  if(s.includes("Review"))return"#e65100";
-  if(s.includes("Block"))return"#b71c1c";
-  return"#ccc";
+  if(!s||s==="To Do")return"#d1d5db";
+  if(s.toLowerCase().includes("done")||s==="In QA")return"#16a34a";
+  if(s.toLowerCase().includes("progress")||s.toLowerCase().includes("review"))return"#2563eb";
+  if(s.toLowerCase().includes("block"))return"#dc2626";
+  return"#d1d5db";
 }
 function e(s){return String(s||"").replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");}
 
 function renderItem(i){
-  var bl=i.notes&&i.notes.includes("BLOCKED")?'<div class="blocker">'+e(i.notes.replace("BLOCKED: ",""))+"</div>":"";
   var jira=i.jira&&i.jira!=="-"?'<span class="jira">'+e(i.jira)+"</span>":"";
   var asgn=i.assignee&&i.assignee!=="-"?'<span class="asgn">'+e(i.assignee)+"</span>":"";
-  return'<div class="item"><span class="idot" style="background:'+dc(i.status)+'"></span><div class="ibody"><div class="ititle">'+e(i.feature)+'</div><div class="imeta">'+jira+'<span class="pill '+sc(i.status)+'">'+e(i.status||"To Do")+"</span>"+asgn+"</div>"+bl+"</div></div>";
+  var stxt=i.status||"To Do";
+  return'<div class="item"><span class="idot" style="background:'+dc(i.status)+'"></span><div class="ibody"><div class="ititle">'+e(i.feature)+'</div><div class="imeta">'+jira+'<span class="pill '+sc(i.status)+'">'+e(stxt)+"</span>"+asgn+"</div></div></div>";
 }
 
 function renderPod(p){
   var tags=p.team.map(function(t){return'<span class="tag">'+e(t)+"</span>";}).join("");
-  var items=(p.items||[]).map(renderItem).join("");
-  return'<div class="pod"><div class="pod-head" style="background:'+p.headBg+'"><div class="pod-top"><span class="pod-name"><span class="dot" style="background:'+p.color+'"></span>'+e(p.name)+'</span><span class="pod-ct">'+(p.items||[]).length+' items</span></div><div class="tags"><span class="tag tag-pm">PM: '+e(p.pm)+'</span><span class="tag tag-lead">TL: '+e(p.lead)+"</span>"+tags+'</div></div><div class="items">'+(items||'<div style="padding:12px 14px;font-size:12px;color:#bbb">No items</div>')+"</div></div>";
+  var note=p.note?'<div class="pod-note">'+e(p.note)+"</div>":" ";
+  var items=(p.items||[]).filter(function(i){return!i.status||!i.status.toLowerCase().includes("block");});
+  var html=items.length?items.map(renderItem).join(""):'<div class="empty">No items this sprint</div>';
+  return'<div class="pod"><div class="pod-head" style="background:'+p.headBg+'"><div class="pod-top"><span class="pod-name"><span class="dot" style="background:'+p.color+'"></span>'+e(p.name)+'</span><span class="pod-ct">'+(p.items||[]).length+' items</span></div><div class="pod-meta">Lead: <span>'+e(p.lead)+'</span></div>'+note+'<div class="tags"><span class="tag tag-lead">'+e(p.lead)+'</span>'+tags+'</div></div><div class="divider"></div><div class="items">'+html+"</div></div>";
+}
+
+function renderBlockers(pods){
+  var all=[];
+  pods.forEach(function(p){
+    (p.items||[]).forEach(function(i){
+      if(i.status&&i.status.toLowerCase().includes("block")){
+        all.push({pod:p.name,color:p.color,feature:i.feature,note:i.notes,jira:i.jira});
+      }
+    });
+  });
+  if(!all.length)return"";
+  var rows=all.map(function(b){
+    return'<div class="blocker-item"><span class="blocker-pod">'+e(b.pod)+'</span><div><div class="blocker-feat">'+e(b.feature)+(b.jira&&b.jira!=="-"?' <span style="font-size:10px;color:#999;font-family:monospace">'+e(b.jira)+"</span>":"")+'</div>'+(b.note?'<div class="blocker-note">'+e(b.note.replace("BLOCKED: ",""))+"</div>":"")+"</div></div>";
+  }).join("");
+  return'<div class="blockers-section"><div class="blockers-header"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="7" stroke="#991b1b" stroke-width="1.5"/><path d="M8 4.5v4M8 10.5v1" stroke="#991b1b" stroke-width="1.5" stroke-linecap="round"/></svg>'+all.length+' blocked items requiring attention</div>'+rows+"</div>";
 }
 
 function renderUpdate(u){
-  var tc=u.type==="resigned"?"color:#c62828":u.type==="replacement"?"color:#e65100":"color:#888";
+  var tc=u.type==="resigned"?"color:#dc2626":u.type==="replacement"?"color:#d97706":"color:#6b7280";
   var tl=u.type==="resigned"?"Resigned":u.type==="replacement"?"Replacement in progress":"Update";
-  var sc2=u.type==="resigned"?"background:#ffebee;color:#c62828":u.type==="replacement"?"background:#fff8e1;color:#e65100":"background:#f5f4f0;color:#888";
-  return'<div class="ucard"><div class="utype" style="'+tc+'">'+tl+'</div><div class="uname">'+e(u.name)+'</div><div class="udesc">'+e(u.detail)+'</div><span class="ustatus" style="'+sc2+'">'+e(u.status)+"</span></div>";
+  var sc2=u.type==="resigned"?"background:#fee2e2;color:#991b1b":u.type==="replacement"?"background:#fef3c7;color:#92400e":"background:#f3f4f6;color:#6b7280";
+  return'<div class="ucard"><div class="utype" style="'+tc+'">'+e(tl)+'</div><div class="uname">'+e(u.name)+'</div><div class="udesc">'+e(u.detail)+'</div><span class="ustatus" style="'+sc2+'">'+e(u.status)+"</span></div>";
 }
 
 function render(d){
   document.getElementById("t1").textContent="Sprint "+d.sprintNumber+" \u2014 Founder update";
-  document.getElementById("t2").textContent=d.sprintDates+" \xb7 All pods \xb7 Auto-updated daily";
+  document.getElementById("t2").textContent=d.sprintDates+" \xb7 All pods \xb7 Auto-updated daily from Google Sheet";
   var g=new Date(d.generatedAt);
-  document.getElementById("t3").textContent="Updated "+g.toLocaleDateString("en-IN",{day:"numeric",month:"short"})+" "+g.toLocaleTimeString("en-IN",{hour:"2-digit",minute:"2-digit"})+" IST";
+  var ist=g.toLocaleString("en-IN",{timeZone:"Asia/Kolkata",day:"numeric",month:"short",hour:"2-digit",minute:"2-digit"});
+  document.getElementById("t3").textContent="Last updated: "+ist+" IST";
+
   var s=d.stats;
   document.getElementById("stats").innerHTML=
-    '<div class="stat"><div class="stat-n">'+s.total+'</div><div class="stat-l">Total items</div></div>'+
-    '<div class="stat-div"></div>'+
-    '<div class="stat"><div class="stat-n" style="color:#2e7d32">'+s.done+'</div><div class="stat-l">Done / QA</div></div>'+
-    '<div class="stat-div"></div>'+
-    '<div class="stat"><div class="stat-n" style="color:#1565c0">'+s.inProgress+'</div><div class="stat-l">In progress</div></div>'+
-    '<div class="stat-div"></div>'+
-    '<div class="stat"><div class="stat-n" style="color:#b71c1c">'+s.blocked+'</div><div class="stat-l">Blocked</div></div>'+
-    '<div class="stat-div"></div>'+
-    '<div class="stat"><div class="stat-n">'+s.notStarted+'</div><div class="stat-l">Not started</div></div>'+
-    '<div class="stat-div"></div>'+
-    '<div class="stat"><div class="stat-n">'+Math.round(s.done/Math.max(s.total,1)*100)+'%</div><div class="stat-l">Completion</div></div>'+
-    '<div class="stat-div"></div>'+
-    '<div class="stat"><div class="stat-n">4</div><div class="stat-l">Pods</div></div>'+
-    '<div class="stat-div"></div>'+
+    '<div class="stat"><div class="stat-n">'+s.total+'</div><div class="stat-l">Total items</div></div><div class="sdiv"></div>'+
+    '<div class="stat"><div class="stat-n" style="color:#16a34a">'+s.done+'</div><div class="stat-l">Done / QA</div></div><div class="sdiv"></div>'+
+    '<div class="stat"><div class="stat-n" style="color:#2563eb">'+s.inProgress+'</div><div class="stat-l">In progress</div></div><div class="sdiv"></div>'+
+    '<div class="stat"><div class="stat-n" style="color:#dc2626">'+s.blocked+'</div><div class="stat-l">Blocked</div></div><div class="sdiv"></div>'+
+    '<div class="stat"><div class="stat-n">'+s.notStarted+'</div><div class="stat-l">Not started</div></div><div class="sdiv"></div>'+
+    '<div class="stat"><div class="stat-n">'+Math.round(s.done/Math.max(s.total,1)*100)+'%</div><div class="stat-l">Completion</div></div><div class="sdiv"></div>'+
+    '<div class="stat"><div class="stat-n">4</div><div class="stat-l">Pods</div></div><div class="sdiv"></div>'+
     '<div class="stat"><div class="stat-n">29</div><div class="stat-l">Engineers</div></div>';
-  var pods=d.pods.map(renderPod).join("");
-  var updates=(d.teamUpdates||[]).map(renderUpdate).join("");
-  document.getElementById("main").innerHTML=
-    '<div class="slbl">Pods &amp; work items</div><div class="pods">'+pods+'</div>'+
-    '<div class="slbl" style="margin-top:24px">Team updates</div><div class="updates">'+updates+'</div>'+
-    '<div class="footer">Auto-refreshed daily at 9:00 AM IST from Tech Resource Planning sheet &middot; Sprint '+d.sprintNumber+'</div>';
+
+  document.getElementById("blockers-wrap").innerHTML=renderBlockers(d.pods);
+  document.getElementById("pods").innerHTML=d.pods.map(renderPod).join("");
+  document.getElementById("updates").innerHTML=(d.teamUpdates||[]).map(renderUpdate).join("");
+  document.getElementById("footer").innerHTML=
+    'Auto-refreshed daily at 9:00 AM IST from Tech Resource Planning sheet &middot; Sprint '+d.sprintNumber+
+    '<br><a class="admin-link" href="/admin.html">Edit team updates</a>';
 }
 
 if(D){render(D);}else{
-  document.getElementById("main").innerHTML='<div style="padding:40px;color:#888;text-align:center">No data yet — run the GitHub Action to populate.</div>';
+  document.getElementById("pods").innerHTML='<div style="padding:40px;color:#999;font-size:14px">No data — run the GitHub Action.</div>';
 }
 </script>
 </body>
