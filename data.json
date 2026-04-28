@@ -1,244 +1,35 @@
 {
-  "generatedAt": "2026-04-28T17:54:07.917856+00:00",
+  "generatedAt": "2026-04-28T18:20:37.056164+00:00",
   "sprintNumber": "69",
   "sprintDates": "[27 Apr - 8 May]",
   "sheetName": "SPRINT 69 [27 Apr - 8 May]",
   "stats": {
-    "total": 58,
+    "total": 30,
     "done": 6,
     "inProgress": 3,
     "blocked": 3,
-    "notStarted": 46
+    "notStarted": 18
   },
   "pods": [
     {
-      "id": "engage",
-      "name": "KGeN Engage",
-      "color": "#185FA5",
-      "headBg": "#EBF5FB",
-      "pm": "Mandeep",
-      "lead": "Guru",
-      "team": [
-        "Harshada",
-        "Manpreet",
-        "Namrata",
-        "Akshay",
-        "Shaurya",
-        "Swetha (QA)"
-      ],
-      "items": [
-        {
-          "section": "Engage Activities",
-          "feature": "Social connect changes - remove phone number pop-up",
-          "jira": "TECH-21023",
-          "status": "To Do",
-          "assignee": "Harshada Raundal",
-          "notes": ""
-        },
-        {
-          "section": "Engage Activities",
-          "feature": "Shield Backend App Changes",
-          "jira": "TECH-21024",
-          "status": "To Do",
-          "assignee": "Manpreet Singh",
-          "notes": ""
-        },
-        {
-          "section": "Engage Activities",
-          "feature": "Collect Earings BE change to block rewards collection if phone number is not present",
-          "jira": "TECH-21029",
-          "status": "To Do",
-          "assignee": "Kumaragurubaran Kanagaraj",
-          "notes": ""
-        }
-      ]
-    },
-    {
-      "id": "kstore",
-      "name": "KStore",
-      "color": "#3B6D11",
-      "headBg": "#EAF7E6",
-      "pm": "Shishir / Russel",
-      "lead": "Julian",
-      "team": [
-        "Julian",
-        "Karthik",
-        "Jitendra",
-        "Raghav",
-        "Aditya",
-        "Shahid",
-        "Pankaj",
-        "Relin (QA)",
-        "Yuvaraj (QA)"
-      ],
-      "items": [
-        {
-          "section": "exlr8 <> kstore",
-          "feature": "Add updated FAQs in KStore footer",
-          "jira": "-",
-          "status": "To Do",
-          "assignee": "-",
-          "notes": ""
-        },
-        {
-          "section": "exlr8 <> kstore",
-          "feature": "When a product is assigned to a DP and the corresponding CP is deactivated, reactivating the CP triggers an error. Currently, the product must be reassigned to the DP to restore normal functionality.",
-          "jira": "-",
-          "status": "To Do",
-          "assignee": "-",
-          "notes": ""
-        },
-        {
-          "section": "exlr8 <> kstore",
-          "feature": "b2c orders panel in Super Admin -add Date and time column",
-          "jira": "-",
-          "status": "To Do",
-          "assignee": "-",
-          "notes": ""
-        },
-        {
-          "section": "exlr8 <> kstore",
-          "feature": "report generating bamboo is failed",
-          "jira": "-",
-          "status": "To Do",
-          "assignee": "-",
-          "notes": ""
-        },
-        {
-          "section": "exlr8 <> kstore",
-          "feature": "No error if wrong login",
-          "jira": "-",
-          "status": "To Do",
-          "assignee": "-",
-          "notes": ""
-        },
-        {
-          "section": "exlr8 <> kstore",
-          "feature": "No error if no money in wallet",
-          "jira": "-",
-          "status": "To Do",
-          "assignee": "-",
-          "notes": ""
-        },
-        {
-          "section": "exlr8 <> kstore",
-          "feature": "Invalid utf-8 format handling",
-          "jira": "-",
-          "status": "To Do",
-          "assignee": "-",
-          "notes": ""
-        },
-        {
-          "section": "exlr8 <> kstore",
-          "feature": "sample sheet download for every bulk upload (it will contain every header)",
-          "jira": "-",
-          "status": "To Do",
-          "assignee": "-",
-          "notes": ""
-        },
-        {
-          "section": "exlr8 <> kstore",
-          "feature": "search issue in the cp product assignment-bug",
-          "jira": "-",
-          "status": "To Do",
-          "assignee": "-",
-          "notes": ""
-        },
-        {
-          "section": "exlr8 <> kstore",
-          "feature": "do not return the error messages to the fe which are related to internal operations",
-          "jira": "-",
-          "status": "To Do",
-          "assignee": "-",
-          "notes": ""
-        },
-        {
-          "section": "exlr8 <> kstore",
-          "feature": "Code generation ecosystem",
-          "jira": "-",
-          "status": "To Do",
-          "assignee": "-",
-          "notes": ""
-        },
-        {
-          "section": "exlr8 <> kstore",
-          "feature": "denomination on the product side-super admin-seperate mrp and denomination",
-          "jira": "-",
-          "status": "To Do",
-          "assignee": "-",
-          "notes": ""
-        },
-        {
-          "section": "exlr8 <> kstore",
-          "feature": "Reloadly Integration",
-          "jira": "-",
-          "status": "To Do",
-          "assignee": "-",
-          "notes": ""
-        },
-        {
-          "section": "exlr8 <> kstore",
-          "feature": "Purchase Invoice for KStore customers",
-          "jira": "-",
-          "status": "To Do",
-          "assignee": "-",
-          "notes": ""
-        },
-        {
-          "section": "exlr8 <> kstore",
-          "feature": "landing pages- make them on product level",
-          "jira": "-",
-          "status": "To Do",
-          "assignee": "-",
-          "notes": ""
-        },
-        {
-          "section": "exlr8 <> kstore",
-          "feature": "sold out <>next drop for physical goods",
-          "jira": "-",
-          "status": "To Do",
-          "assignee": "-",
-          "notes": ""
-        },
-        {
-          "section": "exlr8 <> kstore",
-          "feature": "entry point for HT and TN is coming wrong",
-          "jira": "-",
-          "status": "To Do",
-          "assignee": "-",
-          "notes": ""
-        }
-      ]
-    },
-    {
       "id": "hl_audio",
-      "name": "Humyn Labs - Audio",
+      "name": "Humyn Labs — Audio",
       "color": "#9E3360",
       "headBg": "#FDF0F5",
-      "pm": "Saksham",
       "lead": "Yogesh",
+      "note": "Multi-pipeline: validation, annotation, collection, account infra & data ops",
       "team": [
+        "Guru",
+        "Shaurya",
+        "Pratik",
         "Namrata",
         "Nilesh",
         "Jaya",
-        "Avish",
-        "Avinash",
-        "Kumaragurubaran",
-        "Shaurya (FE)",
-        "Sameer (FE)",
-        "Shivam (FE)",
+        "Sameer",
         "Kevin (QA)",
         "Swetha (QA)"
       ],
       "items": [
-        {
-          "section": "HL Tasks",
-          "feature": "Standalone app for audio collection",
-          "jira": "-",
-          "status": "To Do",
-          "assignee": "-",
-          "notes": ""
-        },
         {
           "section": "HL Tasks",
           "feature": "Alerts for Validation Failures",
@@ -250,14 +41,6 @@
         {
           "section": "HL Tasks",
           "feature": "Avoid copying recorder tool audio files to Quest system",
-          "jira": "-",
-          "status": "To Do",
-          "assignee": "-",
-          "notes": ""
-        },
-        {
-          "section": "HL Tasks",
-          "feature": "Quest Validation to happen via API at validation tool level",
           "jira": "-",
           "status": "To Do",
           "assignee": "-",
@@ -285,14 +68,6 @@
           "jira": "HL-220",
           "status": "To Do",
           "assignee": "Yogesh Kumar",
-          "notes": ""
-        },
-        {
-          "section": "HL Tasks",
-          "feature": "HL orchestrator",
-          "jira": "-",
-          "status": "To Do",
-          "assignee": "-",
           "notes": ""
         },
         {
@@ -353,53 +128,21 @@
         },
         {
           "section": "HL Tasks",
-          "feature": "Merge the Collection and Annotation HITL tool versions",
-          "jira": "-",
-          "status": "To Do",
-          "assignee": "-",
-          "notes": ""
-        },
-        {
-          "section": "HL Tasks",
-          "feature": "Cost and optimisation",
-          "jira": "-",
-          "status": "To Do",
-          "assignee": "-",
-          "notes": ""
-        },
-        {
-          "section": "HL Tasks",
           "feature": "HL Responsiveness and New Enhancements on the BD website Design",
           "jira": "HL-219",
           "status": "To Do",
           "assignee": "Shivam Shukla",
-          "notes": ""
-        },
-        {
-          "section": "HL Tasks",
-          "feature": "Enhancements/Optimisation to Making the Duplication more robust (Content & Speaker at Project level)",
-          "jira": "-",
-          "status": "To Do",
-          "assignee": "-",
-          "notes": ""
-        },
-        {
-          "section": "HL Tasks",
-          "feature": "Annotation Events and attributes to be added",
-          "jira": "-",
-          "status": "To Do",
-          "assignee": "-",
           "notes": ""
         }
       ]
     },
     {
       "id": "hl_ego",
-      "name": "Humyn Labs - Egocentric",
+      "name": "Humyn Labs — Egocentric",
       "color": "#9E3360",
       "headBg": "#FDF0F5",
-      "pm": "Adnaan",
-      "lead": "Karthik / Avinash",
+      "lead": "Karthik",
+      "note": "",
       "team": [
         "Karthik",
         "Avinash"
@@ -464,12 +207,67 @@
       ]
     },
     {
+      "id": "engage",
+      "name": "KGeN Engage",
+      "color": "#185FA5",
+      "headBg": "#EBF5FB",
+      "lead": "Guru",
+      "note": "",
+      "team": [
+        "Harshada",
+        "Manpreet",
+        "Namrata",
+        "Shaurya",
+        "Swetha (QA)"
+      ],
+      "items": [
+        {
+          "section": "Engage Activities",
+          "feature": "Social connect changes - remove phone number pop-up",
+          "jira": "TECH-21023",
+          "status": "To Do",
+          "assignee": "Harshada Raundal",
+          "notes": ""
+        },
+        {
+          "section": "Engage Activities",
+          "feature": "Shield Backend App Changes",
+          "jira": "TECH-21024",
+          "status": "To Do",
+          "assignee": "Manpreet Singh",
+          "notes": ""
+        },
+        {
+          "section": "Engage Activities",
+          "feature": "Collect Earings BE change to block rewards collection if phone number is not present",
+          "jira": "TECH-21029",
+          "status": "To Do",
+          "assignee": "Kumaragurubaran Kanagaraj",
+          "notes": ""
+        }
+      ]
+    },
+    {
+      "id": "kstore",
+      "name": "KStore",
+      "color": "#3B6D11",
+      "headBg": "#EAF7E6",
+      "lead": "Julian",
+      "note": "",
+      "team": [
+        "Jitendra",
+        "Shahid",
+        "Relin (QA)"
+      ],
+      "items": []
+    },
+    {
       "id": "devsec",
       "name": "DevSec",
       "color": "#854F0B",
       "headBg": "#FFFBF0",
-      "pm": "Itisha (TPM)",
       "lead": "Itisha",
+      "note": "",
       "team": [
         "Arun Kumar Krishna (DevOps)",
         "Karan Sabharwal (Security)"
@@ -525,40 +323,8 @@
         },
         {
           "section": "Devops and Security",
-          "feature": "Security Testing: Annotation Tool",
-          "jira": "DEVSEC-675",
-          "status": "To Do",
-          "assignee": "Karan Sabharwal",
-          "notes": ""
-        },
-        {
-          "section": "Devops and Security",
-          "feature": "Security Testing: Quest with Validation and",
-          "jira": "DEVSEC-676",
-          "status": "To Do",
-          "assignee": "Karan Sabharwal",
-          "notes": ""
-        },
-        {
-          "section": "Devops and Security",
-          "feature": "Security Testing: Login Changes",
-          "jira": "DEVSEC-677",
-          "status": "To Do",
-          "assignee": "Karan Sabharwal",
-          "notes": ""
-        },
-        {
-          "section": "Devops and Security",
           "feature": "Old tool Collected files migration is required to HL account?",
           "jira": "DEVSEC-678",
-          "status": "To Do",
-          "assignee": "Arun Kumar Krishna",
-          "notes": ""
-        },
-        {
-          "section": "Devops and Security",
-          "feature": "Email Migration from Mailmodo to SES (Clan Service & KStore)",
-          "jira": "DEVSEC-679",
           "status": "To Do",
           "assignee": "Arun Kumar Krishna",
           "notes": ""
