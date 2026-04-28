@@ -1,0 +1,480 @@
+{
+  "generatedAt": "2026-04-28T16:08:29.298326+00:00",
+  "sprintNumber": "69",
+  "sprintDates": "27 Apr \u2013 8 May 2026",
+  "sheetName": "SPRINT 69 27 Apr - 8 May",
+  "stats": {
+    "total": 47,
+    "done": 4,
+    "inProgress": 8,
+    "blocked": 4,
+    "notStarted": 31
+  },
+  "pods": [
+    {
+      "id": "engage",
+      "name": "KGeN Engage",
+      "color": "#185FA5",
+      "headBg": "#EBF5FB",
+      "pm": "Mandeep",
+      "lead": "Guru",
+      "team": [
+        "Harshada",
+        "Manpreet",
+        "Namrata",
+        "Akshay",
+        "Shaurya",
+        "Swetha (QA)"
+      ],
+      "items": [
+        {
+          "feature": "No phone number in login & guest user journey",
+          "jira": "TECH-20888",
+          "status": "In QA",
+          "assignee": "Shaurya / Harshada / Namrata",
+          "notes": ""
+        },
+        {
+          "feature": "Collect Earnings KYC Change",
+          "jira": "TECH-20900",
+          "status": "In QA",
+          "assignee": "Manpreet / Swetha",
+          "notes": ""
+        },
+        {
+          "feature": "Social Connect Changes - remove phone number pop-up",
+          "jira": "TECH-21023",
+          "status": "To Do",
+          "assignee": "Harshada",
+          "notes": ""
+        },
+        {
+          "feature": "Shield Backend App Changes",
+          "jira": "TECH-21024",
+          "status": "To Do",
+          "assignee": "Manpreet",
+          "notes": ""
+        },
+        {
+          "feature": "Collect Earnings BE - block rewards if no phone number",
+          "jira": "TECH-21029",
+          "status": "To Do",
+          "assignee": "Kumaragurubaran",
+          "notes": "0.5d"
+        }
+      ]
+    },
+    {
+      "id": "kstore",
+      "name": "KStore",
+      "color": "#3B6D11",
+      "headBg": "#EAF7E6",
+      "pm": "Shishir / Russel",
+      "lead": "Julian",
+      "team": [
+        "Karthik",
+        "Jitendra",
+        "Raghav",
+        "Aditya",
+        "Shahid",
+        "Pankaj",
+        "Relin (QA)",
+        "Yuvaraj (QA)"
+      ],
+      "items": [
+        {
+          "feature": "Add updated FAQs in KStore footer",
+          "jira": "-",
+          "status": "To Do",
+          "assignee": "-",
+          "notes": ""
+        },
+        {
+          "feature": "CP deactivation error - product reassignment bug fix",
+          "jira": "-",
+          "status": "To Do",
+          "assignee": "-",
+          "notes": "Bug"
+        },
+        {
+          "feature": "B2C orders panel - add Date & Time column",
+          "jira": "-",
+          "status": "To Do",
+          "assignee": "-",
+          "notes": ""
+        },
+        {
+          "feature": "Bamboo report generation failure",
+          "jira": "-",
+          "status": "To Do",
+          "assignee": "-",
+          "notes": "Bug"
+        },
+        {
+          "feature": "No error shown on wrong login",
+          "jira": "-",
+          "status": "To Do",
+          "assignee": "-",
+          "notes": ""
+        },
+        {
+          "feature": "No error on insufficient wallet balance",
+          "jira": "-",
+          "status": "To Do",
+          "assignee": "-",
+          "notes": ""
+        },
+        {
+          "feature": "Invalid UTF-8 format handling",
+          "jira": "-",
+          "status": "To Do",
+          "assignee": "-",
+          "notes": ""
+        },
+        {
+          "feature": "Sample sheet download for bulk upload (all headers)",
+          "jira": "-",
+          "status": "To Do",
+          "assignee": "-",
+          "notes": ""
+        },
+        {
+          "feature": "Search issue in CP product assignment",
+          "jira": "-",
+          "status": "To Do",
+          "assignee": "-",
+          "notes": "Bug"
+        },
+        {
+          "feature": "Do not return internal error messages to FE",
+          "jira": "-",
+          "status": "To Do",
+          "assignee": "-",
+          "notes": ""
+        },
+        {
+          "feature": "Code generation ecosystem",
+          "jira": "-",
+          "status": "To Do",
+          "assignee": "-",
+          "notes": ""
+        },
+        {
+          "feature": "Denomination - separate MRP and denomination",
+          "jira": "-",
+          "status": "To Do",
+          "assignee": "-",
+          "notes": ""
+        },
+        {
+          "feature": "Reloadly Integration",
+          "jira": "-",
+          "status": "To Do",
+          "assignee": "-",
+          "notes": ""
+        },
+        {
+          "feature": "Purchase Invoice for KStore customers",
+          "jira": "-",
+          "status": "To Do",
+          "assignee": "-",
+          "notes": ""
+        },
+        {
+          "feature": "Landing pages - product level",
+          "jira": "-",
+          "status": "To Do",
+          "assignee": "-",
+          "notes": ""
+        },
+        {
+          "feature": "Sold out / next drop for physical goods",
+          "jira": "-",
+          "status": "To Do",
+          "assignee": "-",
+          "notes": ""
+        },
+        {
+          "feature": "Entry point for HT and TN showing wrong",
+          "jira": "-",
+          "status": "To Do",
+          "assignee": "-",
+          "notes": "Bug"
+        },
+        {
+          "feature": "Email Migration from Mailmodo to SES",
+          "jira": "DEVSEC-679",
+          "status": "To Do",
+          "assignee": "Arun Kumar Krishna",
+          "notes": ""
+        }
+      ]
+    },
+    {
+      "id": "hl_audio",
+      "name": "Humyn Labs - Audio",
+      "color": "#9E3360",
+      "headBg": "#FDF0F5",
+      "pm": "Saksham",
+      "lead": "Yogesh",
+      "team": [
+        "Namrata",
+        "Nilesh",
+        "Jaya",
+        "Avish",
+        "Avinash",
+        "Kumaragurubaran",
+        "Shaurya (FE)",
+        "Sameer (FE)",
+        "Shivam (FE)",
+        "Kevin (QA)",
+        "Swetha (QA)"
+      ],
+      "items": [
+        {
+          "feature": "KGeN Quest & Quest Journey Integration",
+          "jira": "HL-1",
+          "status": "Done",
+          "assignee": "Kumaragurubaran",
+          "notes": ""
+        },
+        {
+          "feature": "Show user & pair level contribution at quest level",
+          "jira": "HL-186",
+          "status": "To Do",
+          "assignee": "Kumaragurubaran",
+          "notes": "4d BE / 1d FE"
+        },
+        {
+          "feature": "Validation Retry History - failures maintained",
+          "jira": "HL-137",
+          "status": "Review In Progress",
+          "assignee": "Namrata",
+          "notes": ""
+        },
+        {
+          "feature": "Duplication Check at Project Level",
+          "jira": "HL-138",
+          "status": "Review In Progress",
+          "assignee": "Namrata",
+          "notes": ""
+        },
+        {
+          "feature": "Alerts for Validation Failures",
+          "jira": "HL-198",
+          "status": "To Do",
+          "assignee": "Namrata",
+          "notes": ""
+        },
+        {
+          "feature": "Annotation pipeline - auto submissions per project config",
+          "jira": "HL-220",
+          "status": "To Do",
+          "assignee": "Yogesh Kumar",
+          "notes": ""
+        },
+        {
+          "feature": "Scribe API Integration across Validation & Annotation",
+          "jira": "HL-216",
+          "status": "To Do",
+          "assignee": "Yogesh Kumar",
+          "notes": ""
+        },
+        {
+          "feature": "Duplicate content check at validation; reuse for annotation",
+          "jira": "HL-217",
+          "status": "To Do",
+          "assignee": "Yogesh Kumar",
+          "notes": ""
+        },
+        {
+          "feature": "International Language Support - Validation (Arabic)",
+          "jira": "HL-139",
+          "status": "Blocked",
+          "assignee": "Jaya Kesarwani",
+          "notes": "BLOCKED: Awaiting Product clarity from Saksham"
+        },
+        {
+          "feature": "International Language Support - Annotation & QC (Arabic)",
+          "jira": "HL-141",
+          "status": "Blocked",
+          "assignee": "Avish Kaarthik",
+          "notes": "BLOCKED: Product clarity pending"
+        },
+        {
+          "feature": "Annotation QC - task distribution % per CC/Vendor",
+          "jira": "HL-140",
+          "status": "Blocked",
+          "assignee": "Avish Kaarthik",
+          "notes": "BLOCKED: Approach finalisation with PS pending"
+        },
+        {
+          "feature": "Post-processing service for data delivery (cross-account/org)",
+          "jira": "HL-150",
+          "status": "Blocked",
+          "assignee": "Avinash Ramanathan",
+          "notes": "BLOCKED: TSD pending before dev can start"
+        },
+        {
+          "feature": "Enable new recorder for single speaker audios",
+          "jira": "HL-218",
+          "status": "To Do",
+          "assignee": "Kumaragurubaran",
+          "notes": ""
+        },
+        {
+          "feature": "HL BD website responsiveness & enhancements",
+          "jira": "HL-219",
+          "status": "To Do",
+          "assignee": "Shivam Shukla",
+          "notes": "Before 30th Apr"
+        }
+      ]
+    },
+    {
+      "id": "hl_ego",
+      "name": "Humyn Labs - Egocentric",
+      "color": "#9E3360",
+      "headBg": "#FDF0F5",
+      "pm": "Adnaan",
+      "lead": "Karthik / Avinash",
+      "team": [
+        "Karthik",
+        "Avinash"
+      ],
+      "items": [
+        {
+          "feature": "Validation tool - language detection, dedup, gender check",
+          "jira": "HL-55",
+          "status": "Done",
+          "assignee": "Yogesh / Jaya / Kevin",
+          "notes": "Released"
+        },
+        {
+          "feature": "Annotation - pre-annotation, multi-track, diarization, QC",
+          "jira": "HL-54",
+          "status": "In QA",
+          "assignee": "Yogesh / Avish / Nilesh / Kevin",
+          "notes": "QA started 15 Apr"
+        }
+      ]
+    },
+    {
+      "id": "devsec",
+      "name": "DevSec",
+      "color": "#854F0B",
+      "headBg": "#FFFBF0",
+      "pm": "Itisha (TPM)",
+      "lead": "Itisha",
+      "team": [
+        "Arun Kumar Krishna (DevOps)",
+        "Karan Sabharwal (Security)"
+      ],
+      "items": [
+        {
+          "feature": "Sync assets: prod-image-bucket.indi.gg to prod-image-bucket.kgen.io",
+          "jira": "DEVSEC-669",
+          "status": "To Do",
+          "assignee": "Arun Kumar Krishna",
+          "notes": ""
+        },
+        {
+          "feature": "Annotation Stage environment setup",
+          "jira": "DEVSEC-670",
+          "status": "To Do",
+          "assignee": "Arun Kumar Krishna",
+          "notes": ""
+        },
+        {
+          "feature": "HL accounts (stage & prod) migration to new Org",
+          "jira": "DEVSEC-671",
+          "status": "To Do",
+          "assignee": "Arun Kumar Krishna",
+          "notes": ""
+        },
+        {
+          "feature": "Data Orchestrator migration to HL account",
+          "jira": "DEVSEC-672",
+          "status": "In Progress",
+          "assignee": "Arun Kumar Krishna",
+          "notes": "Service migrated; DB pending"
+        },
+        {
+          "feature": "Prod Validation Admin migration to HL account",
+          "jira": "DEVSEC-673",
+          "status": "To Do",
+          "assignee": "Arun Kumar Krishna",
+          "notes": ""
+        },
+        {
+          "feature": "Cross-account access for Task 1 - new validation tool",
+          "jira": "DEVSEC-674",
+          "status": "To Do",
+          "assignee": "Arun Kumar Krishna",
+          "notes": ""
+        },
+        {
+          "feature": "Old tool collected files migration to HL account",
+          "jira": "DEVSEC-678",
+          "status": "To Do",
+          "assignee": "Arun Kumar Krishna",
+          "notes": ""
+        },
+        {
+          "feature": "Security Testing - Annotation Tool",
+          "jira": "DEVSEC-675",
+          "status": "To Do",
+          "assignee": "Karan Sabharwal",
+          "notes": ""
+        },
+        {
+          "feature": "Security Testing - Quest + Validation",
+          "jira": "DEVSEC-676",
+          "status": "To Do",
+          "assignee": "Karan Sabharwal",
+          "notes": ""
+        },
+        {
+          "feature": "Security Testing - Login Changes",
+          "jira": "DEVSEC-677",
+          "status": "To Do",
+          "assignee": "Karan Sabharwal",
+          "notes": ""
+        },
+        {
+          "feature": "Email Migration from Mailmodo to SES",
+          "jira": "DEVSEC-679",
+          "status": "To Do",
+          "assignee": "Arun Kumar Krishna",
+          "notes": ""
+        }
+      ]
+    }
+  ],
+  "teamUpdates": [
+    {
+      "type": "resigned",
+      "name": "Avish",
+      "detail": "Fathers accident. WFH 9-17 Apr. Tasks re-routed.",
+      "status": "WFH 9-17 Apr"
+    },
+    {
+      "type": "replacement",
+      "name": "Akshay (HL Backend)",
+      "detail": "3-month notice. Replacement hiring underway.",
+      "status": "In Progress"
+    },
+    {
+      "type": "replacement",
+      "name": "Shivam (GKMIT)",
+      "detail": "3-month notice. Replacement hiring underway.",
+      "status": "In Progress"
+    },
+    {
+      "type": "info",
+      "name": "Raghav & Pankaj (GKMIT)",
+      "detail": "No replacement needed. Update to GKMIT pending.",
+      "status": "Update to GKMIT"
+    }
+  ]
+}
