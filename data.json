@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-04-28T18:23:52.435467+00:00",
+  "generatedAt": "2026-04-28T18:26:38.813277+00:00",
   "sprintNumber": "69",
   "sprintDates": "[27 Apr - 8 May]",
   "sheetName": "SPRINT 69 [27 Apr - 8 May]",
@@ -29,112 +29,7 @@
         "Kevin (QA)",
         "Swetha (QA)"
       ],
-      "items": [
-        {
-          "section": "HL Tasks",
-          "feature": "Alerts for Validation Failures",
-          "jira": "HL-198",
-          "status": "To Do",
-          "assignee": "Namrata Kesarwani",
-          "notes": ""
-        },
-        {
-          "section": "HL Tasks",
-          "feature": "Avoid copying recorder tool audio files to Quest system",
-          "jira": "-",
-          "status": "To Do",
-          "assignee": "-",
-          "notes": ""
-        },
-        {
-          "section": "HL Tasks",
-          "feature": "New post-processing service for data delivery(cross account/ cross org/ copy of data to client bucket)",
-          "jira": "HL-150",
-          "status": "Dev in Progress",
-          "assignee": "Avinash Ramanathan",
-          "notes": ""
-        },
-        {
-          "section": "HL Tasks",
-          "feature": "Validation Retry history - Failures History is maintained",
-          "jira": "HL-137",
-          "status": "Review In Progress",
-          "assignee": "Namrata Kesarwani",
-          "notes": ""
-        },
-        {
-          "section": "HL Tasks",
-          "feature": "Annotation pipeline for automatic submissions based on project configs",
-          "jira": "HL-220",
-          "status": "To Do",
-          "assignee": "Yogesh Kumar",
-          "notes": ""
-        },
-        {
-          "section": "HL Tasks",
-          "feature": "Duplication Check at the Project level",
-          "jira": "HL-138",
-          "status": "Review In Progress",
-          "assignee": "Namrata Kesarwani",
-          "notes": ""
-        },
-        {
-          "section": "HL Tasks",
-          "feature": "Annotation and QC tool enhancement: Task distribution % per cc(Vendor)",
-          "jira": "HL-140",
-          "status": "To Do",
-          "assignee": "Avish Kaarthik",
-          "notes": ""
-        },
-        {
-          "section": "HL Tasks",
-          "feature": "International Language support(Arabic is a must)",
-          "jira": "HL-139",
-          "status": "Blocked",
-          "assignee": "Jaya Kesarwani",
-          "notes": "waiting from product for clarity ; models and solution is pending from product specifically for transliteration"
-        },
-        {
-          "section": "HL Tasks",
-          "feature": "Annotation and QC: International Language support(Arabic is a must)",
-          "jira": "HL-141",
-          "status": "Blocked",
-          "assignee": "Avish Kaarthik",
-          "notes": "waiting from product for clarity ; models and solution is pending from product specifically for transliteration"
-        },
-        {
-          "section": "HL Tasks",
-          "feature": "Scribe API Integration across Validation and Annotation",
-          "jira": "HL-216",
-          "status": "To Do",
-          "assignee": "Yogesh Kumar",
-          "notes": ""
-        },
-        {
-          "section": "HL Tasks",
-          "feature": "Duplicate Content Check at validation and reuse the same to annotation",
-          "jira": "HL-217",
-          "status": "To Do",
-          "assignee": "Yogesh Kumar",
-          "notes": ""
-        },
-        {
-          "section": "HL Tasks",
-          "feature": "Enable new recorder for single speaker audios",
-          "jira": "HL-218",
-          "status": "To Do",
-          "assignee": "Kumaragurubaran Kanagaraj",
-          "notes": ""
-        },
-        {
-          "section": "HL Tasks",
-          "feature": "HL Responsiveness and New Enhancements on the BD website Design",
-          "jira": "HL-219",
-          "status": "To Do",
-          "assignee": "Shivam Shukla",
-          "notes": ""
-        }
-      ]
+      "items": []
     },
     {
       "id": "hl_ego",
@@ -243,6 +138,110 @@
           "jira": "TECH-21029",
           "status": "To Do",
           "assignee": "Kumaragurubaran Kanagaraj",
+          "notes": ""
+        },
+        {
+          "section": "Engage Activities",
+          "feature": "Alerts for Validation Failures",
+          "jira": "HL-198",
+          "status": "To Do",
+          "assignee": "Namrata Kesarwani",
+          "notes": ""
+        },
+        {
+          "section": "Engage Activities",
+          "feature": "Avoid copying recorder tool audio files to Quest system",
+          "jira": "-",
+          "status": "To Do",
+          "assignee": "-",
+          "notes": ""
+        },
+        {
+          "section": "Engage Activities",
+          "feature": "New post-processing service for data delivery(cross account/ cross org/ copy of data to client bucket)",
+          "jira": "HL-150",
+          "status": "Dev in Progress",
+          "assignee": "Avinash Ramanathan",
+          "notes": ""
+        },
+        {
+          "section": "Engage Activities",
+          "feature": "Validation Retry history - Failures History is maintained",
+          "jira": "HL-137",
+          "status": "Review In Progress",
+          "assignee": "Namrata Kesarwani",
+          "notes": ""
+        },
+        {
+          "section": "Engage Activities",
+          "feature": "Annotation pipeline for automatic submissions based on project configs",
+          "jira": "HL-220",
+          "status": "To Do",
+          "assignee": "Yogesh Kumar",
+          "notes": ""
+        },
+        {
+          "section": "Engage Activities",
+          "feature": "Duplication Check at the Project level",
+          "jira": "HL-138",
+          "status": "Review In Progress",
+          "assignee": "Namrata Kesarwani",
+          "notes": ""
+        },
+        {
+          "section": "Engage Activities",
+          "feature": "Annotation and QC tool enhancement: Task distribution % per cc(Vendor)",
+          "jira": "HL-140",
+          "status": "To Do",
+          "assignee": "Avish Kaarthik",
+          "notes": ""
+        },
+        {
+          "section": "Engage Activities",
+          "feature": "International Language support(Arabic is a must)",
+          "jira": "HL-139",
+          "status": "Blocked",
+          "assignee": "Jaya Kesarwani",
+          "notes": "waiting from product for clarity ; models and solution is pending from product specifically for transliteration"
+        },
+        {
+          "section": "Engage Activities",
+          "feature": "Annotation and QC: International Language support(Arabic is a must)",
+          "jira": "HL-141",
+          "status": "Blocked",
+          "assignee": "Avish Kaarthik",
+          "notes": "waiting from product for clarity ; models and solution is pending from product specifically for transliteration"
+        },
+        {
+          "section": "Engage Activities",
+          "feature": "Scribe API Integration across Validation and Annotation",
+          "jira": "HL-216",
+          "status": "To Do",
+          "assignee": "Yogesh Kumar",
+          "notes": ""
+        },
+        {
+          "section": "Engage Activities",
+          "feature": "Duplicate Content Check at validation and reuse the same to annotation",
+          "jira": "HL-217",
+          "status": "To Do",
+          "assignee": "Yogesh Kumar",
+          "notes": ""
+        },
+        {
+          "section": "Engage Activities",
+          "feature": "Enable new recorder for single speaker audios",
+          "jira": "HL-218",
+          "status": "To Do",
+          "assignee": "Kumaragurubaran Kanagaraj",
+          "notes": ""
+        },
+        {
+          "section": "Engage Activities",
+          "feature": "HL Responsiveness and New Enhancements on the BD website Design",
+          "jira": "HL-219",
+          "status": "To Do",
+          "assignee": "Shivam Shukla",
           "notes": ""
         }
       ]
