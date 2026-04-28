@@ -1,7 +1,7 @@
 {
-  "outputDirectory": ".",
-  "routes": [
-    { "src": "/data.json", "dest": "/data.json" },
-    { "src": "/(.*)", "dest": "/$1" }
+  "version": 2,
+  "builds": [
+    { "src": "*.html", "use": "@vercel/static" },
+    { "src": "*.json", "use": "@vercel/static" }
   ]
 }
