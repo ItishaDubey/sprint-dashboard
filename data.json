@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-04-28T17:19:17.076230+00:00",
+  "generatedAt": "2026-04-28T17:49:11.297996+00:00",
   "sprintNumber": "69",
   "sprintDates": "[27 Apr - 8 May]",
   "sheetName": "SPRINT 69 [27 Apr - 8 May]",
@@ -212,7 +212,7 @@
     },
     {
       "id": "hl_audio",
-      "name": "Humyn Labs — Audio",
+      "name": "Humyn Labs - Audio",
       "color": "#9E3360",
       "headBg": "#FDF0F5",
       "pm": "Saksham",
@@ -395,7 +395,7 @@
     },
     {
       "id": "hl_ego",
-      "name": "Humyn Labs — Egocentric",
+      "name": "Humyn Labs - Egocentric",
       "color": "#9E3360",
       "headBg": "#FDF0F5",
       "pm": "Adnaan",
@@ -570,7 +570,7 @@
     {
       "type": "resigned",
       "name": "Avish",
-      "detail": "Father's accident. WFH 9–17 Apr. Tasks re-routed.",
+      "detail": "Father's accident. WFH 9-17 Apr. Tasks re-routed.",
       "status": "WFH 9-17 Apr"
     },
     {
