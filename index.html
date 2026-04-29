@@ -9,50 +9,47 @@
 :root{--bg:#f7f6f2;--card:#fff;--border:#e8e6df;--text:#111;--muted:#777;--hint:#bbb;}
 body{background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;font-size:15px;line-height:1.5;}
 
-/* HEADER */
 .hdr{background:var(--card);border-bottom:1px solid var(--border);padding:18px 32px;display:flex;align-items:flex-start;justify-content:space-between;flex-wrap:wrap;gap:12px;}
 .hdr-title{font-size:20px;font-weight:700;letter-spacing:-.3px;}
 .hdr-sub{font-size:13px;color:var(--muted);margin-top:3px;}
-.hdr-updated{font-size:12px;color:var(--hint);margin-top:4px;text-align:right;}
+.hdr-right{text-align:right;}
+.hdr-updated{font-size:12px;color:var(--hint);}
+.admin-btn{display:inline-block;margin-top:6px;font-size:11px;color:var(--hint);text-decoration:none;border:1px solid var(--border);padding:3px 10px;border-radius:6px;}
+.admin-btn:hover{color:#111;border-color:#999;}
 
-/* STATS */
 .stats{background:var(--card);border-bottom:1px solid var(--border);padding:14px 32px;display:flex;gap:28px;flex-wrap:wrap;overflow-x:auto;}
 .stat{display:flex;flex-direction:column;min-width:60px;}
 .stat-n{font-size:26px;font-weight:700;line-height:1;}
 .stat-l{font-size:11px;color:var(--muted);margin-top:3px;text-transform:uppercase;letter-spacing:.06em;}
 .sdiv{width:1px;background:var(--border);align-self:stretch;}
 
-/* BLOCKERS BANNER */
-.blockers-section{margin:20px 32px 0;background:#fff5f5;border:1.5px solid #fca5a5;border-radius:12px;overflow:hidden;}
-.blockers-header{background:#fee2e2;padding:10px 18px;display:flex;align-items:center;gap:8px;font-size:13px;font-weight:700;color:#991b1b;}
-.blocker-item{padding:10px 18px;border-top:1px solid #fecaca;display:flex;gap:12px;align-items:flex-start;}
-.blocker-pod{font-size:11px;font-weight:600;color:#dc2626;background:#fee2e2;padding:2px 8px;border-radius:10px;white-space:nowrap;flex-shrink:0;margin-top:1px;}
+.blockers-wrap{margin:20px 32px 0;}
+.blockers-box{background:#fff5f5;border:1.5px solid #fca5a5;border-radius:12px;overflow:hidden;}
+.blockers-hdr{background:#fee2e2;padding:10px 18px;display:flex;align-items:center;gap:8px;font-size:13px;font-weight:700;color:#991b1b;}
+.blocker-row{padding:10px 18px;border-top:1px solid #fecaca;display:flex;gap:12px;align-items:flex-start;}
+.blocker-pod{font-size:11px;font-weight:600;color:#dc2626;background:#fee2e2;padding:2px 8px;border-radius:10px;white-space:nowrap;flex-shrink:0;margin-top:2px;}
 .blocker-feat{font-size:13px;color:#111;font-weight:500;}
 .blocker-note{font-size:12px;color:#b91c1c;margin-top:2px;}
 
-/* MAIN */
 .main{padding:20px 32px 40px;}
 .slbl{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);margin:24px 0 12px;}
 
-/* PODS GRID */
 .pods{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;}
 
-/* POD CARD */
 .pod{background:var(--card);border-radius:12px;border:1px solid var(--border);overflow:hidden;}
 .pod-head{padding:14px 18px 10px;}
-.pod-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:8px;}
+.pod-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:6px;}
 .pod-name{display:flex;align-items:center;gap:7px;font-size:15px;font-weight:700;}
 .dot{width:9px;height:9px;border-radius:50%;flex-shrink:0;}
 .pod-ct{font-size:12px;color:var(--muted);}
-.pod-meta{font-size:12px;color:var(--muted);margin-bottom:6px;}
-.pod-meta span{font-weight:600;color:#444;}
+.pod-lead{font-size:12px;color:var(--muted);margin-bottom:4px;}
+.pod-lead span{font-weight:600;color:#444;}
 .pod-note{font-size:11px;color:#666;font-style:italic;margin-bottom:6px;}
 .tags{display:flex;flex-wrap:wrap;gap:4px;}
 .tag{font-size:11px;padding:3px 8px;border-radius:10px;background:var(--bg);color:#555;}
 .tag-lead{background:#111;color:#fff;}
 .divider{height:1px;background:var(--border);}
 
-/* ITEMS */
 .items{padding:4px 0 10px;}
 .item{padding:7px 18px;display:flex;gap:8px;}
 .item:hover{background:#fafaf8;}
@@ -71,6 +68,14 @@ body{background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSy
 .asgn{font-size:11px;color:var(--hint);}
 .empty{padding:14px 18px;font-size:13px;color:var(--hint);}
 
+/* QA RELEASES SECTION */
+.qa-section{background:var(--card);border-radius:12px;border:1px solid var(--border);overflow:hidden;margin-top:4px;}
+.qa-head{padding:12px 18px;background:#F0F4FF;display:flex;align-items:center;justify-content:space-between;}
+.qa-title{font-size:14px;font-weight:700;color:#1e40af;display:flex;align-items:center;gap:7px;}
+.qa-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:0;}
+.qa-item{padding:10px 18px;border-top:1px solid var(--border);display:flex;gap:8px;}
+.qa-item:hover{background:#fafaf8;}
+
 /* TEAM UPDATES */
 .updates-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:10px;margin-top:6px;}
 .ucard{background:var(--card);border-radius:10px;border:1px solid var(--border);padding:12px 16px;}
@@ -80,16 +85,14 @@ body{background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSy
 .ustatus{font-size:11px;padding:2px 8px;border-radius:10px;margin-top:6px;display:inline-block;font-weight:600;}
 
 .footer{margin-top:32px;font-size:12px;color:var(--hint);text-align:center;padding-bottom:24px;}
-.admin-link{display:inline-block;margin-top:8px;font-size:12px;color:var(--hint);text-decoration:none;border:1px solid var(--border);padding:4px 12px;border-radius:6px;}
-.admin-link:hover{color:#111;}
 
-/* RESPONSIVE */
 @media(max-width:720px){
-  .hdr,.stats,.main,.blockers-section{padding-left:16px;padding-right:16px;}
-  .blockers-section{margin-left:16px;margin-right:16px;}
+  .hdr,.stats,.main,.blockers-wrap{padding-left:16px;padding-right:16px;}
+  .blockers-wrap{margin-left:0;margin-right:0;}
   .pods{grid-template-columns:1fr;}
   .stat-n{font-size:22px;}
   .hdr-title{font-size:17px;}
+  .qa-grid{grid-template-columns:1fr;}
 }
 </style>
 </head>
@@ -100,15 +103,31 @@ body{background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSy
     <div class="hdr-title" id="t1">Sprint Dashboard</div>
     <div class="hdr-sub" id="t2">Loading…</div>
   </div>
-  <div class="hdr-updated" id="t3"></div>
+  <div class="hdr-right">
+    <div class="hdr-updated" id="t3"></div>
+    <a class="admin-btn" href="/admin.html">✏️ Edit team updates</a>
+  </div>
 </div>
 
 <div class="stats" id="stats"></div>
-<div id="blockers-wrap"></div>
+<div class="blockers-wrap" id="blockers-wrap"></div>
 
 <div class="main">
   <div class="slbl">Pods &amp; work items</div>
   <div class="pods" id="pods"></div>
+
+  <div class="slbl" style="margin-top:28px" id="qa-lbl" style="display:none">QA &amp; Releases — items in testing or pending merge</div>
+  <div class="qa-section" id="qa-section" style="display:none">
+    <div class="qa-head">
+      <div class="qa-title">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="6.5" stroke="#1e40af" stroke-width="1.5"/><path d="M5 8l2 2 4-4" stroke="#1e40af" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        QA &amp; Releases
+      </div>
+      <span id="qa-count" style="font-size:12px;color:#6b7280;"></span>
+    </div>
+    <div class="qa-grid" id="qa-items"></div>
+  </div>
+
   <div class="slbl" style="margin-top:28px">Team updates</div>
   <div class="updates-grid" id="updates"></div>
   <div class="footer" id="footer"></div>
@@ -138,16 +157,15 @@ function e(s){return String(s||"").replace(/&/g,"&amp;").replace(/</g,"&lt;").re
 function renderItem(i){
   var jira=i.jira&&i.jira!=="-"?'<span class="jira">'+e(i.jira)+"</span>":"";
   var asgn=i.assignee&&i.assignee!=="-"?'<span class="asgn">'+e(i.assignee)+"</span>":"";
-  var stxt=i.status||"To Do";
-  return'<div class="item"><span class="idot" style="background:'+dc(i.status)+'"></span><div class="ibody"><div class="ititle">'+e(i.feature)+'</div><div class="imeta">'+jira+'<span class="pill '+sc(i.status)+'">'+e(stxt)+"</span>"+asgn+"</div></div></div>";
+  return'<div class="item"><span class="idot" style="background:'+dc(i.status)+'"></span><div class="ibody"><div class="ititle">'+e(i.feature)+'</div><div class="imeta">'+jira+'<span class="pill '+sc(i.status)+'">'+e(i.status||"To Do")+"</span>"+asgn+"</div></div></div>";
 }
 
 function renderPod(p){
   var tags=p.team.map(function(t){return'<span class="tag">'+e(t)+"</span>";}).join("");
   var note=p.note?'<div class="pod-note">'+e(p.note)+"</div>":" ";
-  var items=(p.items||[]).filter(function(i){return!i.status||!i.status.toLowerCase().includes("block");});
-  var html=items.length?items.map(renderItem).join(""):'<div class="empty">No items this sprint</div>';
-  return'<div class="pod"><div class="pod-head" style="background:'+p.headBg+'"><div class="pod-top"><span class="pod-name"><span class="dot" style="background:'+p.color+'"></span>'+e(p.name)+'</span><span class="pod-ct">'+(p.items||[]).length+' items</span></div><div class="pod-meta">Lead: <span>'+e(p.lead)+'</span></div>'+note+'<div class="tags"><span class="tag tag-lead">'+e(p.lead)+'</span>'+tags+'</div></div><div class="divider"></div><div class="items">'+html+"</div></div>";
+  var nonBlocked=(p.items||[]).filter(function(i){return!i.status||!i.status.toLowerCase().includes("block");});
+  var html=nonBlocked.length?nonBlocked.map(renderItem).join(""):'<div class="empty">No items this sprint</div>';
+  return'<div class="pod"><div class="pod-head" style="background:'+p.headBg+'"><div class="pod-top"><span class="pod-name"><span class="dot" style="background:'+p.color+'"></span>'+e(p.name)+'</span><span class="pod-ct">'+(p.items||[]).length+' items</span></div><div class="pod-lead">Lead: <span>'+e(p.lead)+'</span></div>'+note+'<div class="tags"><span class="tag tag-lead">'+e(p.lead)+'</span>'+tags+'</div></div><div class="divider"></div><div class="items">'+html+"</div></div>";
 }
 
 function renderBlockers(pods){
@@ -155,27 +173,27 @@ function renderBlockers(pods){
   pods.forEach(function(p){
     (p.items||[]).forEach(function(i){
       if(i.status&&i.status.toLowerCase().includes("block")){
-        all.push({pod:p.name,color:p.color,feature:i.feature,note:i.notes,jira:i.jira});
+        all.push({pod:p.name,feature:i.feature,note:i.notes,jira:i.jira});
       }
     });
   });
   if(!all.length)return"";
   var rows=all.map(function(b){
-    return'<div class="blocker-item"><span class="blocker-pod">'+e(b.pod)+'</span><div><div class="blocker-feat">'+e(b.feature)+(b.jira&&b.jira!=="-"?' <span style="font-size:10px;color:#999;font-family:monospace">'+e(b.jira)+"</span>":"")+'</div>'+(b.note?'<div class="blocker-note">'+e(b.note.replace("BLOCKED: ",""))+"</div>":"")+"</div></div>";
+    return'<div class="blocker-row"><span class="blocker-pod">'+e(b.pod)+'</span><div><div class="blocker-feat">'+e(b.feature)+(b.jira&&b.jira!=="-"?' <span style="font-size:10px;color:#999;font-family:monospace">'+e(b.jira)+"</span>":"")+'</div>'+(b.note?'<div class="blocker-note">'+e(b.note)+"</div>":"")+"</div></div>";
   }).join("");
-  return'<div class="blockers-section"><div class="blockers-header"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="7" stroke="#991b1b" stroke-width="1.5"/><path d="M8 4.5v4M8 10.5v1" stroke="#991b1b" stroke-width="1.5" stroke-linecap="round"/></svg>'+all.length+' blocked items requiring attention</div>'+rows+"</div>";
+  return'<div class="blockers-box"><div class="blockers-hdr"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="7" stroke="#991b1b" stroke-width="1.5"/><path d="M8 4.5v4M8 10.5v1" stroke="#991b1b" stroke-width="1.5" stroke-linecap="round"/></svg>'+all.length+' blocked item'+(all.length>1?"s":"")+" requiring attention</div>"+rows+"</div>";
 }
 
 function renderUpdate(u){
-  var tc=u.type==="resigned"?"color:#dc2626":u.type==="replacement"?"color:#d97706":"color:#6b7280";
-  var tl=u.type==="resigned"?"Resigned":u.type==="replacement"?"Replacement in progress":"Update";
-  var sc2=u.type==="resigned"?"background:#fee2e2;color:#991b1b":u.type==="replacement"?"background:#fef3c7;color:#92400e":"background:#f3f4f6;color:#6b7280";
+  var tc=u.type==="resigned"?"color:#dc2626":u.type==="replacement"?"color:#d97706":u.type==="joining"?"color:#16a34a":"color:#6b7280";
+  var tl=u.type==="resigned"?"Resigned":u.type==="replacement"?"Replacement in progress":u.type==="joining"?"Joining":"Update";
+  var sc2=u.type==="resigned"?"background:#fee2e2;color:#991b1b":u.type==="replacement"?"background:#fef3c7;color:#92400e":u.type==="joining"?"background:#dcfce7;color:#166534":"background:#f3f4f6;color:#6b7280";
   return'<div class="ucard"><div class="utype" style="'+tc+'">'+e(tl)+'</div><div class="uname">'+e(u.name)+'</div><div class="udesc">'+e(u.detail)+'</div><span class="ustatus" style="'+sc2+'">'+e(u.status)+"</span></div>";
 }
 
 function render(d){
   document.getElementById("t1").textContent="Sprint "+d.sprintNumber+" \u2014 Founder update";
-  document.getElementById("t2").textContent=d.sprintDates+" \xb7 All pods \xb7 Auto-updated daily from Google Sheet";
+  document.getElementById("t2").textContent=d.sprintDates+" \xb7 All pods \xb7 Auto-updated daily";
   var g=new Date(d.generatedAt);
   var ist=g.toLocaleString("en-IN",{timeZone:"Asia/Kolkata",day:"numeric",month:"short",hour:"2-digit",minute:"2-digit"});
   document.getElementById("t3").textContent="Last updated: "+ist+" IST";
@@ -193,14 +211,23 @@ function render(d){
 
   document.getElementById("blockers-wrap").innerHTML=renderBlockers(d.pods);
   document.getElementById("pods").innerHTML=d.pods.map(renderPod).join("");
+
+  // QA & Releases section
+  var qa=d.qaItems||[];
+  if(qa.length){
+    document.getElementById("qa-lbl").style.display="block";
+    document.getElementById("qa-section").style.display="block";
+    document.getElementById("qa-count").textContent=qa.length+" items";
+    document.getElementById("qa-items").innerHTML=qa.map(renderItem).join("");
+  }
+
   document.getElementById("updates").innerHTML=(d.teamUpdates||[]).map(renderUpdate).join("");
   document.getElementById("footer").innerHTML=
-    'Auto-refreshed daily at 9:00 AM IST from Tech Resource Planning sheet &middot; Sprint '+d.sprintNumber+
-    '<br><a class="admin-link" href="/admin.html">Edit team updates</a>';
+    'Auto-refreshed daily at 9:00 AM IST from Tech Resource Planning sheet &middot; Sprint '+d.sprintNumber;
 }
 
 if(D){render(D);}else{
-  document.getElementById("pods").innerHTML='<div style="padding:40px;color:#999;font-size:14px">No data — run the GitHub Action.</div>';
+  document.getElementById("pods").innerHTML='<div style="padding:40px;color:#999;font-size:14px;grid-column:1/-1">No data — run the GitHub Action to populate.</div>';
 }
 </script>
 </body>
