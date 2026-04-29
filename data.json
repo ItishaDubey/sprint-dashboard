@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-04-29T07:31:43.586737+00:00",
+  "generatedAt": "2026-04-29T07:34:50.044896+00:00",
   "sprintNumber": "69",
   "sprintDates": "[27 Apr - 8 May]",
   "sheetName": "SPRINT 69 [27 Apr - 8 May]",
@@ -502,7 +502,116 @@
       "notes": ""
     }
   ],
-  "bandwidth": [],
+  "bandwidth": [
+    {
+      "name": "Arun Kumar Krishna",
+      "pod": "devsec",
+      "load": "heavy",
+      "taskCount": 7,
+      "tasks": [
+        "Syncing assets from prod-image-bucket",
+        "Data Orchestrator migration to HL",
+        "Prod Validation Admin migration",
+        "HL accounts migration to new Org",
+        "Cross Account access for validation",
+        "Old tool Collected files migration",
+        "Email Migration from Mailmodo to SES"
+      ],
+      "hasBlocker": false,
+      "blockerNote": ""
+    },
+    {
+      "name": "Yogesh Kumar",
+      "pod": "hl_audio",
+      "load": "heavy",
+      "taskCount": 5,
+      "tasks": [
+        "Annotation pipeline automatic submissions",
+        "Scribe API Integration Validation Annotation",
+        "Duplicate Content Check validation",
+        "Validation Language detection check",
+        "Annotation Pre Annotation Multi Track"
+      ],
+      "hasBlocker": false,
+      "blockerNote": ""
+    },
+    {
+      "name": "Kumaragurubaran Kanagaraj",
+      "pod": "engage",
+      "load": "heavy",
+      "taskCount": 5,
+      "tasks": [
+        "Collect Earnings BE change block rewards",
+        "Click reduction on quest journey App",
+        "Enable new recorder single speaker",
+        "Integration KGeN Quest journey changes",
+        "Show User level Pair level Contribution"
+      ],
+      "hasBlocker": false,
+      "blockerNote": ""
+    },
+    {
+      "name": "Namrata Kesarwani",
+      "pod": "hl_audio",
+      "load": "moderate",
+      "taskCount": 3,
+      "tasks": [
+        "Alerts for Validation Failures",
+        "Validation Retry history Failures History",
+        "Duplication Check at Project level"
+      ],
+      "hasBlocker": false,
+      "blockerNote": ""
+    },
+    {
+      "name": "Karan Sabharwal",
+      "pod": "devsec",
+      "load": "moderate",
+      "taskCount": 3,
+      "tasks": [
+        "Security Testing Annotation Tool",
+        "Security Testing Quest with Validation",
+        "Security Testing Login Changes"
+      ],
+      "hasBlocker": false,
+      "blockerNote": ""
+    },
+    {
+      "name": "Avish Kaarthik",
+      "pod": "hl_audio",
+      "load": "moderate",
+      "taskCount": 2,
+      "tasks": [
+        "Task distribution per cc Vendor",
+        "International Language support Arabic"
+      ],
+      "hasBlocker": true,
+      "blockerNote": "Both tasks are blocked"
+    },
+    {
+      "name": "Harshada Raundal",
+      "pod": "engage",
+      "load": "light",
+      "taskCount": 1,
+      "tasks": [
+        "Social connect changes remove phone pop-up"
+      ],
+      "hasBlocker": false,
+      "blockerNote": ""
+    },
+    {
+      "name": "Manpreet Singh",
+      "pod": "engage",
+      "load": "light",
+      "taskCount": 2,
+      "tasks": [
+        "Shield Backend App Changes",
+        "Collect Earnings KYC Change"
+      ],
+      "hasBlocker": false,
+      "blockerNote": ""
+    }
+  ],
   "teamUpdates": [
     {
       "type": "resigned",
