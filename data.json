@@ -1,12 +1,12 @@
 {
-  "generatedAt": "2026-04-28T18:39:08.496774+00:00",
+  "generatedAt": "2026-04-29T06:10:04.004081+00:00",
   "sprintNumber": "69",
   "sprintDates": "[27 Apr - 8 May]",
   "sheetName": "SPRINT 69 [27 Apr - 8 May]",
   "stats": {
-    "total": 30,
+    "total": 31,
     "done": 6,
-    "inProgress": 4,
+    "inProgress": 5,
     "blocked": 2,
     "notStarted": 18
   },
@@ -137,6 +137,14 @@
           "feature": "Collect Earings BE change to block rewards collection if phone number is not present",
           "jira": "TECH-21029",
           "status": "To Do",
+          "assignee": "Kumaragurubaran Kanagaraj",
+          "notes": ""
+        },
+        {
+          "section": "Engage Activities",
+          "feature": "Click reduction on the quest journey - App",
+          "jira": "HL-1",
+          "status": "Dev in Progress",
           "assignee": "Kumaragurubaran Kanagaraj",
           "notes": ""
         },
