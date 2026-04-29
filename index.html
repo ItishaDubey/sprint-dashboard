@@ -8,21 +8,18 @@
 *{box-sizing:border-box;margin:0;padding:0;}
 :root{--bg:#f7f6f2;--card:#fff;--border:#e8e6df;--text:#111;--muted:#777;--hint:#bbb;}
 body{background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;font-size:15px;line-height:1.5;}
-
 .hdr{background:var(--card);border-bottom:1px solid var(--border);padding:18px 32px;display:flex;align-items:flex-start;justify-content:space-between;flex-wrap:wrap;gap:12px;}
 .hdr-title{font-size:20px;font-weight:700;letter-spacing:-.3px;}
 .hdr-sub{font-size:13px;color:var(--muted);margin-top:3px;}
 .hdr-right{text-align:right;}
 .hdr-updated{font-size:12px;color:var(--hint);}
 .admin-btn{display:inline-block;margin-top:6px;font-size:11px;color:var(--hint);text-decoration:none;border:1px solid var(--border);padding:3px 10px;border-radius:6px;}
-.admin-btn:hover{color:#111;border-color:#999;}
-
+.admin-btn:hover{color:#111;}
 .stats{background:var(--card);border-bottom:1px solid var(--border);padding:14px 32px;display:flex;gap:28px;flex-wrap:wrap;overflow-x:auto;}
 .stat{display:flex;flex-direction:column;min-width:60px;}
 .stat-n{font-size:26px;font-weight:700;line-height:1;}
 .stat-l{font-size:11px;color:var(--muted);margin-top:3px;text-transform:uppercase;letter-spacing:.06em;}
 .sdiv{width:1px;background:var(--border);align-self:stretch;}
-
 .blockers-wrap{margin:20px 32px 0;}
 .blockers-box{background:#fff5f5;border:1.5px solid #fca5a5;border-radius:12px;overflow:hidden;}
 .blockers-hdr{background:#fee2e2;padding:10px 18px;display:flex;align-items:center;gap:8px;font-size:13px;font-weight:700;color:#991b1b;}
@@ -30,12 +27,9 @@ body{background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSy
 .blocker-pod{font-size:11px;font-weight:600;color:#dc2626;background:#fee2e2;padding:2px 8px;border-radius:10px;white-space:nowrap;flex-shrink:0;margin-top:2px;}
 .blocker-feat{font-size:13px;color:#111;font-weight:500;}
 .blocker-note{font-size:12px;color:#b91c1c;margin-top:2px;}
-
 .main{padding:20px 32px 40px;}
 .slbl{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);margin:24px 0 12px;}
-
 .pods{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;}
-
 .pod{background:var(--card);border-radius:12px;border:1px solid var(--border);overflow:hidden;}
 .pod-head{padding:14px 18px 10px;}
 .pod-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:6px;}
@@ -49,7 +43,6 @@ body{background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSy
 .tag{font-size:11px;padding:3px 8px;border-radius:10px;background:var(--bg);color:#555;}
 .tag-lead{background:#111;color:#fff;}
 .divider{height:1px;background:var(--border);}
-
 .items{padding:4px 0 10px;}
 .item{padding:7px 18px;display:flex;gap:8px;}
 .item:hover{background:#fafaf8;}
@@ -68,36 +61,46 @@ body{background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSy
 .asgn{font-size:11px;color:var(--hint);}
 .empty{padding:14px 18px;font-size:13px;color:var(--hint);}
 
-/* QA RELEASES SECTION */
-.qa-section{background:var(--card);border-radius:12px;border:1px solid var(--border);overflow:hidden;margin-top:4px;}
+/* BANDWIDTH */
+.bw-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:12px;}
+.bw-card{background:var(--card);border-radius:12px;border:1px solid var(--border);padding:14px 16px;}
+.bw-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:8px;}
+.bw-name{font-size:14px;font-weight:700;}
+.bw-pod{font-size:10px;color:var(--muted);margin-top:1px;}
+.bw-load{font-size:10px;font-weight:700;padding:2px 8px;border-radius:10px;}
+.load-light{background:#dcfce7;color:#166534;}
+.load-moderate{background:#fef9c3;color:#854d0e;}
+.load-heavy{background:#fee2e2;color:#991b1b;}
+.bw-tasks{margin-top:8px;padding-top:8px;border-top:1px solid var(--border);}
+.bw-task{font-size:12px;color:var(--muted);padding:2px 0;display:flex;gap:6px;align-items:baseline;}
+.bw-task::before{content:"·";color:var(--hint);flex-shrink:0;}
+.bw-blocker{font-size:11px;color:#dc2626;margin-top:6px;display:flex;gap:5px;align-items:center;}
+
+/* QA */
+.qa-section{background:var(--card);border-radius:12px;border:1px solid var(--border);overflow:hidden;}
 .qa-head{padding:12px 18px;background:#F0F4FF;display:flex;align-items:center;justify-content:space-between;}
 .qa-title{font-size:14px;font-weight:700;color:#1e40af;display:flex;align-items:center;gap:7px;}
-.qa-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:0;}
-.qa-item{padding:10px 18px;border-top:1px solid var(--border);display:flex;gap:8px;}
-.qa-item:hover{background:#fafaf8;}
+.qa-items{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));}
 
 /* TEAM UPDATES */
-.updates-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:10px;margin-top:6px;}
+.updates-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:10px;}
 .ucard{background:var(--card);border-radius:10px;border:1px solid var(--border);padding:12px 16px;}
 .utype{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;margin-bottom:4px;}
 .uname{font-size:14px;font-weight:600;}
 .udesc{font-size:12px;color:var(--muted);margin-top:3px;line-height:1.4;}
 .ustatus{font-size:11px;padding:2px 8px;border-radius:10px;margin-top:6px;display:inline-block;font-weight:600;}
-
 .footer{margin-top:32px;font-size:12px;color:var(--hint);text-align:center;padding-bottom:24px;}
 
 @media(max-width:720px){
   .hdr,.stats,.main,.blockers-wrap{padding-left:16px;padding-right:16px;}
-  .blockers-wrap{margin-left:0;margin-right:0;}
   .pods{grid-template-columns:1fr;}
   .stat-n{font-size:22px;}
   .hdr-title{font-size:17px;}
-  .qa-grid{grid-template-columns:1fr;}
+  .bw-grid{grid-template-columns:1fr;}
 }
 </style>
 </head>
 <body>
-
 <div class="hdr">
   <div>
     <div class="hdr-title" id="t1">Sprint Dashboard</div>
@@ -105,27 +108,29 @@ body{background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSy
   </div>
   <div class="hdr-right">
     <div class="hdr-updated" id="t3"></div>
-    <a class="admin-btn" href="/admin.html">✏️ Edit team updates</a>
+    <a class="admin-btn" href="/admin.html">Edit team updates</a>
   </div>
 </div>
-
 <div class="stats" id="stats"></div>
 <div class="blockers-wrap" id="blockers-wrap"></div>
-
 <div class="main">
   <div class="slbl">Pods &amp; work items</div>
   <div class="pods" id="pods"></div>
 
-  <div class="slbl" style="margin-top:28px" id="qa-lbl" style="display:none">QA &amp; Releases — items in testing or pending merge</div>
-  <div class="qa-section" id="qa-section" style="display:none">
-    <div class="qa-head">
-      <div class="qa-title">
-        <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="6.5" stroke="#1e40af" stroke-width="1.5"/><path d="M5 8l2 2 4-4" stroke="#1e40af" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        QA &amp; Releases
+  <div id="qa-wrap" style="display:none">
+    <div class="slbl" style="margin-top:28px">QA &amp; releases — items in testing or pending merge</div>
+    <div class="qa-section">
+      <div class="qa-head">
+        <div class="qa-title">QA &amp; Releases</div>
+        <span id="qa-count" style="font-size:12px;color:#6b7280;"></span>
       </div>
-      <span id="qa-count" style="font-size:12px;color:#6b7280;"></span>
+      <div class="qa-items" id="qa-items"></div>
     </div>
-    <div class="qa-grid" id="qa-items"></div>
+  </div>
+
+  <div id="bw-wrap" style="display:none">
+    <div class="slbl" style="margin-top:28px">Team bandwidth — who is working on what</div>
+    <div class="bw-grid" id="bw-grid"></div>
   </div>
 
   <div class="slbl" style="margin-top:28px">Team updates</div>
@@ -134,24 +139,10 @@ body{background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSy
 </div>
 
 <script>
-var D = {"generatedAt": "2026-04-29T06:26:39.389971+00:00", "sprintNumber": "69", "sprintDates": "[27 Apr - 8 May]", "sheetName": "SPRINT 69 [27 Apr - 8 May]", "stats": {"total": 51, "done": 6, "inProgress": 5, "blocked": 0, "notStarted": 40}, "pods": [{"id": "hl_audio", "name": "Humyn Labs \u2014 Audio", "color": "#9E3360", "headBg": "#FDF0F5", "lead": "Yogesh", "note": "Multi-pipeline: validation, annotation, collection, account infra & data ops", "team": ["Guru", "Shaurya", "Pratik", "Namrata", "Nilesh", "Jaya", "Sameer", "Kevin (QA)", "Swetha (QA)"], "items": [{"pod": "hl_audio", "feature": "Alerts for Validation Failures", "jira": "HL-198", "status": "To Do", "assignee": "Namrata Kesarwani", "notes": ""}, {"pod": "hl_audio", "feature": "New post-processing service for data delivery(cross account/ cross org/ copy of data to client bucket)", "jira": "HL-150", "status": "Dev in Progress", "assignee": "Avinash Ramanathan", "notes": ""}, {"pod": "hl_audio", "feature": "Validation Retry history - Failures History is maintained", "jira": "HL-137", "status": "Review In Progress", "assignee": "Namrata Kesarwani", "notes": ""}, {"pod": "hl_audio", "feature": "Annotation pipeline for automatic submissions based on project configs", "jira": "HL-220", "status": "To Do", "assignee": "Yogesh Kumar", "notes": ""}, {"pod": "hl_audio", "feature": "Duplication Check at the Project level", "jira": "HL-138", "status": "Review In Progress", "assignee": "Namrata Kesarwani", "notes": ""}, {"pod": "hl_audio", "feature": "Annotation and QC tool enhancement: Task distribution % per cc(Vendor)", "jira": "HL-140", "status": "To Do", "assignee": "Avish Kaarthik", "notes": "Approach to be finalised with PS. Saksham to come back on this"}, {"pod": "hl_audio", "feature": "International Language support(Arabic is a must)", "jira": "HL-139", "status": "To Do", "assignee": "Jaya Kesarwani", "notes": "waiting from product for clarity ; models and solution is pending from product specifically for transliteration"}, {"pod": "hl_audio", "feature": "Annotation and QC: International Language support(Arabic is a must)", "jira": "HL-141", "status": "To Do", "assignee": "Avish Kaarthik", "notes": "waiting from product for clarity ; models and solution is pending from product specifically for transliteration"}, {"pod": "hl_audio", "feature": "Scribe API Integration across Validation and Annotation", "jira": "HL-216", "status": "To Do", "assignee": "Yogesh Kumar", "notes": ""}, {"pod": "hl_audio", "feature": "Duplicate Content Check at validation and reuse the same to annotation", "jira": "HL-217", "status": "To Do", "assignee": "Yogesh Kumar", "notes": ""}, {"pod": "hl_audio", "feature": "Enable new recorder for single speaker audios", "jira": "HL-218", "status": "To Do", "assignee": "Kumaragurubaran Kanagaraj", "notes": ""}, {"pod": "hl_audio", "feature": "HL Responsiveness and New Enhancements on the BD website Design", "jira": "HL-219", "status": "To Do", "assignee": "Shivam Shukla", "notes": ""}]}, {"id": "hl_ego", "name": "Humyn Labs \u2014 Egocentric", "color": "#9E3360", "headBg": "#FDF0F5", "lead": "Karthik", "note": "", "team": ["Karthik", "Avinash"], "items": []}, {"id": "engage", "name": "KGeN Engage", "color": "#185FA5", "headBg": "#EBF5FB", "lead": "Guru", "note": "", "team": ["Harshada", "Manpreet", "Namrata", "Shaurya", "Swetha (QA)"], "items": [{"pod": "engage", "feature": "Social connect changes - remove phone number pop-up", "jira": "TECH-21023", "status": "To Do", "assignee": "Harshada Raundal", "notes": ""}, {"pod": "engage", "feature": "Shield Backend App Changes", "jira": "TECH-21024", "status": "To Do", "assignee": "Manpreet Singh", "notes": ""}, {"pod": "engage", "feature": "Collect Earings BE change to block rewards collection if phone number is not present", "jira": "TECH-21029", "status": "To Do", "assignee": "Kumaragurubaran Kanagaraj", "notes": ""}, {"pod": "engage", "feature": "Click reduction on the quest journey - App", "jira": "HL-1", "status": "Dev in Progress", "assignee": "Kumaragurubaran Kanagaraj", "notes": ""}]}, {"id": "kstore", "name": "KStore", "color": "#3B6D11", "headBg": "#EAF7E6", "lead": "Julian", "note": "", "team": ["Jitendra", "Shahid", "Relin (QA)"], "items": [{"pod": "kstore", "feature": "Add updated FAQs in KStore footer", "jira": "-", "status": "To Do", "assignee": "-", "notes": ""}, {"pod": "kstore", "feature": "When a product is assigned to a DP and the corresponding CP is deactivated, reactivating the CP triggers an error. Currently, the product must be reassigned to the DP to restore normal functionality.", "jira": "-", "status": "To Do", "assignee": "-", "notes": ""}, {"pod": "kstore", "feature": "b2c orders panel in Super Admin -add Date and time column", "jira": "-", "status": "To Do", "assignee": "-", "notes": ""}, {"pod": "kstore", "feature": "report generating bamboo is failed", "jira": "-", "status": "To Do", "assignee": "-", "notes": ""}, {"pod": "kstore", "feature": "No error if wrong login", "jira": "-", "status": "To Do", "assignee": "-", "notes": ""}, {"pod": "kstore", "feature": "No error if no money in wallet", "jira": "-", "status": "To Do", "assignee": "-", "notes": ""}, {"pod": "kstore", "feature": "Invalid utf-8 format handling", "jira": "-", "status": "To Do", "assignee": "-", "notes": ""}, {"pod": "kstore", "feature": "sample sheet download for every bulk upload (it will contain every header)", "jira": "-", "status": "To Do", "assignee": "-", "notes": ""}, {"pod": "kstore", "feature": "search issue in the cp product assignment-bug", "jira": "-", "status": "To Do", "assignee": "-", "notes": ""}, {"pod": "kstore", "feature": "do not return the error messages to the fe which are related to internal operations", "jira": "-", "status": "To Do", "assignee": "-", "notes": ""}, {"pod": "kstore", "feature": "Code generation ecosystem", "jira": "-", "status": "To Do", "assignee": "-", "notes": ""}, {"pod": "kstore", "feature": "denomination on the product side-super admin-seperate mrp and denomination", "jira": "-", "status": "To Do", "assignee": "-", "notes": ""}, {"pod": "kstore", "feature": "Reloadly Integration", "jira": "-", "status": "To Do", "assignee": "-", "notes": ""}, {"pod": "kstore", "feature": "Purchase Invoice for KStore customers", "jira": "-", "status": "To Do", "assignee": "-", "notes": ""}, {"pod": "kstore", "feature": "landing pages- make them on product level", "jira": "-", "status": "To Do", "assignee": "-", "notes": ""}, {"pod": "kstore", "feature": "sold out <>next drop for physical goods", "jira": "-", "status": "To Do", "assignee": "-", "notes": ""}, {"pod": "kstore", "feature": "entry point for HT and TN is coming wrong", "jira": "-", "status": "To Do", "assignee": "-", "notes": ""}]}, {"id": "devsec", "name": "DevSec", "color": "#854F0B", "headBg": "#FFFBF0", "lead": "Itisha", "note": "", "team": ["Arun Kumar Krishna (DevOps)", "Karan Sabharwal (Security)"], "items": [{"pod": "devsec", "feature": "Syncing assets from prod-image-bucket.indi.gg to prod-image-bucket.kgen.io", "jira": "DEVSEC-669", "status": "To Do", "assignee": "Arun Kumar Krishna", "notes": ""}, {"pod": "devsec", "feature": "Annotation Stage setup", "jira": "DEVSEC-670", "status": "Done", "assignee": "Arun Kumar Krishna", "notes": ""}, {"pod": "devsec", "feature": "Data Orchestrator migration to HL account (both stage and Prod)", "jira": "DEVSEC-672", "status": "To Do", "assignee": "Arun Kumar Krishna", "notes": ""}, {"pod": "devsec", "feature": "Prod Validation Admin(prod-analytics-dashboard) migration to HL account.", "jira": "DEVSEC-673", "status": "To Do", "assignee": "Arun Kumar Krishna", "notes": ""}, {"pod": "devsec", "feature": "HL accounts(stage and prod) migration to new Org.", "jira": "DEVSEC-671", "status": "To Do", "assignee": "Arun Kumar Krishna", "notes": ""}, {"pod": "devsec", "feature": "Cross Account access for task 1 to use the new validation tool", "jira": "DEVSEC-674", "status": "To Do", "assignee": "Arun Kumar Krishna", "notes": ""}, {"pod": "devsec", "feature": "Security Testing: Annotation Tool", "jira": "DEVSEC-675", "status": "To Do", "assignee": "Karan Sabharwal", "notes": ""}, {"pod": "devsec", "feature": "Security Testing: Quest with Validation and", "jira": "DEVSEC-676", "status": "To Do", "assignee": "Karan Sabharwal", "notes": ""}, {"pod": "devsec", "feature": "Security Testing: Login Changes", "jira": "DEVSEC-677", "status": "To Do", "assignee": "Karan Sabharwal", "notes": ""}, {"pod": "devsec", "feature": "Old tool Collected files migration is required to HL account?", "jira": "DEVSEC-678", "status": "To Do", "assignee": "Arun Kumar Krishna", "notes": ""}, {"pod": "devsec", "feature": "Email Migration from Mailmodo to SES (Clan Service & KStore)", "jira": "DEVSEC-679", "status": "To Do", "assignee": "Arun Kumar Krishna", "notes": ""}]}], "qaItems": [{"pod": "qa_releases", "feature": "Integration to KGeN Quest & Quest journey Changes - PG Mints post quest is submitted - Click reduction on the quest journey", "jira": "HL-1", "status": "Done", "assignee": "-", "notes": ""}, {"pod": "qa_releases", "feature": "Validation Language detection check (Jaya) Duplicate file check Gender check Individual and combined file validation Parameter validation(already present) Contribution Check Fingerprinting (to be done later)", "jira": "HL-55", "status": "Done", "assignee": "Yogesh", "notes": ""}, {"pod": "qa_releases", "feature": "No phone number as part of login and guest user journey", "jira": "TECH-20888", "status": "In QA", "assignee": "Shaurya", "notes": ""}, {"pod": "qa_releases", "feature": "Collect Earnings KYC Change", "jira": "TECH-20900", "status": "In QA", "assignee": "Manpreet Singh", "notes": ""}, {"pod": "qa_releases", "feature": "Annotation Pre Annotation Multi Track Support (combined, left and right speaker) Diarization Magnet Tool (Auto selection of a segment on user initiation) Smart Keyboard: Transliteration (hinglish >> Hindi) Spell Check (partially given) Keyboard Shortcuts for common operations cuh as play, pause, skip, split, merge etc.. Collection QC Annotation QC", "jira": "HL-54", "status": "In QA", "assignee": "Yogesh", "notes": ""}, {"pod": "qa_releases", "feature": "Integration to KGeN Quest & Quest journey Changes - PG Mints post quest is submitted - Click reduction on the quest journey", "jira": "HL-1", "status": "Dev in Progress", "assignee": "Kumaragurubaran Kanagaraj", "notes": ""}, {"pod": "qa_releases", "feature": "Show User level and Pair level Contribution at quest level and block actions as per", "jira": "HL-186", "status": "To Do", "assignee": "Kumaragurubaran Kanagaraj", "notes": ""}], "teamUpdates": [{"type": "resigned", "name": "Avish", "detail": "Father's accident. WFH 9-17 Apr. Tasks re-routed.", "status": "WFH 9-17 Apr"}, {"type": "replacement", "name": "Akshay (HL Backend)", "detail": "3-month notice. Replacement hiring underway.", "status": "In Progress"}, {"type": "replacement", "name": "Shivam (GKMIT)", "detail": "3-month notice. Replacement hiring underway.", "status": "In Progress"}, {"type": "info", "name": "Raghav & Pankaj (GKMIT)", "detail": "No replacement needed. Update to GKMIT pending.", "status": "Update to GKMIT"}]};
+var D = null; /* DATA_PLACEHOLDER */
 
-function sc(s){
-  if(!s||s==="To Do")return"p-todo";
-  if(s==="Done"||s.toLowerCase().includes("done"))return"p-done";
-  if(s==="In QA")return"p-qa";
-  if(s.toLowerCase().includes("progress"))return"p-prog";
-  if(s.toLowerCase().includes("review"))return"p-rev";
-  if(s.toLowerCase().includes("block")||s==="Bug")return"p-block";
-  return"p-todo";
-}
-function dc(s){
-  if(!s||s==="To Do")return"#d1d5db";
-  if(s.toLowerCase().includes("done")||s==="In QA")return"#16a34a";
-  if(s.toLowerCase().includes("progress")||s.toLowerCase().includes("review"))return"#2563eb";
-  if(s.toLowerCase().includes("block"))return"#dc2626";
-  return"#d1d5db";
-}
+function sc(s){if(!s||s==="To Do")return"p-todo";if(s==="Done"||s.toLowerCase().includes("done"))return"p-done";if(s==="In QA")return"p-qa";if(s.toLowerCase().includes("progress"))return"p-prog";if(s.toLowerCase().includes("review"))return"p-rev";if(s.toLowerCase().includes("block")||s==="Bug")return"p-block";return"p-todo";}
+function dc(s){if(!s||s==="To Do")return"#d1d5db";if(s.toLowerCase().includes("done")||s==="In QA")return"#16a34a";if(s.toLowerCase().includes("progress")||s.toLowerCase().includes("review"))return"#2563eb";if(s.toLowerCase().includes("block"))return"#dc2626";return"#d1d5db";}
 function e(s){return String(s||"").replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");}
 
 function renderItem(i){
@@ -170,18 +161,23 @@ function renderPod(p){
 
 function renderBlockers(pods){
   var all=[];
-  pods.forEach(function(p){
-    (p.items||[]).forEach(function(i){
-      if(i.status&&i.status.toLowerCase().includes("block")){
-        all.push({pod:p.name,feature:i.feature,note:i.notes,jira:i.jira});
-      }
-    });
-  });
+  pods.forEach(function(p){(p.items||[]).forEach(function(i){if(i.status&&i.status.toLowerCase().includes("block"))all.push({pod:p.name,feature:i.feature,note:i.notes,jira:i.jira});});});
   if(!all.length)return"";
-  var rows=all.map(function(b){
-    return'<div class="blocker-row"><span class="blocker-pod">'+e(b.pod)+'</span><div><div class="blocker-feat">'+e(b.feature)+(b.jira&&b.jira!=="-"?' <span style="font-size:10px;color:#999;font-family:monospace">'+e(b.jira)+"</span>":"")+'</div>'+(b.note?'<div class="blocker-note">'+e(b.note)+"</div>":"")+"</div></div>";
+  var rows=all.map(function(b){return'<div class="blocker-row"><span class="blocker-pod">'+e(b.pod)+'</span><div><div class="blocker-feat">'+e(b.feature)+(b.jira&&b.jira!=="-"?' <span style="font-size:10px;color:#999;font-family:monospace">'+e(b.jira)+"</span>":"")+'</div>'+(b.note?'<div class="blocker-note">'+e(b.note)+"</div>":"")+"</div></div>";}).join("");
+  return'<div class="blockers-box"><div class="blockers-hdr"><svg width="14" height="14" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="7" stroke="#991b1b" stroke-width="1.5"/><path d="M8 4.5v4M8 10.5v1" stroke="#991b1b" stroke-width="1.5" stroke-linecap="round"/></svg> '+all.length+' blocked item'+(all.length>1?"s":"")+" — action required</div>"+rows+"</div>";
+}
+
+function renderBandwidth(bw){
+  if(!bw||!bw.length)return;
+  document.getElementById("bw-wrap").style.display="block";
+  var cards=bw.map(function(p){
+    var lc="load-"+(p.load||"light");
+    var lt=p.load==="heavy"?"Heavy load":p.load==="moderate"?"Moderate":"Light";
+    var tasks=(p.tasks||[]).map(function(t){return'<div class="bw-task">'+e(t)+"</div>";}).join("");
+    var blocker=p.hasBlocker?'<div class="bw-blocker"><svg width="12" height="12" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="7" stroke="#dc2626" stroke-width="1.5"/><path d="M8 4.5v4M8 10.5v1" stroke="#dc2626" stroke-width="1.5" stroke-linecap="round"/></svg> Owns a blocker</div>':"";
+    return'<div class="bw-card"><div class="bw-top"><div><div class="bw-name">'+e(p.name)+'</div><div class="bw-pod">'+e(p.pod||"")+'</div></div><span class="bw-load '+lc+'">'+lt+'</span></div><div class="bw-tasks">'+tasks+blocker+"</div></div>";
   }).join("");
-  return'<div class="blockers-box"><div class="blockers-hdr"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="7" stroke="#991b1b" stroke-width="1.5"/><path d="M8 4.5v4M8 10.5v1" stroke="#991b1b" stroke-width="1.5" stroke-linecap="round"/></svg>'+all.length+' blocked item'+(all.length>1?"s":"")+" requiring attention</div>"+rows+"</div>";
+  document.getElementById("bw-grid").innerHTML=cards;
 }
 
 function renderUpdate(u){
@@ -197,7 +193,6 @@ function render(d){
   var g=new Date(d.generatedAt);
   var ist=g.toLocaleString("en-IN",{timeZone:"Asia/Kolkata",day:"numeric",month:"short",hour:"2-digit",minute:"2-digit"});
   document.getElementById("t3").textContent="Last updated: "+ist+" IST";
-
   var s=d.stats;
   document.getElementById("stats").innerHTML=
     '<div class="stat"><div class="stat-n">'+s.total+'</div><div class="stat-l">Total items</div></div><div class="sdiv"></div>'+
@@ -208,27 +203,20 @@ function render(d){
     '<div class="stat"><div class="stat-n">'+Math.round(s.done/Math.max(s.total,1)*100)+'%</div><div class="stat-l">Completion</div></div><div class="sdiv"></div>'+
     '<div class="stat"><div class="stat-n">4</div><div class="stat-l">Pods</div></div><div class="sdiv"></div>'+
     '<div class="stat"><div class="stat-n">29</div><div class="stat-l">Engineers</div></div>';
-
   document.getElementById("blockers-wrap").innerHTML=renderBlockers(d.pods);
   document.getElementById("pods").innerHTML=d.pods.map(renderPod).join("");
-
-  // QA & Releases section
   var qa=d.qaItems||[];
   if(qa.length){
-    document.getElementById("qa-lbl").style.display="block";
-    document.getElementById("qa-section").style.display="block";
+    document.getElementById("qa-wrap").style.display="block";
     document.getElementById("qa-count").textContent=qa.length+" items";
     document.getElementById("qa-items").innerHTML=qa.map(renderItem).join("");
   }
-
+  renderBandwidth(d.bandwidth);
   document.getElementById("updates").innerHTML=(d.teamUpdates||[]).map(renderUpdate).join("");
-  document.getElementById("footer").innerHTML=
-    'Auto-refreshed daily at 9:00 AM IST from Tech Resource Planning sheet &middot; Sprint '+d.sprintNumber;
+  document.getElementById("footer").innerHTML='Auto-refreshed daily at 9:00 AM IST &middot; Sprint '+d.sprintNumber;
 }
 
-if(D){render(D);}else{
-  document.getElementById("pods").innerHTML='<div style="padding:40px;color:#999;font-size:14px;grid-column:1/-1">No data — run the GitHub Action to populate.</div>';
-}
+if(D){render(D);}else{document.getElementById("pods").innerHTML='<div style="padding:40px;color:#999;font-size:14px;grid-column:1/-1">No data — run the GitHub Action.</div>';}
 </script>
 </body>
 </html>

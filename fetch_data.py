@@ -1,24 +1,23 @@
-import json, os, re
+import json, os, re, urllib.request, urllib.error
 from datetime import datetime, timezone
 
-SPREADSHEET_ID = os.environ.get("SPREADSHEET_ID", "1Sijbuj0mhLuT5svA7uKv02Ay3o0wlArB2kv0HYo1gCY")
+SPREADSHEET_ID  = os.environ.get("SPREADSHEET_ID", "1Sijbuj0mhLuT5svA7uKv02Ay3o0wlArB2kv0HYo1gCY")
+ANTHROPIC_KEY   = os.environ.get("ANTHROPIC_API_KEY", "")
 
-# Section header keywords → pod id
-# Parser scans col0 for these when col1 is empty — fully position-independent
 SECTION_MAP = [
-    ("engage activities",          "engage"),
-    ("hl tasks",                   "hl_audio"),
-    ("humyn labs — audio",         "hl_audio"),
-    ("humyn labs - audio",         "hl_audio"),
-    ("humyn labs — egocentric",    "hl_ego"),
-    ("humyn labs - egocentric",    "hl_ego"),
-    ("egocentric",                 "hl_ego"),
-    ("qa items",                   "qa_releases"),   # separate bottom section
-    ("to be released",             "qa_releases"),
-    ("to be merged",               "qa_releases"),
-    ("devops and security",        "devsec"),
-    ("exlr8",                      "kstore"),
-    ("kstore",                     "kstore"),
+    ("engage activities",       "engage"),
+    ("hl tasks",                "hl_audio"),
+    ("humyn labs — audio",      "hl_audio"),
+    ("humyn labs - audio",      "hl_audio"),
+    ("humyn labs — egocentric", "hl_ego"),
+    ("humyn labs - egocentric", "hl_ego"),
+    ("egocentric",              "hl_ego"),
+    ("qa items",                "qa_releases"),
+    ("to be released",          "qa_releases"),
+    ("to be merged",            "qa_releases"),
+    ("devops and security",     "devsec"),
+    ("exlr8",                   "kstore"),
+    ("kstore",                  "kstore"),
 ]
 
 POD_ORDER = ["hl_audio","hl_ego","engage","kstore","devsec"]
@@ -46,44 +45,30 @@ TEAM_UPDATES = [
     {"type":"info",        "name":"Raghav & Pankaj (GKMIT)","detail":"No replacement needed. Update to GKMIT pending.",  "status":"Update to GKMIT"},
 ]
 
-# Features to always skip regardless of section
-SKIP_FEATURES = {
-    "Shield Disable???", "Features", "Module Owner",
-    "Standalone app for audio collection",
-    "HL orchestrator", "Cost and optimisation",
-}
-SKIP_PARTIAL = [
-    "avoid copying recorder tool audio files",
-    "quest validation to happen via api at validation tool level",
-    "enhancements/optimisation to making the duplication",
-    "annotation events and attributes to be added",
-    "merge the collection and annotation hitl",
-]
+SKIP_FEATURES = {"Shield Disable???","Features","Module Owner","Standalone app for audio collection","HL orchestrator","Cost and optimisation"}
+SKIP_PARTIAL  = ["avoid copying recorder tool audio files","quest validation to happen via api","enhancements/optimisation to making the duplication","annotation events and attributes to be added","merge the collection and annotation hitl"]
 
 def get_service():
     from google.oauth2.service_account import Credentials
     from googleapiclient.discovery import build
     sa = json.loads(os.environ["GOOGLE_SERVICE_ACCOUNT_JSON"])
-    creds = Credentials.from_service_account_info(
-        sa, scopes=["https://www.googleapis.com/auth/spreadsheets.readonly"])
+    creds = Credentials.from_service_account_info(sa, scopes=["https://www.googleapis.com/auth/spreadsheets.readonly"])
     return build("sheets","v4",credentials=creds,cache_discovery=False)
 
 def find_latest_tab(service):
-    meta = service.spreadsheets().get(
-        spreadsheetId=SPREADSHEET_ID, fields="sheets.properties.title").execute()
+    meta = service.spreadsheets().get(spreadsheetId=SPREADSHEET_ID, fields="sheets.properties.title").execute()
     titles = [s["properties"]["title"] for s in meta.get("sheets",[])]
     print("Tabs:", titles)
     sprint_tabs = [(int(re.search(r"SPRINT\s+(\d+)",t,re.I).group(1)),t)
                    for t in titles if re.search(r"SPRINT\s+(\d+)",t,re.I)]
     if not sprint_tabs:
-        raise RuntimeError("No sprint tab found in: " + str(titles))
+        raise RuntimeError("No sprint tab found")
     sprint_tabs.sort(reverse=True)
     print("Using:", sprint_tabs[0][1])
     return sprint_tabs[0][1]
 
 def read_tab(service, tab):
-    r = service.spreadsheets().values().get(
-        spreadsheetId=SPREADSHEET_ID, range=f"'{tab}'").execute()
+    r = service.spreadsheets().values().get(spreadsheetId=SPREADSHEET_ID, range=f"'{tab}'").execute()
     return r.get("values",[])
 
 def safe(row, i):
@@ -91,8 +76,7 @@ def safe(row, i):
         v = row[i]
         s = str(v).strip() if v else ""
         return "" if s.lower() in ("nan","false","none") else s
-    except:
-        return ""
+    except: return ""
 
 def detect_section(text):
     tl = text.lower().strip()
@@ -102,99 +86,119 @@ def detect_section(text):
     return None
 
 def parse(rows):
-    items = []
-    qa_items = []
+    items, qa_items = [], []
     current_pod = "engage"
-
     for row in rows[1:]:
-        owner   = safe(row, 0)
-        feature = safe(row, 1)
-        notes   = safe(row, 12)
-        assignee= safe(row, 27)
-        status  = safe(row, 28)
-        jira    = safe(row, 29)
-        itype   = safe(row, 25)
-
-        # Section header: owner has text, feature is empty
+        owner=safe(row,0); feature=safe(row,1); notes=safe(row,12)
+        assignee=safe(row,27); status=safe(row,28); jira=safe(row,29); itype=safe(row,25)
         if owner and not feature:
             pod = detect_section(owner)
-            if pod:
-                current_pod = pod
+            if pod: current_pod = pod
             continue
-
-        if not feature:
-            continue
-
-        # Skip noise
-        if feature in SKIP_FEATURES:
-            continue
-        fl = feature.lower()
-        if any(kw in fl for kw in SKIP_PARTIAL):
-            continue
-
-        # Must be a real item — has type, jira, or status
-        has_type   = itype in ("Task","Story","Bug")
-        has_jira   = bool(jira)
-        has_status = bool(status)
-        if not (has_type or has_jira or has_status):
-            continue
-
-        # Blocker detection
-        is_blocked = any(x in notes for x in [
-            "BLOCKED","TSD is pending","waiting from product",
-            "waiting for clarity","Approach to be finalised","TSD Completed" # TSD completed = was blocked, now unblocked
-        ])
-        # Only mark as blocked if status hasn't moved past To Do
+        if not feature: continue
+        if feature in SKIP_FEATURES: continue
+        if any(kw in feature.lower() for kw in SKIP_PARTIAL): continue
+        if not (itype in ("Task","Story","Bug") or jira or status): continue
+        is_blocked = any(x in notes for x in ["BLOCKED","TSD is pending","waiting from product","waiting for clarity","Approach to be finalised"])
         display_status = status or "To Do"
+        blocker_note = ""
         if is_blocked and display_status == "To Do":
+            display_status = "Blocked"
             blocker_note = notes.replace("\n"," ").strip()
-        else:
-            is_blocked = False
-            blocker_note = ""
-
-        item = {
-            "pod":      current_pod,
-            "feature":  feature.replace("\n"," ").strip(),
-            "jira":     jira or "-",
-            "status":   display_status,
-            "assignee": assignee or "-",
-            "notes":    blocker_note,
-        }
-
-        if current_pod == "qa_releases":
-            qa_items.append(item)
-        else:
-            items.append(item)
-
+        item = {"pod":current_pod,"feature":feature.replace("\n"," ").strip(),"jira":jira or "-","status":display_status,"assignee":assignee or "-","notes":blocker_note}
+        if current_pod == "qa_releases": qa_items.append(item)
+        else: items.append(item)
     return items, qa_items
 
 def build_pods(items):
-    pod_items = {pid: [] for pid in POD_ORDER}
+    pod_items = {pid:[] for pid in POD_ORDER}
     for i in items:
-        if i["pod"] in pod_items:
-            pod_items[i["pod"]].append(i)
+        if i["pod"] in pod_items: pod_items[i["pod"]].append(i)
     pods = []
     for pid in POD_ORDER:
         cfg = POD_CONFIG[pid]
-        pods.append({
-            "id":     pid,
-            "name":   cfg["name"],
-            "color":  cfg["color"],
-            "headBg": cfg["headBg"],
-            "lead":   cfg["lead"],
-            "note":   cfg["note"],
-            "team":   STATIC_TEAMS.get(pid,[]),
-            "items":  pod_items[pid],
-        })
+        pods.append({"id":pid,"name":cfg["name"],"color":cfg["color"],"headBg":cfg["headBg"],
+                     "lead":cfg["lead"],"note":cfg["note"],"team":STATIC_TEAMS.get(pid,[]),"items":pod_items[pid]})
     return pods
 
 def calc_stats(items, qa_items):
     all_items = items + qa_items
-    total   = len(all_items)
-    done    = sum(1 for i in all_items if "done" in i["status"].lower() or i["status"]=="In QA")
-    prog    = sum(1 for i in all_items if "progress" in i["status"].lower() or "review" in i["status"].lower())
-    blocked = sum(1 for i in all_items if "block" in i["status"].lower())
+    total=len(all_items)
+    done=sum(1 for i in all_items if "done" in i["status"].lower() or i["status"]=="In QA")
+    prog=sum(1 for i in all_items if "progress" in i["status"].lower() or "review" in i["status"].lower())
+    blocked=sum(1 for i in all_items if "block" in i["status"].lower())
     return {"total":total,"done":done,"inProgress":prog,"blocked":blocked,"notStarted":total-done-prog-blocked}
+
+def claude_bandwidth_summary(items, qa_items):
+    """Ask Claude to read all items and return a per-person bandwidth summary as JSON."""
+    if not ANTHROPIC_KEY:
+        print("No ANTHROPIC_API_KEY — skipping bandwidth summary")
+        return []
+
+    all_items = items + qa_items
+    # Build a readable text summary of all items for Claude
+    lines = []
+    for i in all_items:
+        lines.append(f"- [{i['pod']}] {i['feature']} | Assignee: {i['assignee']} | Status: {i['status']}" + (f" | Jira: {i['jira']}" if i['jira'] != '-' else ""))
+    sheet_text = "\n".join(lines)
+
+    prompt = f"""You are analyzing a sprint planning sheet. Here are all work items for this sprint:
+
+{sheet_text}
+
+Based on this, create a bandwidth summary per person. For each unique person (ignore "-" or empty assignees):
+- List their tasks (short names, max 6 words each)
+- Estimate their load: "light" (1-2 tasks), "moderate" (3-4 tasks), "heavy" (5+ tasks)
+- Note if they own any blockers
+- Note which pod they belong to
+
+Return ONLY valid JSON, no markdown, no explanation:
+[
+  {{
+    "name": "Person Name",
+    "pod": "pod name",
+    "load": "light|moderate|heavy",
+    "taskCount": 3,
+    "tasks": ["short task name", "another task"],
+    "hasBlocker": false,
+    "blockerNote": ""
+  }}
+]
+
+Important:
+- Combine tasks for people who appear with slight name variations (e.g. "Yogesh" and "Yogesh Kumar" are the same)
+- Sort by load descending (heavy first)
+- Skip generic entries like "-" or "TBD"
+- Max 8 people"""
+
+    payload = json.dumps({
+        "model": "claude-haiku-4-5-20251001",
+        "max_tokens": 1500,
+        "messages": [{"role":"user","content": prompt}]
+    }).encode()
+
+    req = urllib.request.Request(
+        "https://api.anthropic.com/v1/messages",
+        data=payload,
+        headers={
+            "Content-Type": "application/json",
+            "x-api-key": ANTHROPIC_KEY,
+            "anthropic-version": "2023-06-01"
+        },
+        method="POST"
+    )
+
+    try:
+        with urllib.request.urlopen(req, timeout=30) as resp:
+            result = json.loads(resp.read())
+            text = result["content"][0]["text"].strip()
+            text = re.sub(r'^```json\s*|^```\s*|```$','',text,flags=re.MULTILINE).strip()
+            bandwidth = json.loads(text)
+            print(f"Bandwidth summary: {len(bandwidth)} people")
+            return bandwidth
+    except Exception as ex:
+        print(f"Claude API error: {ex}")
+        return []
 
 def main():
     svc = get_service()
@@ -202,11 +206,10 @@ def main():
     rows = read_tab(svc, tab)
     items, qa_items = parse(rows)
     pods = build_pods(items)
+    bandwidth = claude_bandwidth_summary(items, qa_items)
 
-    print(f"Total sprint items: {len(items)}, QA/Release items: {len(qa_items)}")
-    for p in pods:
-        print(f"  {p['name']}: {len(p['items'])} items")
-    print(f"  QA & Releases: {len(qa_items)} items")
+    print(f"Items: {len(items)}, QA: {len(qa_items)}")
+    for p in pods: print(f"  {p['name']}: {len(p['items'])} items")
 
     m = re.search(r"(\d+)\s+(.+)", tab, re.IGNORECASE)
     data = {
@@ -217,6 +220,7 @@ def main():
         "stats":        calc_stats(items, qa_items),
         "pods":         pods,
         "qaItems":      qa_items,
+        "bandwidth":    bandwidth,
         "teamUpdates":  TEAM_UPDATES,
     }
 
