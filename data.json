@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-04-29T07:34:50.044896+00:00",
+  "generatedAt": "2026-04-30T06:14:59.999305+00:00",
   "sprintNumber": "69",
   "sprintDates": "[27 Apr - 8 May]",
   "sheetName": "SPRINT 69 [27 Apr - 8 May]",
@@ -526,9 +526,9 @@
       "load": "heavy",
       "taskCount": 5,
       "tasks": [
-        "Annotation pipeline automatic submissions",
-        "Scribe API Integration Validation Annotation",
-        "Duplicate Content Check validation",
+        "Annotation pipeline for automatic submissions",
+        "Scribe API Integration across Validation",
+        "Duplicate Content Check at validation",
         "Validation Language detection check",
         "Annotation Pre Annotation Multi Track"
       ],
@@ -542,10 +542,10 @@
       "taskCount": 5,
       "tasks": [
         "Collect Earnings BE change block rewards",
-        "Click reduction on quest journey App",
-        "Enable new recorder single speaker",
-        "Integration KGeN Quest journey changes",
-        "Show User level Pair level Contribution"
+        "Click reduction on the quest journey",
+        "Enable new recorder for single speaker",
+        "Integration to KGeN Quest journey",
+        "Show User level and Pair level"
       ],
       "hasBlocker": false,
       "blockerNote": ""
@@ -558,7 +558,7 @@
       "tasks": [
         "Alerts for Validation Failures",
         "Validation Retry history Failures History",
-        "Duplication Check at Project level"
+        "Duplication Check at the Project"
       ],
       "hasBlocker": false,
       "blockerNote": ""
@@ -582,11 +582,22 @@
       "load": "moderate",
       "taskCount": 2,
       "tasks": [
-        "Task distribution per cc Vendor",
+        "Task distribution % per cc Vendor",
         "International Language support Arabic"
       ],
       "hasBlocker": true,
-      "blockerNote": "Both tasks are blocked"
+      "blockerNote": "Owns 2 blocked items"
+    },
+    {
+      "name": "Avinash Ramanathan",
+      "pod": "hl_audio",
+      "load": "light",
+      "taskCount": 1,
+      "tasks": [
+        "New post-processing service for data"
+      ],
+      "hasBlocker": false,
+      "blockerNote": ""
     },
     {
       "name": "Harshada Raundal",
@@ -594,19 +605,7 @@
       "load": "light",
       "taskCount": 1,
       "tasks": [
-        "Social connect changes remove phone pop-up"
-      ],
-      "hasBlocker": false,
-      "blockerNote": ""
-    },
-    {
-      "name": "Manpreet Singh",
-      "pod": "engage",
-      "load": "light",
-      "taskCount": 2,
-      "tasks": [
-        "Shield Backend App Changes",
-        "Collect Earnings KYC Change"
+        "Social connect changes remove phone"
       ],
       "hasBlocker": false,
       "blockerNote": ""
