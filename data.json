@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-05-01T06:24:53.050593+00:00",
+  "generatedAt": "2026-05-02T05:46:26.376156+00:00",
   "sprintNumber": "69",
   "sprintDates": "[27 Apr - 8 May]",
   "sheetName": "SPRINT 69 [27 Apr - 8 May]",
@@ -598,7 +598,7 @@
         "Mobile recharge sync fix for CP",
         "Add enkash balance API backend",
         "Denomination on product side super admin",
-        "Mobile recharge circle in UX"
+        "Correct DP error messaging"
       ],
       "hasBlocker": false,
       "blockerNote": ""
@@ -607,15 +607,16 @@
       "name": "Arun Kumar Krishna",
       "pod": "devsec",
       "load": "heavy",
-      "taskCount": 7,
+      "taskCount": 8,
       "tasks": [
         "Syncing assets from prod-image-bucket",
         "Data Orchestrator migration to HL",
-        "Prod Validation Admin migration to HL",
+        "Prod Validation Admin migration HL",
         "HL accounts migration to new Org",
-        "Cross Account access for task 1",
-        "Old tool Collected files migration",
-        "Email Migration from Mailmodo to SES"
+        "Cross Account access for validation tool",
+        "Old tool collected files migration HL",
+        "Email Migration from Mailmodo to SES",
+        "Annotation Stage setup"
       ],
       "hasBlocker": false,
       "blockerNote": ""
@@ -629,26 +630,12 @@
         "B2c orders panel add Date time",
         "No error if wrong login",
         "Incorrect DP error messaging",
-        "Wallet currency symbol fix in CP",
+        "Wallet currency symbol fix CP",
         "Code generation ecosystem",
         "Made actions column sticky frozen",
-        "Show various cards in line mWeb",
-        "Logged in email shown in FE CRM",
-        "We need add approval Cash back"
-      ],
-      "hasBlocker": false,
-      "blockerNote": ""
-    },
-    {
-      "name": "Yogesh Kumar",
-      "pod": "hl_audio",
-      "load": "moderate",
-      "taskCount": 4,
-      "tasks": [
-        "Annotation pipeline for automatic submissions",
-        "Scribe API Integration across Validation",
-        "Duplicate Content Check at validation",
-        "Validation Language detection check"
+        "Show various cards line mWeb",
+        "Logged in email shown FE CRM",
+        "We need add approval Cash"
       ],
       "hasBlocker": false,
       "blockerNote": ""
@@ -656,13 +643,43 @@
     {
       "name": "Kumaragurubaran Kanagaraj",
       "pod": "engage",
+      "load": "heavy",
+      "taskCount": 5,
+      "tasks": [
+        "Collect Earnings BE block rewards",
+        "Click reduction on quest journey",
+        "Enable new recorder single speaker",
+        "Integration to KGeN Quest changes",
+        "Show User level Pair level"
+      ],
+      "hasBlocker": false,
+      "blockerNote": ""
+    },
+    {
+      "name": "Yogesh Kumar",
+      "pod": "hl_audio",
+      "load": "heavy",
+      "taskCount": 5,
+      "tasks": [
+        "Annotation pipeline automatic submissions",
+        "Scribe API Integration Validation",
+        "Duplicate Content Check validation",
+        "Validation Language detection check",
+        "Annotation Multi Track Support Diarization"
+      ],
+      "hasBlocker": false,
+      "blockerNote": ""
+    },
+    {
+      "name": "raghvendra K",
+      "pod": "kstore",
       "load": "moderate",
       "taskCount": 4,
       "tasks": [
-        "Collect Earings BE change block rewards",
-        "Click reduction on quest journey App",
-        "Enable new recorder single speaker audios",
-        "Show User level Pair level Contribution"
+        "Sold out next drop physical goods",
+        "Different platform fee for PG",
+        "FAQs configurable using CRM localization",
+        "CRM Admin product page multi country"
       ],
       "hasBlocker": false,
       "blockerNote": ""
@@ -674,22 +691,8 @@
       "taskCount": 3,
       "tasks": [
         "Alerts for Validation Failures",
-        "Validation Retry history Failures History",
+        "Validation Retry history Failures maintained",
         "Duplication Check at Project level"
-      ],
-      "hasBlocker": false,
-      "blockerNote": ""
-    },
-    {
-      "name": "Raghvendra K",
-      "pod": "kstore",
-      "load": "moderate",
-      "taskCount": 4,
-      "tasks": [
-        "Sold out next drop for physical",
-        "Different platform fee for PG payments",
-        "FAQs configurable using CRM localization",
-        "CRM Admin product page multi selectable"
       ],
       "hasBlocker": false,
       "blockerNote": ""
@@ -700,11 +703,11 @@
       "load": "moderate",
       "taskCount": 2,
       "tasks": [
-        "Annotation and QC tool enhancement Task",
-        "Annotation and QC International Language support"
+        "Annotation QC tool Task distribution",
+        "Annotation QC International Language support"
       ],
       "hasBlocker": true,
-      "blockerNote": "Blocked on HL-140 and HL-141"
+      "blockerNote": "Task distribution % per cc and International Language support blocked"
     }
   ],
   "teamUpdates": [
