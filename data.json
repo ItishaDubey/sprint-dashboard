@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-05-03T06:14:45.147916+00:00",
+  "generatedAt": "2026-05-04T06:24:58.769809+00:00",
   "sprintNumber": "69",
   "sprintDates": "[27 Apr - 8 May]",
   "sheetName": "SPRINT 69 [27 Apr - 8 May]",
@@ -587,11 +587,11 @@
       "name": "Arun Kumar Krishna",
       "pod": "devsec",
       "load": "heavy",
-      "taskCount": 7,
+      "taskCount": 8,
       "tasks": [
         "Syncing assets from prod-image-bucket",
-        "Data Orchestrator migration to HL",
-        "Prod Validation Admin migration",
+        "Data Orchestrator migration to HL account",
+        "Prod Validation Admin migration to HL",
         "HL accounts migration to new Org",
         "Cross Account access for validation tool",
         "Old tool Collected files migration",
@@ -604,18 +604,17 @@
       "name": "Jitendra Bisht",
       "pod": "kstore",
       "load": "heavy",
-      "taskCount": 11,
+      "taskCount": 10,
       "tasks": [
         "No error if no money in wallet",
         "Invalid utf-8 format handling",
         "Sample sheet download for bulk upload",
         "Search issue in cp product assignment",
         "Reloadly Integration",
-        "Landing pages on product level",
+        "Landing pages make them on product level",
         "Mobile recharge sync fix for CP",
-        "Add enkash balance API",
-        "Denomination on product side super admin",
-        "Circle in UX for HT mobile recharge"
+        "Add enkash balance API in backend",
+        "Denomination on product side super admin"
       ],
       "hasBlocker": false,
       "blockerNote": ""
@@ -626,14 +625,14 @@
       "load": "heavy",
       "taskCount": 9,
       "tasks": [
-        "B2c orders panel add Date time",
+        "B2c orders panel add Date and time",
         "No error if wrong login",
         "Incorrect DP error messaging",
-        "Wallet currency symbol fix",
+        "Wallet currency symbol fix in CP",
         "Code generation ecosystem",
-        "Made actions column sticky frozen",
+        "Made actions column sticky frozen last",
         "Show various cards in line mWeb",
-        "Logged in email shown in FE",
+        "Logged in email should be shown FE",
         "We need to add approval Cash back"
       ],
       "hasBlocker": false,
@@ -643,26 +642,11 @@
       "name": "Yogesh Kumar",
       "pod": "hl_audio",
       "load": "moderate",
-      "taskCount": 4,
+      "taskCount": 3,
       "tasks": [
         "Annotation pipeline for automatic submissions",
         "Scribe API Integration across Validation",
-        "Duplicate Content Check at validation",
-        "Validation Language detection check"
-      ],
-      "hasBlocker": false,
-      "blockerNote": ""
-    },
-    {
-      "name": "raghvendra K",
-      "pod": "kstore",
-      "load": "moderate",
-      "taskCount": 4,
-      "tasks": [
-        "Sold out next drop for physical goods",
-        "Different platform fee for PG payments",
-        "FAQs configurable using CRM localization",
-        "CRM Admin product page multi selectable"
+        "Duplicate Content Check at validation"
       ],
       "hasBlocker": false,
       "blockerNote": ""
@@ -671,12 +655,11 @@
       "name": "Kumaragurubaran Kanagaraj",
       "pod": "engage",
       "load": "moderate",
-      "taskCount": 4,
+      "taskCount": 3,
       "tasks": [
-        "Collect Earings BE change block rewards",
+        "Collect Earnings BE block rewards collection",
         "Click reduction on quest journey App",
-        "Enable new recorder for single speaker",
-        "Integration to KGeN Quest journey changes"
+        "Show User level and Pair level Contribution"
       ],
       "hasBlocker": false,
       "blockerNote": ""
@@ -689,7 +672,7 @@
       "tasks": [
         "Alerts for Validation Failures",
         "Validation Retry history Failures History",
-        "Duplication Check at Project level"
+        "Duplication Check at the Project level"
       ],
       "hasBlocker": false,
       "blockerNote": ""
@@ -697,14 +680,28 @@
     {
       "name": "Avish Kaarthik",
       "pod": "hl_audio",
-      "load": "light",
+      "load": "moderate",
       "taskCount": 2,
       "tasks": [
-        "Task distribution % per cc Vendor",
-        "Annotation and QC International Language"
+        "Annotation and QC tool enhancement Task distribution",
+        "Annotation and QC International Language support"
       ],
       "hasBlocker": true,
       "blockerNote": "Owns 2 blocked items"
+    },
+    {
+      "name": "raghvendra K",
+      "pod": "kstore",
+      "load": "moderate",
+      "taskCount": 4,
+      "tasks": [
+        "Sold out next drop for physical goods",
+        "Different platform fee for PG payments",
+        "FAQs should be configurable using CRM",
+        "CRM Admin product page multi selectable country"
+      ],
+      "hasBlocker": false,
+      "blockerNote": ""
     }
   ],
   "teamUpdates": [
