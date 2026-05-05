@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-05-04T06:24:58.769809+00:00",
+  "generatedAt": "2026-05-05T06:00:37.148964+00:00",
   "sprintNumber": "69",
   "sprintDates": "[27 Apr - 8 May]",
   "sheetName": "SPRINT 69 [27 Apr - 8 May]",
@@ -32,14 +32,6 @@
       "items": [
         {
           "pod": "hl_audio",
-          "feature": "Alerts for Validation Failures",
-          "jira": "HL-198",
-          "status": "To Do",
-          "assignee": "Namrata Kesarwani",
-          "notes": ""
-        },
-        {
-          "pod": "hl_audio",
           "feature": "New post-processing service for data delivery(cross account/ cross org/ copy of data to client bucket)",
           "jira": "HL-150",
           "status": "Dev in Progress",
@@ -51,6 +43,14 @@
           "feature": "Validation Retry history - Failures History is maintained",
           "jira": "HL-137",
           "status": "Review In Progress",
+          "assignee": "Namrata Kesarwani",
+          "notes": ""
+        },
+        {
+          "pod": "hl_audio",
+          "feature": "Alerts for Validation Failures",
+          "jira": "HL-198",
+          "status": "To Do",
           "assignee": "Namrata Kesarwani",
           "notes": ""
         },
@@ -587,13 +587,13 @@
       "name": "Arun Kumar Krishna",
       "pod": "devsec",
       "load": "heavy",
-      "taskCount": 8,
+      "taskCount": 7,
       "tasks": [
         "Syncing assets from prod-image-bucket",
-        "Data Orchestrator migration to HL account",
-        "Prod Validation Admin migration to HL",
+        "Data Orchestrator migration to HL",
+        "Prod Validation Admin migration",
         "HL accounts migration to new Org",
-        "Cross Account access for validation tool",
+        "Cross Account access for task 1",
         "Old tool Collected files migration",
         "Email Migration from Mailmodo to SES"
       ],
@@ -604,17 +604,17 @@
       "name": "Jitendra Bisht",
       "pod": "kstore",
       "load": "heavy",
-      "taskCount": 10,
+      "taskCount": 9,
       "tasks": [
         "No error if no money in wallet",
         "Invalid utf-8 format handling",
         "Sample sheet download for bulk upload",
         "Search issue in cp product assignment",
         "Reloadly Integration",
-        "Landing pages make them on product level",
+        "Landing pages on product level",
         "Mobile recharge sync fix for CP",
-        "Add enkash balance API in backend",
-        "Denomination on product side super admin"
+        "Add enkash balance API",
+        "Denomination on product side"
       ],
       "hasBlocker": false,
       "blockerNote": ""
@@ -630,10 +630,10 @@
         "Incorrect DP error messaging",
         "Wallet currency symbol fix in CP",
         "Code generation ecosystem",
-        "Made actions column sticky frozen last",
-        "Show various cards in line mWeb",
-        "Logged in email should be shown FE",
-        "We need to add approval Cash back"
+        "Made actions column sticky",
+        "Show various cards in a line",
+        "Logged in email shown in FE CRM",
+        "We need to add approval for Cashback"
       ],
       "hasBlocker": false,
       "blockerNote": ""
@@ -644,7 +644,7 @@
       "load": "moderate",
       "taskCount": 3,
       "tasks": [
-        "Annotation pipeline for automatic submissions",
+        "Annotation pipeline automatic submissions",
         "Scribe API Integration across Validation",
         "Duplicate Content Check at validation"
       ],
@@ -657,9 +657,23 @@
       "load": "moderate",
       "taskCount": 3,
       "tasks": [
-        "Collect Earnings BE block rewards collection",
-        "Click reduction on quest journey App",
+        "Collect Earings BE change block rewards",
+        "Click reduction on the quest journey",
         "Show User level and Pair level Contribution"
+      ],
+      "hasBlocker": false,
+      "blockerNote": ""
+    },
+    {
+      "name": "raghvendra K",
+      "pod": "kstore",
+      "load": "moderate",
+      "taskCount": 4,
+      "tasks": [
+        "Sold out next drop for physical goods",
+        "Different platform fee for PG payments",
+        "FAQs configurable using CRM localization",
+        "CRM Admin product page multi selectable country"
       ],
       "hasBlocker": false,
       "blockerNote": ""
@@ -670,8 +684,8 @@
       "load": "moderate",
       "taskCount": 3,
       "tasks": [
-        "Alerts for Validation Failures",
         "Validation Retry history Failures History",
+        "Alerts for Validation Failures",
         "Duplication Check at the Project level"
       ],
       "hasBlocker": false,
@@ -680,28 +694,14 @@
     {
       "name": "Avish Kaarthik",
       "pod": "hl_audio",
-      "load": "moderate",
+      "load": "light",
       "taskCount": 2,
       "tasks": [
         "Annotation and QC tool enhancement Task distribution",
-        "Annotation and QC International Language support"
+        "Annotation and QC International Language support Arabic"
       ],
       "hasBlocker": true,
-      "blockerNote": "Owns 2 blocked items"
-    },
-    {
-      "name": "raghvendra K",
-      "pod": "kstore",
-      "load": "moderate",
-      "taskCount": 4,
-      "tasks": [
-        "Sold out next drop for physical goods",
-        "Different platform fee for PG payments",
-        "FAQs should be configurable using CRM",
-        "CRM Admin product page multi selectable country"
-      ],
-      "hasBlocker": false,
-      "blockerNote": ""
+      "blockerNote": "Both tasks blocked"
     }
   ],
   "teamUpdates": [
