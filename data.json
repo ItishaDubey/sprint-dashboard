@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-05-06T17:30:25.681108+00:00",
+  "generatedAt": "2026-05-06T17:32:27.886238+00:00",
   "sprintNumber": "69",
   "sprintDates": "[27 Apr - 8 May]",
   "sheetName": "SPRINT 69 [27 Apr - 8 May]",
@@ -610,5 +610,76 @@
     }
   ],
   "announcements": [],
-  "devsecEpics": []
+  "devsecEpics": [
+    {
+      "pri": "High",
+      "name": "Endpoint Security Rollout Program",
+      "desc": "Deploy SentinelOne to 120 endpoints including pilot and full rollout."
+    },
+    {
+      "pri": "High",
+      "name": "Cloud CNAPP & Workload Protection",
+      "desc": "Implement CNAPP and deploy agents to 143 workloads for comprehensive protection."
+    },
+    {
+      "pri": "High",
+      "name": "Splunk Deployment & Log Onboarding",
+      "desc": "Procure and deploy Splunk to centralize prioritized log ingestion for security monitoring."
+    },
+    {
+      "pri": "High",
+      "name": "MDM Deployment & Compliance Enforcement",
+      "desc": "Deploy MDM across corporate devices to enforce security policies and ensure compliance."
+    },
+    {
+      "pri": "High",
+      "name": "Build Security Operations Team",
+      "desc": "Hire and onboard necessary security roles to establish a dedicated Security Operations Team."
+    },
+    {
+      "pri": "High",
+      "name": "Splunk Commercial & Legal Procurement",
+      "desc": "Complete the full commercial, financial, and legal procurement cycle for Splunk licensing."
+    },
+    {
+      "pri": "High",
+      "name": "MDM Commercial & Licensing Procurement",
+      "desc": "Complete vendor selection and the full procurement cycle for the MDM solution."
+    },
+    {
+      "pri": "Medium",
+      "name": "Procurement Governance & Vendor Management",
+      "desc": "Establish structured governance and vendor management for all security tool procurements."
+    },
+    {
+      "pri": "High",
+      "name": "Cloudflare WAF Deployment for Critical Domains",
+      "desc": "Implement and tune Cloudflare WAF protection for critical humynlabs, kgen, kratos, and exlr8 domains."
+    },
+    {
+      "pri": "High",
+      "name": "Remove Non-Critical Apps from Public Exposure",
+      "desc": "Reduce the external attack surface by removing non-critical applications from public exposure."
+    },
+    {
+      "pri": "High",
+      "name": "Investigate Infections & Anomalies (AWS/GCP/CF)",
+      "desc": "Perform deep threat investigations to identify active infections and anomalies across the multi-cloud environment."
+    },
+    {
+      "pri": "High",
+      "name": "Security Posture Review - GKE & New AWS Clusters",
+      "desc": "Conduct a comprehensive Kubernetes security posture review for existing GKE and new AWS clusters."
+    },
+    {
+      "pri": "High",
+      "name": "Post-Migration Security Review of New EKS Cluster",
+      "desc": "Perform security validation and hardening of the newly migrated AWS EKS cluster."
+    },
+    {
+      "pri": "Medium",
+      "name": "Design Kubernetes Cluster Segregation Strategy",
+      "desc": "Design architecture for segregating workloads into multiple clusters to reduce blast radius."
+    }
+  ]
 }
