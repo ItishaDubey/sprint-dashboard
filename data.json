@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-05-06T06:15:55.037685+00:00",
+  "generatedAt": "2026-05-06T13:09:34.697131+00:00",
   "sprintNumber": "69",
   "sprintDates": "[27 Apr - 8 May]",
   "sheetName": "SPRINT 69 [27 Apr - 8 May]",
@@ -582,126 +582,7 @@
       "notes": ""
     }
   ],
-  "bandwidth": [
-    {
-      "name": "Jitendra Bisht",
-      "pod": "kstore",
-      "load": "heavy",
-      "taskCount": 11,
-      "tasks": [
-        "No error if no money in wallet",
-        "Invalid utf-8 format handling",
-        "Sample sheet download for bulk upload",
-        "Search issue in CP product assignment",
-        "Reloadly Integration",
-        "Landing pages on product level",
-        "Mobile recharge sync fix for CP",
-        "Add enkash balance API backend",
-        "Denomination on product side super admin"
-      ],
-      "hasBlocker": false,
-      "blockerNote": ""
-    },
-    {
-      "name": "Shahid Ansari",
-      "pod": "kstore",
-      "load": "heavy",
-      "taskCount": 10,
-      "tasks": [
-        "B2c orders panel add date time",
-        "No error if wrong login",
-        "Incorrect DP error messaging",
-        "Wallet currency symbol fix CP",
-        "Code generation ecosystem",
-        "Made actions column sticky frozen",
-        "Show various cards line mWeb",
-        "Logged in email shown FE CRM",
-        "We need add approval cashback"
-      ],
-      "hasBlocker": false,
-      "blockerNote": ""
-    },
-    {
-      "name": "Arun Kumar Krishna",
-      "pod": "devsec",
-      "load": "heavy",
-      "taskCount": 8,
-      "tasks": [
-        "Syncing assets from prod image bucket",
-        "Data Orchestrator migration HL account",
-        "Prod Validation Admin migration HL",
-        "HL accounts migration to new Org",
-        "Cross Account access for task validation",
-        "Old tool Collected files migration HL",
-        "Email Migration from Mailmodo to SES"
-      ],
-      "hasBlocker": false,
-      "blockerNote": ""
-    },
-    {
-      "name": "Yogesh Kumar",
-      "pod": "hl_audio",
-      "load": "moderate",
-      "taskCount": 4,
-      "tasks": [
-        "Annotation pipeline automatic submissions projects",
-        "Scribe API Integration Validation Annotation",
-        "Duplicate Content Check validation annotation"
-      ],
-      "hasBlocker": false,
-      "blockerNote": ""
-    },
-    {
-      "name": "Namrata Kesarwani",
-      "pod": "hl_audio",
-      "load": "moderate",
-      "taskCount": 3,
-      "tasks": [
-        "Validation Retry history Failures maintained",
-        "Alerts for Validation Failures",
-        "Duplication Check at Project level"
-      ],
-      "hasBlocker": false,
-      "blockerNote": ""
-    },
-    {
-      "name": "Kumaragurubaran Kanagaraj",
-      "pod": "engage",
-      "load": "moderate",
-      "taskCount": 3,
-      "tasks": [
-        "Collect Earings BE change block rewards",
-        "Click reduction on quest journey App",
-        "Enable new recorder single speaker audios",
-        "Show User level Pair level Contribution"
-      ],
-      "hasBlocker": false,
-      "blockerNote": ""
-    },
-    {
-      "name": "Avish Kaarthik",
-      "pod": "hl_audio",
-      "load": "light",
-      "taskCount": 2,
-      "tasks": [
-        "Task distribution per cc Vendor",
-        "Annotation QC International Language support"
-      ],
-      "hasBlocker": true,
-      "blockerNote": "Owns 2 blocked items (HL-140, HL-141)"
-    },
-    {
-      "name": "Jaya Kesarwani",
-      "pod": "hl_audio",
-      "load": "light",
-      "taskCount": 1,
-      "tasks": [
-        "International Language support Arabic"
-      ],
-      "hasBlocker": true,
-      "blockerNote": "Owns 1 blocked item (HL-139)"
-    }
-  ],
+  "bandwidth": [],
   "teamUpdates": [
     {
       "type": "resigned",
