@@ -1,14 +1,14 @@
 {
-  "generatedAt": "2026-05-06T13:09:34.697131+00:00",
+  "generatedAt": "2026-05-06T17:14:54.970087+00:00",
   "sprintNumber": "69",
   "sprintDates": "[27 Apr - 8 May]",
   "sheetName": "SPRINT 69 [27 Apr - 8 May]",
   "stats": {
     "total": 61,
-    "done": 6,
+    "done": 10,
     "inProgress": 5,
-    "blocked": 3,
-    "notStarted": 47
+    "blocked": 0,
+    "notStarted": 46
   },
   "pods": [
     {
@@ -74,25 +74,25 @@
           "pod": "hl_audio",
           "feature": "Annotation and QC tool enhancement: Task distribution % per cc(Vendor)",
           "jira": "HL-140",
-          "status": "Blocked",
+          "status": "Dev in Progress",
           "assignee": "Avish Kaarthik",
-          "notes": "Approach to be finalised with PS. Saksham to come back on this"
+          "notes": ""
         },
         {
           "pod": "hl_audio",
           "feature": "International Language support(Arabic is a must)",
           "jira": "HL-139",
-          "status": "Blocked",
+          "status": "In QA",
           "assignee": "Jaya Kesarwani",
-          "notes": "waiting from product for clarity ; models and solution is pending from product specifically for transliteration"
+          "notes": ""
         },
         {
           "pod": "hl_audio",
           "feature": "Annotation and QC: International Language support(Arabic is a must)",
           "jira": "HL-141",
-          "status": "Blocked",
+          "status": "In QA",
           "assignee": "Avish Kaarthik",
-          "notes": "waiting from product for clarity ; models and solution is pending from product specifically for transliteration"
+          "notes": ""
         },
         {
           "pod": "hl_audio",
@@ -545,7 +545,7 @@
       "pod": "qa_releases",
       "feature": "No phone number as part of login and guest user journey",
       "jira": "TECH-20888",
-      "status": "In QA",
+      "status": "Done",
       "assignee": "Shaurya",
       "notes": ""
     },
@@ -553,7 +553,7 @@
       "pod": "qa_releases",
       "feature": "Collect Earnings KYC Change",
       "jira": "TECH-20900",
-      "status": "In QA",
+      "status": "Done",
       "assignee": "Manpreet Singh",
       "notes": ""
     },
@@ -561,7 +561,7 @@
       "pod": "qa_releases",
       "feature": "Annotation Pre Annotation Multi Track Support (combined, left and right speaker) Diarization Magnet Tool (Auto selection of a segment on user initiation) Smart Keyboard: Transliteration (hinglish >> Hindi) Spell Check (partially given) Keyboard Shortcuts for common operations cuh as play, pause, skip, split, merge etc.. Collection QC Annotation QC",
       "jira": "HL-54",
-      "status": "In QA",
+      "status": "Done",
       "assignee": "Yogesh",
       "notes": ""
     },
@@ -569,7 +569,7 @@
       "pod": "qa_releases",
       "feature": "Integration to KGeN Quest & Quest journey Changes - PG Mints post quest is submitted - Click reduction on the quest journey",
       "jira": "HL-1",
-      "status": "Dev in Progress",
+      "status": "Done",
       "assignee": "Kumaragurubaran Kanagaraj",
       "notes": ""
     },
@@ -577,7 +577,7 @@
       "pod": "qa_releases",
       "feature": "Show User level and Pair level Contribution at quest level and block actions as per",
       "jira": "HL-186",
-      "status": "To Do",
+      "status": "Done",
       "assignee": "Kumaragurubaran Kanagaraj",
       "notes": ""
     }
@@ -608,5 +608,7 @@
       "detail": "No replacement needed. Update to GKMIT pending.",
       "status": "Update to GKMIT"
     }
-  ]
+  ],
+  "announcements": [],
+  "devsecEpics": []
 }
