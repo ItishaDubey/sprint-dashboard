@@ -243,7 +243,7 @@ Return ONLY valid JSON, no markdown, no explanation:
 Rules: combine slight name variations (e.g. "Yogesh" and "Yogesh Kumar" are the same), sort by load descending, skip "-" or "TBD", max 8 people."""
 
     try:
-        text = call_gemini(prompt, max_tokens=4096)
+        text = call_gemini(prompt, max_tokens=8192)
         text = re.sub(r'^```json\s*|^```\s*|```$', '', text, flags=re.MULTILINE).strip()
         bandwidth = json.loads(text)
         print(f"Bandwidth summary: {len(bandwidth)} people")
