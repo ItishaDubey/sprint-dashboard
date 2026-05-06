@@ -90,7 +90,7 @@ Return ONLY a valid JSON array, no markdown or explanation:
 
 Rules: only top-level epics (not tasks), max 20 items, concise descriptions."""
 
-        text = call_gemini(prompt, max_tokens=2000)
+        text = call_gemini(prompt, max_tokens=4096)
         text = re.sub(r'^```json\s*|^```\s*|```$', '', text, flags=re.MULTILINE).strip()
         epics = json.loads(text)
         print(f"DevSec epics extracted: {len(epics)}")
@@ -243,7 +243,7 @@ Return ONLY valid JSON, no markdown, no explanation:
 Rules: combine slight name variations (e.g. "Yogesh" and "Yogesh Kumar" are the same), sort by load descending, skip "-" or "TBD", max 8 people."""
 
     try:
-        text = call_gemini(prompt, max_tokens=1500)
+        text = call_gemini(prompt, max_tokens=4096)
         text = re.sub(r'^```json\s*|^```\s*|```$', '', text, flags=re.MULTILINE).strip()
         bandwidth = json.loads(text)
         print(f"Bandwidth summary: {len(bandwidth)} people")
