@@ -246,7 +246,21 @@ Rules: combine slight name variations (e.g. "Yogesh" and "Yogesh Kumar" are the 
 
     try:
         text = call_gemini(prompt, max_tokens=8192, json_mode=True)
-        bandwidth = json.loads(text)
+        # Strip markdown fences just in case
+        text = re.sub(r'^```json\s*|^```\s*|```$', '', text, flags=re.MULTILINE).strip()
+        try:
+            bandwidth = json.loads(text)
+        except json.JSONDecodeError:
+            # Extract the largest valid array slice we can parse
+            m = re.search(r'\[[\s\S]*\]', text)
+            if m:
+                raw = m.group(0)
+                # Trim to last complete object if full parse fails
+                idx = raw.rfind('},')
+                raw = (raw[:idx+1] + ']') if idx > 0 else raw
+                bandwidth = json.loads(raw)
+            else:
+                raise
         print(f"Bandwidth summary: {len(bandwidth)} people")
         return bandwidth
     except Exception as ex:
