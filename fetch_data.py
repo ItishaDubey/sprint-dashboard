@@ -1,4 +1,4 @@
-import json, os, re, urllib.request, urllib.error
+import json, os, re, time, urllib.request, urllib.error
 from datetime import datetime, timezone
 
 SPREADSHEET_ID  = os.environ.get("SPREADSHEET_ID", "1Sijbuj0mhLuT5svA7uKv02Ay3o0wlArB2kv0HYo1gCY")
@@ -181,18 +181,29 @@ def calc_stats(items, qa_items):
     return {"total":total,"done":done,"inProgress":prog,"blocked":blocked,"notStarted":total-done-prog-blocked}
 
 def call_gemini(prompt, max_tokens=1500):
-    """Call Gemini Flash and return the response text. Raises on error."""
+    """Call Gemini Flash and return the response text. Retries on 429."""
     url = (f"https://generativelanguage.googleapis.com/v1beta/models/"
            f"gemini-2.0-flash:generateContent?key={GEMINI_KEY}")
     payload = json.dumps({
         "contents": [{"parts": [{"text": prompt}]}],
         "generationConfig": {"maxOutputTokens": max_tokens}
     }).encode()
-    req = urllib.request.Request(url, data=payload,
-                                 headers={"Content-Type": "application/json"}, method="POST")
-    with urllib.request.urlopen(req, timeout=30) as resp:
-        result = json.loads(resp.read())
-        return result["candidates"][0]["content"]["parts"][0]["text"].strip()
+    for attempt in range(3):
+        if attempt:
+            wait = 20 * attempt
+            print(f"Rate limited — waiting {wait}s before retry {attempt+1}/3")
+            time.sleep(wait)
+        try:
+            req = urllib.request.Request(url, data=payload,
+                                         headers={"Content-Type": "application/json"}, method="POST")
+            with urllib.request.urlopen(req, timeout=45) as resp:
+                result = json.loads(resp.read())
+                return result["candidates"][0]["content"]["parts"][0]["text"].strip()
+        except urllib.error.HTTPError as e:
+            if e.code == 429 and attempt < 2:
+                continue
+            raise
+    raise RuntimeError("Gemini API: max retries exceeded")
 
 def claude_bandwidth_summary(items, qa_items):
     if not GEMINI_KEY:
@@ -249,6 +260,8 @@ def main():
     pods = build_pods(items)
     bandwidth = claude_bandwidth_summary(items, qa_items)
     team_updates, announcements = read_team_config()
+    if GEMINI_KEY and bandwidth:
+        time.sleep(15)  # avoid back-to-back rate limiting
     devsec_epics = read_devsec_excel()
 
     print(f"Items: {len(items)}, QA: {len(qa_items)}")
