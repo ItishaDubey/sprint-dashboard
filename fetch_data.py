@@ -213,54 +213,38 @@ def claude_bandwidth_summary(items, qa_items):
         return []
 
     all_items = items + qa_items
-    lines = []
+    # Build a compact assignee → task count + blocker map
+    person_map = {}
     for i in all_items:
-        lines.append(f"- [{i['pod']}] {i['feature']} | Assignee: {i['assignee']} | Status: {i['status']}"
-                     + (f" | Jira: {i['jira']}" if i['jira'] != '-' else ""))
-    sheet_text = "\n".join(lines)
+        name = (i.get("assignee") or "").strip()
+        if not name or name == "-":
+            continue
+        first = name.split()[0]
+        if first not in person_map:
+            person_map[first] = {"pod": i["pod"], "count": 0, "blocker": False}
+        person_map[first]["count"] += 1
+        if "block" in (i.get("status") or "").lower():
+            person_map[first]["blocker"] = True
 
-    prompt = f"""You are analyzing a sprint planning sheet. Here are all work items for this sprint:
+    if not person_map:
+        return []
 
-{sheet_text}
+    lines = [f'{n}: {v["count"]} tasks in {v["pod"]}, blocker={v["blocker"]}'
+             for n, v in sorted(person_map.items(), key=lambda x: -x[1]["count"])]
+    summary = "\n".join(lines)
 
-Create a bandwidth summary per person. For each unique person (ignore "-" or empty assignees):
-- List their tasks (short names, max 6 words each)
-- Estimate load: "light" (1-2 tasks), "moderate" (3-4 tasks), "heavy" (5+ tasks)
-- Note if they own any blockers
-- Note which pod they belong to
+    prompt = f"""Given this sprint workload summary per person, return a JSON array classifying each person's load.
 
-Return ONLY valid JSON, no markdown, no explanation:
-[
-  {{
-    "name": "Person Name",
-    "pod": "pod name",
-    "load": "light|moderate|heavy",
-    "taskCount": 3,
-    "tasks": ["short task name", "another task"],
-    "hasBlocker": false,
-    "blockerNote": ""
-  }}
-]
+{summary}
 
-Rules: combine slight name variations (e.g. "Yogesh" and "Yogesh Kumar" are the same), sort by load descending, skip "-" or "TBD", max 8 people."""
+Load rules: light=1-2 tasks, moderate=3-4 tasks, heavy=5+ tasks.
+
+Return ONLY a JSON array with these exact fields per item:
+{{"name":"string","pod":"string","load":"light|moderate|heavy","taskCount":0,"tasks":[],"hasBlocker":false,"blockerNote":""}}"""
 
     try:
-        text = call_gemini(prompt, max_tokens=8192, json_mode=True)
-        # Strip markdown fences just in case
-        text = re.sub(r'^```json\s*|^```\s*|```$', '', text, flags=re.MULTILINE).strip()
-        try:
-            bandwidth = json.loads(text)
-        except json.JSONDecodeError:
-            # Extract the largest valid array slice we can parse
-            m = re.search(r'\[[\s\S]*\]', text)
-            if m:
-                raw = m.group(0)
-                # Trim to last complete object if full parse fails
-                idx = raw.rfind('},')
-                raw = (raw[:idx+1] + ']') if idx > 0 else raw
-                bandwidth = json.loads(raw)
-            else:
-                raise
+        text = call_gemini(prompt, max_tokens=2048, json_mode=True)
+        bandwidth = json.loads(text)
         print(f"Bandwidth summary: {len(bandwidth)} people")
         return bandwidth
     except Exception as ex:
