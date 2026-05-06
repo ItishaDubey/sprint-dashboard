@@ -90,8 +90,7 @@ Return ONLY a valid JSON array, no markdown or explanation:
 
 Rules: only top-level epics (not tasks), max 20 items, concise descriptions."""
 
-        text = call_gemini(prompt, max_tokens=4096)
-        text = re.sub(r'^```json\s*|^```\s*|```$', '', text, flags=re.MULTILINE).strip()
+        text = call_gemini(prompt, max_tokens=4096, json_mode=True)
         epics = json.loads(text)
         print(f"DevSec epics extracted: {len(epics)}")
         return epics
@@ -180,13 +179,16 @@ def calc_stats(items, qa_items):
     blocked=sum(1 for i in all_items if "block" in i["status"].lower())
     return {"total":total,"done":done,"inProgress":prog,"blocked":blocked,"notStarted":total-done-prog-blocked}
 
-def call_gemini(prompt, max_tokens=1500):
-    """Call Gemini Flash and return the response text. Retries on 429."""
+def call_gemini(prompt, max_tokens=1500, json_mode=False):
+    """Call Gemini Flash and return the response text. Retries on 429/503."""
     url = (f"https://generativelanguage.googleapis.com/v1beta/models/"
            f"gemini-2.5-flash:generateContent?key={GEMINI_KEY}")
+    gen_cfg = {"maxOutputTokens": max_tokens}
+    if json_mode:
+        gen_cfg["responseMimeType"] = "application/json"
     payload = json.dumps({
         "contents": [{"parts": [{"text": prompt}]}],
-        "generationConfig": {"maxOutputTokens": max_tokens}
+        "generationConfig": gen_cfg
     }).encode()
     for attempt in range(3):
         if attempt:
@@ -243,8 +245,7 @@ Return ONLY valid JSON, no markdown, no explanation:
 Rules: combine slight name variations (e.g. "Yogesh" and "Yogesh Kumar" are the same), sort by load descending, skip "-" or "TBD", max 8 people."""
 
     try:
-        text = call_gemini(prompt, max_tokens=8192)
-        text = re.sub(r'^```json\s*|^```\s*|```$', '', text, flags=re.MULTILINE).strip()
+        text = call_gemini(prompt, max_tokens=8192, json_mode=True)
         bandwidth = json.loads(text)
         print(f"Bandwidth summary: {len(bandwidth)} people")
         return bandwidth
