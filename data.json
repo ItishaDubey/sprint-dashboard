@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-05-06T17:35:18.760080+00:00",
+  "generatedAt": "2026-05-06T17:37:39.833613+00:00",
   "sprintNumber": "69",
   "sprintDates": "[27 Apr - 8 May]",
   "sheetName": "SPRINT 69 [27 Apr - 8 May]",
@@ -610,5 +610,76 @@
     }
   ],
   "announcements": [],
-  "devsecEpics": []
+  "devsecEpics": [
+    {
+      "pri": "High",
+      "name": "Endpoint Security Rollout",
+      "desc": "Deploy SentinelOne to 120 endpoints with pilot and full rollout."
+    },
+    {
+      "pri": "High",
+      "name": "Cloud CNAPP & Workload Protection",
+      "desc": "Implement CNAPP and deploy security agents to 143 cloud workloads."
+    },
+    {
+      "pri": "High",
+      "name": "Splunk Deployment & Log Onboarding",
+      "desc": "Deploy Splunk and onboard critical logs for security monitoring."
+    },
+    {
+      "pri": "High",
+      "name": "MDM Deployment & Compliance",
+      "desc": "Deploy MDM across corporate devices and enforce security policies."
+    },
+    {
+      "pri": "High",
+      "name": "Build Security Operations Team",
+      "desc": "Hire and onboard essential security roles to establish the SOC team."
+    },
+    {
+      "pri": "High",
+      "name": "Splunk Procurement",
+      "desc": "Complete commercial and legal procurement cycle for Splunk licensing."
+    },
+    {
+      "pri": "High",
+      "name": "MDM Procurement & Licensing",
+      "desc": "Complete vendor selection and procurement for MDM solution licensing."
+    },
+    {
+      "pri": "Medium",
+      "name": "Procurement Governance & Vendor Mgmt",
+      "desc": "Establish structured governance for all security tool purchases and vendor management."
+    },
+    {
+      "pri": "High",
+      "name": "Cloudflare WAF Deployment",
+      "desc": "Implement and tune WAF protection for critical public-facing domains."
+    },
+    {
+      "pri": "High",
+      "name": "Reduce Public Attack Surface",
+      "desc": "Remove non-critical applications from public exposure to reduce attack surface."
+    },
+    {
+      "pri": "High",
+      "name": "Multi-Cloud Threat Investigation",
+      "desc": "Perform deep threat investigation for active infections and anomalies across multi-cloud."
+    },
+    {
+      "pri": "High",
+      "name": "Kubernetes Security Posture Review",
+      "desc": "Perform comprehensive security posture review for existing GKE and new AWS clusters."
+    },
+    {
+      "pri": "High",
+      "name": "Post-Migration EKS Security Review",
+      "desc": "Validate and harden the new AWS EKS cluster following its migration."
+    },
+    {
+      "pri": "Medium",
+      "name": "Kubernetes Cluster Segregation Design",
+      "desc": "Design architecture for segregating workloads into multiple Kubernetes clusters."
+    }
+  ]
 }
