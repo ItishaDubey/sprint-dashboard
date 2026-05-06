@@ -306,8 +306,9 @@ def main():
         if not os.path.exists(html_file):
             continue
         html = open(html_file).read()
-        # Replace var D = <anything> on that line — works whether placeholder comment is present or not
-        html = re.sub(r'^var D = .*$', f'var D = {data_str}; /* DATA_PLACEHOLDER */', html, flags=re.MULTILINE)
+        # Replace var D = <anything> on that line; use lambda to avoid re interpreting \u escapes in JSON
+        replacement = f'var D = {data_str}; /* DATA_PLACEHOLDER */'
+        html = re.sub(r'^var D = .*$', lambda _: replacement, html, flags=re.MULTILINE)
         open(html_file,"w").write(html)
         print(f"Updated {html_file}")
 
