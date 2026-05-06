@@ -183,7 +183,7 @@ def calc_stats(items, qa_items):
 def call_gemini(prompt, max_tokens=1500):
     """Call Gemini Flash and return the response text. Retries on 429."""
     url = (f"https://generativelanguage.googleapis.com/v1beta/models/"
-           f"gemini-2.0-flash:generateContent?key={GEMINI_KEY}")
+           f"gemini-2.5-flash:generateContent?key={GEMINI_KEY}")
     payload = json.dumps({
         "contents": [{"parts": [{"text": prompt}]}],
         "generationConfig": {"maxOutputTokens": max_tokens}
