@@ -208,12 +208,7 @@ def call_gemini(prompt, max_tokens=1500, json_mode=False):
     raise RuntimeError("Gemini API: max retries exceeded")
 
 def claude_bandwidth_summary(items, qa_items):
-    if not GEMINI_KEY:
-        print("No GEMINI_API_KEY — skipping bandwidth summary")
-        return []
-
     all_items = items + qa_items
-    # Build a compact assignee → task count + blocker map
     person_map = {}
     for i in all_items:
         name = (i.get("assignee") or "").strip()
@@ -226,30 +221,14 @@ def claude_bandwidth_summary(items, qa_items):
         if "block" in (i.get("status") or "").lower():
             person_map[first]["blocker"] = True
 
-    if not person_map:
-        return []
-
-    lines = [f'{n}: {v["count"]} tasks in {v["pod"]}, blocker={v["blocker"]}'
-             for n, v in sorted(person_map.items(), key=lambda x: -x[1]["count"])]
-    summary = "\n".join(lines)
-
-    prompt = f"""Given this sprint workload summary per person, return a JSON array classifying each person's load.
-
-{summary}
-
-Load rules: light=1-2 tasks, moderate=3-4 tasks, heavy=5+ tasks.
-
-Return ONLY a JSON array with these exact fields per item:
-{{"name":"string","pod":"string","load":"light|moderate|heavy","taskCount":0,"tasks":[],"hasBlocker":false,"blockerNote":""}}"""
-
-    try:
-        text = call_gemini(prompt, max_tokens=2048, json_mode=True)
-        bandwidth = json.loads(text)
-        print(f"Bandwidth summary: {len(bandwidth)} people")
-        return bandwidth
-    except Exception as ex:
-        print(f"Gemini API error (bandwidth): {ex}")
-        return []
+    bandwidth = []
+    for name, v in sorted(person_map.items(), key=lambda x: -x[1]["count"]):
+        count = v["count"]
+        load = "light" if count <= 2 else "moderate" if count <= 4 else "heavy"
+        bandwidth.append({"name": name, "pod": v["pod"], "load": load,
+                          "taskCount": count, "tasks": [], "hasBlocker": v["blocker"], "blockerNote": ""})
+    print(f"Bandwidth summary: {len(bandwidth)} people")
+    return bandwidth
 
 def main():
     svc = get_service()
@@ -259,8 +238,6 @@ def main():
     pods = build_pods(items)
     bandwidth = claude_bandwidth_summary(items, qa_items)
     team_updates, announcements = read_team_config()
-    if GEMINI_KEY and bandwidth:
-        time.sleep(15)  # avoid back-to-back rate limiting
     devsec_epics = read_devsec_excel()
 
     print(f"Items: {len(items)}, QA: {len(qa_items)}")
