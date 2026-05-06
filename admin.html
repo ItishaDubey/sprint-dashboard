@@ -67,7 +67,7 @@ input:focus,select:focus,textarea:focus{outline:none;border-color:#63b3ed;box-sh
 <div class="hdr">
   <div>
     <div class="hdr-title">Sprint Dashboard Admin</div>
-    <div class="hdr-sub">Manage team changes &amp; announcements · save locally then commit to deploy</div>
+    <div class="hdr-sub">Manage team changes &amp; announcements · changes go live in ~30 seconds</div>
   </div>
   <div class="hdr-actions">
     <a class="btn btn-outline" href="/founder" style="font-size:12px;padding:6px 14px">← Dashboard</a>
@@ -325,19 +325,19 @@ function showStatus(msg,cls){
 
 function saveConfig(){
   showStatus('Saving…','s-saving');
-  fetch('/admin/save',{
+  fetch('/api/save',{
     method:'POST',
     headers:{'Content-Type':'application/json'},
     body:JSON.stringify(state,null,2)
   })
   .then(function(r){if(r.ok)return r.json();throw new Error('HTTP '+r.status);})
-  .then(function(){
-    showStatus('Saved ✓  —  commit team_config.json and push to deploy.','s-saved');
+  .then(function(d){
+    showStatus('Saved ✓  — dashboard refreshing in ~30 seconds','s-saved');
     document.getElementById('dl-hint').style.display='none';
     setDirty(false);
   })
   .catch(function(){
-    showStatus('Could not save to server — download the JSON and commit it manually.','s-error');
+    showStatus('Save failed — use Download JSON and commit manually.','s-error');
     document.getElementById('dl-hint').style.display='block';
   });
 }
