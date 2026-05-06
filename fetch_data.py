@@ -2,7 +2,7 @@ import json, os, re, urllib.request, urllib.error
 from datetime import datetime, timezone
 
 SPREADSHEET_ID  = os.environ.get("SPREADSHEET_ID", "1Sijbuj0mhLuT5svA7uKv02Ay3o0wlArB2kv0HYo1gCY")
-ANTHROPIC_KEY   = os.environ.get("ANTHROPIC_API_KEY", "")
+GEMINI_KEY      = os.environ.get("GEMINI_API_KEY", "")
 
 SECTION_MAP = [
     ("engage activities",       "engage"),
@@ -62,8 +62,8 @@ def read_devsec_excel():
     if not os.path.exists(excel_path):
         print("devsec_backlog.xlsx not found — skipping epic extraction")
         return []
-    if not ANTHROPIC_KEY:
-        print("No ANTHROPIC_API_KEY — skipping Excel parsing")
+    if not GEMINI_KEY:
+        print("No GEMINI_API_KEY — skipping Excel parsing")
         return []
     try:
         import openpyxl
@@ -90,31 +90,13 @@ Return ONLY a valid JSON array, no markdown or explanation:
 
 Rules: only top-level epics (not tasks), max 20 items, concise descriptions."""
 
-        payload = json.dumps({
-            "model": "claude-haiku-4-5-20251001",
-            "max_tokens": 2000,
-            "messages": [{"role": "user", "content": prompt}]
-        }).encode()
-
-        req = urllib.request.Request(
-            "https://api.anthropic.com/v1/messages",
-            data=payload,
-            headers={
-                "Content-Type": "application/json",
-                "x-api-key": ANTHROPIC_KEY,
-                "anthropic-version": "2023-06-01"
-            },
-            method="POST"
-        )
-        with urllib.request.urlopen(req, timeout=30) as resp:
-            result = json.loads(resp.read())
-            text = result["content"][0]["text"].strip()
-            text = re.sub(r'^```json\s*|^```\s*|```$', '', text, flags=re.MULTILINE).strip()
-            epics = json.loads(text)
-            print(f"DevSec epics extracted: {len(epics)}")
-            return epics
+        text = call_gemini(prompt, max_tokens=2000)
+        text = re.sub(r'^```json\s*|^```\s*|```$', '', text, flags=re.MULTILINE).strip()
+        epics = json.loads(text)
+        print(f"DevSec epics extracted: {len(epics)}")
+        return epics
     except Exception as ex:
-        print(f"Excel parse error: {ex}")
+        print(f"Gemini API error (epics): {ex}")
         return []
 
 def get_service():
@@ -198,26 +180,39 @@ def calc_stats(items, qa_items):
     blocked=sum(1 for i in all_items if "block" in i["status"].lower())
     return {"total":total,"done":done,"inProgress":prog,"blocked":blocked,"notStarted":total-done-prog-blocked}
 
+def call_gemini(prompt, max_tokens=1500):
+    """Call Gemini Flash and return the response text. Raises on error."""
+    url = (f"https://generativelanguage.googleapis.com/v1beta/models/"
+           f"gemini-2.0-flash:generateContent?key={GEMINI_KEY}")
+    payload = json.dumps({
+        "contents": [{"parts": [{"text": prompt}]}],
+        "generationConfig": {"maxOutputTokens": max_tokens}
+    }).encode()
+    req = urllib.request.Request(url, data=payload,
+                                 headers={"Content-Type": "application/json"}, method="POST")
+    with urllib.request.urlopen(req, timeout=30) as resp:
+        result = json.loads(resp.read())
+        return result["candidates"][0]["content"]["parts"][0]["text"].strip()
+
 def claude_bandwidth_summary(items, qa_items):
-    """Ask Claude to read all items and return a per-person bandwidth summary as JSON."""
-    if not ANTHROPIC_KEY:
-        print("No ANTHROPIC_API_KEY — skipping bandwidth summary")
+    if not GEMINI_KEY:
+        print("No GEMINI_API_KEY — skipping bandwidth summary")
         return []
 
     all_items = items + qa_items
-    # Build a readable text summary of all items for Claude
     lines = []
     for i in all_items:
-        lines.append(f"- [{i['pod']}] {i['feature']} | Assignee: {i['assignee']} | Status: {i['status']}" + (f" | Jira: {i['jira']}" if i['jira'] != '-' else ""))
+        lines.append(f"- [{i['pod']}] {i['feature']} | Assignee: {i['assignee']} | Status: {i['status']}"
+                     + (f" | Jira: {i['jira']}" if i['jira'] != '-' else ""))
     sheet_text = "\n".join(lines)
 
     prompt = f"""You are analyzing a sprint planning sheet. Here are all work items for this sprint:
 
 {sheet_text}
 
-Based on this, create a bandwidth summary per person. For each unique person (ignore "-" or empty assignees):
+Create a bandwidth summary per person. For each unique person (ignore "-" or empty assignees):
 - List their tasks (short names, max 6 words each)
-- Estimate their load: "light" (1-2 tasks), "moderate" (3-4 tasks), "heavy" (5+ tasks)
+- Estimate load: "light" (1-2 tasks), "moderate" (3-4 tasks), "heavy" (5+ tasks)
 - Note if they own any blockers
 - Note which pod they belong to
 
@@ -234,39 +229,16 @@ Return ONLY valid JSON, no markdown, no explanation:
   }}
 ]
 
-Important:
-- Combine tasks for people who appear with slight name variations (e.g. "Yogesh" and "Yogesh Kumar" are the same)
-- Sort by load descending (heavy first)
-- Skip generic entries like "-" or "TBD"
-- Max 8 people"""
-
-    payload = json.dumps({
-        "model": "claude-haiku-4-5-20251001",
-        "max_tokens": 1500,
-        "messages": [{"role":"user","content": prompt}]
-    }).encode()
-
-    req = urllib.request.Request(
-        "https://api.anthropic.com/v1/messages",
-        data=payload,
-        headers={
-            "Content-Type": "application/json",
-            "x-api-key": ANTHROPIC_KEY,
-            "anthropic-version": "2023-06-01"
-        },
-        method="POST"
-    )
+Rules: combine slight name variations (e.g. "Yogesh" and "Yogesh Kumar" are the same), sort by load descending, skip "-" or "TBD", max 8 people."""
 
     try:
-        with urllib.request.urlopen(req, timeout=30) as resp:
-            result = json.loads(resp.read())
-            text = result["content"][0]["text"].strip()
-            text = re.sub(r'^```json\s*|^```\s*|```$','',text,flags=re.MULTILINE).strip()
-            bandwidth = json.loads(text)
-            print(f"Bandwidth summary: {len(bandwidth)} people")
-            return bandwidth
+        text = call_gemini(prompt, max_tokens=1500)
+        text = re.sub(r'^```json\s*|^```\s*|```$', '', text, flags=re.MULTILINE).strip()
+        bandwidth = json.loads(text)
+        print(f"Bandwidth summary: {len(bandwidth)} people")
+        return bandwidth
     except Exception as ex:
-        print(f"Claude API error: {ex}")
+        print(f"Gemini API error (bandwidth): {ex}")
         return []
 
 def main():
