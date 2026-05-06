@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-05-06T17:49:00.579899+00:00",
+  "generatedAt": "2026-05-06T17:52:06.267266+00:00",
   "sprintNumber": "69",
   "sprintDates": "[27 Apr - 8 May]",
   "sheetName": "SPRINT 69 [27 Apr - 8 May]",
@@ -582,7 +582,161 @@
       "notes": ""
     }
   ],
-  "bandwidth": [],
+  "bandwidth": [
+    {
+      "name": "Shahid",
+      "pod": "kstore",
+      "load": "heavy",
+      "taskCount": 9,
+      "tasks": [],
+      "hasBlocker": false,
+      "blockerNote": ""
+    },
+    {
+      "name": "Jitendra",
+      "pod": "kstore",
+      "load": "heavy",
+      "taskCount": 9,
+      "tasks": [],
+      "hasBlocker": false,
+      "blockerNote": ""
+    },
+    {
+      "name": "Arun",
+      "pod": "devsec",
+      "load": "heavy",
+      "taskCount": 8,
+      "tasks": [],
+      "hasBlocker": false,
+      "blockerNote": ""
+    },
+    {
+      "name": "Kumaragurubaran",
+      "pod": "engage",
+      "load": "heavy",
+      "taskCount": 5,
+      "tasks": [],
+      "hasBlocker": false,
+      "blockerNote": ""
+    },
+    {
+      "name": "Yogesh",
+      "pod": "hl_audio",
+      "load": "heavy",
+      "taskCount": 5,
+      "tasks": [],
+      "hasBlocker": false,
+      "blockerNote": ""
+    },
+    {
+      "name": "raghvendra",
+      "pod": "kstore",
+      "load": "moderate",
+      "taskCount": 4,
+      "tasks": [],
+      "hasBlocker": false,
+      "blockerNote": ""
+    },
+    {
+      "name": "Namrata",
+      "pod": "hl_audio",
+      "load": "moderate",
+      "taskCount": 3,
+      "tasks": [],
+      "hasBlocker": false,
+      "blockerNote": ""
+    },
+    {
+      "name": "Karan",
+      "pod": "devsec",
+      "load": "moderate",
+      "taskCount": 3,
+      "tasks": [],
+      "hasBlocker": false,
+      "blockerNote": ""
+    },
+    {
+      "name": "Pankaj",
+      "pod": "kstore",
+      "load": "moderate",
+      "taskCount": 3,
+      "tasks": [],
+      "hasBlocker": false,
+      "blockerNote": ""
+    },
+    {
+      "name": "Manpreet",
+      "pod": "engage",
+      "load": "light",
+      "taskCount": 2,
+      "tasks": [],
+      "hasBlocker": false,
+      "blockerNote": ""
+    },
+    {
+      "name": "Avish",
+      "pod": "hl_audio",
+      "load": "light",
+      "taskCount": 2,
+      "tasks": [],
+      "hasBlocker": false,
+      "blockerNote": ""
+    },
+    {
+      "name": "Julian",
+      "pod": "kstore",
+      "load": "light",
+      "taskCount": 2,
+      "tasks": [],
+      "hasBlocker": false,
+      "blockerNote": ""
+    },
+    {
+      "name": "Harshada",
+      "pod": "engage",
+      "load": "light",
+      "taskCount": 1,
+      "tasks": [],
+      "hasBlocker": false,
+      "blockerNote": ""
+    },
+    {
+      "name": "Avinash",
+      "pod": "hl_audio",
+      "load": "light",
+      "taskCount": 1,
+      "tasks": [],
+      "hasBlocker": false,
+      "blockerNote": ""
+    },
+    {
+      "name": "Jaya",
+      "pod": "hl_audio",
+      "load": "light",
+      "taskCount": 1,
+      "tasks": [],
+      "hasBlocker": false,
+      "blockerNote": ""
+    },
+    {
+      "name": "Shivam",
+      "pod": "hl_audio",
+      "load": "light",
+      "taskCount": 1,
+      "tasks": [],
+      "hasBlocker": false,
+      "blockerNote": ""
+    },
+    {
+      "name": "Shaurya",
+      "pod": "qa_releases",
+      "load": "light",
+      "taskCount": 1,
+      "tasks": [],
+      "hasBlocker": false,
+      "blockerNote": ""
+    }
+  ],
   "teamUpdates": [
     {
       "type": "resigned",
@@ -618,63 +772,63 @@
     },
     {
       "pri": "High",
-      "name": "Cloud CNAPP & Workload Protection",
-      "desc": "Implement CNAPP and deploy agents to 143 cloud workloads."
+      "name": "Cloud CNAPP & Workload Protection Implementation",
+      "desc": "Implement CNAPP and deploy agents to 143 workloads."
     },
     {
       "pri": "High",
       "name": "Splunk Deployment & Log Onboarding",
-      "desc": "Procure and deploy Splunk with prioritized log ingestion for security monitoring."
+      "desc": "Procure and deploy Splunk with prioritized log ingestion."
     },
     {
       "pri": "High",
       "name": "MDM Deployment & Compliance Enforcement",
-      "desc": "Deploy MDM across corporate devices with policy enforcement for security compliance."
+      "desc": "Deploy MDM across corporate devices with policy enforcement."
     },
     {
       "pri": "High",
       "name": "Build Security Operations Team",
-      "desc": "Hire and onboard required security roles to establish the SOC."
+      "desc": "Hire and onboard required security roles."
     },
     {
       "pri": "High",
       "name": "Splunk Commercial & Legal Procurement",
-      "desc": "Complete the commercial, financial, and legal procurement cycle for Splunk."
+      "desc": "Complete commercial, financial and legal procurement cycle for Splunk."
     },
     {
       "pri": "High",
       "name": "MDM Commercial & Licensing Procurement",
-      "desc": "Complete vendor selection and procurement cycle for the MDM solution."
+      "desc": "Complete vendor selection and procurement cycle for MDM solution."
     },
     {
       "pri": "Medium",
-      "name": "Procurement Governance & Vendor Mgmt",
-      "desc": "Ensure structured governance for all security tool purchases and renewals."
+      "name": "Procurement Governance & Vendor Management",
+      "desc": "Ensure structured governance for all security tool purchases."
     },
     {
       "pri": "High",
       "name": "Cloudflare WAF Deployment for Critical Domains",
-      "desc": "Implement and tune WAF protection for critical public-facing domains."
+      "desc": "Implement and tune WAF protection for humynlabs kgen kratos exlr8 domains."
     },
     {
       "pri": "High",
       "name": "Remove Non-Critical Apps from Public Exposure",
-      "desc": "Reduce external attack surface by removing non-critical applications from public exposure."
+      "desc": "Reduce external attack surface across humynlabs kgen kratos exlr8."
     },
     {
       "pri": "High",
-      "name": "Investigate Active Infections & Anomalies",
-      "desc": "Perform deep threat investigation across multi-cloud environments (AWS, GCP, Cloudflare)."
+      "name": "Investigate Active Infections & Multi-Cloud Anomalies",
+      "desc": "Perform deep threat investigation across multi-cloud environment."
     },
     {
       "pri": "High",
-      "name": "Kubernetes Security Posture Review (GKE/EKS)",
-      "desc": "Perform comprehensive Kubernetes Security Posture Management review for GKE and EKS clusters."
+      "name": "Kubernetes Security Posture Review (GKE & EKS)",
+      "desc": "Perform comprehensive K8s Security Posture Management review for existing GCP GKE and new AWS clusters."
     },
     {
       "pri": "High",
       "name": "Post-Migration Security Review of New EKS Cluster",
-      "desc": "Perform security validation and hardening of the new AWS EKS cluster post-migration."
+      "desc": "Perform security validation and hardening of new AWS EKS cluster post migration."
     },
     {
       "pri": "Medium",
