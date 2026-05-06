@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-05-06T17:39:55.905333+00:00",
+  "generatedAt": "2026-05-06T17:42:47.628242+00:00",
   "sprintNumber": "69",
   "sprintDates": "[27 Apr - 8 May]",
   "sheetName": "SPRINT 69 [27 Apr - 8 May]",
@@ -618,7 +618,7 @@
     },
     {
       "pri": "High",
-      "name": "Cloud CNAPP & Workload Protection Implementation",
+      "name": "Cloud CNAPP & Workload Protection",
       "desc": "Implement CNAPP and deploy agents to 143 workloads."
     },
     {
@@ -659,17 +659,17 @@
     {
       "pri": "High",
       "name": "Remove Non-Critical Apps from Public Exposure",
-      "desc": "Reduce external attack surface across all brands by removing non-critical apps."
+      "desc": "Reduce external attack surface across all brands."
     },
     {
       "pri": "High",
-      "name": "Investigate Active Infections & Anomalies",
+      "name": "Investigate Active Infections & Multi-Cloud Anomalies",
       "desc": "Perform deep threat investigation across multi-cloud environment."
     },
     {
       "pri": "High",
-      "name": "K8s Security Posture Review (GKE & AWS Clusters)",
-      "desc": "Perform comprehensive Kubernetes Security Posture Management review for all clusters."
+      "name": "Security Posture Review of GKE & AWS Clusters",
+      "desc": "Perform comprehensive Kubernetes Security Posture Management review."
     },
     {
       "pri": "High",
@@ -678,7 +678,7 @@
     },
     {
       "pri": "Medium",
-      "name": "Design K8s Cluster Segregation Strategy",
+      "name": "Design Kubernetes Cluster Segregation Strategy",
       "desc": "Design architecture for segregating workloads into multiple clusters to reduce blast radius."
     }
   ]
