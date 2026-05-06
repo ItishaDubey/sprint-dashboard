@@ -1,0 +1,631 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Founder's Review — Sprint Dashboard</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0;}
+:root{
+  --bg:#f0f2f5;--card:#fff;--border:#e2e8f0;--text:#1a202c;--muted:#718096;--hint:#a0aec0;
+  --done:#38a169;--prog:#3182ce;--block:#e53e3e;--todo:#cbd5e0;--review:#d69e2e;--qa:#319795;
+}
+body{background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;font-size:14px;line-height:1.5;}
+
+/* ── HEADER ── */
+.hdr{background:#1a202c;color:#fff;padding:18px 32px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:14px;}
+.hdr-left{}
+.hdr-title{font-size:20px;font-weight:800;letter-spacing:-.4px;}
+.hdr-sub{font-size:12px;color:#a0aec0;margin-top:3px;}
+.hdr-badges{display:flex;gap:8px;flex-wrap:wrap;}
+.badge{background:#2d3748;border-radius:8px;padding:8px 14px;text-align:center;min-width:72px;}
+.badge-n{font-size:24px;font-weight:800;line-height:1;}
+.badge-l{font-size:10px;color:#a0aec0;text-transform:uppercase;letter-spacing:.06em;margin-top:2px;}
+.badge-done .badge-n{color:#68d391;}
+.badge-prog .badge-n{color:#63b3ed;}
+.badge-block .badge-n{color:#fc8181;}
+.badge-pct .badge-n{color:#faf089;}
+
+/* ── BLOCKERS ── */
+.alert-strip{margin:20px 32px 0;}
+.alert-box{background:#fff5f5;border:2px solid #fc8181;border-radius:10px;overflow:hidden;}
+.alert-hdr{background:#fed7d7;padding:9px 16px;display:flex;align-items:center;gap:8px;font-size:13px;font-weight:700;color:#c53030;}
+.alert-row{padding:9px 16px;border-top:1px solid #fed7d7;display:flex;gap:10px;align-items:flex-start;}
+.alert-pod-tag{font-size:10px;font-weight:700;padding:2px 8px;border-radius:10px;background:#fed7d7;color:#c53030;white-space:nowrap;flex-shrink:0;margin-top:2px;}
+.alert-feat{font-size:12px;font-weight:500;}
+.alert-note{font-size:11px;color:#c53030;margin-top:2px;}
+
+/* ── TEAM UPDATES BANNER ── */
+.updates-banner{margin:14px 32px 0;display:flex;gap:10px;flex-wrap:wrap;}
+.upd-chip{background:var(--card);border-radius:10px;border:1px solid var(--border);padding:10px 14px;min-width:190px;max-width:270px;}
+.upd-type{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.05em;margin-bottom:3px;}
+.upd-name{font-size:13px;font-weight:700;}
+.upd-detail{font-size:11px;color:var(--muted);margin-top:2px;line-height:1.4;}
+.upd-status{font-size:10px;font-weight:600;padding:2px 7px;border-radius:8px;display:inline-block;margin-top:5px;}
+.upd-resigned .upd-type{color:#c53030;}
+.upd-resigned .upd-status{background:#fee2e2;color:#c53030;}
+.upd-replacement .upd-type{color:#d97706;}
+.upd-replacement .upd-status{background:#fef3c7;color:#92400e;}
+.upd-info .upd-type{color:#718096;}
+.upd-info .upd-status{background:#f3f4f6;color:#718096;}
+
+/* ── MAIN ── */
+.main{padding:20px 32px 40px;}
+.section-lbl{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);margin:24px 0 14px;}
+
+/* ── POD GRID ── */
+.pods-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;}
+.pod-full{grid-column:1/-1;}
+
+/* ── POD CARD ── */
+.pod{background:var(--card);border-radius:12px;border:1px solid var(--border);overflow:hidden;}
+.pod-head{padding:14px 18px 12px;}
+.pod-title-row{display:flex;align-items:center;justify-content:space-between;margin-bottom:8px;}
+.pod-name{font-size:15px;font-weight:700;display:flex;align-items:center;gap:7px;}
+.pdot{width:10px;height:10px;border-radius:50%;flex-shrink:0;}
+.pod-meta{font-size:12px;color:var(--muted);margin-bottom:8px;}
+.pod-meta strong{color:#444;}
+
+/* health bar */
+.health-bar{height:5px;border-radius:6px;background:var(--border);display:flex;overflow:hidden;margin-bottom:10px;}
+.hb-done{background:var(--done);}
+.hb-prog{background:var(--prog);}
+.hb-rev{background:var(--review);}
+.hb-block{background:var(--block);}
+
+/* stat dots row */
+.pod-stat-row{display:flex;gap:14px;flex-wrap:wrap;margin-bottom:10px;}
+.pod-stat{display:flex;align-items:center;gap:4px;font-size:11px;color:var(--muted);}
+.psd{width:7px;height:7px;border-radius:50%;}
+.psn{font-weight:700;color:var(--text);}
+
+/* team chips */
+.team-row{display:flex;flex-wrap:wrap;gap:5px;}
+.chip{display:flex;align-items:center;gap:4px;font-size:11px;padding:3px 8px;border-radius:20px;border:1px solid var(--border);background:var(--bg);color:#4a5568;white-space:nowrap;}
+.chip-role{font-size:9px;color:var(--muted);padding:1px 5px;border-radius:7px;background:#fff;}
+.chip-lead{background:#1a202c;color:#fff;border-color:transparent;}
+.chip-lead .chip-role{background:rgba(255,255,255,.15);color:#e2e8f0;}
+.chip-warn{border-color:#fc8181;color:#c53030;background:#fff5f5;}
+.chip-warn .chip-role{background:#fed7d7;color:#c53030;}
+.chip-out{border-color:#e2e8f0;color:#a0aec0;background:#f7fafc;text-decoration:line-through;opacity:.7;}
+
+/* divider */
+.divider{height:1px;background:var(--border);}
+
+/* items */
+.items{padding:4px 0 8px;}
+.item{padding:6px 18px;display:flex;gap:8px;align-items:flex-start;}
+.item:hover{background:#f7fafc;}
+.idot{width:6px;height:6px;border-radius:50%;margin-top:5px;flex-shrink:0;}
+.ibody{flex:1;min-width:0;}
+.ititle{font-size:12px;line-height:1.4;color:var(--text);}
+.imeta{display:flex;gap:5px;margin-top:3px;flex-wrap:wrap;align-items:center;}
+.jira{font-size:10px;font-family:monospace;color:var(--hint);}
+.asgn{font-size:10px;color:var(--hint);}
+.pill{font-size:10px;padding:1px 6px;border-radius:8px;font-weight:600;}
+.p-todo{background:#f7fafc;color:#718096;border:1px solid #e2e8f0;}
+.p-done{background:#f0fff4;color:#276749;}
+.p-prog{background:#ebf8ff;color:#2b6cb0;}
+.p-rev{background:#fefcbf;color:#744210;}
+.p-block{background:#fff5f5;color:#c53030;font-weight:800;}
+.p-qa{background:#e6fffa;color:#234e52;}
+.item-empty{padding:14px 18px;font-size:12px;color:var(--hint);font-style:italic;}
+
+/* ── BANDWIDTH ── */
+.bw-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:12px;}
+.bw-card{background:var(--card);border-radius:10px;border:1px solid var(--border);padding:14px;}
+.bw-top{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:8px;}
+.bw-info .bw-name{font-size:13px;font-weight:700;}
+.bw-info .bw-pod{font-size:10px;color:var(--muted);margin-top:1px;}
+.bw-info .bw-role{font-size:10px;color:var(--muted);}
+.load-pill{font-size:10px;font-weight:700;padding:2px 8px;border-radius:8px;white-space:nowrap;}
+.load-light{background:#f0fff4;color:#276749;}
+.load-moderate{background:#fefcbf;color:#744210;}
+.load-heavy{background:#fff5f5;color:#c53030;}
+.load-idle{background:#f7fafc;color:#a0aec0;}
+.bw-tasks{border-top:1px solid var(--border);padding-top:7px;}
+.bw-task{font-size:11px;color:var(--muted);padding:2px 0;display:flex;gap:5px;line-height:1.3;}
+.bw-task::before{content:"·";color:var(--hint);flex-shrink:0;}
+.bw-blocker-note{font-size:11px;color:#c53030;margin-top:5px;font-weight:600;display:flex;gap:4px;align-items:center;}
+
+/* ── DEVSEC EPICS ── */
+.epics-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:10px;}
+.epic-card{background:var(--card);border-radius:8px;border:1px solid var(--border);border-left:4px solid #854F0B;padding:10px 14px;}
+.epic-card.epic-high{border-left-color:#e53e3e;}
+.epic-card.epic-medium{border-left-color:#d69e2e;}
+.epic-pri{font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;margin-bottom:3px;}
+.epic-pri.high{color:#c53030;}
+.epic-pri.medium{color:#d69e2e;}
+.epic-name{font-size:12px;font-weight:700;color:var(--text);line-height:1.4;}
+.epic-desc{font-size:11px;color:var(--muted);margin-top:3px;line-height:1.4;}
+.epic-count{font-size:10px;color:var(--hint);margin-top:5px;}
+
+/* ── QA SECTION ── */
+.qa-wrap{background:var(--card);border-radius:12px;border:1px solid var(--border);overflow:hidden;}
+.qa-head{background:#EBF8FF;padding:11px 18px;display:flex;justify-content:space-between;align-items:center;}
+.qa-title{font-size:13px;font-weight:700;color:#2b6cb0;display:flex;align-items:center;gap:7px;}
+.qa-items{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));}
+
+/* ── FOOTER ── */
+.footer{text-align:center;font-size:11px;color:var(--hint);padding:16px 0 28px;}
+
+@media(max-width:760px){
+  .hdr,.alert-strip,.updates-banner,.main{padding-left:16px;padding-right:16px;}
+  .pods-grid{grid-template-columns:1fr;}
+  .pod-full{grid-column:1;}
+  .hdr{flex-direction:column;align-items:flex-start;}
+}
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<div class="hdr">
+  <div class="hdr-left">
+    <div class="hdr-title">Founder's Review — Sprint <span id="sprint-num">…</span></div>
+    <div class="hdr-sub" id="sprint-sub">Loading…</div>
+  </div>
+  <div class="hdr-badges">
+    <div class="badge"><div class="badge-n" id="b-total">—</div><div class="badge-l">Total</div></div>
+    <div class="badge badge-done"><div class="badge-n" id="b-done">—</div><div class="badge-l">Done / QA</div></div>
+    <div class="badge badge-prog"><div class="badge-n" id="b-prog">—</div><div class="badge-l">In Progress</div></div>
+    <div class="badge badge-block"><div class="badge-n" id="b-blocked">—</div><div class="badge-l">Blocked</div></div>
+    <div class="badge badge-pct"><div class="badge-n" id="b-pct">—</div><div class="badge-l">Complete</div></div>
+  </div>
+</div>
+
+<!-- ANNOUNCEMENTS -->
+<div id="annc-strip" style="display:none;margin:14px 32px 0"></div>
+
+<!-- BLOCKERS -->
+<div class="alert-strip" id="alert-strip"></div>
+
+<!-- TEAM UPDATES -->
+<div id="updates-outer" style="margin:14px 32px 0">
+  <div class="section-lbl" style="margin-bottom:8px">Team changes &amp; announcements</div>
+  <div class="updates-banner" id="updates-banner"></div>
+</div>
+
+<!-- MAIN -->
+<div class="main">
+
+  <!-- PODS -->
+  <div class="section-lbl">Pods — Resources &amp; Sprint Items</div>
+  <div class="pods-grid" id="pods-grid"></div>
+
+  <!-- QA / RELEASES -->
+  <div id="qa-outer" style="display:none">
+    <div class="section-lbl" style="margin-top:28px">QA &amp; Releases — items in testing or pending merge</div>
+    <div class="qa-wrap">
+      <div class="qa-head">
+        <div class="qa-title">
+          <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><rect x="1" y="1" width="14" height="14" rx="3" stroke="#2b6cb0" stroke-width="1.5"/><path d="M4 8l3 3 5-5" stroke="#2b6cb0" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          QA &amp; Releases
+        </div>
+        <span id="qa-count" style="font-size:11px;color:#718096;"></span>
+      </div>
+      <div class="qa-items" id="qa-items"></div>
+    </div>
+  </div>
+
+  <!-- BANDWIDTH -->
+  <div class="section-lbl" style="margin-top:28px">Bandwidth — Who is working on what this sprint</div>
+  <div class="bw-grid" id="bw-grid"></div>
+
+  <!-- DEVSEC EPICS -->
+  <div class="section-lbl" style="margin-top:28px">DevSec — Security Program Backlog (14 Epics · 116 Tasks)</div>
+  <div class="epics-grid" id="devsec-epics"></div>
+
+</div>
+
+<div class="footer" id="footer">—</div>
+
+<script>
+/* ─────────────────────────────────────────────
+   INLINE DATA  (replaced by fetch_data.py)
+───────────────────────────────────────────── */
+var D = {"generatedAt": "2026-04-29T07:28:14.787637+00:00", "sprintNumber": "69", "sprintDates": "[27 Apr - 8 May]", "sheetName": "SPRINT 69 [27 Apr - 8 May]", "stats": {"total": 51, "done": 6, "inProgress": 5, "blocked": 3, "notStarted": 37}, "pods": [{"id": "hl_audio", "name": "Humyn Labs \u2014 Audio", "color": "#9E3360", "headBg": "#FDF0F5", "lead": "Yogesh", "note": "Multi-pipeline: validation, annotation, collection, account infra & data ops", "team": ["Guru", "Shaurya", "Pratik", "Namrata", "Nilesh", "Jaya", "Sameer", "Kevin (QA)", "Swetha (QA)"], "items": [{"pod": "hl_audio", "feature": "Alerts for Validation Failures", "jira": "HL-198", "status": "To Do", "assignee": "Namrata Kesarwani", "notes": ""}, {"pod": "hl_audio", "feature": "New post-processing service for data delivery(cross account/ cross org/ copy of data to client bucket)", "jira": "HL-150", "status": "Dev in Progress", "assignee": "Avinash Ramanathan", "notes": ""}, {"pod": "hl_audio", "feature": "Validation Retry history - Failures History is maintained", "jira": "HL-137", "status": "Review In Progress", "assignee": "Namrata Kesarwani", "notes": ""}, {"pod": "hl_audio", "feature": "Annotation pipeline for automatic submissions based on project configs", "jira": "HL-220", "status": "To Do", "assignee": "Yogesh Kumar", "notes": ""}, {"pod": "hl_audio", "feature": "Duplication Check at the Project level", "jira": "HL-138", "status": "Review In Progress", "assignee": "Namrata Kesarwani", "notes": ""}, {"pod": "hl_audio", "feature": "Annotation and QC tool enhancement: Task distribution % per cc(Vendor)", "jira": "HL-140", "status": "Blocked", "assignee": "Avish Kaarthik", "notes": "Approach to be finalised with PS. Saksham to come back on this"}, {"pod": "hl_audio", "feature": "International Language support(Arabic is a must)", "jira": "HL-139", "status": "Blocked", "assignee": "Jaya Kesarwani", "notes": "waiting from product for clarity ; models and solution is pending from product specifically for transliteration"}, {"pod": "hl_audio", "feature": "Annotation and QC: International Language support(Arabic is a must)", "jira": "HL-141", "status": "Blocked", "assignee": "Avish Kaarthik", "notes": "waiting from product for clarity ; models and solution is pending from product specifically for transliteration"}, {"pod": "hl_audio", "feature": "Scribe API Integration across Validation and Annotation", "jira": "HL-216", "status": "To Do", "assignee": "Yogesh Kumar", "notes": ""}, {"pod": "hl_audio", "feature": "Duplicate Content Check at validation and reuse the same to annotation", "jira": "HL-217", "status": "To Do", "assignee": "Yogesh Kumar", "notes": ""}, {"pod": "hl_audio", "feature": "Enable new recorder for single speaker audios", "jira": "HL-218", "status": "To Do", "assignee": "Kumaragurubaran Kanagaraj", "notes": ""}, {"pod": "hl_audio", "feature": "HL Responsiveness and New Enhancements on the BD website Design", "jira": "HL-219", "status": "To Do", "assignee": "Shivam Shukla", "notes": ""}]}, {"id": "hl_ego", "name": "Humyn Labs \u2014 Egocentric", "color": "#9E3360", "headBg": "#FDF0F5", "lead": "Karthik", "note": "", "team": ["Karthik", "Avinash"], "items": []}, {"id": "engage", "name": "KGeN Engage", "color": "#185FA5", "headBg": "#EBF5FB", "lead": "Guru", "note": "", "team": ["Harshada", "Manpreet", "Namrata", "Shaurya", "Swetha (QA)"], "items": [{"pod": "engage", "feature": "Social connect changes - remove phone number pop-up", "jira": "TECH-21023", "status": "To Do", "assignee": "Harshada Raundal", "notes": ""}, {"pod": "engage", "feature": "Shield Backend App Changes", "jira": "TECH-21024", "status": "To Do", "assignee": "Manpreet Singh", "notes": ""}, {"pod": "engage", "feature": "Collect Earings BE change to block rewards collection if phone number is not present", "jira": "TECH-21029", "status": "To Do", "assignee": "Kumaragurubaran Kanagaraj", "notes": ""}, {"pod": "engage", "feature": "Click reduction on the quest journey - App", "jira": "HL-1", "status": "Dev in Progress", "assignee": "Kumaragurubaran Kanagaraj", "notes": ""}]}, {"id": "kstore", "name": "KStore", "color": "#3B6D11", "headBg": "#EAF7E6", "lead": "Julian", "note": "", "team": ["Jitendra", "Shahid", "Relin (QA)"], "items": [{"pod": "kstore", "feature": "Add updated FAQs in KStore footer", "jira": "-", "status": "To Do", "assignee": "-", "notes": ""}, {"pod": "kstore", "feature": "When a product is assigned to a DP and the corresponding CP is deactivated, reactivating the CP triggers an error. Currently, the product must be reassigned to the DP to restore normal functionality.", "jira": "-", "status": "To Do", "assignee": "-", "notes": ""}, {"pod": "kstore", "feature": "b2c orders panel in Super Admin -add Date and time column", "jira": "-", "status": "To Do", "assignee": "-", "notes": ""}, {"pod": "kstore", "feature": "report generating bamboo is failed", "jira": "-", "status": "To Do", "assignee": "-", "notes": ""}, {"pod": "kstore", "feature": "No error if wrong login", "jira": "-", "status": "To Do", "assignee": "-", "notes": ""}, {"pod": "kstore", "feature": "No error if no money in wallet", "jira": "-", "status": "To Do", "assignee": "-", "notes": ""}, {"pod": "kstore", "feature": "Invalid utf-8 format handling", "jira": "-", "status": "To Do", "assignee": "-", "notes": ""}, {"pod": "kstore", "feature": "sample sheet download for every bulk upload (it will contain every header)", "jira": "-", "status": "To Do", "assignee": "-", "notes": ""}, {"pod": "kstore", "feature": "search issue in the cp product assignment-bug", "jira": "-", "status": "To Do", "assignee": "-", "notes": ""}, {"pod": "kstore", "feature": "do not return the error messages to the fe which are related to internal operations", "jira": "-", "status": "To Do", "assignee": "-", "notes": ""}, {"pod": "kstore", "feature": "Code generation ecosystem", "jira": "-", "status": "To Do", "assignee": "-", "notes": ""}, {"pod": "kstore", "feature": "denomination on the product side-super admin-seperate mrp and denomination", "jira": "-", "status": "To Do", "assignee": "-", "notes": ""}, {"pod": "kstore", "feature": "Reloadly Integration", "jira": "-", "status": "To Do", "assignee": "-", "notes": ""}, {"pod": "kstore", "feature": "Purchase Invoice for KStore customers", "jira": "-", "status": "To Do", "assignee": "-", "notes": ""}, {"pod": "kstore", "feature": "landing pages- make them on product level", "jira": "-", "status": "To Do", "assignee": "-", "notes": ""}, {"pod": "kstore", "feature": "sold out <>next drop for physical goods", "jira": "-", "status": "To Do", "assignee": "-", "notes": ""}, {"pod": "kstore", "feature": "entry point for HT and TN is coming wrong", "jira": "-", "status": "To Do", "assignee": "-", "notes": ""}]}, {"id": "devsec", "name": "DevSec", "color": "#854F0B", "headBg": "#FFFBF0", "lead": "Itisha", "note": "", "team": ["Arun Kumar Krishna (DevOps)", "Karan Sabharwal (Security)"], "items": [{"pod": "devsec", "feature": "Syncing assets from prod-image-bucket.indi.gg to prod-image-bucket.kgen.io", "jira": "DEVSEC-669", "status": "To Do", "assignee": "Arun Kumar Krishna", "notes": ""}, {"pod": "devsec", "feature": "Annotation Stage setup", "jira": "DEVSEC-670", "status": "Done", "assignee": "Arun Kumar Krishna", "notes": ""}, {"pod": "devsec", "feature": "Data Orchestrator migration to HL account (both stage and Prod)", "jira": "DEVSEC-672", "status": "To Do", "assignee": "Arun Kumar Krishna", "notes": ""}, {"pod": "devsec", "feature": "Prod Validation Admin(prod-analytics-dashboard) migration to HL account.", "jira": "DEVSEC-673", "status": "To Do", "assignee": "Arun Kumar Krishna", "notes": ""}, {"pod": "devsec", "feature": "HL accounts(stage and prod) migration to new Org.", "jira": "DEVSEC-671", "status": "To Do", "assignee": "Arun Kumar Krishna", "notes": ""}, {"pod": "devsec", "feature": "Cross Account access for task 1 to use the new validation tool", "jira": "DEVSEC-674", "status": "To Do", "assignee": "Arun Kumar Krishna", "notes": ""}, {"pod": "devsec", "feature": "Security Testing: Annotation Tool", "jira": "DEVSEC-675", "status": "To Do", "assignee": "Karan Sabharwal", "notes": ""}, {"pod": "devsec", "feature": "Security Testing: Quest with Validation and", "jira": "DEVSEC-676", "status": "To Do", "assignee": "Karan Sabharwal", "notes": ""}, {"pod": "devsec", "feature": "Security Testing: Login Changes", "jira": "DEVSEC-677", "status": "To Do", "assignee": "Karan Sabharwal", "notes": ""}, {"pod": "devsec", "feature": "Old tool Collected files migration is required to HL account?", "jira": "DEVSEC-678", "status": "To Do", "assignee": "Arun Kumar Krishna", "notes": ""}, {"pod": "devsec", "feature": "Email Migration from Mailmodo to SES (Clan Service & KStore)", "jira": "DEVSEC-679", "status": "To Do", "assignee": "Arun Kumar Krishna", "notes": ""}]}], "qaItems": [{"pod": "qa_releases", "feature": "Integration to KGeN Quest & Quest journey Changes - PG Mints post quest is submitted - Click reduction on the quest journey", "jira": "HL-1", "status": "Done", "assignee": "-", "notes": ""}, {"pod": "qa_releases", "feature": "Validation Language detection check (Jaya) Duplicate file check Gender check Individual and combined file validation Parameter validation(already present) Contribution Check Fingerprinting (to be done later)", "jira": "HL-55", "status": "Done", "assignee": "Yogesh", "notes": ""}, {"pod": "qa_releases", "feature": "No phone number as part of login and guest user journey", "jira": "TECH-20888", "status": "In QA", "assignee": "Shaurya", "notes": ""}, {"pod": "qa_releases", "feature": "Collect Earnings KYC Change", "jira": "TECH-20900", "status": "In QA", "assignee": "Manpreet Singh", "notes": ""}, {"pod": "qa_releases", "feature": "Annotation Pre Annotation Multi Track Support (combined, left and right speaker) Diarization Magnet Tool (Auto selection of a segment on user initiation) Smart Keyboard: Transliteration (hinglish >> Hindi) Spell Check (partially given) Keyboard Shortcuts for common operations cuh as play, pause, skip, split, merge etc.. Collection QC Annotation QC", "jira": "HL-54", "status": "In QA", "assignee": "Yogesh", "notes": ""}, {"pod": "qa_releases", "feature": "Integration to KGeN Quest & Quest journey Changes - PG Mints post quest is submitted - Click reduction on the quest journey", "jira": "HL-1", "status": "Dev in Progress", "assignee": "Kumaragurubaran Kanagaraj", "notes": ""}, {"pod": "qa_releases", "feature": "Show User level and Pair level Contribution at quest level and block actions as per", "jira": "HL-186", "status": "To Do", "assignee": "Kumaragurubaran Kanagaraj", "notes": ""}], "bandwidth": [], "teamUpdates": [{"type": "resigned", "name": "Avish", "detail": "Father's accident. WFH 9-17 Apr. Tasks re-routed.", "status": "WFH 9-17 Apr"}, {"type": "replacement", "name": "Akshay (HL Backend)", "detail": "3-month notice. Replacement hiring underway.", "status": "In Progress"}, {"type": "replacement", "name": "Shivam (GKMIT)", "detail": "3-month notice. Replacement hiring underway.", "status": "In Progress"}, {"type": "info", "name": "Raghav & Pankaj (GKMIT)", "detail": "No replacement needed. Update to GKMIT pending.", "status": "Update to GKMIT"}]};
+
+/* ─────────────────────────────────────────────
+   STATIC CONFIG  (from PDF + Excel)
+───────────────────────────────────────────── */
+var TEAM_ROLES = {
+  hl_audio: {
+    "Yogesh":   {role:"Tech Lead",    lead:true},
+    "Namrata":  {role:"Backend"},
+    "Nilesh":   {role:"Backend"},
+    "Akshay":   {role:"Backend",      warn:true, warnNote:"Replacement in progress (3-month notice)"},
+    "Jaya":     {role:"Backend"},
+    "Avish":    {role:"Backend",      warn:true, warnNote:"WFH — family emergency"},
+    "Shaurya":  {role:"Frontend"},
+    "Sameer":   {role:"Frontend"},
+    "Pratik":   {role:"Frontend"},
+    "Swetha":   {role:"QA"},
+    "Kevin":    {role:"QA"},
+    "Guru":     {role:"Frontend"}
+  },
+  hl_ego: {
+    "Karthik":  {role:"Tech Lead",    lead:true},
+    "Avinash":  {role:"Engineering"}
+  },
+  engage: {
+    "Guru":     {role:"Tech Lead",    lead:true},
+    "Shaurya":  {role:"Tech Lead"},
+    "Harshada": {role:"Frontend (FS)"},
+    "Manpreet": {role:"Mobile"},
+    "Namrata":  {role:"Backend (on-demand)"},
+    "Nilesh":   {role:"Backend (on-demand)"},
+    "Kawaljeet":{role:"QA"},
+    "Yuvaraj":  {role:"QA (cross-team)"},
+    "Swetha":   {role:"QA"}
+  },
+  kstore: {
+    "Julian":   {role:"Tech Lead",    lead:true},
+    "Karthik":  {role:"Tech Lead (backup)"},
+    "Jitendra": {role:"Backend"},
+    "Shahid":   {role:"Engineering"},
+    "Relin":    {role:"QA"},
+    "Yuvaraj":  {role:"QA (cross-team)"}
+  },
+  devsec: {
+    "Itisha":             {role:"Lead / TPM",  lead:true},
+    "Arun Kumar Krishna": {role:"DevOps"},
+    "Karan Sabharwal":    {role:"Security"}
+  }
+};
+
+var DEVSEC_EPICS = [
+  {pri:"High",   name:"Endpoint Security Rollout Program",          desc:"Deploy SentinelOne to 120 endpoints including pilot and full rollout"},
+  {pri:"High",   name:"Cloud CNAPP & Workload Protection",           desc:"Implement CNAPP and deploy agents to 143 workloads"},
+  {pri:"High",   name:"Splunk Deployment & Log Onboarding",          desc:"Procure and deploy Splunk with prioritized log ingestion"},
+  {pri:"High",   name:"MDM Deployment & Compliance Enforcement",     desc:"Deploy MDM across corporate devices with policy enforcement"},
+  {pri:"High",   name:"Build Security Operations Team",              desc:"Hire and onboard required security roles"},
+  {pri:"High",   name:"Splunk Commercial & Legal Procurement",       desc:"Complete commercial, financial and legal procurement cycle"},
+  {pri:"High",   name:"MDM Commercial & Licensing Procurement",      desc:"Complete vendor selection and procurement cycle for MDM solution"},
+  {pri:"Medium", name:"Procurement Governance & Vendor Management",  desc:"Ensure structured governance for all security tool purchases"},
+  {pri:"High",   name:"Cloudflare WAF for Critical Domains",         desc:"Implement and tune WAF protection for humynlabs, kgen, kratos, exlr8"},
+  {pri:"High",   name:"Remove Non-Critical Apps from Public Exposure",desc:"Reduce external attack surface across all platforms"},
+  {pri:"High",   name:"Investigate Active Infections & Anomalies",   desc:"Deep threat investigation across AWS, GCP, Cloudflare"},
+  {pri:"High",   name:"Security Posture Review — GKE & AWS Clusters",desc:"Comprehensive Kubernetes Security Posture Management review"},
+  {pri:"High",   name:"Post-Migration Security Review — EKS Cluster",desc:"Security validation and hardening of new AWS EKS cluster post-migration"},
+  {pri:"Medium", name:"Kubernetes Cluster Segregation Strategy",     desc:"Design architecture for segregating workloads to reduce blast radius"}
+];
+
+/* ─────────────────────────────────────────────
+   HELPERS
+───────────────────────────────────────────── */
+function e(s){return String(s||"").replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");}
+
+function statusColor(s){
+  if(!s||s==="To Do") return "#cbd5e0";
+  var l=s.toLowerCase();
+  if(l.includes("done")) return "#38a169";
+  if(l==="in qa") return "#319795";
+  if(l.includes("progress")) return "#3182ce";
+  if(l.includes("review")) return "#d69e2e";
+  if(l.includes("block")) return "#e53e3e";
+  return "#cbd5e0";
+}
+
+function statusPill(s){
+  if(!s||s==="To Do") return "p-todo";
+  var l=s.toLowerCase();
+  if(l.includes("done")) return "p-done";
+  if(l==="in qa") return "p-qa";
+  if(l.includes("progress")) return "p-prog";
+  if(l.includes("review")) return "p-rev";
+  if(l.includes("block")) return "p-block";
+  return "p-todo";
+}
+
+function firstName(full){
+  if(!full||full==="-") return "";
+  return full.split(" ")[0];
+}
+
+/* ─────────────────────────────────────────────
+   BLOCKERS
+───────────────────────────────────────────── */
+function renderBlockers(pods){
+  var all=[];
+  pods.forEach(function(p){
+    (p.items||[]).forEach(function(i){
+      if(i.status&&i.status.toLowerCase().includes("block"))
+        all.push({pod:p.name,feat:i.feature,note:i.notes,jira:i.jira,color:p.color});
+    });
+  });
+  if(!all.length){document.getElementById("alert-strip").innerHTML="";return;}
+  var rows=all.map(function(b){
+    return '<div class="alert-row"><span class="alert-pod-tag">'+e(b.pod)+'</span>'
+      +'<div><div class="alert-feat">'+e(b.feat)+(b.jira&&b.jira!=="-"?' <span style="font-size:10px;color:#999;font-family:monospace">'+e(b.jira)+"</span>":"")+'</div>'
+      +(b.note?'<div class="alert-note">'+e(b.note)+"</div>":"")
+      +"</div></div>";
+  }).join("");
+  document.getElementById("alert-strip").innerHTML=
+    '<div class="alert-box">'
+    +'<div class="alert-hdr"><svg width="14" height="14" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="7" stroke="#c53030" stroke-width="1.5"/><path d="M8 4.5v4M8 10.5v1" stroke="#c53030" stroke-width="1.5" stroke-linecap="round"/></svg>'
+    +all.length+' blocked item'+(all.length>1?"s":"")+" — requires action</div>"
+    +rows+"</div>";
+}
+
+/* ─────────────────────────────────────────────
+   TEAM UPDATES
+───────────────────────────────────────────── */
+function renderUpdates(updates){
+  if(!updates||!updates.length){document.getElementById("updates-outer").style.display="none";return;}
+  var html=updates.map(function(u){
+    var typeLabel=u.type==="resigned"?"Resigned":u.type==="replacement"?"Replacement in progress":u.type==="joining"?"Joining":"Update";
+    return '<div class="upd-chip upd-'+e(u.type)+'">'
+      +'<div class="upd-type">'+e(typeLabel)+'</div>'
+      +'<div class="upd-name">'+e(u.name)+'</div>'
+      +'<div class="upd-detail">'+e(u.detail)+'</div>'
+      +'<span class="upd-status">'+e(u.status)+"</span>"
+      +"</div>";
+  }).join("");
+  document.getElementById("updates-banner").innerHTML=html;
+}
+
+/* ─────────────────────────────────────────────
+   POD CARDS
+───────────────────────────────────────────── */
+function renderTeamChips(team, podId){
+  var roles=TEAM_ROLES[podId]||{};
+  return (team||[]).map(function(member){
+    var baseName=member.replace(/\s*\(.*?\)/,"").trim();
+    var info=roles[baseName]||{};
+    var cls="chip";
+    if(info.lead) cls+=" chip-lead";
+    else if(info.warn) cls+=" chip-warn";
+    var roleTag=info.role?'<span class="chip-role">'+e(info.role)+"</span>":"";
+    var tooltip=info.warn&&info.warnNote?' title="'+e(info.warnNote)+'"':"";
+    return '<span class="'+cls+'"'+tooltip+'>'+e(baseName)+roleTag+"</span>";
+  }).join("");
+}
+
+function podHealthBar(items, total){
+  if(!total) return '<div class="health-bar"></div>';
+  var done=items.filter(function(i){return i.status&&(i.status.toLowerCase().includes("done")||i.status==="In QA");}).length;
+  var prog=items.filter(function(i){return i.status&&i.status.toLowerCase().includes("progress");}).length;
+  var rev=items.filter(function(i){return i.status&&i.status.toLowerCase().includes("review");}).length;
+  var blk=items.filter(function(i){return i.status&&i.status.toLowerCase().includes("block");}).length;
+  var pDone=done/total*100, pProg=prog/total*100, pRev=rev/total*100, pBlk=blk/total*100;
+  return '<div class="health-bar">'
+    +'<div class="hb-done" style="width:'+pDone+'%"></div>'
+    +'<div class="hb-prog" style="width:'+pProg+'%"></div>'
+    +'<div class="hb-rev" style="width:'+pRev+'%"></div>'
+    +'<div class="hb-block" style="width:'+pBlk+'%"></div>'
+    +'</div>';
+}
+
+function podStatRow(items){
+  var done=items.filter(function(i){return i.status&&(i.status.toLowerCase().includes("done")||i.status==="In QA");}).length;
+  var prog=items.filter(function(i){return i.status&&(i.status.toLowerCase().includes("progress")||i.status.toLowerCase().includes("review"));}).length;
+  var blk=items.filter(function(i){return i.status&&i.status.toLowerCase().includes("block");}).length;
+  var todo=items.length-done-prog-blk;
+  var parts=[];
+  if(done) parts.push('<span class="pod-stat"><span class="psd" style="background:#38a169"></span><span class="psn">'+done+'</span> done</span>');
+  if(prog) parts.push('<span class="pod-stat"><span class="psd" style="background:#3182ce"></span><span class="psn">'+prog+'</span> in progress</span>');
+  if(blk)  parts.push('<span class="pod-stat"><span class="psd" style="background:#e53e3e"></span><span class="psn">'+blk+'</span> blocked</span>');
+  if(todo) parts.push('<span class="pod-stat"><span class="psd" style="background:#cbd5e0"></span><span class="psn">'+todo+'</span> to do</span>');
+  return '<div class="pod-stat-row">'+parts.join("")+'</div>';
+}
+
+function renderItem(i){
+  var jira=i.jira&&i.jira!=="-"?'<span class="jira">'+e(i.jira)+"</span>":"";
+  var asgn=i.assignee&&i.assignee!=="-"?'<span class="asgn">'+e(firstName(i.assignee))+"</span>":"";
+  return '<div class="item"><span class="idot" style="background:'+statusColor(i.status)+'"></span>'
+    +'<div class="ibody"><div class="ititle">'+e(i.feature)+'</div>'
+    +'<div class="imeta">'+jira+'<span class="pill '+statusPill(i.status)+'">'+e(i.status||"To Do")+"</span>"+asgn+"</div>"
+    +"</div></div>";
+}
+
+function renderPod(p, wideClass){
+  var items=p.items||[];
+  var nonBlocked=items.filter(function(i){return!i.status||!i.status.toLowerCase().includes("block");});
+  var itemsHtml=nonBlocked.length?nonBlocked.map(renderItem).join(""):'<div class="item-empty">No sprint items this cycle</div>';
+  return '<div class="pod'+(wideClass?" "+wideClass:"")+'">'
+    +'<div class="pod-head" style="background:'+p.headBg+'">'
+    +'<div class="pod-title-row"><span class="pod-name"><span class="pdot" style="background:'+p.color+'"></span>'+e(p.name)+'</span>'
+    +'<span style="font-size:11px;color:var(--muted)">'+items.length+' item'+(items.length!==1?"s":"")+'</span></div>'
+    +'<div class="pod-meta">Lead: <strong>'+e(p.lead)+'</strong></div>'
+    +(p.note?'<div style="font-size:11px;color:#666;font-style:italic;margin-bottom:8px">'+e(p.note)+'</div>':"")
+    +podHealthBar(items,items.length)
+    +podStatRow(items)
+    +'<div class="team-row">'+renderTeamChips(p.team,p.id)+"</div>"
+    +"</div>"
+    +'<div class="divider"></div>'
+    +'<div class="items">'+itemsHtml+"</div>"
+    +"</div>";
+}
+
+/* ─────────────────────────────────────────────
+   BANDWIDTH  (auto-computed from items)
+───────────────────────────────────────────── */
+function computeBandwidth(pods, qaItems){
+  var personMap={};
+
+  function normName(n){
+    if(!n||n==="-") return null;
+    n=n.trim();
+    var map={"Yogesh Kumar":"Yogesh","Kumaragurubaran Kanagaraj":"Guru","Namrata Kesarwani":"Namrata",
+              "Avish Kaarthik":"Avish","Jaya Kesarwani":"Jaya","Shivam Shukla":"Shivam",
+              "Avinash Ramanathan":"Avinash","Harshada Raundal":"Harshada","Manpreet Singh":"Manpreet",
+              "Kumaragurubaran":"Guru","Arun Kumar Krishna":"Arun"};
+    return map[n]||n.split(" ")[0];
+  }
+
+  function podName(podId){
+    var names={hl_audio:"HL Audio",hl_ego:"HL Egocentric",engage:"KGeN Engage",kstore:"KStore",devsec:"DevSec"};
+    return names[podId]||podId;
+  }
+
+  function getRole(name, podId){
+    var roles=TEAM_ROLES[podId]||{};
+    var info=roles[name]||{};
+    return info.role||"";
+  }
+
+  function addItem(podId, item){
+    var raw=item.assignee;
+    var name=normName(raw);
+    if(!name) return;
+    if(!personMap[name]) personMap[name]={name:name,pod:podName(podId),podId:podId,tasks:[],hasBlocker:false};
+    var short=item.feature.length>55?item.feature.substring(0,52)+"…":item.feature;
+    personMap[name].tasks.push(short);
+    if(item.status&&item.status.toLowerCase().includes("block")) personMap[name].hasBlocker=true;
+  }
+
+  pods.forEach(function(p){(p.items||[]).forEach(function(i){addItem(p.id,i);});});
+  (qaItems||[]).forEach(function(i){addItem("qa",i);});
+
+  var people=Object.values(personMap);
+  people.sort(function(a,b){return b.tasks.length-a.tasks.length;});
+
+  return people.map(function(p){
+    var load=p.tasks.length>=5?"heavy":p.tasks.length>=3?"moderate":p.tasks.length>=1?"light":"idle";
+    var role=getRole(p.name,p.podId);
+    return {name:p.name,pod:p.pod,role:role,load:load,tasks:p.tasks,hasBlocker:p.hasBlocker};
+  });
+}
+
+function renderBandwidth(bwList){
+  if(!bwList||!bwList.length){document.getElementById("bw-grid").innerHTML='<div style="color:var(--muted);font-size:13px">No bandwidth data available — run the data fetch.</div>';return;}
+  var html=bwList.map(function(p){
+    var loadLabel=p.load==="heavy"?"Heavy":p.load==="moderate"?"Moderate":p.load==="light"?"Light":"Idle";
+    var tasks=(p.tasks||[]).slice(0,5).map(function(t){return'<div class="bw-task">'+e(t)+"</div>";}).join("");
+    if(p.tasks.length>5) tasks+='<div class="bw-task" style="color:var(--hint)">+'+( p.tasks.length-5)+' more</div>';
+    var blocker=p.hasBlocker?'<div class="bw-blocker-note">⚠ Owns a blocked item</div>':"";
+    return '<div class="bw-card">'
+      +'<div class="bw-top">'
+      +'<div class="bw-info"><div class="bw-name">'+e(p.name)+'</div>'
+      +(p.role?'<div class="bw-role">'+e(p.role)+"</div>":"")
+      +'<div class="bw-pod">'+e(p.pod)+"</div></div>"
+      +'<span class="load-pill load-'+p.load+'">'+loadLabel+"</span>"
+      +"</div>"
+      +'<div class="bw-tasks">'+tasks+blocker+"</div>"
+      +"</div>";
+  }).join("");
+  document.getElementById("bw-grid").innerHTML=html;
+}
+
+/* ─────────────────────────────────────────────
+   ANNOUNCEMENTS
+───────────────────────────────────────────── */
+function renderAnnouncements(announcements){
+  var el=document.getElementById("annc-strip");
+  if(!el||!announcements||!announcements.length){if(el)el.style.display="none";return;}
+  var colors={
+    warning:{bg:"#fffbf0",border:"#f6ad55",hdr:"#744210"},
+    success:{bg:"#f0fff4",border:"#68d391",hdr:"#276749"},
+    info:   {bg:"#ebf8ff",border:"#63b3ed",hdr:"#2c5282"}
+  };
+  var icons={warning:"⚠ Alert",success:"✓ Good news","info":"📢 Notice"};
+  var html=announcements.map(function(a){
+    var c=colors[a.type]||colors.info;
+    return '<div style="background:'+c.bg+';border:1.5px solid '+c.border+';border-radius:10px;padding:10px 16px;display:flex;align-items:flex-start;gap:10px">'
+      +'<span style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:'+c.hdr+';white-space:nowrap;padding-top:2px">'+(icons[a.type]||"📢 Notice")+'</span>'
+      +'<div style="flex:1"><div style="font-size:13px;font-weight:600;color:'+c.hdr+'">'+e(a.title)+'</div>'
+      +(a.body?'<div style="font-size:12px;color:'+c.hdr+';opacity:.8;margin-top:2px;line-height:1.4">'+e(a.body)+'</div>':"")
+      +'</div>'
+      +(a.date?'<span style="font-size:11px;color:#999;white-space:nowrap;margin-top:2px">'+e(a.date)+'</span>':"")
+      +'</div>';
+  }).join("");
+  el.innerHTML='<div style="display:flex;flex-direction:column;gap:8px">'+html+'</div>';
+  el.style.display="block";
+}
+
+/* ─────────────────────────────────────────────
+   DEVSEC EPICS
+───────────────────────────────────────────── */
+function renderDevSecEpics(liveEpics){
+  var list=(liveEpics&&liveEpics.length)?liveEpics:DEVSEC_EPICS;
+  var html=list.map(function(ep){
+    var cls="epic-card epic-"+ep.pri.toLowerCase();
+    return '<div class="'+cls+'">'
+      +'<div class="epic-pri '+ep.pri.toLowerCase()+'">'+e(ep.pri)+'</div>'
+      +'<div class="epic-name">'+e(ep.name)+'</div>'
+      +'<div class="epic-desc">'+e(ep.desc)+"</div>"
+      +"</div>";
+  }).join("");
+  document.getElementById("devsec-epics").innerHTML=html;
+}
+
+/* ─────────────────────────────────────────────
+   MAIN RENDER
+───────────────────────────────────────────── */
+function render(d){
+  /* header */
+  document.getElementById("sprint-num").textContent=d.sprintNumber;
+  var ist="";
+  try{
+    var g=new Date(d.generatedAt);
+    ist=g.toLocaleString("en-IN",{timeZone:"Asia/Kolkata",day:"numeric",month:"short",hour:"2-digit",minute:"2-digit"});
+  }catch(x){}
+  document.getElementById("sprint-sub").textContent=d.sprintDates+" · All pods · Last updated: "+ist+" IST";
+
+  var s=d.stats;
+  var pct=Math.round(s.done/Math.max(s.total,1)*100);
+  document.getElementById("b-total").textContent=s.total;
+  document.getElementById("b-done").textContent=s.done;
+  document.getElementById("b-prog").textContent=s.inProgress;
+  document.getElementById("b-blocked").textContent=s.blocked;
+  document.getElementById("b-pct").textContent=pct+"%";
+
+  /* announcements */
+  renderAnnouncements(d.announcements);
+
+  /* blockers */
+  renderBlockers(d.pods);
+
+  /* team updates */
+  renderUpdates(d.teamUpdates);
+
+  /* pods — HL Audio + Ego side by side, Engage + KStore side by side, DevSec full width */
+  var podOrder=["hl_audio","hl_ego","engage","kstore","devsec"];
+  var podMap={};
+  (d.pods||[]).forEach(function(p){podMap[p.id]=p;});
+
+  var grid="";
+  podOrder.forEach(function(pid){
+    var p=podMap[pid];
+    if(!p) return;
+    var wide=pid==="devsec"?"pod-full":"";
+    grid+=renderPod(p,wide);
+  });
+  document.getElementById("pods-grid").innerHTML=grid;
+
+  /* QA items */
+  var qa=d.qaItems||[];
+  if(qa.length){
+    document.getElementById("qa-outer").style.display="block";
+    document.getElementById("qa-count").textContent=qa.length+" items";
+    document.getElementById("qa-items").innerHTML=qa.map(renderItem).join("");
+  }
+
+  /* bandwidth */
+  var bw=d.bandwidth&&d.bandwidth.length?d.bandwidth:computeBandwidth(d.pods,d.qaItems);
+  renderBandwidth(bw);
+
+  /* devsec epics */
+  renderDevSecEpics(d.devsecEpics);
+
+  /* footer */
+  document.getElementById("footer").textContent="Auto-refreshed daily · Sprint "+d.sprintNumber+" · "+d.sprintDates;
+}
+
+/* ─────────────────────────────────────────────
+   BOOT
+───────────────────────────────────────────── */
+if(D){
+  render(D);
+} else {
+  fetch("/data.json")
+    .then(function(r){return r.json();})
+    .then(render)
+    .catch(function(){
+      document.getElementById("pods-grid").innerHTML='<div style="padding:40px;color:#999;font-size:13px;grid-column:1/-1">No data available — run the GitHub Action or data fetch script.</div>';
+    });
+}
+</script>
+</body>
+</html>

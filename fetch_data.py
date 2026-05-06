@@ -38,8 +38,8 @@ STATIC_TEAMS = {
     "devsec":   ["Arun Kumar Krishna (DevOps)","Karan Sabharwal (Security)"],
 }
 
-TEAM_UPDATES = [
-    {"type":"resigned",    "name":"Avish",                "detail":"Father's accident. WFH 9-17 Apr. Tasks re-routed.", "status":"WFH 9-17 Apr"},
+TEAM_UPDATES_FALLBACK = [
+    {"type":"resigned",    "name":"Avish",                 "detail":"Father's accident. WFH 9-17 Apr. Tasks re-routed.", "status":"WFH 9-17 Apr"},
     {"type":"replacement", "name":"Akshay (HL Backend)",   "detail":"3-month notice. Replacement hiring underway.",       "status":"In Progress"},
     {"type":"replacement", "name":"Shivam (GKMIT)",        "detail":"3-month notice. Replacement hiring underway.",       "status":"In Progress"},
     {"type":"info",        "name":"Raghav & Pankaj (GKMIT)","detail":"No replacement needed. Update to GKMIT pending.",  "status":"Update to GKMIT"},
@@ -47,6 +47,75 @@ TEAM_UPDATES = [
 
 SKIP_FEATURES = {"Shield Disable???","Features","Module Owner","Standalone app for audio collection","HL orchestrator","Cost and optimisation"}
 SKIP_PARTIAL  = ["avoid copying recorder tool audio files","quest validation to happen via api","enhancements/optimisation to making the duplication","annotation events and attributes to be added","merge the collection and annotation hitl"]
+
+def read_team_config():
+    try:
+        with open("team_config.json") as f:
+            cfg = json.load(f)
+        return cfg.get("teamUpdates", TEAM_UPDATES_FALLBACK), cfg.get("announcements", [])
+    except Exception as ex:
+        print(f"team_config.json not found or invalid — using fallback: {ex}")
+        return TEAM_UPDATES_FALLBACK, []
+
+def read_devsec_excel():
+    excel_path = "devsec_backlog.xlsx"
+    if not os.path.exists(excel_path):
+        print("devsec_backlog.xlsx not found — skipping epic extraction")
+        return []
+    if not ANTHROPIC_KEY:
+        print("No ANTHROPIC_API_KEY — skipping Excel parsing")
+        return []
+    try:
+        import openpyxl
+        wb = openpyxl.load_workbook(excel_path, data_only=True)
+        ws = wb.active
+        rows = []
+        for row in ws.iter_rows(values_only=True):
+            row_data = [str(cell).strip() if cell is not None else "" for cell in row]
+            if any(c for c in row_data):
+                rows.append("\t".join(row_data))
+        sheet_text = "\n".join(rows[:250])
+
+        prompt = f"""Analyze this DevSec project backlog (raw Excel rows) and extract all EPICS — high-level initiatives, not individual tasks.
+
+{sheet_text}
+
+For each epic return:
+- pri: "High", "Medium", or "Low"
+- name: concise title (under 60 chars)
+- desc: one sentence on what it achieves (under 100 chars)
+
+Return ONLY a valid JSON array, no markdown or explanation:
+[{{"pri":"High","name":"Epic name","desc":"Description"}}]
+
+Rules: only top-level epics (not tasks), max 20 items, concise descriptions."""
+
+        payload = json.dumps({
+            "model": "claude-haiku-4-5-20251001",
+            "max_tokens": 2000,
+            "messages": [{"role": "user", "content": prompt}]
+        }).encode()
+
+        req = urllib.request.Request(
+            "https://api.anthropic.com/v1/messages",
+            data=payload,
+            headers={
+                "Content-Type": "application/json",
+                "x-api-key": ANTHROPIC_KEY,
+                "anthropic-version": "2023-06-01"
+            },
+            method="POST"
+        )
+        with urllib.request.urlopen(req, timeout=30) as resp:
+            result = json.loads(resp.read())
+            text = result["content"][0]["text"].strip()
+            text = re.sub(r'^```json\s*|^```\s*|```$', '', text, flags=re.MULTILINE).strip()
+            epics = json.loads(text)
+            print(f"DevSec epics extracted: {len(epics)}")
+            return epics
+    except Exception as ex:
+        print(f"Excel parse error: {ex}")
+        return []
 
 def get_service():
     from google.oauth2.service_account import Credentials
@@ -207,31 +276,41 @@ def main():
     items, qa_items = parse(rows)
     pods = build_pods(items)
     bandwidth = claude_bandwidth_summary(items, qa_items)
+    team_updates, announcements = read_team_config()
+    devsec_epics = read_devsec_excel()
 
     print(f"Items: {len(items)}, QA: {len(qa_items)}")
     for p in pods: print(f"  {p['name']}: {len(p['items'])} items")
 
     m = re.search(r"(\d+)\s+(.+)", tab, re.IGNORECASE)
     data = {
-        "generatedAt":  datetime.now(timezone.utc).isoformat(),
-        "sprintNumber": m.group(1) if m else "?",
-        "sprintDates":  m.group(2).strip() if m else tab,
-        "sheetName":    tab,
-        "stats":        calc_stats(items, qa_items),
-        "pods":         pods,
-        "qaItems":      qa_items,
-        "bandwidth":    bandwidth,
-        "teamUpdates":  TEAM_UPDATES,
+        "generatedAt":   datetime.now(timezone.utc).isoformat(),
+        "sprintNumber":  m.group(1) if m else "?",
+        "sprintDates":   m.group(2).strip() if m else tab,
+        "sheetName":     tab,
+        "stats":         calc_stats(items, qa_items),
+        "pods":          pods,
+        "qaItems":       qa_items,
+        "bandwidth":     bandwidth,
+        "teamUpdates":   team_updates,
+        "announcements": announcements,
+        "devsecEpics":   devsec_epics,
     }
 
     with open("data.json","w") as f:
         json.dump(data, f, indent=2, ensure_ascii=False)
 
     data_str = json.dumps(data, ensure_ascii=True)
-    html = open("index.html").read()
-    html = re.sub(r'var D = .*?; /\* DATA_PLACEHOLDER \*/', 'var D = null; /* DATA_PLACEHOLDER */', html)
-    html = html.replace("var D = null; /* DATA_PLACEHOLDER */", f"var D = {data_str};")
-    open("index.html","w").write(html)
+
+    for html_file in ["index.html", "founder.html"]:
+        if not os.path.exists(html_file):
+            continue
+        html = open(html_file).read()
+        # Replace var D = <anything> on that line — works whether placeholder comment is present or not
+        html = re.sub(r'^var D = .*$', f'var D = {data_str}; /* DATA_PLACEHOLDER */', html, flags=re.MULTILINE)
+        open(html_file,"w").write(html)
+        print(f"Updated {html_file}")
+
     print("Done.")
 
 if __name__ == "__main__":

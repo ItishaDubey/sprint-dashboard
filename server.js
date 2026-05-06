@@ -2,7 +2,10 @@ require('dotenv').config();
 const express = require('express');
 const cron = require('node-cron');
 const { google } = require('googleapis');
+const fs = require('fs');
+const path = require('path');
 const app = express();
+app.use(express.json({ limit: '1mb' }));
 const PORT = process.env.PORT || 3000;
 
 // ─── CONFIG ────────────────────────────────────────────────────────────────
@@ -348,12 +351,63 @@ async function refresh() {
 }
 
 // ─── ROUTES ────────────────────────────────────────────────────────────────
-app.get('/', (req, res) => {
+app.get('/', (_req, res) => {
   res.setHeader('Content-Type', 'text/html');
   res.send(cachedHTML);
 });
 
-app.get('/health', (req, res) => res.json({ ok: true, lastUpdated }));
+app.get('/health', (_req, res) => res.json({ ok: true, lastUpdated }));
+
+app.get('/founder', (_req, res) => {
+  const file = path.join(__dirname, 'founder.html');
+  if (fs.existsSync(file)) {
+    res.setHeader('Content-Type', 'text/html');
+    res.send(fs.readFileSync(file, 'utf8'));
+  } else {
+    res.status(404).send('founder.html not found — run the data fetch script first.');
+  }
+});
+
+app.get('/data.json', (_req, res) => {
+  const file = path.join(__dirname, 'data.json');
+  if (fs.existsSync(file)) {
+    res.setHeader('Content-Type', 'application/json');
+    res.send(fs.readFileSync(file, 'utf8'));
+  } else {
+    res.status(404).json({ error: 'data.json not found' });
+  }
+});
+
+app.get('/admin', (_req, res) => {
+  const file = path.join(__dirname, 'admin.html');
+  if (fs.existsSync(file)) {
+    res.setHeader('Content-Type', 'text/html');
+    res.send(fs.readFileSync(file, 'utf8'));
+  } else {
+    res.status(404).send('admin.html not found');
+  }
+});
+
+app.get('/admin.html', (_req, res) => {
+  const file = path.join(__dirname, 'admin.html');
+  if (fs.existsSync(file)) {
+    res.setHeader('Content-Type', 'text/html');
+    res.send(fs.readFileSync(file, 'utf8'));
+  } else {
+    res.status(404).send('Not found');
+  }
+});
+
+app.post('/admin/save', (req, res) => {
+  try {
+    const config = req.body;
+    if (!config || typeof config !== 'object') return res.status(400).json({ error: 'Invalid body' });
+    fs.writeFileSync(path.join(__dirname, 'team_config.json'), JSON.stringify(config, null, 2));
+    res.json({ ok: true });
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
 
 app.get('/refresh', async (req, res) => {
   // Manual trigger: GET /refresh?secret=YOUR_SECRET
