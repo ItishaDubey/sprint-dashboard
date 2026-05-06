@@ -196,11 +196,11 @@ def call_gemini(prompt, max_tokens=1500):
         try:
             req = urllib.request.Request(url, data=payload,
                                          headers={"Content-Type": "application/json"}, method="POST")
-            with urllib.request.urlopen(req, timeout=45) as resp:
+            with urllib.request.urlopen(req, timeout=90) as resp:
                 result = json.loads(resp.read())
                 return result["candidates"][0]["content"]["parts"][0]["text"].strip()
         except urllib.error.HTTPError as e:
-            if e.code == 429 and attempt < 2:
+            if e.code in (429, 503) and attempt < 2:
                 continue
             raise
     raise RuntimeError("Gemini API: max retries exceeded")
