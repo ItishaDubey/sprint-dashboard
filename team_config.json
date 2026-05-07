@@ -7,13 +7,6 @@
       "status": "Letting Go - July 15th"
     }
   ],
-  "announcements": [
-    {
-      "type": "info",
-      "title": "Manpreet",
-      "body": "Letting Go",
-      "date": "2026-07-15"
-    }
-  ],
+  "announcements": [],
   "itemOverrides": []
 }
