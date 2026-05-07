@@ -5,6 +5,18 @@
       "name": "Avish",
       "detail": "Replacement in progress; finding someonw with similar backgroound",
       "status": "Resigned"
+    },
+    {
+      "type": "info",
+      "name": "Akshay(HL BE)",
+      "detail": "No replacement in progress",
+      "status": "May 30th LWD"
+    },
+    {
+      "type": "replacement",
+      "name": "Shivam (FE ; Overall)",
+      "detail": "Offer letter to replacement sent out.",
+      "status": "July 15th LWD"
     }
   ],
   "announcements": []
