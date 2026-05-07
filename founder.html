@@ -147,6 +147,31 @@ body{background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSy
 .qa-title{font-size:13px;font-weight:700;color:#2b6cb0;display:flex;align-items:center;gap:7px;}
 .qa-items{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));}
 
+/* ── TABS ── */
+.tab-bar{background:#fff;border-bottom:1px solid var(--border);padding:0 32px;display:flex;gap:0;}
+.tab-btn{padding:12px 22px;font-size:13px;font-weight:600;color:var(--muted);border:none;background:none;cursor:pointer;border-bottom:3px solid transparent;margin-bottom:-1px;transition:.12s;}
+.tab-btn:hover{color:var(--text);}
+.tab-btn.active{color:#1a202c;border-bottom-color:#1a202c;}
+
+/* ── SUMMARY LAYOUT ── */
+.sum-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:4px;}
+.sum-col{background:var(--card);border-radius:12px;border:1px solid var(--border);overflow:hidden;}
+.sum-col-head{padding:12px 16px;display:flex;align-items:center;gap:8px;border-bottom:1px solid var(--border);}
+.sum-col-title{font-size:13px;font-weight:700;}
+.sum-count{font-size:11px;font-weight:600;padding:2px 8px;border-radius:10px;margin-left:auto;}
+.sum-done .sum-col-head{background:#f0fff4;}.sum-done .sum-col-title{color:#276749;}.sum-done .sum-count{background:#c6f6d5;color:#276749;}
+.sum-prog .sum-col-head{background:#ebf8ff;}.sum-prog .sum-col-title{color:#2b6cb0;}.sum-prog .sum-count{background:#bee3f8;color:#2b6cb0;}
+.sum-block .sum-col-head{background:#fff5f5;}.sum-block .sum-col-title{color:#c53030;}.sum-block .sum-count{background:#fed7d7;color:#c53030;}
+.sum-pod-group{border-top:1px solid var(--border);}
+.sum-pod-group:first-child{border-top:none;}
+.sum-pod-label{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;padding:7px 16px 3px;color:var(--muted);}
+.sum-item{padding:5px 16px 5px 20px;display:flex;align-items:baseline;gap:7px;font-size:12px;line-height:1.4;}
+.sum-item:hover{background:#f7fafc;}
+.sum-feat{flex:1;color:var(--text);}
+.sum-asgn{font-size:10px;color:var(--hint);white-space:nowrap;}
+.sum-jira{font-size:10px;font-family:monospace;color:#a0aec0;}
+.sum-empty{padding:20px 16px;font-size:12px;color:var(--hint);font-style:italic;}
+
 /* ── FOOTER ── */
 .footer{text-align:center;font-size:11px;color:var(--hint);padding:16px 0 28px;}
 
@@ -155,6 +180,8 @@ body{background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSy
   .pods-grid{grid-template-columns:1fr;}
   .pod-full{grid-column:1;}
   .hdr{flex-direction:column;align-items:flex-start;}
+  .sum-grid{grid-template-columns:1fr;}
+  .tab-bar{padding:0 16px;}
 }
 </style>
 </head>
@@ -175,20 +202,27 @@ body{background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSy
   </div>
 </div>
 
-<!-- ANNOUNCEMENTS -->
+<!-- TAB BAR -->
+<div class="tab-bar">
+  <button class="tab-btn active" id="tab-btn-summary" onclick="switchTab('summary')">Summary</button>
+  <button class="tab-btn" id="tab-btn-detail" onclick="switchTab('detail')">Full Detail</button>
+</div>
+
+<!-- ALWAYS-VISIBLE: announcements + blockers + team updates -->
 <div id="annc-strip" style="display:none;margin:14px 32px 0"></div>
-
-<!-- BLOCKERS -->
 <div class="alert-strip" id="alert-strip"></div>
-
-<!-- TEAM UPDATES -->
 <div id="updates-outer" style="margin:14px 32px 0">
   <div class="section-lbl" style="margin-bottom:8px">Team changes &amp; announcements</div>
   <div class="updates-banner" id="updates-banner"></div>
 </div>
 
-<!-- MAIN -->
-<div class="main">
+<!-- ══ SUMMARY TAB ══ -->
+<div id="tab-summary" class="main">
+  <div class="sum-grid" id="sum-grid"></div>
+</div>
+
+<!-- ══ DETAIL TAB ══ -->
+<div id="tab-detail" class="main" style="display:none">
 
   <!-- PODS -->
   <div class="section-lbl">Pods — Resources &amp; Sprint Items</div>
@@ -612,8 +646,81 @@ function render(d){
   /* devsec epics */
   renderDevSecEpics(d.devsecEpics);
 
+  /* summary tab */
+  renderSummary(d);
+
   /* footer */
   document.getElementById("footer").textContent="Auto-refreshed daily · Sprint "+d.sprintNumber+" · "+d.sprintDates;
+}
+
+/* ─────────────────────────────────────────────
+   TAB SWITCHING
+───────────────────────────────────────────── */
+function switchTab(t){
+  document.getElementById('tab-summary').style.display = t==='summary'?'':'none';
+  document.getElementById('tab-detail').style.display  = t==='detail' ?'':'none';
+  document.getElementById('tab-btn-summary').className = 'tab-btn'+(t==='summary'?' active':'');
+  document.getElementById('tab-btn-detail').className  = 'tab-btn'+(t==='detail' ?' active':'');
+}
+
+/* ─────────────────────────────────────────────
+   SUMMARY TAB RENDER
+───────────────────────────────────────────── */
+var POD_NAMES = {hl_audio:"HL Audio",hl_ego:"HL Ego",engage:"KGeN Engage",kstore:"KStore",devsec:"DevSec",qa_releases:"QA / Releases"};
+
+function isDone(s){return /done/i.test(s)||s==="In QA";}
+function isInProgress(s){return /progress|review/i.test(s)||s==="In QA";}
+function isBlocked(s){return /block/i.test(s);}
+
+function renderSummary(d){
+  var allItems=[];
+  (d.pods||[]).forEach(function(p){(p.items||[]).forEach(function(i){allItems.push(i);});});
+  (d.qaItems||[]).forEach(function(i){allItems.push(i);});
+
+  function groupByPod(items){
+    var map={};
+    items.forEach(function(i){
+      var pod=POD_NAMES[i.pod]||i.pod;
+      if(!map[pod]) map[pod]=[];
+      map[pod].push(i);
+    });
+    return map;
+  }
+
+  function colHtml(cls, icon, title, items){
+    var grouped=groupByPod(items);
+    var pods=Object.keys(grouped);
+    var body='';
+    if(!pods.length){
+      body='<div class="sum-empty">None this sprint</div>';
+    } else {
+      pods.forEach(function(pod){
+        body+='<div class="sum-pod-group"><div class="sum-pod-label">'+e(pod)+'</div>';
+        grouped[pod].forEach(function(i){
+          var feat=i.feature.length>72?i.feature.slice(0,70)+'…':i.feature;
+          var asgn=i.assignee&&i.assignee!=='-'?'<span class="sum-asgn">'+e(i.assignee.split(' ')[0])+'</span>':'';
+          var jira=i.jira&&i.jira!=='-'?'<span class="sum-jira">'+e(i.jira)+'</span>':'';
+          body+='<div class="sum-item"><span class="sum-feat">'+e(feat)+'</span>'+asgn+jira+'</div>';
+        });
+        body+='</div>';
+      });
+    }
+    return '<div class="sum-col '+cls+'">'
+      +'<div class="sum-col-head">'
+      +'<span style="font-size:15px">'+icon+'</span>'
+      +'<span class="sum-col-title">'+title+'</span>'
+      +'<span class="sum-count">'+items.length+'</span>'
+      +'</div>'+body+'</div>';
+  }
+
+  var done    = allItems.filter(function(i){return isDone(i.status);});
+  var inProg  = allItems.filter(function(i){return !isDone(i.status)&&isInProgress(i.status);});
+  var blocked = allItems.filter(function(i){return isBlocked(i.status);});
+
+  document.getElementById('sum-grid').innerHTML =
+    colHtml('sum-done',  '✅', 'Releases / Completed', done)  +
+    colHtml('sum-prog',  '🔄', 'In Progress',           inProg)+
+    colHtml('sum-block', '🚨', 'Blockers',              blocked);
 }
 
 /* ─────────────────────────────────────────────
