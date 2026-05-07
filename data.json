@@ -1,14 +1,14 @@
 {
-  "generatedAt": "2026-05-07T16:43:53.525737+00:00",
+  "generatedAt": "2026-05-07T16:46:22.960571+00:00",
   "sprintNumber": "69",
   "sprintDates": "[27 Apr - 8 May]",
   "sheetName": "SPRINT 69 [27 Apr - 8 May]",
   "stats": {
     "total": 56,
-    "done": 18,
+    "done": 19,
     "inProgress": 3,
     "blocked": 0,
-    "notStarted": 35
+    "notStarted": 34
   },
   "pods": [
     {
@@ -287,7 +287,7 @@
           "pod": "engage",
           "feature": "Handle the exception for the withdrawal stake",
           "jira": "TECH-21104",
-          "status": "To Do",
+          "status": "In QA",
           "assignee": "Nilesh Pawar",
           "notes": ""
         }
@@ -791,18 +791,18 @@
     },
     {
       "pri": "High",
-      "name": "Remove Non-Critical Applications from Public Exposure",
+      "name": "Remove Non-Critical Apps from Public Exposure",
       "desc": "Reduce external attack surface across humynlabs kgen kratos exlr8"
     },
     {
       "pri": "High",
-      "name": "Investigate Active Infections & Anomalies Across AWS GCP Cloudflare",
+      "name": "Investigate Active Infections & Anomalies",
       "desc": "Perform deep threat investigation across multi-cloud environment"
     },
     {
       "pri": "High",
-      "name": "Security Posture Review of Existing GKE Cluster & New AWS Clusters",
-      "desc": "Perform comprehensive Kubernetes Security Posture Management review for existing GCP GKE and new AWS Clusters"
+      "name": "Security Posture Review of GKE & AWS Clusters",
+      "desc": "Perform comprehensive Kubernetes Security Posture Management review"
     },
     {
       "pri": "High",
@@ -811,7 +811,7 @@
     },
     {
       "pri": "Medium",
-      "name": "Design & Plan Kubernetes Cluster Segregation Strategy",
+      "name": "Design Kubernetes Cluster Segregation Strategy",
       "desc": "Design architecture for segregating workloads into multiple clusters to reduce blast radius"
     }
   ]
