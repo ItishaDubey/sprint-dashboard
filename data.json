@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-05-07T05:25:50.943171+00:00",
+  "generatedAt": "2026-05-07T06:22:21.499317+00:00",
   "sprintNumber": "69",
   "sprintDates": "[27 Apr - 8 May]",
   "sheetName": "SPRINT 69 [27 Apr - 8 May]",
@@ -527,7 +527,7 @@
     },
     {
       "pod": "qa_releases",
-      "feature": "Click reduction on the quest journey - App",
+      "feature": "Click reduction on the quest journey - App & Task 2 and Task 1 in Quest",
       "jira": "HL-1",
       "status": "In QA",
       "assignee": "Kumaragurubaran Kanagaraj",
