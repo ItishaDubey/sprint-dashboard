@@ -27,8 +27,8 @@ POD_CONFIG = {
 }
 
 STATIC_TEAMS = {
-    "engage":   ["Harshada","Manpreet","Namrata","Shaurya","Swetha (QA)"],
-    "kstore":   ["Jitendra","Shahid","Relin (QA)"],
+    "engage":   ["Harshada","Manpreet","Namrata","Nilesh","Shaurya","Kawaljeet (QA)"],
+    "kstore":   ["Jitendra","Shahid","Relin (QA)","Yuvaraj (QA)"],
     "hl_audio": ["Shaurya","Pratik","Namrata","Nilesh","Jaya","Sameer","Kevin (QA)","Swetha (QA)"],
     "devsec":   ["Arun Kumar Krishna (DevOps)","Karan Sabharwal (Security)"],
 }
