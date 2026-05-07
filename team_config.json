@@ -1,4 +1,11 @@
 {
-  "teamUpdates": [],
+  "teamUpdates": [
+    {
+      "type": "info",
+      "name": "Avish",
+      "detail": "Replacement in progress; finding someonw with similar backgroound",
+      "status": "Resigned"
+    }
+  ],
   "announcements": []
 }
