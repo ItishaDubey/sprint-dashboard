@@ -33,10 +33,12 @@ POD_CONFIG = {
 STATIC_TEAMS = {
     "engage":   ["Harshada","Manpreet","Namrata","Shaurya","Swetha (QA)"],
     "kstore":   ["Jitendra","Shahid","Relin (QA)"],
-    "hl_audio": ["Guru","Shaurya","Pratik","Namrata","Nilesh","Jaya","Sameer","Kevin (QA)","Swetha (QA)"],
-    "hl_ego":   ["Karthik","Avinash"],
+    "hl_audio": ["Shaurya","Pratik","Namrata","Nilesh","Jaya","Sameer","Kevin (QA)","Swetha (QA)"],
+    "hl_ego":   ["Karthik"],
     "devsec":   ["Arun Kumar Krishna (DevOps)","Karan Sabharwal (Security)"],
 }
+
+AVAILABLE_BANDWIDTH = {"Avinash"}
 
 TEAM_UPDATES_FALLBACK = [
     {"type":"resigned",    "name":"Avish",                 "detail":"Father's accident. WFH 9-17 Apr. Tasks re-routed.", "status":"WFH 9-17 Apr"},
@@ -224,8 +226,12 @@ def claude_bandwidth_summary(items, qa_items):
     bandwidth = []
     for name, v in sorted(person_map.items(), key=lambda x: -x[1]["count"]):
         count = v["count"]
-        load = "light" if count <= 2 else "moderate" if count <= 4 else "heavy"
-        bandwidth.append({"name": name, "pod": v["pod"], "load": load,
+        if name in AVAILABLE_BANDWIDTH:
+            load, pod = "available", "available"
+        else:
+            load = "light" if count <= 2 else "moderate" if count <= 4 else "heavy"
+            pod = v["pod"]
+        bandwidth.append({"name": name, "pod": pod, "load": load,
                           "taskCount": count, "tasks": [], "hasBlocker": v["blocker"], "blockerNote": ""})
     print(f"Bandwidth summary: {len(bandwidth)} people")
     return bandwidth
