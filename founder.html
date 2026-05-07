@@ -695,7 +695,9 @@ function renderSummary(d){
       body='<div class="sum-empty">None this sprint</div>';
     } else {
       pods.forEach(function(pod){
-        body+='<div class="sum-pod-group"><div class="sum-pod-label">'+e(pod)+'</div>';
+        var uniq=new Set(grouped[pod].map(function(i){return i.assignee&&i.assignee!=='-'?i.assignee.split(' ')[0]:null;}).filter(Boolean)).size;
+        var resLabel=uniq?'<span style="font-size:9px;background:#e2e8f0;color:#4a5568;padding:1px 6px;border-radius:8px;font-weight:600;margin-left:6px;">'+uniq+' resource'+(uniq>1?'s':'')+'</span>':'';
+        body+='<div class="sum-pod-group"><div class="sum-pod-label">'+e(pod)+resLabel+'</div>';
         grouped[pod].forEach(function(i){
           var feat=i.feature.length>72?i.feature.slice(0,70)+'…':i.feature;
           var asgn=i.assignee&&i.assignee!=='-'?'<span class="sum-asgn">'+e(i.assignee.split(' ')[0])+'</span>':'';
