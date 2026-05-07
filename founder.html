@@ -172,6 +172,26 @@ body{background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSy
 .sum-jira{font-size:10px;font-family:monospace;color:#a0aec0;}
 .sum-empty{padding:20px 16px;font-size:12px;color:var(--hint);font-style:italic;}
 
+/* ── EMAIL TAB ── */
+.email-wrap{max-width:680px;margin:0 auto;}
+.email-toolbar{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;flex-wrap:wrap;gap:8px;}
+.email-toolbar-title{font-size:12px;font-weight:600;color:var(--muted);}
+.copy-btn{padding:8px 18px;background:#1a202c;color:#fff;border:none;border-radius:8px;font-size:12px;font-weight:600;cursor:pointer;transition:.12s;}
+.copy-btn:hover{background:#2d3748;}
+.copy-btn.copied{background:#38a169;}
+.email-card{background:#fff;border:1px solid var(--border);border-radius:12px;padding:28px 32px;font-family:Georgia,serif;font-size:14px;line-height:1.7;color:#1a202c;white-space:pre-wrap;word-break:break-word;}
+.email-card h2{font-size:17px;font-weight:700;margin:0 0 4px;font-family:inherit;}
+.email-card .email-meta{font-size:12px;color:var(--muted);margin-bottom:20px;font-family:-apple-system,sans-serif;}
+.email-card .email-section{margin-top:18px;}
+.email-card .email-sec-head{font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.07em;color:var(--muted);margin-bottom:8px;font-family:-apple-system,sans-serif;border-bottom:1px solid var(--border);padding-bottom:5px;}
+.email-card .email-pod-name{font-size:12px;font-weight:700;margin:10px 0 3px;font-family:-apple-system,sans-serif;}
+.email-card .email-item{font-size:13px;padding-left:14px;position:relative;margin:1px 0;}
+.email-card .email-item::before{content:"–";position:absolute;left:0;color:var(--hint);}
+.email-card .email-none{font-size:13px;color:var(--muted);font-style:italic;}
+.email-card .email-stats{display:flex;gap:18px;margin-bottom:4px;flex-wrap:wrap;}
+.email-card .email-stat{font-size:13px;font-family:-apple-system,sans-serif;}
+.email-card .email-sig{margin-top:24px;font-size:12px;color:var(--muted);font-family:-apple-system,sans-serif;border-top:1px solid var(--border);padding-top:12px;}
+
 /* ── FOOTER ── */
 .footer{text-align:center;font-size:11px;color:var(--hint);padding:16px 0 28px;}
 
@@ -206,6 +226,7 @@ body{background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSy
 <div class="tab-bar">
   <button class="tab-btn active" id="tab-btn-summary" onclick="switchTab('summary')">Summary</button>
   <button class="tab-btn" id="tab-btn-detail" onclick="switchTab('detail')">Full Detail</button>
+  <button class="tab-btn" id="tab-btn-email" onclick="switchTab('email')">Email Draft</button>
 </div>
 
 <!-- ALWAYS-VISIBLE: announcements + blockers + team updates -->
@@ -219,6 +240,17 @@ body{background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSy
 <!-- ══ SUMMARY TAB ══ -->
 <div id="tab-summary" class="main">
   <div class="sum-grid" id="sum-grid"></div>
+</div>
+
+<!-- ══ EMAIL TAB ══ -->
+<div id="tab-email" class="main" style="display:none">
+  <div class="email-wrap">
+    <div class="email-toolbar">
+      <span class="email-toolbar-title">Ready-to-send sprint update · auto-generated from live data</span>
+      <button class="copy-btn" id="copy-btn" onclick="copyEmail()">Copy to Clipboard</button>
+    </div>
+    <div class="email-card" id="email-body"></div>
+  </div>
 </div>
 
 <!-- ══ DETAIL TAB ══ -->
@@ -649,6 +681,9 @@ function render(d){
   /* summary tab */
   renderSummary(d);
 
+  /* email tab */
+  renderEmail(d);
+
   /* footer */
   document.getElementById("footer").textContent="Auto-refreshed daily · Sprint "+d.sprintNumber+" · "+d.sprintDates;
 }
@@ -657,10 +692,10 @@ function render(d){
    TAB SWITCHING
 ───────────────────────────────────────────── */
 function switchTab(t){
-  document.getElementById('tab-summary').style.display = t==='summary'?'':'none';
-  document.getElementById('tab-detail').style.display  = t==='detail' ?'':'none';
-  document.getElementById('tab-btn-summary').className = 'tab-btn'+(t==='summary'?' active':'');
-  document.getElementById('tab-btn-detail').className  = 'tab-btn'+(t==='detail' ?' active':'');
+  ['summary','detail','email'].forEach(function(id){
+    document.getElementById('tab-'+id).style.display = t===id?'':'none';
+    document.getElementById('tab-btn-'+id).className = 'tab-btn'+(t===id?' active':'');
+  });
 }
 
 /* ─────────────────────────────────────────────
@@ -723,6 +758,110 @@ function renderSummary(d){
     colHtml('sum-done',  '✅', 'Releases / Completed', done)  +
     colHtml('sum-prog',  '🔄', 'In Progress',           inProg)+
     colHtml('sum-block', '🚨', 'Blockers',              blocked);
+}
+
+/* ─────────────────────────────────────────────
+   EMAIL TAB
+───────────────────────────────────────────── */
+var _emailText = '';
+
+function renderEmail(d){
+  var allItems = [];
+  (d.pods||[]).forEach(function(p){(p.items||[]).forEach(function(i){allItems.push(i);});});
+  (d.qaItems||[]).forEach(function(i){allItems.push(i);});
+
+  var s = d.stats || {};
+  var pct = s.total ? Math.round((s.done||0)*100/s.total) : 0;
+
+  function itemsByPod(items){
+    var map = {};
+    items.forEach(function(i){
+      var pod = POD_NAMES[i.pod]||i.pod;
+      if(!map[pod]) map[pod]=[];
+      map[pod].push(i);
+    });
+    return map;
+  }
+
+  function section(label, items){
+    if(!items.length) return '<div class="email-section"><div class="email-sec-head">'+label+'</div><div class="email-none">None this sprint</div></div>';
+    var grouped = itemsByPod(items);
+    var html = '<div class="email-section"><div class="email-sec-head">'+label+'</div>';
+    Object.keys(grouped).forEach(function(pod){
+      var uniq = new Set(grouped[pod].map(function(i){return i.assignee&&i.assignee!=='-'?i.assignee.split(' ')[0]:null;}).filter(Boolean));
+      html += '<div class="email-pod-name">'+e(pod)+(uniq.size?' <span style="font-weight:400;color:var(--muted);font-size:11px;">('+uniq.size+' resource'+(uniq.size>1?'s':'')+')</span>':'')+'</div>';
+      grouped[pod].forEach(function(i){
+        var feat = i.feature.length>90 ? i.feature.slice(0,88)+'…' : i.feature;
+        var asgn = i.assignee&&i.assignee!=='-' ? ' — '+i.assignee.split(' ')[0] : '';
+        html += '<div class="email-item">'+e(feat)+e(asgn)+'</div>';
+      });
+    });
+    html += '</div>';
+    return html;
+  }
+
+  var done    = allItems.filter(function(i){return isDone(i.status);});
+  var inProg  = allItems.filter(function(i){return !isDone(i.status)&&isInProgress(i.status);});
+  var blocked = allItems.filter(function(i){return isBlocked(i.status);});
+
+  var tuHtml = (d.teamUpdates||[]).map(function(u){
+    return '<div class="email-item">'+e(u.name)+(u.detail?' — '+e(u.detail):'')+(u.status?' ['+e(u.status)+']':'')+'</div>';
+  }).join('');
+
+  var html =
+    '<h2>Sprint '+e(d.sprintNumber)+' Update &nbsp;·&nbsp; '+e(d.sprintDates)+'</h2>'
+    +'<div class="email-meta">Auto-generated · '+new Date(d.generatedAt).toLocaleString('en-IN',{day:'numeric',month:'short',year:'numeric',hour:'2-digit',minute:'2-digit'})+'</div>'
+    +'<div class="email-stats">'
+    +'<span class="email-stat">📦 <strong>'+s.total+'</strong> total items</span>'
+    +'<span class="email-stat">✅ <strong>'+s.done+'</strong> done</span>'
+    +'<span class="email-stat">🔄 <strong>'+s.inProgress+'</strong> in progress</span>'
+    +(s.blocked?'<span class="email-stat">🚨 <strong>'+s.blocked+'</strong> blocked</span>':'<span class="email-stat">🟢 No blockers</span>')
+    +'<span class="email-stat">📊 <strong>'+pct+'%</strong> complete</span>'
+    +'</div>'
+    + section('✅  Releases / Completed ('+done.length+')', done)
+    + section('🔄  In Progress ('+inProg.length+')', inProg)
+    + section('🚨  Blockers', blocked)
+    +(tuHtml?'<div class="email-section"><div class="email-sec-head">👥  Team Updates</div>'+tuHtml+'</div>':'')
+    +'<div class="email-sig">This update is auto-generated from the Sprint Dashboard. For full details visit the Founder\'s Review dashboard.</div>';
+
+  document.getElementById('email-body').innerHTML = html;
+
+  // also build plain-text version for clipboard
+  function plainSection(label, items){
+    if(!items.length) return label+'\nNone this sprint\n';
+    var grouped = itemsByPod(items);
+    var txt = label+'\n';
+    Object.keys(grouped).forEach(function(pod){
+      txt += '\n  '+pod+':\n';
+      grouped[pod].forEach(function(i){
+        var feat = i.feature.length>90?i.feature.slice(0,88)+'…':i.feature;
+        var asgn = i.assignee&&i.assignee!=='-'?' — '+i.assignee.split(' ')[0]:'';
+        txt += '  • '+feat+asgn+'\n';
+      });
+    });
+    return txt;
+  }
+
+  _emailText =
+    'Sprint '+d.sprintNumber+' Update · '+d.sprintDates+'\n'
+    +'Generated: '+new Date(d.generatedAt).toLocaleString('en-IN',{day:'numeric',month:'short',year:'numeric',hour:'2-digit',minute:'2-digit'})+'\n\n'
+    +'📦 '+s.total+' total  ✅ '+s.done+' done  🔄 '+s.inProgress+' in progress  '+(s.blocked?'🚨 '+s.blocked+' blocked':'🟢 No blockers')+'  📊 '+pct+'% complete\n\n'
+    + plainSection('✅ RELEASES / COMPLETED ('+done.length+')', done)+'\n'
+    + plainSection('🔄 IN PROGRESS ('+inProg.length+')', inProg)+'\n'
+    + plainSection('🚨 BLOCKERS', blocked)+'\n'
+    +(d.teamUpdates&&d.teamUpdates.length
+      ? '👥 TEAM UPDATES\n'+(d.teamUpdates.map(function(u){return '  • '+u.name+(u.detail?' — '+u.detail:'')+(u.status?' ['+u.status+']':'');}).join('\n'))+'\n'
+      : '');
+}
+
+function copyEmail(){
+  if(!_emailText) return;
+  navigator.clipboard.writeText(_emailText).then(function(){
+    var btn = document.getElementById('copy-btn');
+    btn.textContent = 'Copied!';
+    btn.className = 'copy-btn copied';
+    setTimeout(function(){btn.textContent='Copy to Clipboard';btn.className='copy-btn';}, 2500);
+  });
 }
 
 /* ─────────────────────────────────────────────
