@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-05-06T17:52:06.267266+00:00",
+  "generatedAt": "2026-05-07T05:06:16.136881+00:00",
   "sprintNumber": "69",
   "sprintDates": "[27 Apr - 8 May]",
   "sheetName": "SPRINT 69 [27 Apr - 8 May]",
@@ -737,32 +737,7 @@
       "blockerNote": ""
     }
   ],
-  "teamUpdates": [
-    {
-      "type": "resigned",
-      "name": "Avish",
-      "detail": "Father's accident. WFH 9-17 Apr. Tasks re-routed.",
-      "status": "WFH 9-17 Apr"
-    },
-    {
-      "type": "replacement",
-      "name": "Akshay (HL Backend)",
-      "detail": "3-month notice. Replacement hiring underway.",
-      "status": "In Progress"
-    },
-    {
-      "type": "replacement",
-      "name": "Shivam (GKMIT)",
-      "detail": "3-month notice. Replacement hiring underway.",
-      "status": "In Progress"
-    },
-    {
-      "type": "info",
-      "name": "Raghav & Pankaj (GKMIT)",
-      "detail": "No replacement needed. Update to GKMIT pending.",
-      "status": "Update to GKMIT"
-    }
-  ],
+  "teamUpdates": [],
   "announcements": [],
   "devsecEpics": [
     {
@@ -812,18 +787,18 @@
     },
     {
       "pri": "High",
-      "name": "Remove Non-Critical Apps from Public Exposure",
+      "name": "Remove Non-Critical Applications from Public Exposure",
       "desc": "Reduce external attack surface across humynlabs kgen kratos exlr8."
     },
     {
       "pri": "High",
-      "name": "Investigate Active Infections & Multi-Cloud Anomalies",
+      "name": "Investigate Active Infections & Anomalies",
       "desc": "Perform deep threat investigation across multi-cloud environment."
     },
     {
       "pri": "High",
-      "name": "Kubernetes Security Posture Review (GKE & EKS)",
-      "desc": "Perform comprehensive K8s Security Posture Management review for existing GCP GKE and new AWS clusters."
+      "name": "Security Posture Review of Existing GKE & New AWS Clusters",
+      "desc": "Comprehensive K8s Security Posture Management review for existing GKE and new AWS clusters."
     },
     {
       "pri": "High",
@@ -832,7 +807,7 @@
     },
     {
       "pri": "Medium",
-      "name": "Design Kubernetes Cluster Segregation Strategy",
+      "name": "Design & Plan Kubernetes Cluster Segregation Strategy",
       "desc": "Design architecture for segregating workloads into multiple clusters to reduce blast radius."
     }
   ]
