@@ -1,9 +1,4 @@
 {
-  "teamUpdates": [
-    {"type":"resigned",    "name":"Avish",                   "detail":"Father's accident. WFH 9-17 Apr. Tasks re-routed.", "status":"WFH 9-17 Apr"},
-    {"type":"replacement", "name":"Akshay (HL Backend)",     "detail":"3-month notice. Replacement hiring underway.",       "status":"In Progress"},
-    {"type":"replacement", "name":"Shivam (GKMIT)",          "detail":"3-month notice. Replacement hiring underway.",       "status":"In Progress"},
-    {"type":"info",        "name":"Raghav & Pankaj (GKMIT)", "detail":"No replacement needed. Update to GKMIT pending.",   "status":"Update to GKMIT"}
-  ],
+  "teamUpdates": [],
   "announcements": []
 }
