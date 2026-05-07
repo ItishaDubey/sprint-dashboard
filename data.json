@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-05-07T05:06:16.136881+00:00",
+  "generatedAt": "2026-05-07T05:07:04.409059+00:00",
   "sprintNumber": "69",
   "sprintDates": "[27 Apr - 8 May]",
   "sheetName": "SPRINT 69 [27 Apr - 8 May]",
@@ -737,7 +737,14 @@
       "blockerNote": ""
     }
   ],
-  "teamUpdates": [],
+  "teamUpdates": [
+    {
+      "type": "info",
+      "name": "Avish",
+      "detail": "Replacement in progress; finding someonw with similar backgroound",
+      "status": "Resigned"
+    }
+  ],
   "announcements": [],
   "devsecEpics": [
     {
@@ -783,27 +790,27 @@
     {
       "pri": "High",
       "name": "Cloudflare WAF Deployment for Critical Domains",
-      "desc": "Implement and tune WAF protection for humynlabs kgen kratos exlr8 domains."
+      "desc": "Implement and tune WAF protection for critical domains."
     },
     {
       "pri": "High",
       "name": "Remove Non-Critical Applications from Public Exposure",
-      "desc": "Reduce external attack surface across humynlabs kgen kratos exlr8."
+      "desc": "Reduce external attack surface across all brands."
     },
     {
       "pri": "High",
-      "name": "Investigate Active Infections & Anomalies",
+      "name": "Investigate Active Infections & Anomalies (Multi-Cloud)",
       "desc": "Perform deep threat investigation across multi-cloud environment."
     },
     {
       "pri": "High",
-      "name": "Security Posture Review of Existing GKE & New AWS Clusters",
-      "desc": "Comprehensive K8s Security Posture Management review for existing GKE and new AWS clusters."
+      "name": "Security Posture Review (GKE & New AWS Clusters)",
+      "desc": "Perform comprehensive K8s Security Posture Management review for existing GKE and new AWS clusters."
     },
     {
       "pri": "High",
       "name": "Post-Migration Security Review of New EKS Cluster",
-      "desc": "Perform security validation and hardening of new AWS EKS cluster post migration."
+      "desc": "Perform security validation and hardening of the new AWS EKS cluster post-migration."
     },
     {
       "pri": "Medium",
