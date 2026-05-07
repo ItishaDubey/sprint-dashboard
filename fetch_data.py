@@ -9,9 +9,6 @@ SECTION_MAP = [
     ("hl tasks",                "hl_audio"),
     ("humyn labs — audio",      "hl_audio"),
     ("humyn labs - audio",      "hl_audio"),
-    ("humyn labs — egocentric", "hl_ego"),
-    ("humyn labs - egocentric", "hl_ego"),
-    ("egocentric",              "hl_ego"),
     ("qa items",                "qa_releases"),
     ("to be released",          "qa_releases"),
     ("to be merged",            "qa_releases"),
@@ -20,11 +17,10 @@ SECTION_MAP = [
     ("kstore",                  "kstore"),
 ]
 
-POD_ORDER = ["hl_audio","hl_ego","engage","kstore","devsec"]
+POD_ORDER = ["hl_audio","engage","kstore","devsec"]
 
 POD_CONFIG = {
     "hl_audio": {"name":"Humyn Labs — Audio",     "color":"#9E3360","headBg":"#FDF0F5","lead":"Yogesh",  "note":"Multi-pipeline: validation, annotation, collection, account infra & data ops"},
-    "hl_ego":   {"name":"Humyn Labs — Egocentric", "color":"#9E3360","headBg":"#FDF0F5","lead":"Karthik", "note":""},
     "engage":   {"name":"KGeN Engage",             "color":"#185FA5","headBg":"#EBF5FB","lead":"Guru",    "note":""},
     "kstore":   {"name":"KStore",                  "color":"#3B6D11","headBg":"#EAF7E6","lead":"Julian",  "note":""},
     "devsec":   {"name":"DevSec",                  "color":"#854F0B","headBg":"#FFFBF0","lead":"Itisha",  "note":""},
@@ -34,7 +30,6 @@ STATIC_TEAMS = {
     "engage":   ["Harshada","Manpreet","Namrata","Shaurya","Swetha (QA)"],
     "kstore":   ["Jitendra","Shahid","Relin (QA)"],
     "hl_audio": ["Shaurya","Pratik","Namrata","Nilesh","Jaya","Sameer","Kevin (QA)","Swetha (QA)"],
-    "hl_ego":   ["Karthik"],
     "devsec":   ["Arun Kumar Krishna (DevOps)","Karan Sabharwal (Security)"],
 }
 

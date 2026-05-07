@@ -312,9 +312,6 @@ var TEAM_ROLES = {
     "Kevin":    {role:"QA"},
     "Guru":     {role:"Backend"}
   },
-  hl_ego: {
-    "Karthik":  {role:"Tech Lead",    lead:true}
-  },
   engage: {
     "Guru":     {role:"Tech Lead",    lead:true},
     "Shaurya":  {role:"Tech Lead"},
@@ -486,8 +483,19 @@ function renderItem(i){
     +"</div></div>";
 }
 
+function statusSortKey(s){
+  var v=(s||"").toLowerCase();
+  if(v.includes("block"))   return 0;
+  if(v.includes("progress"))return 1;
+  if(v.includes("review"))  return 2;
+  if(v==="to do")           return 3;
+  if(v.includes("qa")||v.includes("testing")) return 4;
+  if(v.includes("done"))    return 5;
+  return 3;
+}
+
 function renderPod(p, wideClass){
-  var items=p.items||[];
+  var items=(p.items||[]).slice().sort(function(a,b){return statusSortKey(a.status)-statusSortKey(b.status);});
   var nonBlocked=items.filter(function(i){return!i.status||!i.status.toLowerCase().includes("block");});
   var itemsHtml=nonBlocked.length?nonBlocked.map(renderItem).join(""):'<div class="item-empty">No sprint items this cycle</div>';
   return '<div class="pod'+(wideClass?" "+wideClass:"")+'">'
@@ -522,7 +530,7 @@ function computeBandwidth(pods, qaItems){
   }
 
   function podName(podId){
-    var names={hl_audio:"HL Audio",hl_ego:"HL Egocentric",engage:"KGeN Engage",kstore:"KStore",devsec:"DevSec"};
+    var names={hl_audio:"HL Audio",engage:"KGeN Engage",kstore:"KStore",devsec:"DevSec"};
     return names[podId]||podId;
   }
 
@@ -650,8 +658,8 @@ function render(d){
   /* team updates */
   renderUpdates(d.teamUpdates);
 
-  /* pods — HL Audio + Ego side by side, Engage + KStore side by side, DevSec full width */
-  var podOrder=["hl_audio","hl_ego","engage","kstore","devsec"];
+  /* pods — HL Audio + Engage side by side, KStore + DevSec side by side */
+  var podOrder=["hl_audio","engage","kstore","devsec"];
   var podMap={};
   (d.pods||[]).forEach(function(p){podMap[p.id]=p;});
 
@@ -702,7 +710,7 @@ function switchTab(t){
 /* ─────────────────────────────────────────────
    SUMMARY TAB RENDER
 ───────────────────────────────────────────── */
-var POD_NAMES = {hl_audio:"HL Audio",hl_ego:"HL Ego",engage:"KGeN Engage",kstore:"KStore",devsec:"DevSec",qa_releases:"QA / Releases"};
+var POD_NAMES = {hl_audio:"HL Audio",engage:"KGeN Engage",kstore:"KStore",devsec:"DevSec",qa_releases:"QA / Releases"};
 
 function isDone(s){return /^done$/i.test((s||'').trim());}
 function isUpcoming(s){return /in qa|ready for qa|in testing/i.test(s||'');}
