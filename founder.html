@@ -727,34 +727,43 @@ function applyOverrides(items, overrides){
   });
 }
 
+var ACTIVE_POD_ORDER = ["hl_audio","engage","kstore","devsec"];
+var ACTIVE_POD_SET   = new Set(ACTIVE_POD_ORDER);
+
 function renderSummary(d){
   var allItems=[];
-  (d.pods||[]).forEach(function(p){(p.items||[]).forEach(function(i){allItems.push(i);});});
+  (d.pods||[]).filter(function(p){return ACTIVE_POD_SET.has(p.id);})
+    .forEach(function(p){(p.items||[]).forEach(function(i){allItems.push(i);});});
   (d.qaItems||[]).forEach(function(i){allItems.push(i);});
   allItems=applyOverrides(allItems, d.itemOverrides);
 
   function groupByPod(items){
     var map={};
+    var order=[];
+    ACTIVE_POD_ORDER.forEach(function(pid){
+      var name=POD_NAMES[pid];
+      if(name){map[name]=[];order.push(name);}
+    });
     items.forEach(function(i){
       var pod=POD_NAMES[i.pod]||i.pod;
-      if(!map[pod]) map[pod]=[];
+      if(!map[pod]){map[pod]=[];order.push(pod);}
       map[pod].push(i);
     });
-    return map;
+    return {map:map, order:order};
   }
 
   function colHtml(cls, icon, title, items){
-    var grouped=groupByPod(items);
-    var pods=Object.keys(grouped);
+    var grp=groupByPod(items);
+    var pods=grp.order.filter(function(p){return grp.map[p]&&grp.map[p].length;});
     var body='';
     if(!pods.length){
       body='<div class="sum-empty">None this sprint</div>';
     } else {
       pods.forEach(function(pod){
-        var uniq=new Set(grouped[pod].map(function(i){return i.assignee&&i.assignee!=='-'?i.assignee.split(' ')[0]:null;}).filter(Boolean)).size;
+        var uniq=new Set(grp.map[pod].map(function(i){return i.assignee&&i.assignee!=='-'?i.assignee.split(' ')[0]:null;}).filter(Boolean)).size;
         var resLabel=uniq?'<span style="font-size:9px;background:#e2e8f0;color:#4a5568;padding:1px 6px;border-radius:8px;font-weight:600;margin-left:6px;">'+uniq+' resource'+(uniq>1?'s':'')+'</span>':'';
         body+='<div class="sum-pod-group"><div class="sum-pod-label">'+e(pod)+resLabel+'</div>';
-        grouped[pod].forEach(function(i){
+        grp.map[pod].forEach(function(i){
           var feat=i.feature.length>72?i.feature.slice(0,70)+'…':i.feature;
           var asgn=i.assignee&&i.assignee!=='-'?'<span class="sum-asgn">'+e(i.assignee.split(' ')[0])+'</span>':'';
           var jira=i.jira&&i.jira!=='-'?'<span class="sum-jira">'+e(i.jira)+'</span>':'';
@@ -788,30 +797,34 @@ var _emailText = '';
 
 function renderEmail(d){
   var allItems = [];
-  (d.pods||[]).forEach(function(p){(p.items||[]).forEach(function(i){allItems.push(i);});});
+  (d.pods||[]).filter(function(p){return ACTIVE_POD_SET.has(p.id);})
+    .forEach(function(p){(p.items||[]).forEach(function(i){allItems.push(i);});});
   (d.qaItems||[]).forEach(function(i){allItems.push(i);});
 
   var s = d.stats || {};
   var pct = s.total ? Math.round((s.done||0)*100/s.total) : 0;
 
   function itemsByPod(items){
-    var map = {};
+    var map = {}, order = [];
+    ACTIVE_POD_ORDER.forEach(function(pid){
+      var name=POD_NAMES[pid]; if(name){map[name]=[];order.push(name);}
+    });
     items.forEach(function(i){
       var pod = POD_NAMES[i.pod]||i.pod;
-      if(!map[pod]) map[pod]=[];
+      if(!map[pod]){map[pod]=[];order.push(pod);}
       map[pod].push(i);
     });
-    return map;
+    return {map:map, order:order};
   }
 
   function section(label, items){
     if(!items.length) return '<div class="email-section"><div class="email-sec-head">'+label+'</div><div class="email-none">None this sprint</div></div>';
-    var grouped = itemsByPod(items);
+    var grp = itemsByPod(items);
     var html = '<div class="email-section"><div class="email-sec-head">'+label+'</div>';
-    Object.keys(grouped).forEach(function(pod){
-      var uniq = new Set(grouped[pod].map(function(i){return i.assignee&&i.assignee!=='-'?i.assignee.split(' ')[0]:null;}).filter(Boolean));
+    grp.order.filter(function(p){return grp.map[p]&&grp.map[p].length;}).forEach(function(pod){
+      var uniq = new Set(grp.map[pod].map(function(i){return i.assignee&&i.assignee!=='-'?i.assignee.split(' ')[0]:null;}).filter(Boolean));
       html += '<div class="email-pod-name">'+e(pod)+(uniq.size?' <span style="font-weight:400;color:var(--muted);font-size:11px;">('+uniq.size+' resource'+(uniq.size>1?'s':'')+')</span>':'')+'</div>';
-      grouped[pod].forEach(function(i){
+      grp.map[pod].forEach(function(i){
         var feat = i.feature.length>90 ? i.feature.slice(0,88)+'…' : i.feature;
         var asgn = i.assignee&&i.assignee!=='-' ? ' — '+i.assignee.split(' ')[0] : '';
         html += '<div class="email-item">'+e(feat)+e(asgn)+'</div>';
