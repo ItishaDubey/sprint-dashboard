@@ -54,10 +54,10 @@ def read_team_config():
     try:
         with open("team_config.json") as f:
             cfg = json.load(f)
-        return cfg.get("teamUpdates", TEAM_UPDATES_FALLBACK), cfg.get("announcements", [])
+        return cfg.get("teamUpdates", TEAM_UPDATES_FALLBACK), cfg.get("announcements", []), cfg.get("itemOverrides", [])
     except Exception as ex:
         print(f"team_config.json not found or invalid — using fallback: {ex}")
-        return TEAM_UPDATES_FALLBACK, []
+        return TEAM_UPDATES_FALLBACK, [], []
 
 def read_devsec_excel():
     excel_path = "devsec_backlog.xlsx"
@@ -243,7 +243,7 @@ def main():
     items, qa_items = parse(rows)
     pods = build_pods(items)
     bandwidth = claude_bandwidth_summary(items, qa_items)
-    team_updates, announcements = read_team_config()
+    team_updates, announcements, item_overrides = read_team_config()
     devsec_epics = read_devsec_excel()
 
     print(f"Items: {len(items)}, QA: {len(qa_items)}")
@@ -261,6 +261,7 @@ def main():
         "bandwidth":     bandwidth,
         "teamUpdates":   team_updates,
         "announcements": announcements,
+        "itemOverrides": item_overrides,
         "devsecEpics":   devsec_epics,
     }
 

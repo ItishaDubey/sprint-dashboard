@@ -103,6 +103,19 @@ input:focus,select:focus,textarea:focus{outline:none;border-color:#63b3ed;box-sh
     <div id="add-annc-form"></div>
   </div>
 
+  <div class="divider"></div>
+
+  <div class="section">
+    <div class="section-hdr">
+      <span class="section-title">Item Corrections</span>
+      <span class="count-badge" id="ovr-count">0</span>
+    </div>
+    <p style="font-size:12px;color:#a0aec0;margin-bottom:12px">Override status, assignee or title for a specific sprint item by Jira ID. Corrections apply instantly to the Summary and Email tabs.</p>
+    <div id="ovr-list"></div>
+    <button class="btn-add-row" onclick="showAddForm('override')">+ Add Correction</button>
+    <div id="add-ovr-form"></div>
+  </div>
+
   <div class="dl-hint" id="dl-hint">
     <strong>Could not save to server</strong> — on the deployed (Vercel) site the filesystem is read-only.
     <button class="link-btn" onclick="downloadConfig()">Download team_config.json</button> and commit it to your repo to apply changes.
@@ -111,7 +124,7 @@ input:focus,select:focus,textarea:focus{outline:none;border-color:#63b3ed;box-sh
 </div>
 
 <script>
-var state = { teamUpdates: [], announcements: [] };
+var state = { teamUpdates: [], announcements: [], itemOverrides: [] };
 var dirty = false;
 
 fetch('/team_config.json')
@@ -119,11 +132,12 @@ fetch('/team_config.json')
   .then(function(d){
     state.teamUpdates   = d.teamUpdates   || [];
     state.announcements = d.announcements || [];
+    state.itemOverrides = d.itemOverrides || [];
     renderAll();
   })
   .catch(function(){ renderAll(); });
 
-function renderAll(){ renderChanges(); renderAnnouncements(); setDirty(false); }
+function renderAll(){ renderChanges(); renderAnnouncements(); renderOverrides(); setDirty(false); }
 
 function setDirty(v){
   dirty = v;
@@ -304,10 +318,95 @@ function deleteAnnc(i){
   state.announcements.splice(i,1);setDirty(true);renderAnnouncements();
 }
 
+/* ── ITEM OVERRIDES ── */
+var STATUS_OPTS = ['To Do','In Progress','In Review','In QA','Ready for QA','Done','Blocked'];
+
+function renderOverrides(){
+  var el=document.getElementById('ovr-list');
+  document.getElementById('ovr-count').textContent=state.itemOverrides.length;
+  if(!state.itemOverrides.length){
+    el.innerHTML='<div class="empty-state">No corrections yet — add one to fix a wrong status or assignee.</div>';return;
+  }
+  el.innerHTML=state.itemOverrides.map(function(o,i){return overrideCard(o,i);}).join('');
+}
+
+function overrideCard(o,i){
+  var badges='';
+  if(o.status) badges+='<span class="card-status" style="margin-right:4px">Status → '+e(o.status)+'</span>';
+  if(o.assignee) badges+='<span class="card-status" style="margin-right:4px">Assignee → '+e(o.assignee)+'</span>';
+  if(o.feature) badges+='<span class="card-status">Title → '+e(o.feature.slice(0,40))+(o.feature.length>40?'…':'')+'</span>';
+  return '<div class="card" id="oc-'+i+'">'
+    +'<div class="card-body">'
+    +'<span class="type-badge t-info" style="font-family:monospace;font-size:11px">'+e(o.jira||'—')+'</span>'
+    +'<div class="card-name" style="font-size:13px;margin-top:4px">'+e((o.feature||'').slice(0,60)||(o.jira||'Override '+i))+'</div>'
+    +'<div style="margin-top:6px;display:flex;flex-wrap:wrap;gap:4px">'+badges+'</div>'
+    +'</div>'
+    +'<div class="card-actions">'
+    +'<button class="btn-sm btn-edit" onclick="editOverride('+i+')">Edit</button>'
+    +'<button class="btn-sm btn-delete" onclick="deleteOverride('+i+')">Delete</button>'
+    +'</div></div>';
+}
+
+function editOverride(i){
+  document.getElementById('oc-'+i).outerHTML=overrideForm(state.itemOverrides[i],i,false);
+}
+
+function overrideForm(o,i,isNew){
+  var s=isNew?'n':String(i);
+  var statusOpts=STATUS_OPTS.map(function(v){return '<option value="'+v+'"'+(v===(o.status||'')?'  selected':'')+'>'+v+'</option>';}).join('');
+  return '<div class="edit-form" id="of-'+s+'">'
+    +'<div class="edit-form-title">'+(isNew?'Add Item Correction':'Edit Item Correction')+'</div>'
+    +'<div class="form-row">'
+    +'<div class="form-group" style="max-width:160px"><label>Jira ID <span style="color:#c53030">*</span></label>'
+    +'<input type="text" id="oj-'+s+'" value="'+e(o.jira||'')+'" placeholder="e.g. KG-123" style="font-family:monospace"></div>'
+    +'<div class="form-group" style="max-width:180px"><label>Override Status <span style="color:#a0aec0">(optional)</span></label>'
+    +'<select id="os-'+s+'"><option value="">— no change —</option>'+statusOpts+'</select></div>'
+    +'<div class="form-group"><label>Override Assignee <span style="color:#a0aec0">(optional)</span></label>'
+    +'<input type="text" id="oa-'+s+'" value="'+e(o.assignee||'')+'" placeholder="e.g. Shaurya"></div>'
+    +'</div>'
+    +'<div class="form-row">'
+    +'<div class="form-group"><label>Override Title <span style="color:#a0aec0">(optional)</span></label>'
+    +'<input type="text" id="of2-'+s+'" value="'+e(o.feature||'')+'" placeholder="Corrected item title (leave blank to keep original)"></div>'
+    +'</div>'
+    +'<div class="form-actions">'
+    +'<button class="btn-cancel-f" onclick="cancelOverride(\''+s+'\','+isNew+')">Cancel</button>'
+    +'<button class="btn-save-f" onclick="commitOverride(\''+s+'\','+i+','+isNew+')">Save</button>'
+    +'</div></div>';
+}
+
+function commitOverride(s,i,isNew){
+  var jira=document.getElementById('oj-'+s).value.trim();
+  if(!jira){alert('Jira ID is required.');return;}
+  var obj={
+    jira:     jira,
+    status:   document.getElementById('os-'+s).value,
+    assignee: document.getElementById('oa-'+s).value.trim(),
+    feature:  document.getElementById('of2-'+s).value.trim()
+  };
+  if(!obj.status && !obj.assignee && !obj.feature){alert('At least one override field (status, assignee, or title) is required.');return;}
+  if(isNew){state.itemOverrides.push(obj);document.getElementById('add-ovr-form').innerHTML='';}
+  else{state.itemOverrides[i]=obj;}
+  setDirty(true);renderOverrides();
+}
+
+function cancelOverride(s,isNew){
+  if(isNew)document.getElementById('add-ovr-form').innerHTML='';
+  else renderOverrides();
+}
+
+function deleteOverride(i){
+  if(!confirm('Delete correction for "'+state.itemOverrides[i].jira+'"?'))return;
+  state.itemOverrides.splice(i,1);setDirty(true);renderOverrides();
+}
+
 function showAddForm(type){
   if(type==='change'){
     var c=document.getElementById('add-change-form');
     c.innerHTML=changeForm({type:'info',name:'',detail:'',status:''},-1,true);
+    c.scrollIntoView({behavior:'smooth',block:'nearest'});
+  } else if(type==='override'){
+    var c=document.getElementById('add-ovr-form');
+    c.innerHTML=overrideForm({jira:'',status:'',assignee:'',feature:''},-1,true);
     c.scrollIntoView({behavior:'smooth',block:'nearest'});
   } else {
     var c=document.getElementById('add-annc-form');

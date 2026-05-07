@@ -159,9 +159,10 @@ body{background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSy
 .sum-col-head{padding:12px 16px;display:flex;align-items:center;gap:8px;border-bottom:1px solid var(--border);}
 .sum-col-title{font-size:13px;font-weight:700;}
 .sum-count{font-size:11px;font-weight:600;padding:2px 8px;border-radius:10px;margin-left:auto;}
-.sum-done .sum-col-head{background:#f0fff4;}.sum-done .sum-col-title{color:#276749;}.sum-done .sum-count{background:#c6f6d5;color:#276749;}
-.sum-prog .sum-col-head{background:#ebf8ff;}.sum-prog .sum-col-title{color:#2b6cb0;}.sum-prog .sum-count{background:#bee3f8;color:#2b6cb0;}
-.sum-block .sum-col-head{background:#fff5f5;}.sum-block .sum-col-title{color:#c53030;}.sum-block .sum-count{background:#fed7d7;color:#c53030;}
+.sum-done   .sum-col-head{background:#f0fff4;}.sum-done   .sum-col-title{color:#276749;}.sum-done   .sum-count{background:#c6f6d5;color:#276749;}
+.sum-upcoming .sum-col-head{background:#EBF8FF;}.sum-upcoming .sum-col-title{color:#2b6cb0;}.sum-upcoming .sum-count{background:#bee3f8;color:#2b6cb0;}
+.sum-prog   .sum-col-head{background:#FFFBF0;}.sum-prog   .sum-col-title{color:#b7791f;}.sum-prog   .sum-count{background:#fef3c7;color:#b7791f;}
+.sum-block  .sum-col-head{background:#fff5f5;}.sum-block  .sum-col-title{color:#c53030;}.sum-block  .sum-count{background:#fed7d7;color:#c53030;}
 .sum-pod-group{border-top:1px solid var(--border);}
 .sum-pod-group:first-child{border-top:none;}
 .sum-pod-label{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;padding:7px 16px 3px;color:var(--muted);}
@@ -703,14 +704,26 @@ function switchTab(t){
 ───────────────────────────────────────────── */
 var POD_NAMES = {hl_audio:"HL Audio",hl_ego:"HL Ego",engage:"KGeN Engage",kstore:"KStore",devsec:"DevSec",qa_releases:"QA / Releases"};
 
-function isDone(s){return /done/i.test(s)||s==="In QA";}
-function isInProgress(s){return /progress|review/i.test(s)||s==="In QA";}
-function isBlocked(s){return /block/i.test(s);}
+function isDone(s){return /^done$/i.test((s||'').trim());}
+function isUpcoming(s){return /in qa|ready for qa|in testing/i.test(s||'');}
+function isInProgress(s){return /progress|review|to do/i.test(s||'') && !isUpcoming(s);}
+function isBlocked(s){return /block/i.test(s||'');}
+
+function applyOverrides(items, overrides){
+  if(!overrides||!overrides.length) return items;
+  var map={};
+  overrides.forEach(function(o){if(o.jira&&o.jira!=='-') map[o.jira]=o;});
+  return items.map(function(i){
+    var ov=map[i.jira];
+    return ov?Object.assign({},i,{status:ov.status||i.status,assignee:ov.assignee||i.assignee,feature:ov.feature||i.feature}):i;
+  });
+}
 
 function renderSummary(d){
   var allItems=[];
   (d.pods||[]).forEach(function(p){(p.items||[]).forEach(function(i){allItems.push(i);});});
   (d.qaItems||[]).forEach(function(i){allItems.push(i);});
+  allItems=applyOverrides(allItems, d.itemOverrides);
 
   function groupByPod(items){
     var map={};
@@ -750,14 +763,14 @@ function renderSummary(d){
       +'</div>'+body+'</div>';
   }
 
-  var done    = allItems.filter(function(i){return isDone(i.status);});
-  var inProg  = allItems.filter(function(i){return !isDone(i.status)&&isInProgress(i.status);});
-  var blocked = allItems.filter(function(i){return isBlocked(i.status);});
+  var done     = allItems.filter(function(i){return isDone(i.status);});
+  var upcoming = allItems.filter(function(i){return isUpcoming(i.status);});
+  var inProg   = allItems.filter(function(i){return !isDone(i.status)&&!isUpcoming(i.status)&&isInProgress(i.status);});
 
   document.getElementById('sum-grid').innerHTML =
-    colHtml('sum-done',  '✅', 'Releases / Completed', done)  +
-    colHtml('sum-prog',  '🔄', 'In Progress',           inProg)+
-    colHtml('sum-block', '🚨', 'Blockers',              blocked);
+    colHtml('sum-done',     '✅', 'Releases',           done)    +
+    colHtml('sum-upcoming', '🔬', 'Upcoming / In QA',  upcoming) +
+    colHtml('sum-prog',     '🔄', 'Work in Progress',  inProg);
 }
 
 /* ─────────────────────────────────────────────
@@ -800,9 +813,11 @@ function renderEmail(d){
     return html;
   }
 
-  var done    = allItems.filter(function(i){return isDone(i.status);});
-  var inProg  = allItems.filter(function(i){return !isDone(i.status)&&isInProgress(i.status);});
-  var blocked = allItems.filter(function(i){return isBlocked(i.status);});
+  allItems=applyOverrides(allItems, d.itemOverrides);
+  var done     = allItems.filter(function(i){return isDone(i.status);});
+  var upcoming = allItems.filter(function(i){return isUpcoming(i.status);});
+  var inProg   = allItems.filter(function(i){return !isDone(i.status)&&!isUpcoming(i.status)&&isInProgress(i.status);});
+  var blocked  = allItems.filter(function(i){return isBlocked(i.status);});
 
   var tuHtml = (d.teamUpdates||[]).map(function(u){
     return '<div class="email-item">'+e(u.name)+(u.detail?' — '+e(u.detail):'')+(u.status?' ['+e(u.status)+']':'')+'</div>';
@@ -818,9 +833,10 @@ function renderEmail(d){
     +(s.blocked?'<span class="email-stat">🚨 <strong>'+s.blocked+'</strong> blocked</span>':'<span class="email-stat">🟢 No blockers</span>')
     +'<span class="email-stat">📊 <strong>'+pct+'%</strong> complete</span>'
     +'</div>'
-    + section('✅  Releases / Completed ('+done.length+')', done)
-    + section('🔄  In Progress ('+inProg.length+')', inProg)
-    + section('🚨  Blockers', blocked)
+    + section('✅  Releases ('+done.length+')', done)
+    + section('🔬  Upcoming / In QA ('+upcoming.length+')', upcoming)
+    + section('🔄  Work in Progress ('+inProg.length+')', inProg)
+    +(blocked.length?section('🚨  Blockers ('+blocked.length+')', blocked):'')
     +(tuHtml?'<div class="email-section"><div class="email-sec-head">👥  Team Updates</div>'+tuHtml+'</div>':'')
     +'<div class="email-sig">This update is auto-generated from the Sprint Dashboard. For full details visit the Founder\'s Review dashboard.</div>';
 
@@ -846,9 +862,10 @@ function renderEmail(d){
     'Sprint '+d.sprintNumber+' Update · '+d.sprintDates+'\n'
     +'Generated: '+new Date(d.generatedAt).toLocaleString('en-IN',{day:'numeric',month:'short',year:'numeric',hour:'2-digit',minute:'2-digit'})+'\n\n'
     +'📦 '+s.total+' total  ✅ '+s.done+' done  🔄 '+s.inProgress+' in progress  '+(s.blocked?'🚨 '+s.blocked+' blocked':'🟢 No blockers')+'  📊 '+pct+'% complete\n\n'
-    + plainSection('✅ RELEASES / COMPLETED ('+done.length+')', done)+'\n'
-    + plainSection('🔄 IN PROGRESS ('+inProg.length+')', inProg)+'\n'
-    + plainSection('🚨 BLOCKERS', blocked)+'\n'
+    + plainSection('✅ RELEASES ('+done.length+')', done)+'\n'
+    + plainSection('🔬 UPCOMING / IN QA ('+upcoming.length+')', upcoming)+'\n'
+    + plainSection('🔄 WORK IN PROGRESS ('+inProg.length+')', inProg)+'\n'
+    +(blocked.length?plainSection('🚨 BLOCKERS ('+blocked.length+')', blocked)+'\n':'')
     +(d.teamUpdates&&d.teamUpdates.length
       ? '👥 TEAM UPDATES\n'+(d.teamUpdates.map(function(u){return '  • '+u.name+(u.detail?' — '+u.detail:'')+(u.status?' ['+u.status+']':'');}).join('\n'))+'\n'
       : '');
