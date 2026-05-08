@@ -35,6 +35,12 @@
       "name": "Yuvaraj",
       "detail": "",
       "status": "To be put on PIP"
+    },
+    {
+      "type": "info",
+      "name": "Manpreet",
+      "detail": "To be informed",
+      "status": "July 15th LWD"
     }
   ],
   "announcements": [],
