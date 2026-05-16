@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-05-15T06:44:44.831847+00:00",
+  "generatedAt": "2026-05-16T06:10:10.648933+00:00",
   "sprintNumber": "70",
   "sprintDates": "[11 May - 22 May]",
   "sheetName": "SPRINT 70 [11 May - 22 May]",
@@ -353,27 +353,27 @@
     {
       "pri": "High",
       "name": "Cloud CNAPP & Workload Protection",
-      "desc": "Implement CNAPP and deploy agents to 143 workloads for cloud security."
+      "desc": "Implement CNAPP and deploy agents to 143 cloud workloads."
     },
     {
       "pri": "High",
       "name": "Splunk Deployment & Log Onboarding",
-      "desc": "Procure and deploy Splunk with prioritized log ingestion for centralized logging."
+      "desc": "Procure and deploy Splunk with prioritized log ingestion for security monitoring."
     },
     {
       "pri": "High",
       "name": "MDM Deployment & Compliance Enforcement",
-      "desc": "Deploy MDM across corporate devices with policy enforcement for compliance."
+      "desc": "Deploy MDM across corporate devices with policy enforcement and compliance."
     },
     {
       "pri": "High",
       "name": "Build Security Operations Team",
-      "desc": "Hire and onboard required security roles to establish an internal SOC."
+      "desc": "Hire and onboard required security roles for the Security Operations Center."
     },
     {
       "pri": "High",
       "name": "Splunk Commercial & Legal Procurement",
-      "desc": "Complete commercial, financial, and legal procurement for Splunk licensing."
+      "desc": "Complete the full procurement cycle for Splunk licensing and services."
     },
     {
       "pri": "High",
@@ -383,36 +383,36 @@
     {
       "pri": "Medium",
       "name": "Procurement Governance & Vendor Management",
-      "desc": "Ensure structured governance for all security tool purchases and renewals."
+      "desc": "Ensure structured governance and management for all security tool purchases."
     },
     {
       "pri": "High",
-      "name": "Cloudflare WAF Deployment for Critical Domains",
+      "name": "Cloudflare WAF Deployment",
       "desc": "Implement and tune WAF protection for critical public-facing domains."
     },
     {
       "pri": "High",
-      "name": "Remove Non-Critical Apps from Public Exposure",
-      "desc": "Reduce external attack surface by removing non-critical applications from public access."
+      "name": "Reduce Public Application Exposure",
+      "desc": "Reduce the external attack surface by removing non-critical applications from public exposure."
     },
     {
       "pri": "High",
-      "name": "Investigate Multi-Cloud Infections & Anomalies",
+      "name": "Multi-Cloud Threat Investigation",
       "desc": "Perform deep threat investigation across AWS, GCP, and Cloudflare environments."
     },
     {
       "pri": "High",
-      "name": "K8s Security Posture Review (GKE & AWS EKS)",
-      "desc": "Perform comprehensive Kubernetes security posture review for GKE and new AWS clusters."
+      "name": "K8s Security Posture Review (GKE/AWS)",
+      "desc": "Perform comprehensive Kubernetes Security Posture Management review for GKE and new AWS clusters."
     },
     {
       "pri": "High",
-      "name": "Post-Migration Security Review of New EKS Cluster",
-      "desc": "Perform security validation and hardening of the new AWS EKS cluster post migration."
+      "name": "EKS Post-Migration Security Review",
+      "desc": "Perform security validation and hardening of the new AWS EKS cluster post-migration."
     },
     {
       "pri": "Medium",
-      "name": "Design K8s Cluster Segregation Strategy",
+      "name": "K8s Cluster Segregation Strategy",
       "desc": "Design architecture for segregating workloads into multiple clusters to reduce blast radius."
     }
   ]
