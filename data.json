@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-05-17T06:32:48.331434+00:00",
+  "generatedAt": "2026-05-18T07:08:43.556522+00:00",
   "sprintNumber": "70",
   "sprintDates": "[11 May - 22 May]",
   "sheetName": "SPRINT 70 [11 May - 22 May]",
@@ -387,32 +387,32 @@
     },
     {
       "pri": "High",
-      "name": "Cloudflare WAF Deployment for Critical Domains",
-      "desc": "Implement and tune WAF protection for humynlabs kgen kratos exlr8 domains."
+      "name": "Cloudflare WAF Deployment",
+      "desc": "Implement and tune WAF protection for critical domains."
     },
     {
       "pri": "High",
-      "name": "Remove Non-Critical Apps from Public Exposure",
-      "desc": "Reduce external attack surface across humynlabs kgen kratos exlr8."
+      "name": "Remove Public Exposure of Non-Critical Apps",
+      "desc": "Reduce external attack surface by removing non-critical applications from public exposure."
     },
     {
       "pri": "High",
-      "name": "Investigate Infections & Anomalies (AWS/GCP/Cloudflare)",
-      "desc": "Perform deep threat investigation across multi-cloud environment."
+      "name": "Investigate Multi-Cloud Infections & Anomalies",
+      "desc": "Perform deep threat investigation across AWS, GCP, and Cloudflare environments."
     },
     {
       "pri": "High",
-      "name": "Kubernetes Security Posture Review (GKE & AWS)",
-      "desc": "Perform comprehensive K8s Security Posture Management review for existing GCP GKE & new AWS clusters."
+      "name": "Kubernetes Security Posture Review",
+      "desc": "Perform comprehensive security posture review for existing GKE and new AWS clusters."
     },
     {
       "pri": "High",
-      "name": "Post-Migration Security Review of New EKS Cluster",
-      "desc": "Perform security validation and hardening of new AWS EKS cluster post migration."
+      "name": "Post-Migration Security Review of EKS",
+      "desc": "Perform security validation and hardening of new AWS EKS cluster post-migration."
     },
     {
       "pri": "Medium",
-      "name": "Design Kubernetes Cluster Segregation Strategy",
+      "name": "Kubernetes Cluster Segregation Strategy",
       "desc": "Design architecture for segregating workloads into multiple clusters to reduce blast radius."
     }
   ]
