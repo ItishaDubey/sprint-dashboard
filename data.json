@@ -1,14 +1,14 @@
 {
-  "generatedAt": "2026-05-18T07:08:43.556522+00:00",
+  "generatedAt": "2026-05-19T06:59:08.275027+00:00",
   "sprintNumber": "70",
   "sprintDates": "[11 May - 22 May]",
   "sheetName": "SPRINT 70 [11 May - 22 May]",
   "stats": {
-    "total": 18,
+    "total": 27,
     "done": 6,
     "inProgress": 3,
     "blocked": 0,
-    "notStarted": 9
+    "notStarted": 18
   },
   "pods": [
     {
@@ -193,18 +193,90 @@
       "items": [
         {
           "pod": "kstore",
-          "feature": "start sending pop-ups and nudge people to use UPI for HT",
-          "jira": "-",
+          "feature": "synthetic monitor for b2b",
+          "jira": "TECH-21129",
           "status": "To Do",
-          "assignee": "-",
+          "assignee": "Julian Sharon",
+          "notes": ""
+        },
+        {
+          "pod": "kstore",
+          "feature": "sync pricing for all the product assigned to kstore",
+          "jira": "TECH-21128",
+          "status": "To Do",
+          "assignee": "Jitendra Bisht",
+          "notes": ""
+        },
+        {
+          "pod": "kstore",
+          "feature": "start sending pop-ups and nudge people to use UPI for HT",
+          "jira": "TECH-21130",
+          "status": "To Do",
+          "assignee": "Pankaj Talesara",
           "notes": ""
         },
         {
           "pod": "kstore",
           "feature": "Platform fees for all on KStore",
-          "jira": "-",
+          "jira": "TECH-21131",
           "status": "To Do",
-          "assignee": "-",
+          "assignee": "raghvendra K",
+          "notes": ""
+        },
+        {
+          "pod": "kstore",
+          "feature": "Round off all prices in Kstore; no decimals should be shown on Kstore or in the invoice.The pricing and invoices must be consistent throughout the user journey.",
+          "jira": "TECH-21132",
+          "status": "To Do",
+          "assignee": "raghvendra K",
+          "notes": ""
+        },
+        {
+          "pod": "kstore",
+          "feature": "Order History - Show pic",
+          "jira": "TECH-21133",
+          "status": "To Do",
+          "assignee": "Pankaj Talesara",
+          "notes": ""
+        },
+        {
+          "pod": "kstore",
+          "feature": "CCC : URLs in landing page drop down",
+          "jira": "TECH-21134",
+          "status": "To Do",
+          "assignee": "Pankaj Talesara",
+          "notes": ""
+        },
+        {
+          "pod": "kstore",
+          "feature": "CCC : Product drop down -margin to be shown",
+          "jira": "TECH-21135",
+          "status": "To Do",
+          "assignee": "Pankaj Talesara",
+          "notes": ""
+        },
+        {
+          "pod": "kstore",
+          "feature": "CCC: Show user data dashboard-transaction history of users",
+          "jira": "TECH-21137",
+          "status": "To Do",
+          "assignee": "Pankaj Talesara",
+          "notes": ""
+        },
+        {
+          "pod": "kstore",
+          "feature": "New Variant changes shouldn’t alter other variants (in CRM).",
+          "jira": "TECH-21136",
+          "status": "To Do",
+          "assignee": "raghvendra K",
+          "notes": ""
+        },
+        {
+          "pod": "kstore",
+          "feature": "We should display a UI element (like a pop-up) indicating when the voucher will expire and show the voucher history for Kstore voucher",
+          "jira": "TECH-21138",
+          "status": "To Do",
+          "assignee": "Pankaj Talesara",
           "notes": ""
         }
       ]
@@ -226,6 +298,15 @@
   "qaItems": [],
   "bandwidth": [
     {
+      "name": "Pankaj",
+      "pod": "kstore",
+      "load": "heavy",
+      "taskCount": 6,
+      "tasks": [],
+      "hasBlocker": false,
+      "blockerNote": ""
+    },
+    {
       "name": "Yogesh",
       "pod": "hl_audio",
       "load": "moderate",
@@ -246,6 +327,15 @@
     {
       "name": "Nilesh",
       "pod": "hl_audio",
+      "load": "moderate",
+      "taskCount": 3,
+      "tasks": [],
+      "hasBlocker": false,
+      "blockerNote": ""
+    },
+    {
+      "name": "raghvendra",
+      "pod": "kstore",
       "load": "moderate",
       "taskCount": 3,
       "tasks": [],
@@ -292,6 +382,24 @@
       "name": "Avinash",
       "pod": "available",
       "load": "available",
+      "taskCount": 1,
+      "tasks": [],
+      "hasBlocker": false,
+      "blockerNote": ""
+    },
+    {
+      "name": "Julian",
+      "pod": "kstore",
+      "load": "light",
+      "taskCount": 1,
+      "tasks": [],
+      "hasBlocker": false,
+      "blockerNote": ""
+    },
+    {
+      "name": "Jitendra",
+      "pod": "kstore",
+      "load": "light",
       "taskCount": 1,
       "tasks": [],
       "hasBlocker": false,
@@ -352,8 +460,8 @@
     },
     {
       "pri": "High",
-      "name": "Cloud CNAPP & Workload Protection Implementation",
-      "desc": "Implement CNAPP and deploy agents to 143 workloads."
+      "name": "Cloud CNAPP & Workload Protection",
+      "desc": "Implement CNAPP and deploy agents to 143 cloud workloads."
     },
     {
       "pri": "High",
@@ -368,51 +476,51 @@
     {
       "pri": "High",
       "name": "Build Security Operations Team",
-      "desc": "Hire and onboard required security roles."
+      "desc": "Hire and onboard required security operations roles."
     },
     {
       "pri": "High",
-      "name": "Splunk Commercial & Legal Procurement",
-      "desc": "Complete commercial, financial and legal procurement cycle for Splunk."
+      "name": "Splunk Procurement Cycle",
+      "desc": "Complete commercial, financial, and legal procurement cycle for Splunk."
     },
     {
       "pri": "High",
-      "name": "MDM Commercial & Licensing Procurement",
-      "desc": "Complete vendor selection and procurement cycle for MDM solution."
+      "name": "MDM Procurement & Licensing",
+      "desc": "Complete vendor selection and procurement cycle for the MDM solution."
     },
     {
       "pri": "Medium",
-      "name": "Procurement Governance & Vendor Management",
-      "desc": "Ensure structured governance for all security tool purchases."
+      "name": "Procurement Governance & Vendor Mgmt",
+      "desc": "Ensure structured governance for all security tool purchases and renewals."
     },
     {
       "pri": "High",
       "name": "Cloudflare WAF Deployment",
-      "desc": "Implement and tune WAF protection for critical domains."
+      "desc": "Implement and tune WAF protection for critical public-facing domains."
     },
     {
       "pri": "High",
-      "name": "Remove Public Exposure of Non-Critical Apps",
-      "desc": "Reduce external attack surface by removing non-critical applications from public exposure."
+      "name": "Reduce Public Application Exposure",
+      "desc": "Reduce the external attack surface by removing non-critical apps from public exposure."
     },
     {
       "pri": "High",
-      "name": "Investigate Multi-Cloud Infections & Anomalies",
-      "desc": "Perform deep threat investigation across AWS, GCP, and Cloudflare environments."
+      "name": "Multi-Cloud Threat Investigation",
+      "desc": "Perform deep threat investigation across multi-cloud environments (AWS, GCP, Cloudflare)."
     },
     {
       "pri": "High",
       "name": "Kubernetes Security Posture Review",
-      "desc": "Perform comprehensive security posture review for existing GKE and new AWS clusters."
+      "desc": "Perform a comprehensive security posture review for GKE and new AWS clusters."
     },
     {
       "pri": "High",
-      "name": "Post-Migration Security Review of EKS",
-      "desc": "Perform security validation and hardening of new AWS EKS cluster post-migration."
+      "name": "EKS Post-Migration Security Review",
+      "desc": "Perform security validation and hardening of the new AWS EKS cluster post-migration."
     },
     {
       "pri": "Medium",
-      "name": "Kubernetes Cluster Segregation Strategy",
+      "name": "Kubernetes Cluster Segregation Design",
       "desc": "Design architecture for segregating workloads into multiple clusters to reduce blast radius."
     }
   ]
