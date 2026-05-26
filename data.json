@@ -1,14 +1,14 @@
 {
-  "generatedAt": "2026-05-25T08:01:39.365441+00:00",
-  "sprintNumber": "70",
-  "sprintDates": "[11 May - 22 May]",
-  "sheetName": "SPRINT 70 [11 May - 22 May]",
+  "generatedAt": "2026-05-26T06:58:32.479770+00:00",
+  "sprintNumber": "71",
+  "sprintDates": "[25 May - 5 June]",
+  "sheetName": "SPRINT 71 [25 May - 5 June]",
   "stats": {
-    "total": 27,
-    "done": 6,
-    "inProgress": 3,
+    "total": 9,
+    "done": 1,
+    "inProgress": 1,
     "blocked": 0,
-    "notStarted": 18
+    "notStarted": 7
   },
   "pods": [
     {
@@ -39,14 +39,6 @@
         },
         {
           "pod": "hl_audio",
-          "feature": "Creating Feedback Loop for a self learning tool using the changes made by annotators on the pre-annotation",
-          "jira": "HL-268",
-          "status": "To Do",
-          "assignee": "Yogesh Kumar",
-          "notes": ""
-        },
-        {
-          "pod": "hl_audio",
           "feature": "Enable Structural checks in the system",
           "jira": "-",
           "status": "To Do",
@@ -59,6 +51,14 @@
           "jira": "HL-218",
           "status": "To Do",
           "assignee": "Kumaragurubaran Kanagaraj",
+          "notes": ""
+        },
+        {
+          "pod": "hl_audio",
+          "feature": "Creating Feedback Loop for a self learning tool using the changes made by annotators on the pre-annotation",
+          "jira": "HL-268",
+          "status": "To Do",
+          "assignee": "Yogesh Kumar",
           "notes": ""
         },
         {
@@ -79,38 +79,6 @@
         },
         {
           "pod": "hl_audio",
-          "feature": "International Language support(Arabic is a must)",
-          "jira": "HL-139",
-          "status": "In QA",
-          "assignee": "Jaya Kesarwani",
-          "notes": ""
-        },
-        {
-          "pod": "hl_audio",
-          "feature": "Enable single speaker for Annotation Tool",
-          "jira": "HL-267",
-          "status": "Dev in Progress",
-          "assignee": "Pratik Singh",
-          "notes": ""
-        },
-        {
-          "pod": "hl_audio",
-          "feature": "Annotation and QC tool enhancement: Task distribution % per cc(Vendor)",
-          "jira": "HL-140",
-          "status": "Dev in Progress",
-          "assignee": "Nilesh Pawar",
-          "notes": ""
-        },
-        {
-          "pod": "hl_audio",
-          "feature": "Handle the exception for the withdrawal stake",
-          "jira": "TECH-21104",
-          "status": "In QA",
-          "assignee": "Nilesh Pawar",
-          "notes": ""
-        },
-        {
-          "pod": "hl_audio",
           "feature": "New post-processing service for data delivery(cross account/ cross org/ copy of data to client bucket)",
           "jira": "HL-150",
           "status": "Ready For QA",
@@ -127,26 +95,10 @@
         },
         {
           "pod": "hl_audio",
-          "feature": "Click reduction on the quest journey - App & Task 2 and Task 1 in Quest",
+          "feature": "APP: Click reduction on the quest journey - App & Task 2 and Task 1 in Quest",
           "jira": "HL-1",
           "status": "In QA",
           "assignee": "Kumaragurubaran Kanagaraj",
-          "notes": ""
-        },
-        {
-          "pod": "hl_audio",
-          "feature": "Collect Earings BE change to block rewards collection if phone number is not present",
-          "jira": "TECH-21029",
-          "status": "In QA",
-          "assignee": "Kumaragurubaran Kanagaraj",
-          "notes": ""
-        },
-        {
-          "pod": "hl_audio",
-          "feature": "Annotation and QC: International Language support(Arabic is a must)",
-          "jira": "HL-141",
-          "status": "In QA",
-          "assignee": "Nilesh Pawar",
           "notes": ""
         }
       ]
@@ -166,16 +118,7 @@
         "Shaurya",
         "Kawaljeet (QA)"
       ],
-      "items": [
-        {
-          "pod": "engage",
-          "feature": "Social connect changes - remove phone number pop-up",
-          "jira": "TECH-21023",
-          "status": "Done",
-          "assignee": "Harshada Raundal",
-          "notes": ""
-        }
-      ]
+      "items": []
     },
     {
       "id": "kstore",
@@ -190,96 +133,7 @@
         "Relin (QA)",
         "Yuvaraj (QA)"
       ],
-      "items": [
-        {
-          "pod": "kstore",
-          "feature": "synthetic monitor for b2b",
-          "jira": "TECH-21129",
-          "status": "To Do",
-          "assignee": "Julian Sharon",
-          "notes": ""
-        },
-        {
-          "pod": "kstore",
-          "feature": "sync pricing for all the product assigned to kstore",
-          "jira": "TECH-21128",
-          "status": "To Do",
-          "assignee": "Jitendra Bisht",
-          "notes": ""
-        },
-        {
-          "pod": "kstore",
-          "feature": "start sending pop-ups and nudge people to use UPI for HT",
-          "jira": "TECH-21130",
-          "status": "To Do",
-          "assignee": "Pankaj Talesara",
-          "notes": ""
-        },
-        {
-          "pod": "kstore",
-          "feature": "Platform fees for all on KStore",
-          "jira": "TECH-21131",
-          "status": "To Do",
-          "assignee": "raghvendra K",
-          "notes": ""
-        },
-        {
-          "pod": "kstore",
-          "feature": "Round off all prices in Kstore; no decimals should be shown on Kstore or in the invoice.The pricing and invoices must be consistent throughout the user journey.",
-          "jira": "TECH-21132",
-          "status": "To Do",
-          "assignee": "raghvendra K",
-          "notes": ""
-        },
-        {
-          "pod": "kstore",
-          "feature": "Order History - Show pic",
-          "jira": "TECH-21133",
-          "status": "To Do",
-          "assignee": "Pankaj Talesara",
-          "notes": ""
-        },
-        {
-          "pod": "kstore",
-          "feature": "CCC : URLs in landing page drop down",
-          "jira": "TECH-21134",
-          "status": "To Do",
-          "assignee": "Pankaj Talesara",
-          "notes": ""
-        },
-        {
-          "pod": "kstore",
-          "feature": "CCC : Product drop down -margin to be shown",
-          "jira": "TECH-21135",
-          "status": "To Do",
-          "assignee": "Pankaj Talesara",
-          "notes": ""
-        },
-        {
-          "pod": "kstore",
-          "feature": "CCC: Show user data dashboard-transaction history of users",
-          "jira": "TECH-21137",
-          "status": "To Do",
-          "assignee": "Pankaj Talesara",
-          "notes": ""
-        },
-        {
-          "pod": "kstore",
-          "feature": "New Variant changes shouldn’t alter other variants (in CRM).",
-          "jira": "TECH-21136",
-          "status": "To Do",
-          "assignee": "raghvendra K",
-          "notes": ""
-        },
-        {
-          "pod": "kstore",
-          "feature": "We should display a UI element (like a pop-up) indicating when the voucher will expire and show the voucher history for Kstore voucher",
-          "jira": "TECH-21138",
-          "status": "To Do",
-          "assignee": "Pankaj Talesara",
-          "notes": ""
-        }
-      ]
+      "items": []
     },
     {
       "id": "devsec",
@@ -298,15 +152,6 @@
   "qaItems": [],
   "bandwidth": [
     {
-      "name": "Pankaj",
-      "pod": "kstore",
-      "load": "heavy",
-      "taskCount": 6,
-      "tasks": [],
-      "hasBlocker": false,
-      "blockerNote": ""
-    },
-    {
       "name": "Yogesh",
       "pod": "hl_audio",
       "load": "moderate",
@@ -318,33 +163,6 @@
     {
       "name": "Kumaragurubaran",
       "pod": "hl_audio",
-      "load": "moderate",
-      "taskCount": 3,
-      "tasks": [],
-      "hasBlocker": false,
-      "blockerNote": ""
-    },
-    {
-      "name": "Nilesh",
-      "pod": "hl_audio",
-      "load": "moderate",
-      "taskCount": 3,
-      "tasks": [],
-      "hasBlocker": false,
-      "blockerNote": ""
-    },
-    {
-      "name": "raghvendra",
-      "pod": "kstore",
-      "load": "moderate",
-      "taskCount": 3,
-      "tasks": [],
-      "hasBlocker": false,
-      "blockerNote": ""
-    },
-    {
-      "name": "Jaya",
-      "pod": "hl_audio",
       "load": "light",
       "taskCount": 2,
       "tasks": [],
@@ -352,8 +170,8 @@
       "blockerNote": ""
     },
     {
-      "name": "Harshada",
-      "pod": "engage",
+      "name": "Jaya",
+      "pod": "hl_audio",
       "load": "light",
       "taskCount": 1,
       "tasks": [],
@@ -370,36 +188,9 @@
       "blockerNote": ""
     },
     {
-      "name": "Pratik",
-      "pod": "hl_audio",
-      "load": "light",
-      "taskCount": 1,
-      "tasks": [],
-      "hasBlocker": false,
-      "blockerNote": ""
-    },
-    {
       "name": "Avinash",
       "pod": "available",
       "load": "available",
-      "taskCount": 1,
-      "tasks": [],
-      "hasBlocker": false,
-      "blockerNote": ""
-    },
-    {
-      "name": "Julian",
-      "pod": "kstore",
-      "load": "light",
-      "taskCount": 1,
-      "tasks": [],
-      "hasBlocker": false,
-      "blockerNote": ""
-    },
-    {
-      "name": "Jitendra",
-      "pod": "kstore",
-      "load": "light",
       "taskCount": 1,
       "tasks": [],
       "hasBlocker": false,
@@ -461,67 +252,67 @@
     {
       "pri": "High",
       "name": "Cloud CNAPP & Workload Protection",
-      "desc": "Implement CNAPP and deploy agents to 143 workloads for cloud protection."
+      "desc": "Implement CNAPP and deploy agents to 143 workloads."
     },
     {
       "pri": "High",
       "name": "Splunk Deployment & Log Onboarding",
-      "desc": "Procure and deploy Splunk, ensuring prioritized log ingestion from critical sources."
+      "desc": "Procure and deploy Splunk with prioritized log ingestion."
     },
     {
       "pri": "High",
       "name": "MDM Deployment & Compliance Enforcement",
-      "desc": "Deploy MDM across corporate devices to enforce security policies and compliance."
+      "desc": "Deploy MDM across corporate devices with policy enforcement."
     },
     {
       "pri": "High",
       "name": "Build Security Operations Team",
-      "desc": "Hire and onboard essential security roles to establish a robust Security Operations Center."
+      "desc": "Hire and onboard required security roles."
     },
     {
       "pri": "High",
       "name": "Splunk Commercial & Legal Procurement",
-      "desc": "Complete all commercial, financial, and legal procurement processes for Splunk licensing."
+      "desc": "Complete procurement cycle for Splunk."
     },
     {
       "pri": "High",
       "name": "MDM Commercial & Licensing Procurement",
-      "desc": "Complete vendor selection and procurement for the MDM solution, including licensing."
+      "desc": "Complete vendor selection and procurement cycle for MDM solution."
     },
     {
       "pri": "Medium",
-      "name": "Procurement Governance & Vendor Mgmt",
-      "desc": "Establish structured governance and management for all security tool procurements."
+      "name": "Procurement Governance & Vendor Management",
+      "desc": "Ensure structured governance for all security tool purchases."
     },
     {
       "pri": "High",
       "name": "Cloudflare WAF Deployment for Critical Domains",
-      "desc": "Implement and tune Cloudflare WAF protection for critical public-facing domains."
+      "desc": "Implement and tune WAF protection for critical domains."
     },
     {
       "pri": "High",
-      "name": "Reduce Public Exposure of Non-Critical Apps",
-      "desc": "Reduce the external attack surface by removing non-critical applications from public exposure."
+      "name": "Remove Non-Critical Apps from Public Exposure",
+      "desc": "Reduce external attack surface across multiple brands."
     },
     {
       "pri": "High",
-      "name": "Investigate Infections & Anomalies (Multi-Cloud)",
-      "desc": "Conduct a deep threat investigation to identify active infections and anomalies across the multi-cloud environment."
+      "name": "Investigate Active Infections & Anomalies",
+      "desc": "Perform deep threat investigation across multi-cloud environment."
     },
     {
       "pri": "High",
-      "name": "K8s Security Posture Review (GKE & AWS)",
-      "desc": "Perform a comprehensive security posture management review for GKE and new AWS Kubernetes clusters."
+      "name": "K8s Security Posture Review (GKE/AWS)",
+      "desc": "Perform comprehensive Kubernetes Security Posture Management review for existing and new clusters."
     },
     {
       "pri": "High",
       "name": "Post-Migration Security Review of New EKS",
-      "desc": "Validate and harden the security of the new AWS EKS cluster following migration."
+      "desc": "Perform security validation and hardening of new AWS EKS cluster post migration."
     },
     {
       "pri": "Medium",
-      "name": "Design K8s Cluster Segregation Strategy",
-      "desc": "Design an architecture to segregate workloads into multiple Kubernetes clusters to reduce blast radius."
+      "name": "K8s Cluster Segregation Strategy Design",
+      "desc": "Design architecture for segregating workloads into multiple clusters to reduce blast radius."
     }
   ]
 }
