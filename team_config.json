@@ -2,45 +2,15 @@
   "teamUpdates": [
     {
       "type": "info",
-      "name": "Avish",
-      "detail": "Replacement in progress; finding someone with similar background",
-      "status": "Resigned"
+      "name": "Shivam Shukla",
+      "detail": "Need a replacement for him",
+      "status": "July 15th LWD"
     },
     {
       "type": "info",
       "name": "Akshay GKMIT",
-      "detail": "May 30th LWD",
-      "status": "No Replacement Needed"
-    },
-    {
-      "type": "replacement",
-      "name": "Shivam (FE ; Overall)",
-      "detail": "Offer letter to replacement sent out.",
-      "status": "July 15th LWD"
-    },
-    {
-      "type": "info",
-      "name": "Raghav and Pankaj - KStore",
-      "detail": "Raghav and Pankaj from Kstore team are also moved out. No replacement needed",
-      "status": "May 30th"
-    },
-    {
-      "type": "info",
-      "name": "Kawaljeet Kaur",
-      "detail": "To be informed June 1st",
-      "status": "To Let Go"
-    },
-    {
-      "type": "info",
-      "name": "Yuvaraj",
-      "detail": "",
-      "status": "To be put on PIP"
-    },
-    {
-      "type": "info",
-      "name": "Manpreet",
-      "detail": "To be informed",
-      "status": "July 15th LWD"
+      "detail": "No Replacement Needed",
+      "status": "May 30th LWD"
     }
   ],
   "announcements": [],
