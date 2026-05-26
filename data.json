@@ -1,12 +1,12 @@
 {
-  "generatedAt": "2026-05-26T06:58:32.479770+00:00",
+  "generatedAt": "2026-05-26T13:32:21.311026+00:00",
   "sprintNumber": "71",
   "sprintDates": "[25 May - 5 June]",
   "sheetName": "SPRINT 71 [25 May - 5 June]",
   "stats": {
-    "total": 9,
-    "done": 1,
-    "inProgress": 1,
+    "total": 17,
+    "done": 5,
+    "inProgress": 5,
     "blocked": 0,
     "notStarted": 7
   },
@@ -31,6 +31,14 @@
       "items": [
         {
           "pod": "hl_audio",
+          "feature": "Optimise the responsiveness of the annotation system; currently we can process 16Khrs/month",
+          "jira": "HL-304",
+          "status": "Dev in Progress",
+          "assignee": "Nilesh Pawar",
+          "notes": ""
+        },
+        {
+          "pod": "hl_audio",
           "feature": "POC on emotions and acoustic tagging auto QC",
           "jira": "HL-269",
           "status": "Dev in Progress",
@@ -40,9 +48,25 @@
         {
           "pod": "hl_audio",
           "feature": "Enable Structural checks in the system",
-          "jira": "-",
-          "status": "To Do",
+          "jira": "HL-305",
+          "status": "Done",
           "assignee": "Jaya Kesarwani",
+          "notes": ""
+        },
+        {
+          "pod": "hl_audio",
+          "feature": "Naturalness scoring pipeline",
+          "jira": "HL-306",
+          "status": "Dev in Progress",
+          "assignee": "Itisha Dubey",
+          "notes": ""
+        },
+        {
+          "pod": "hl_audio",
+          "feature": "Blog Pages",
+          "jira": "HL-307",
+          "status": "Dev in Progress",
+          "assignee": "Shivam Shukla",
           "notes": ""
         },
         {
@@ -71,10 +95,26 @@
         },
         {
           "pod": "hl_audio",
+          "feature": "Enable language specific scripts on quests created per language",
+          "jira": "-",
+          "status": "To Do",
+          "assignee": "-",
+          "notes": ""
+        },
+        {
+          "pod": "hl_audio",
           "feature": "Validation test on Stark Samples for unitelligible cases",
           "jira": "HL-270",
           "status": "To Do",
           "assignee": "Kevin Mathew",
+          "notes": ""
+        },
+        {
+          "pod": "hl_audio",
+          "feature": "Enable Tagging Single and Multi Speaker in VAD",
+          "jira": "HL-308",
+          "status": "Done",
+          "assignee": "Jaya Kesarwani",
           "notes": ""
         },
         {
@@ -118,7 +158,32 @@
         "Shaurya",
         "Kawaljeet (QA)"
       ],
-      "items": []
+      "items": [
+        {
+          "pod": "engage",
+          "feature": "Remove AI Category from Kdrop",
+          "jira": "TECH-21147",
+          "status": "Done",
+          "assignee": "Manpreet Singh",
+          "notes": ""
+        },
+        {
+          "pod": "engage",
+          "feature": "UI/UX Fixes",
+          "jira": "TECH-21148",
+          "status": "Dev in Progress",
+          "assignee": "Harshada Raundal",
+          "notes": ""
+        },
+        {
+          "pod": "engage",
+          "feature": "Fixing Loyalty Side Issues",
+          "jira": "TECH-21149",
+          "status": "Done",
+          "assignee": "Kumaragurubaran Kanagaraj",
+          "notes": ""
+        }
+      ]
     },
     {
       "id": "kstore",
@@ -162,6 +227,15 @@
     },
     {
       "name": "Kumaragurubaran",
+      "pod": "engage",
+      "load": "moderate",
+      "taskCount": 3,
+      "tasks": [],
+      "hasBlocker": false,
+      "blockerNote": ""
+    },
+    {
+      "name": "Jaya",
       "pod": "hl_audio",
       "load": "light",
       "taskCount": 2,
@@ -170,7 +244,43 @@
       "blockerNote": ""
     },
     {
-      "name": "Jaya",
+      "name": "Manpreet",
+      "pod": "engage",
+      "load": "light",
+      "taskCount": 1,
+      "tasks": [],
+      "hasBlocker": false,
+      "blockerNote": ""
+    },
+    {
+      "name": "Harshada",
+      "pod": "engage",
+      "load": "light",
+      "taskCount": 1,
+      "tasks": [],
+      "hasBlocker": false,
+      "blockerNote": ""
+    },
+    {
+      "name": "Nilesh",
+      "pod": "hl_audio",
+      "load": "light",
+      "taskCount": 1,
+      "tasks": [],
+      "hasBlocker": false,
+      "blockerNote": ""
+    },
+    {
+      "name": "Itisha",
+      "pod": "hl_audio",
+      "load": "light",
+      "taskCount": 1,
+      "tasks": [],
+      "hasBlocker": false,
+      "blockerNote": ""
+    },
+    {
+      "name": "Shivam",
       "pod": "hl_audio",
       "load": "light",
       "taskCount": 1,
@@ -200,45 +310,15 @@
   "teamUpdates": [
     {
       "type": "info",
-      "name": "Avish",
-      "detail": "Replacement in progress; finding someone with similar background",
-      "status": "Resigned"
+      "name": "Shivam Shukla",
+      "detail": "Need a replacement for him",
+      "status": "July 15th LWD"
     },
     {
       "type": "info",
       "name": "Akshay GKMIT",
-      "detail": "May 30th LWD",
-      "status": "No Replacement Needed"
-    },
-    {
-      "type": "replacement",
-      "name": "Shivam (FE ; Overall)",
-      "detail": "Offer letter to replacement sent out.",
-      "status": "July 15th LWD"
-    },
-    {
-      "type": "info",
-      "name": "Raghav and Pankaj - KStore",
-      "detail": "Raghav and Pankaj from Kstore team are also moved out. No replacement needed",
-      "status": "May 30th"
-    },
-    {
-      "type": "info",
-      "name": "Kawaljeet Kaur",
-      "detail": "To be informed June 1st",
-      "status": "To Let Go"
-    },
-    {
-      "type": "info",
-      "name": "Yuvaraj",
-      "detail": "",
-      "status": "To be put on PIP"
-    },
-    {
-      "type": "info",
-      "name": "Manpreet",
-      "detail": "To be informed",
-      "status": "July 15th LWD"
+      "detail": "No Replacement Needed",
+      "status": "May 30th LWD"
     }
   ],
   "announcements": [],
@@ -252,66 +332,66 @@
     {
       "pri": "High",
       "name": "Cloud CNAPP & Workload Protection",
-      "desc": "Implement CNAPP and deploy agents to 143 workloads."
+      "desc": "Implement CNAPP and deploy agents to 143 workloads for comprehensive protection."
     },
     {
       "pri": "High",
       "name": "Splunk Deployment & Log Onboarding",
-      "desc": "Procure and deploy Splunk with prioritized log ingestion."
+      "desc": "Procure and deploy Splunk with prioritized log ingestion for centralized monitoring."
     },
     {
       "pri": "High",
       "name": "MDM Deployment & Compliance Enforcement",
-      "desc": "Deploy MDM across corporate devices with policy enforcement."
+      "desc": "Deploy MDM across corporate devices with policy enforcement to ensure compliance."
     },
     {
       "pri": "High",
       "name": "Build Security Operations Team",
-      "desc": "Hire and onboard required security roles."
+      "desc": "Hire and onboard required security roles to establish a robust security operations team."
     },
     {
       "pri": "High",
       "name": "Splunk Commercial & Legal Procurement",
-      "desc": "Complete procurement cycle for Splunk."
+      "desc": "Complete commercial, financial and legal procurement for Splunk licensing and services."
     },
     {
       "pri": "High",
       "name": "MDM Commercial & Licensing Procurement",
-      "desc": "Complete vendor selection and procurement cycle for MDM solution."
+      "desc": "Complete vendor selection and procurement cycle for the chosen MDM solution."
     },
     {
       "pri": "Medium",
       "name": "Procurement Governance & Vendor Management",
-      "desc": "Ensure structured governance for all security tool purchases."
+      "desc": "Ensure structured governance for all security tool purchases and vendor relationships."
     },
     {
       "pri": "High",
-      "name": "Cloudflare WAF Deployment for Critical Domains",
-      "desc": "Implement and tune WAF protection for critical domains."
+      "name": "Cloudflare WAF Deployment",
+      "desc": "Implement and tune WAF protection for critical domains across all brands."
     },
     {
       "pri": "High",
-      "name": "Remove Non-Critical Apps from Public Exposure",
-      "desc": "Reduce external attack surface across multiple brands."
+      "name": "Remove Public Exposure for Non-Critical Apps",
+      "desc": "Reduce external attack surface by removing public exposure of non-critical applications."
     },
     {
       "pri": "High",
-      "name": "Investigate Active Infections & Anomalies",
-      "desc": "Perform deep threat investigation across multi-cloud environment."
+      "name": "Threat Investigation Multi-Cloud",
+      "desc": "Perform deep threat investigation across AWS, GCP, and Cloudflare environments for anomalies."
     },
     {
       "pri": "High",
-      "name": "K8s Security Posture Review (GKE/AWS)",
-      "desc": "Perform comprehensive Kubernetes Security Posture Management review for existing and new clusters."
+      "name": "Kubernetes Security Posture Review",
+      "desc": "Perform comprehensive KSPM review for existing GCP GKE and new AWS EKS clusters."
     },
     {
       "pri": "High",
-      "name": "Post-Migration Security Review of New EKS",
+      "name": "Post-Migration EKS Security Review",
       "desc": "Perform security validation and hardening of new AWS EKS cluster post migration."
     },
     {
       "pri": "Medium",
-      "name": "K8s Cluster Segregation Strategy Design",
+      "name": "Kubernetes Cluster Segregation Strategy",
       "desc": "Design architecture for segregating workloads into multiple clusters to reduce blast radius."
     }
   ]
