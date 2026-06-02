@@ -1,14 +1,14 @@
 {
-  "generatedAt": "2026-06-01T08:58:53.783153+00:00",
+  "generatedAt": "2026-06-02T08:12:26.510899+00:00",
   "sprintNumber": "71",
   "sprintDates": "[25 May - 5 June]",
   "sheetName": "SPRINT 71 [25 May - 5 June]",
   "stats": {
-    "total": 16,
+    "total": 23,
     "done": 4,
     "inProgress": 5,
     "blocked": 0,
-    "notStarted": 7
+    "notStarted": 14
   },
   "pods": [
     {
@@ -190,7 +190,64 @@
         "Relin (QA)",
         "Yuvaraj (QA)"
       ],
-      "items": []
+      "items": [
+        {
+          "pod": "kstore",
+          "feature": "Seperate API for physical Goods",
+          "jira": "-",
+          "status": "To Do",
+          "assignee": "Jitendra Bisht",
+          "notes": ""
+        },
+        {
+          "pod": "kstore",
+          "feature": "DB touchpoints removal from exlr8",
+          "jira": "-",
+          "status": "To Do",
+          "assignee": "Jitendra Bisht",
+          "notes": ""
+        },
+        {
+          "pod": "kstore",
+          "feature": "Order flow seperation",
+          "jira": "-",
+          "status": "To Do",
+          "assignee": "Jitendra Bisht",
+          "notes": ""
+        },
+        {
+          "pod": "kstore",
+          "feature": "Change base URL to New System",
+          "jira": "-",
+          "status": "To Do",
+          "assignee": "Shahid Ansari",
+          "notes": ""
+        },
+        {
+          "pod": "kstore",
+          "feature": "CRM Seperation",
+          "jira": "-",
+          "status": "To Do",
+          "assignee": "Shahid Ansari",
+          "notes": ""
+        },
+        {
+          "pod": "kstore",
+          "feature": "Creative foundary :  dashboard user transaction-design name , submitted on , votes",
+          "jira": "-",
+          "status": "To Do",
+          "assignee": "-",
+          "notes": ""
+        },
+        {
+          "pod": "kstore",
+          "feature": "CCC : tax excluded  money should be given to the CC",
+          "jira": "-",
+          "status": "To Do",
+          "assignee": "-",
+          "notes": ""
+        }
+      ]
     },
     {
       "id": "devsec",
@@ -222,6 +279,24 @@
       "pod": "engage",
       "load": "moderate",
       "taskCount": 3,
+      "tasks": [],
+      "hasBlocker": false,
+      "blockerNote": ""
+    },
+    {
+      "name": "Jitendra",
+      "pod": "kstore",
+      "load": "moderate",
+      "taskCount": 3,
+      "tasks": [],
+      "hasBlocker": false,
+      "blockerNote": ""
+    },
+    {
+      "name": "Shahid",
+      "pod": "kstore",
+      "load": "light",
+      "taskCount": 2,
       "tasks": [],
       "hasBlocker": false,
       "blockerNote": ""
