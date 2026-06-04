@@ -1,14 +1,14 @@
 {
-  "generatedAt": "2026-06-03T08:31:47.430401+00:00",
+  "generatedAt": "2026-06-04T08:03:28.598928+00:00",
   "sprintNumber": "71",
   "sprintDates": "[25 May - 5 June]",
   "sheetName": "SPRINT 71 [25 May - 5 June]",
   "stats": {
-    "total": 23,
-    "done": 4,
-    "inProgress": 5,
+    "total": 24,
+    "done": 7,
+    "inProgress": 10,
     "blocked": 0,
-    "notStarted": 14
+    "notStarted": 7
   },
   "pods": [
     {
@@ -194,57 +194,65 @@
         {
           "pod": "kstore",
           "feature": "Seperate API for physical Goods",
-          "jira": "-",
-          "status": "To Do",
+          "jira": "TECH-21170",
+          "status": "Dev in Progress",
           "assignee": "Jitendra Bisht",
           "notes": ""
         },
         {
           "pod": "kstore",
           "feature": "DB touchpoints removal from exlr8",
-          "jira": "-",
-          "status": "To Do",
+          "jira": "TECH-21171",
+          "status": "Dev in Progress",
           "assignee": "Jitendra Bisht",
           "notes": ""
         },
         {
           "pod": "kstore",
           "feature": "Order flow seperation",
-          "jira": "-",
-          "status": "To Do",
+          "jira": "TECH-21173",
+          "status": "Dev in Progress",
           "assignee": "Jitendra Bisht",
           "notes": ""
         },
         {
           "pod": "kstore",
           "feature": "Change base URL to New System",
-          "jira": "-",
-          "status": "To Do",
+          "jira": "TECH-21172",
+          "status": "Dev in Progress",
           "assignee": "Shahid Ansari",
           "notes": ""
         },
         {
           "pod": "kstore",
           "feature": "CRM Seperation",
-          "jira": "-",
-          "status": "To Do",
+          "jira": "TECH-21174",
+          "status": "Dev in Progress",
           "assignee": "Shahid Ansari",
           "notes": ""
         },
         {
           "pod": "kstore",
           "feature": "Creative foundary :  dashboard user transaction-design name , submitted on , votes",
-          "jira": "-",
-          "status": "To Do",
-          "assignee": "-",
+          "jira": "TECH-21175",
+          "status": "In QA",
+          "assignee": "Pankaj Talesara",
           "notes": ""
         },
         {
           "pod": "kstore",
           "feature": "CCC : tax excluded  money should be given to the CC",
-          "jira": "-",
-          "status": "To Do",
-          "assignee": "-",
+          "jira": "TECH-21176",
+          "status": "In QA",
+          "assignee": "raghvendra K",
+          "notes": ""
+        },
+        {
+          "pod": "kstore",
+          "feature": "BI Events update",
+          "jira": "TECH-21177",
+          "status": "In QA",
+          "assignee": "Pankaj Talesara",
           "notes": ""
         }
       ]
@@ -294,6 +302,15 @@
     },
     {
       "name": "Shahid",
+      "pod": "kstore",
+      "load": "light",
+      "taskCount": 2,
+      "tasks": [],
+      "hasBlocker": false,
+      "blockerNote": ""
+    },
+    {
+      "name": "Pankaj",
       "pod": "kstore",
       "load": "light",
       "taskCount": 2,
@@ -372,6 +389,15 @@
       "tasks": [],
       "hasBlocker": false,
       "blockerNote": ""
+    },
+    {
+      "name": "raghvendra",
+      "pod": "kstore",
+      "load": "light",
+      "taskCount": 1,
+      "tasks": [],
+      "hasBlocker": false,
+      "blockerNote": ""
     }
   ],
   "teamUpdates": [
@@ -411,27 +437,27 @@
     {
       "pri": "High",
       "name": "Cloud CNAPP & Workload Protection Implementation",
-      "desc": "Implement CNAPP and deploy agents to 143 workloads."
+      "desc": "Implement CNAPP and deploy agents to 143 workloads for protection."
     },
     {
       "pri": "High",
       "name": "Splunk Deployment & Log Onboarding",
-      "desc": "Procure and deploy Splunk with prioritized log ingestion."
+      "desc": "Procure and deploy Splunk with prioritized log ingestion capabilities."
     },
     {
       "pri": "High",
       "name": "MDM Deployment & Compliance Enforcement",
-      "desc": "Deploy MDM across corporate devices with policy enforcement."
+      "desc": "Deploy MDM across corporate devices and enforce compliance policies."
     },
     {
       "pri": "High",
       "name": "Build Security Operations Team",
-      "desc": "Hire and onboard required security roles to establish security operations."
+      "desc": "Hire and onboard required security roles to establish the SOC."
     },
     {
       "pri": "High",
       "name": "Splunk Commercial & Legal Procurement",
-      "desc": "Complete the commercial, financial, and legal procurement cycle for Splunk."
+      "desc": "Complete commercial, financial, and legal procurement for Splunk solution."
     },
     {
       "pri": "High",
@@ -446,27 +472,27 @@
     {
       "pri": "High",
       "name": "Cloudflare WAF Deployment for Critical Domains",
-      "desc": "Implement and tune WAF protection for critical domains across all brands."
+      "desc": "Implement and tune WAF protection for critical public-facing domains."
     },
     {
       "pri": "High",
       "name": "Remove Non-Critical Apps from Public Exposure",
-      "desc": "Reduce the external attack surface by removing non-critical apps from public exposure."
+      "desc": "Reduce external attack surface by removing non-critical apps from public access."
     },
     {
       "pri": "High",
-      "name": "Investigate Active Infections & Anomalies",
-      "desc": "Perform deep threat investigation across the multi-cloud environment (AWS, GCP, Cloudflare)."
+      "name": "Investigate Infections & Anomalies Multi-Cloud",
+      "desc": "Perform deep threat investigation across multi-cloud environments (AWS, GCP, CF)."
     },
     {
       "pri": "High",
-      "name": "K8s Security Posture Review (GKE & AWS EKS)",
-      "desc": "Perform a comprehensive Kubernetes Security Posture Management review for existing and new clusters."
+      "name": "Kubernetes Security Posture Review (GKE & AWS)",
+      "desc": "Perform comprehensive K8s Security Posture Management review for GKE and AWS EKS."
     },
     {
       "pri": "High",
       "name": "Post-Migration Security Review of New EKS Cluster",
-      "desc": "Perform security validation and hardening of the new AWS EKS cluster post-migration."
+      "desc": "Perform security validation and hardening of the new AWS EKS cluster post migration."
     },
     {
       "pri": "Medium",
