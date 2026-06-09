@@ -1,14 +1,14 @@
 {
-  "generatedAt": "2026-06-08T08:25:28.488277+00:00",
+  "generatedAt": "2026-06-09T07:01:00.373644+00:00",
   "sprintNumber": "72",
   "sprintDates": "[8 May - 19 June]",
   "sheetName": "SPRINT 72 [8 May - 19 June]",
   "stats": {
-    "total": 2,
+    "total": 8,
     "done": 0,
     "inProgress": 1,
     "blocked": 0,
-    "notStarted": 1
+    "notStarted": 7
   },
   "pods": [
     {
@@ -29,6 +29,54 @@
         "Swetha (QA)"
       ],
       "items": [
+        {
+          "pod": "hl_audio",
+          "feature": "Increase the units limit for ingestion and csv download for off-platform vendors Data beign ingestion inside a project as an open pool - capped at 1K CSV download after the units allocated to the offplatform vendor - capped at 5k  Ingestion of the offplatform vendors annotation back in system - currently capped i assume??",
+          "jira": "-",
+          "status": "To Do",
+          "assignee": "Yogesh Kumar",
+          "notes": ""
+        },
+        {
+          "pod": "hl_audio",
+          "feature": "Transcription drift to be flagged in the system",
+          "jira": "-",
+          "status": "To Do",
+          "assignee": "Yogesh Kumar",
+          "notes": ""
+        },
+        {
+          "pod": "hl_audio",
+          "feature": "Error Messages to be fixed on Quest UI and Validation system",
+          "jira": "HL-327",
+          "status": "To Do",
+          "assignee": "Jaya Kesarwani",
+          "notes": ""
+        },
+        {
+          "pod": "hl_audio",
+          "feature": "Assigning data units to annotators - require script to auto upload audios and transcripts to vendors bucket.",
+          "jira": "-",
+          "status": "To Do",
+          "assignee": "Yogesh Kumar",
+          "notes": ""
+        },
+        {
+          "pod": "hl_audio",
+          "feature": "New post-processing service for data delivery(cross account/ cross org/ copy of data to client bucket)",
+          "jira": "HL-150",
+          "status": "To Do",
+          "assignee": "Jaya Kesarwani",
+          "notes": ""
+        },
+        {
+          "pod": "hl_audio",
+          "feature": "Pre-Processing related - Conversion of files in delivery format - Bring Manifest Mapping in the system",
+          "jira": "-",
+          "status": "To Do",
+          "assignee": "Yogesh Kumar",
+          "notes": ""
+        },
         {
           "pod": "hl_audio",
           "feature": "Creating Feedback Loop for a self learning tool using the changes made by annotators on the pre-annotation",
@@ -98,8 +146,17 @@
     {
       "name": "Yogesh",
       "pod": "hl_audio",
+      "load": "heavy",
+      "taskCount": 5,
+      "tasks": [],
+      "hasBlocker": false,
+      "blockerNote": ""
+    },
+    {
+      "name": "Jaya",
+      "pod": "hl_audio",
       "load": "light",
-      "taskCount": 1,
+      "taskCount": 2,
       "tasks": [],
       "hasBlocker": false,
       "blockerNote": ""
@@ -145,73 +202,73 @@
   "devsecEpics": [
     {
       "pri": "High",
-      "name": "Endpoint Security Rollout Program",
-      "desc": "Deploy SentinelOne to 120 endpoints including pilot and full rollout."
+      "name": "Endpoint Security Rollout",
+      "desc": "Deploy SentinelOne to 120 endpoints, covering pilot and full rollout."
     },
     {
       "pri": "High",
       "name": "Cloud CNAPP & Workload Protection",
-      "desc": "Implement CNAPP and deploy agents to 143 workloads for cloud security."
+      "desc": "Implement CNAPP solution and deploy agents across 143 cloud workloads."
     },
     {
       "pri": "High",
       "name": "Splunk Deployment & Log Onboarding",
-      "desc": "Procure and deploy Splunk for prioritized log ingestion and security monitoring."
+      "desc": "Procure and deploy Splunk, ensuring prioritized ingestion of security logs."
     },
     {
       "pri": "High",
-      "name": "MDM Deployment & Compliance Enforcement",
-      "desc": "Deploy MDM across corporate devices, enforcing security policies and compliance."
+      "name": "MDM Deployment & Compliance",
+      "desc": "Deploy MDM across corporate devices to enforce security and compliance policies."
     },
     {
       "pri": "High",
       "name": "Build Security Operations Team",
-      "desc": "Hire and onboard required security roles to establish the SOC team."
+      "desc": "Hire and onboard essential security roles to establish the Security Operations Team."
     },
     {
       "pri": "High",
-      "name": "Splunk Commercial & Legal Procurement",
-      "desc": "Complete the commercial, financial, and legal procurement cycle for Splunk."
+      "name": "Splunk Procurement",
+      "desc": "Complete all commercial, financial, and legal procurement steps for Splunk licensing."
     },
     {
       "pri": "High",
-      "name": "MDM Commercial & Licensing Procurement",
-      "desc": "Complete vendor selection and procurement cycle for the MDM solution."
+      "name": "MDM Procurement & Licensing",
+      "desc": "Finalize vendor selection and complete the procurement cycle for MDM solution licensing."
     },
     {
       "pri": "Medium",
-      "name": "Procurement Governance & Vendor Management",
-      "desc": "Establish structured governance for all security tool purchases and vendor relations."
+      "name": "Procurement Governance & Vendor Mgmt",
+      "desc": "Establish structured governance and management for all security tool procurements."
     },
     {
       "pri": "High",
-      "name": "Cloudflare WAF Deployment for Critical Domains",
-      "desc": "Implement and tune WAF protection for critical domains (humynlabs, kgen, kratos, exlr8)."
+      "name": "Cloudflare WAF Deployment",
+      "desc": "Implement and tune Cloudflare WAF to protect critical humynlabs kgen kratos exlr8 domains."
     },
     {
       "pri": "High",
-      "name": "Remove Non-Critical Apps from Public Exposure",
-      "desc": "Reduce external attack surface by removing non-critical applications from public exposure."
+      "name": "Reduce Public Application Exposure",
+      "desc": "Reduce the external attack surface by removing non-critical applications from public exposure."
     },
     {
       "pri": "High",
-      "name": "Investigate Active Infections & Anomalies",
-      "desc": "Perform deep threat investigation across AWS, GCP, and Cloudflare multi-cloud environments."
+      "name": "Multi-Cloud Threat Investigation",
+      "desc": "Perform deep threat investigations and analyze anomalies across AWS, GCP, and Cloudflare."
     },
     {
       "pri": "High",
-      "name": "Kubernetes Security Posture Review (GKE/EKS)",
-      "desc": "Perform comprehensive KSPM review for existing GCP GKE and new AWS EKS clusters."
+      "name": "Kubernetes Security Posture Review",
+      "desc": "Conduct a comprehensive security posture review for existing GKE and new AWS Kubernetes clusters."
     },
     {
       "pri": "High",
-      "name": "Post-Migration Security Review of New EKS Cluster",
-      "desc": "Perform security validation and hardening of the new AWS EKS cluster post migration."
+      "name": "Post-Migration EKS Security Review",
+      "desc": "Validate and harden the security posture of the new AWS EKS cluster following migration."
     },
     {
       "pri": "Medium",
-      "name": "Design Kubernetes Cluster Segregation Strategy",
-      "desc": "Design architecture for segregating workloads into multiple clusters to reduce blast radius."
+      "name": "Kubernetes Cluster Segregation Design",
+      "desc": "Design an architecture to segregate workloads into multiple Kubernetes clusters, reducing blast radius."
     }
   ]
 }
