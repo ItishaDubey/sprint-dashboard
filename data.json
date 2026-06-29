@@ -1,14 +1,14 @@
 {
-  "generatedAt": "2026-06-28T07:12:25.822629+00:00",
+  "generatedAt": "2026-06-29T08:29:42.783993+00:00",
   "sprintNumber": "73",
   "sprintDates": "[22 June - 3 July]",
   "sheetName": "SPRINT 73 [22 June - 3 July]",
   "stats": {
-    "total": 36,
+    "total": 49,
     "done": 2,
     "inProgress": 0,
     "blocked": 0,
-    "notStarted": 34
+    "notStarted": 47
   },
   "pods": [
     {
@@ -256,14 +256,6 @@
         },
         {
           "pod": "engage",
-          "feature": "Enable bucket annonymisation for vendors and partners and the ids",
-          "jira": "HL-336",
-          "status": "To Do",
-          "assignee": "Yogesh Kumar",
-          "notes": ""
-        },
-        {
-          "pod": "engage",
           "feature": "Emanle WER on prod",
           "jira": "HL-354",
           "status": "To Do",
@@ -317,7 +309,112 @@
         "Relin (QA)",
         "Yuvaraj (QA)"
       ],
-      "items": []
+      "items": [
+        {
+          "pod": "kstore",
+          "feature": "User Management : Profile info,login and authentication",
+          "jira": "TECH-21250",
+          "status": "To Do",
+          "assignee": "Jitendra Bisht",
+          "notes": ""
+        },
+        {
+          "pod": "kstore",
+          "feature": "Campaign Managment : Merchant Dashboard",
+          "jira": "TECH-21251",
+          "status": "To Do",
+          "assignee": "Jitendra Bisht",
+          "notes": ""
+        },
+        {
+          "pod": "kstore",
+          "feature": "Gift card Management : Partial redempdtion",
+          "jira": "TECH-21252",
+          "status": "To Do",
+          "assignee": "Jitendra Bisht",
+          "notes": ""
+        },
+        {
+          "pod": "kstore",
+          "feature": "Offer Management: Generic code vouchers which can be used one time or infinite times ( For eg-SAVE20) & User specific codes  which are saved as alpha numeric codes internally which can be used  one time only by one user (For eg-Google pay coupons)",
+          "jira": "TECH-21253",
+          "status": "To Do",
+          "assignee": "Jitendra Bisht",
+          "notes": ""
+        },
+        {
+          "pod": "kstore",
+          "feature": "Exposing end user APIs-validation of Merchants customer",
+          "jira": "TECH-21254",
+          "status": "To Do",
+          "assignee": "Jitendra Bisht",
+          "notes": ""
+        },
+        {
+          "pod": "kstore",
+          "feature": "CCC :Mobile verification user flow for new Clan Chiefs",
+          "jira": "TECH-21255",
+          "status": "To Do",
+          "assignee": "Shahid Ansari",
+          "notes": ""
+        },
+        {
+          "pod": "kstore",
+          "feature": "CCC : Revenue share logic  and dashboard in CRM ( show CCC and company's Revenue seperately in USD)",
+          "jira": "TECH-21256",
+          "status": "To Do",
+          "assignee": "Shahid Ansari",
+          "notes": ""
+        },
+        {
+          "pod": "kstore",
+          "feature": "Creative Foundry : Claim earning with the new  revenue logic",
+          "jira": "-",
+          "status": "To Do",
+          "assignee": "Shahid Ansari",
+          "notes": ""
+        },
+        {
+          "pod": "kstore",
+          "feature": "Creative Foundry : Dashboard for payouts",
+          "jira": "TECH-21257",
+          "status": "To Do",
+          "assignee": "Shahid Ansari",
+          "notes": ""
+        },
+        {
+          "pod": "kstore",
+          "feature": "Creative Foundary : To show live for how many days and how many votes in FE",
+          "jira": "TECH-21258",
+          "status": "To Do",
+          "assignee": "Shahid Ansari",
+          "notes": ""
+        },
+        {
+          "pod": "kstore",
+          "feature": "SEO - Make “categories” work again. Fix the CRM broken images for categories.",
+          "jira": "TECH-21259",
+          "status": "To Do",
+          "assignee": "Shahid Ansari",
+          "notes": ""
+        },
+        {
+          "pod": "kstore",
+          "feature": "SEO : Change the slug name for categories",
+          "jira": "TECH-21260",
+          "status": "To Do",
+          "assignee": "Julian Sharon",
+          "notes": ""
+        },
+        {
+          "pod": "kstore",
+          "feature": "Google Analytics - add new project id",
+          "jira": "TECH-21261",
+          "status": "To Do",
+          "assignee": "Shahid Ansari",
+          "notes": ""
+        }
+      ]
     },
     {
       "id": "devsec",
@@ -365,6 +462,14 @@
       "status": "To Do",
       "assignee": "Itisha Dubey",
       "notes": ""
+    },
+    {
+      "pod": "qa_releases",
+      "feature": "Enable bucket annonymisation for vendors and partners and the ids",
+      "jira": "HL-336",
+      "status": "To Do",
+      "assignee": "Yogesh Kumar",
+      "notes": ""
     }
   ],
   "bandwidth": [
@@ -382,6 +487,24 @@
       "pod": "engage",
       "load": "heavy",
       "taskCount": 7,
+      "tasks": [],
+      "hasBlocker": false,
+      "blockerNote": ""
+    },
+    {
+      "name": "Shahid",
+      "pod": "kstore",
+      "load": "heavy",
+      "taskCount": 7,
+      "tasks": [],
+      "hasBlocker": false,
+      "blockerNote": ""
+    },
+    {
+      "name": "Jitendra",
+      "pod": "kstore",
+      "load": "heavy",
+      "taskCount": 5,
       "tasks": [],
       "hasBlocker": false,
       "blockerNote": ""
@@ -477,6 +600,15 @@
       "blockerNote": ""
     },
     {
+      "name": "Julian",
+      "pod": "kstore",
+      "load": "light",
+      "taskCount": 1,
+      "tasks": [],
+      "hasBlocker": false,
+      "blockerNote": ""
+    },
+    {
       "name": "Swetha",
       "pod": "qa_releases",
       "load": "light",
@@ -523,66 +655,66 @@
     {
       "pri": "High",
       "name": "Cloud CNAPP & Workload Protection",
-      "desc": "Implement CNAPP and deploy agents to 143 cloud workloads for protection."
+      "desc": "Implement CNAPP and deploy agents to 143 workloads for comprehensive protection."
     },
     {
       "pri": "High",
       "name": "Splunk Deployment & Log Onboarding",
-      "desc": "Procure and deploy Splunk for centralized log ingestion and analysis."
+      "desc": "Procure and deploy Splunk with prioritized log ingestion for security monitoring."
     },
     {
       "pri": "High",
       "name": "MDM Deployment & Compliance Enforcement",
-      "desc": "Deploy MDM across corporate devices to enforce security policies and compliance."
+      "desc": "Deploy MDM across corporate devices with policy enforcement and monitoring."
     },
     {
       "pri": "High",
       "name": "Build Security Operations Team",
-      "desc": "Hire and onboard essential security roles to establish the Security Operations Team."
+      "desc": "Hire and onboard required security roles to establish a robust SOC."
     },
     {
       "pri": "High",
-      "name": "Splunk Procurement & Licensing",
-      "desc": "Complete the commercial and legal procurement cycle for Splunk licensing."
+      "name": "Splunk Commercial & Legal Procurement",
+      "desc": "Complete commercial, financial, and legal procurement cycle for Splunk."
     },
     {
       "pri": "High",
-      "name": "MDM Procurement & Licensing",
-      "desc": "Complete vendor selection and procurement cycle for the chosen MDM solution."
+      "name": "MDM Commercial & Licensing Procurement",
+      "desc": "Complete vendor selection and procurement cycle for MDM solution."
     },
     {
       "pri": "Medium",
       "name": "Procurement Governance & Vendor Management",
-      "desc": "Establish structured governance for all security tool purchases and vendor management."
+      "desc": "Ensure structured governance for all security tool purchases and renewals."
     },
     {
       "pri": "High",
-      "name": "Cloudflare WAF Deployment",
-      "desc": "Implement and tune WAF protection for critical public-facing domains."
+      "name": "Cloudflare WAF Deployment for Critical Domains",
+      "desc": "Implement and tune WAF protection for humynlabs kgen kratos exlr8 domains."
     },
     {
       "pri": "High",
-      "name": "Reduce Public Application Exposure",
-      "desc": "Reduce external attack surface by removing non-critical applications from public exposure."
+      "name": "Remove Non-Critical Apps from Public Exposure",
+      "desc": "Reduce external attack surface across humynlabs kgen kratos exlr8 by removing public exposure."
     },
     {
       "pri": "High",
-      "name": "Multi-Cloud Threat Investigation",
-      "desc": "Perform deep threat investigations for active infections and anomalies across multi-cloud."
+      "name": "Investigate Infections & Anomalies Multi-Cloud",
+      "desc": "Perform deep threat investigation across multi-cloud environment for anomalies."
     },
     {
       "pri": "High",
-      "name": "Kubernetes Security Posture Review (GKE/AWS)",
-      "desc": "Perform comprehensive security posture review for existing GKE and new AWS Kubernetes clusters."
+      "name": "K8s Security Posture Review (GKE/AWS EKS)",
+      "desc": "Perform comprehensive Kubernetes Security Posture Management review for existing/new clusters."
     },
     {
       "pri": "High",
-      "name": "Post-Migration EKS Security Review",
-      "desc": "Perform security validation and hardening of the new AWS EKS cluster post-migration."
+      "name": "Post-Migration Security Review New EKS",
+      "desc": "Perform security validation and hardening of new AWS EKS cluster post migration."
     },
     {
       "pri": "Medium",
-      "name": "Kubernetes Cluster Segregation Strategy",
+      "name": "Design K8s Cluster Segregation Strategy",
       "desc": "Design architecture for segregating workloads into multiple clusters to reduce blast radius."
     }
   ]
