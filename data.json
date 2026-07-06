@@ -1,14 +1,14 @@
 {
-  "generatedAt": "2026-07-05T06:52:44.104395+00:00",
+  "generatedAt": "2026-07-06T07:58:37.432876+00:00",
   "sprintNumber": "74",
   "sprintDates": "[6 July - 17 July]",
   "sheetName": "SPRINT 74 [6 July - 17 July]",
   "stats": {
-    "total": 16,
+    "total": 18,
     "done": 4,
     "inProgress": 3,
     "blocked": 0,
-    "notStarted": 9
+    "notStarted": 11
   },
   "pods": [
     {
@@ -104,6 +104,14 @@
         },
         {
           "pod": "engage",
+          "feature": "Fixing the alerts for annotation platform",
+          "jira": "HL-373",
+          "status": "To Do",
+          "assignee": "Nilesh Pawar",
+          "notes": ""
+        },
+        {
+          "pod": "engage",
           "feature": "Validation Periority Queue - P0 URGENT",
           "jira": "HL-338",
           "status": "To Do",
@@ -132,6 +140,14 @@
           "jira": "HL-340",
           "status": "To Do",
           "assignee": "Itisha Dubey",
+          "notes": ""
+        },
+        {
+          "pod": "engage",
+          "feature": "Separate thresholds for individual & combined audio",
+          "jira": "-",
+          "status": "To Do",
+          "assignee": "Jaya Kesarwani",
           "notes": ""
         }
       ]
@@ -184,18 +200,18 @@
     },
     {
       "pod": "qa_releases",
-      "feature": "Data Delivery - FE and BE",
-      "jira": "HL-344",
-      "status": "Done",
-      "assignee": "Jaya Kesarwani",
+      "feature": "Independent tool test with new error handling",
+      "jira": "-",
+      "status": "To Do",
+      "assignee": "Swetha H R",
       "notes": ""
     },
     {
       "pod": "qa_releases",
-      "feature": "Fixing the alerts for annotation platform",
-      "jira": "HL-373",
-      "status": "To Do",
-      "assignee": "Nilesh Pawar",
+      "feature": "Data Delivery - FE and BE",
+      "jira": "HL-344",
+      "status": "Done",
+      "assignee": "Jaya Kesarwani",
       "notes": ""
     },
     {
@@ -228,7 +244,16 @@
     },
     {
       "name": "Nilesh",
-      "pod": "qa_releases",
+      "pod": "engage",
+      "load": "light",
+      "taskCount": 2,
+      "tasks": [],
+      "hasBlocker": false,
+      "blockerNote": ""
+    },
+    {
+      "name": "Jaya",
+      "pod": "engage",
       "load": "light",
       "taskCount": 2,
       "tasks": [],
@@ -272,7 +297,7 @@
       "blockerNote": ""
     },
     {
-      "name": "Jaya",
+      "name": "Swetha",
       "pod": "qa_releases",
       "load": "light",
       "taskCount": 1,
@@ -333,12 +358,12 @@
     {
       "pri": "High",
       "name": "Build Security Operations Team",
-      "desc": "Hire and onboard required security roles."
+      "desc": "Hire and onboard required security roles for security operations."
     },
     {
       "pri": "High",
       "name": "Splunk Commercial & Legal Procurement",
-      "desc": "Complete commercial, financial and legal procurement cycle for Splunk."
+      "desc": "Complete commercial, financial, and legal procurement cycle for Splunk."
     },
     {
       "pri": "High",
@@ -358,7 +383,7 @@
     {
       "pri": "High",
       "name": "Remove Non-Critical Apps from Public Exposure",
-      "desc": "Reduce external attack surface for non-critical applications."
+      "desc": "Reduce external attack surface by removing non-critical applications from public exposure."
     },
     {
       "pri": "High",
@@ -367,17 +392,17 @@
     },
     {
       "pri": "High",
-      "name": "Security Posture Review of GKE & AWS Clusters",
-      "desc": "Perform comprehensive Kubernetes Security Posture Management review for clusters."
+      "name": "K8s Security Posture Review (GKE & AWS)",
+      "desc": "Perform comprehensive Kubernetes Security Posture Management review for GKE and AWS clusters."
     },
     {
       "pri": "High",
-      "name": "Post-Migration Security Review of New EKS Cluster",
+      "name": "Post-Migration Security Review of EKS",
       "desc": "Perform security validation and hardening of new AWS EKS cluster post migration."
     },
     {
       "pri": "Medium",
-      "name": "Design Kubernetes Cluster Segregation Strategy",
+      "name": "K8s Cluster Segregation Strategy",
       "desc": "Design architecture for segregating workloads into multiple clusters to reduce blast radius."
     }
   ]
