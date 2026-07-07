@@ -1,14 +1,14 @@
 {
-  "generatedAt": "2026-07-06T07:58:37.432876+00:00",
+  "generatedAt": "2026-07-07T06:58:36.416082+00:00",
   "sprintNumber": "74",
   "sprintDates": "[6 July - 17 July]",
   "sheetName": "SPRINT 74 [6 July - 17 July]",
   "stats": {
-    "total": 18,
-    "done": 4,
+    "total": 28,
+    "done": 5,
     "inProgress": 3,
     "blocked": 0,
-    "notStarted": 11
+    "notStarted": 20
   },
   "pods": [
     {
@@ -72,6 +72,70 @@
         },
         {
           "pod": "engage",
+          "feature": "Leaderboard Integration for External Partners",
+          "jira": "TECH-21294",
+          "status": "To Do",
+          "assignee": "Kumaragurubaran Kanagaraj",
+          "notes": ""
+        },
+        {
+          "pod": "engage",
+          "feature": "Full KYC Implementation across pages for Crypto Rewards Handling",
+          "jira": "TECH-21296",
+          "status": "To Do",
+          "assignee": "Kumaragurubaran Kanagaraj",
+          "notes": ""
+        },
+        {
+          "pod": "engage",
+          "feature": "Clan Creation Cooldown",
+          "jira": "TECH-21295",
+          "status": "To Do",
+          "assignee": "Kumaragurubaran Kanagaraj",
+          "notes": ""
+        },
+        {
+          "pod": "engage",
+          "feature": "llm.txt to be added",
+          "jira": "TECH-21297",
+          "status": "To Do",
+          "assignee": "Shaurya Singh",
+          "notes": ""
+        },
+        {
+          "pod": "engage",
+          "feature": "LB Setup for internal ones setup",
+          "jira": "TECH-21298",
+          "status": "To Do",
+          "assignee": "Kumaragurubaran Kanagaraj",
+          "notes": ""
+        },
+        {
+          "pod": "engage",
+          "feature": "Limit Reached alerts for HT",
+          "jira": "TECH-21299",
+          "status": "To Do",
+          "assignee": "-",
+          "notes": ""
+        },
+        {
+          "pod": "engage",
+          "feature": "API-based point awarded (Enhancement Feature)",
+          "jira": "TECH-21300",
+          "status": "To Do",
+          "assignee": "Kumaragurubaran Kanagaraj",
+          "notes": ""
+        },
+        {
+          "pod": "engage",
+          "feature": "Error alerts in giving coins to user - seggregate HT and other clients, allow Slack Access to HT",
+          "jira": "TECH-21301",
+          "status": "To Do",
+          "assignee": "Namrata Kesarwani",
+          "notes": ""
+        },
+        {
+          "pod": "engage",
           "feature": "Bugsnag Integration in websites",
           "jira": "TECH-21238",
           "status": "To Do",
@@ -130,8 +194,16 @@
           "pod": "engage",
           "feature": "Emanle WER on prod",
           "jira": "HL-354",
-          "status": "To Do",
+          "status": "In QA",
           "assignee": "Avinash Ramanathan",
+          "notes": ""
+        },
+        {
+          "pod": "engage",
+          "feature": "WER integration to the Tool - project specific delivery",
+          "jira": "HL-386",
+          "status": "To Do",
+          "assignee": "Yogesh Kumar",
           "notes": ""
         },
         {
@@ -145,9 +217,17 @@
         {
           "pod": "engage",
           "feature": "Separate thresholds for individual & combined audio",
-          "jira": "-",
+          "jira": "HL-385",
           "status": "To Do",
           "assignee": "Jaya Kesarwani",
+          "notes": ""
+        },
+        {
+          "pod": "engage",
+          "feature": "HL SEO Audit Fixes",
+          "jira": "HL-384",
+          "status": "To Do",
+          "assignee": "Shivam Shukla",
           "notes": ""
         }
       ]
@@ -228,7 +308,7 @@
       "name": "Kumaragurubaran",
       "pod": "engage",
       "load": "heavy",
-      "taskCount": 5,
+      "taskCount": 10,
       "tasks": [],
       "hasBlocker": false,
       "blockerNote": ""
@@ -236,8 +316,17 @@
     {
       "name": "Yogesh",
       "pod": "engage",
-      "load": "moderate",
-      "taskCount": 4,
+      "load": "heavy",
+      "taskCount": 5,
+      "tasks": [],
+      "hasBlocker": false,
+      "blockerNote": ""
+    },
+    {
+      "name": "Shivam",
+      "pod": "engage",
+      "load": "light",
+      "taskCount": 2,
       "tasks": [],
       "hasBlocker": false,
       "blockerNote": ""
@@ -261,7 +350,7 @@
       "blockerNote": ""
     },
     {
-      "name": "Vamsi",
+      "name": "Shaurya",
       "pod": "engage",
       "load": "light",
       "taskCount": 1,
@@ -270,7 +359,16 @@
       "blockerNote": ""
     },
     {
-      "name": "Shivam",
+      "name": "Namrata",
+      "pod": "engage",
+      "load": "light",
+      "taskCount": 1,
+      "tasks": [],
+      "hasBlocker": false,
+      "blockerNote": ""
+    },
+    {
+      "name": "Vamsi",
       "pod": "engage",
       "load": "light",
       "taskCount": 1,
@@ -342,7 +440,7 @@
     },
     {
       "pri": "High",
-      "name": "Cloud CNAPP & Workload Protection",
+      "name": "Cloud CNAPP & Workload Protection Implementation",
       "desc": "Implement CNAPP and deploy agents to 143 workloads."
     },
     {
@@ -358,12 +456,12 @@
     {
       "pri": "High",
       "name": "Build Security Operations Team",
-      "desc": "Hire and onboard required security roles for security operations."
+      "desc": "Hire and onboard required security roles."
     },
     {
       "pri": "High",
       "name": "Splunk Commercial & Legal Procurement",
-      "desc": "Complete commercial, financial, and legal procurement cycle for Splunk."
+      "desc": "Complete commercial, financial and legal procurement cycle for Splunk."
     },
     {
       "pri": "High",
@@ -378,12 +476,12 @@
     {
       "pri": "High",
       "name": "Cloudflare WAF Deployment for Critical Domains",
-      "desc": "Implement and tune WAF protection for critical domains."
+      "desc": "Implement and tune WAF protection for humynlabs kgen kratos exlr8 domains."
     },
     {
       "pri": "High",
       "name": "Remove Non-Critical Apps from Public Exposure",
-      "desc": "Reduce external attack surface by removing non-critical applications from public exposure."
+      "desc": "Reduce external attack surface across humynlabs kgen kratos exlr8."
     },
     {
       "pri": "High",
@@ -392,17 +490,17 @@
     },
     {
       "pri": "High",
-      "name": "K8s Security Posture Review (GKE & AWS)",
-      "desc": "Perform comprehensive Kubernetes Security Posture Management review for GKE and AWS clusters."
+      "name": "Security Posture Review for GKE & AWS Clusters",
+      "desc": "Perform comprehensive Kubernetes Security Posture Management review for clusters."
     },
     {
       "pri": "High",
-      "name": "Post-Migration Security Review of EKS",
+      "name": "Post-Migration Security Review for New EKS Cluster",
       "desc": "Perform security validation and hardening of new AWS EKS cluster post migration."
     },
     {
       "pri": "Medium",
-      "name": "K8s Cluster Segregation Strategy",
+      "name": "Kubernetes Cluster Segregation Strategy",
       "desc": "Design architecture for segregating workloads into multiple clusters to reduce blast radius."
     }
   ]
