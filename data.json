@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-10T06:58:31.294760+00:00",
+  "generatedAt": "2026-07-11T05:56:14.204067+00:00",
   "sprintNumber": "74",
   "sprintDates": "[6 July - 17 July]",
   "sheetName": "SPRINT 74 [6 July - 17 July]",
@@ -440,7 +440,7 @@
     },
     {
       "pri": "High",
-      "name": "Cloud CNAPP & Workload Protection",
+      "name": "Cloud CNAPP & Workload Protection Implementation",
       "desc": "Implement CNAPP and deploy agents to 143 workloads."
     },
     {
@@ -480,18 +480,18 @@
     },
     {
       "pri": "High",
-      "name": "Remove Non-Critical Apps from Public Exposure",
+      "name": "Remove Non-Critical Applications from Public Exposure",
       "desc": "Reduce external attack surface across humynlabs kgen kratos exlr8."
     },
     {
       "pri": "High",
-      "name": "Investigate Active Infections & Multi-Cloud Anomalies",
+      "name": "Investigate Infections & Anomalies Across Multi-Cloud",
       "desc": "Perform deep threat investigation across multi-cloud environment."
     },
     {
       "pri": "High",
-      "name": "Security Posture Review: GKE & New AWS Clusters",
-      "desc": "Perform comprehensive Kubernetes Security Posture Management review."
+      "name": "Security Posture Review of Existing GKE & New AWS Clusters",
+      "desc": "Comprehensive KSPM review for existing GCP GKE and new AWS clusters."
     },
     {
       "pri": "High",
@@ -500,7 +500,7 @@
     },
     {
       "pri": "Medium",
-      "name": "Design Kubernetes Cluster Segregation Strategy",
+      "name": "Design & Plan K8s Cluster Segregation Strategy",
       "desc": "Design architecture for segregating workloads into multiple clusters to reduce blast radius."
     }
   ]
