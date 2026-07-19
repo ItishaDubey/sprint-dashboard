@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-18T05:39:30.378441+00:00",
+  "generatedAt": "2026-07-19T06:10:59.887867+00:00",
   "sprintNumber": "74",
   "sprintDates": "[6 July - 17 July]",
   "sheetName": "SPRINT 74 [6 July - 17 July]",
@@ -716,62 +716,62 @@
     {
       "pri": "High",
       "name": "Cloud CNAPP & Workload Protection",
-      "desc": "Implement CNAPP and deploy agents to 143 workloads for comprehensive protection."
+      "desc": "Implement CNAPP and deploy agents to 143 workloads."
     },
     {
       "pri": "High",
       "name": "Splunk Deployment & Log Onboarding",
-      "desc": "Procure and deploy Splunk with prioritized log ingestion for centralized logging."
+      "desc": "Procure and deploy Splunk with prioritized log ingestion."
     },
     {
       "pri": "High",
       "name": "MDM Deployment & Compliance Enforcement",
-      "desc": "Deploy MDM across corporate devices with policy enforcement and monitoring."
+      "desc": "Deploy MDM across corporate devices with policy enforcement."
     },
     {
       "pri": "High",
       "name": "Build Security Operations Team",
-      "desc": "Hire and onboard required security roles to establish an internal SOC."
+      "desc": "Hire and onboard required security roles."
     },
     {
       "pri": "High",
       "name": "Splunk Commercial & Legal Procurement",
-      "desc": "Complete commercial, financial, and legal procurement cycle for Splunk licensing."
+      "desc": "Complete commercial, financial, and legal procurement cycle for Splunk."
     },
     {
       "pri": "High",
       "name": "MDM Commercial & Licensing Procurement",
-      "desc": "Complete vendor selection and procurement cycle for the chosen MDM solution."
+      "desc": "Complete vendor selection and procurement cycle for MDM solution."
     },
     {
       "pri": "Medium",
-      "name": "Procurement Governance & Vendor Mgmt",
-      "desc": "Establish structured governance for all security tool purchases and vendor lifecycle."
+      "name": "Procurement Governance & Vendor Management",
+      "desc": "Ensure structured governance for all security tool purchases."
     },
     {
       "pri": "High",
       "name": "Cloudflare WAF Deployment for Critical Domains",
-      "desc": "Implement and tune WAF protection for critical domains (humynlabs, kgen, kratos, exlr8)."
+      "desc": "Implement and tune WAF protection for critical domains."
     },
     {
       "pri": "High",
       "name": "Remove Non-Critical Apps from Public Exposure",
-      "desc": "Reduce external attack surface by removing non-critical applications from public exposure."
+      "desc": "Reduce external attack surface across specified applications."
     },
     {
       "pri": "High",
-      "name": "Threat Investigation Across Multi-Cloud",
-      "desc": "Perform deep threat investigation across AWS, GCP, and Cloudflare environments."
+      "name": "Investigate Active Infections & Anomalies",
+      "desc": "Perform deep threat investigation across multi-cloud environment."
     },
     {
       "pri": "High",
-      "name": "Kubernetes Security Posture Review",
-      "desc": "Perform comprehensive KSPM review for existing GCP GKE and new AWS clusters."
+      "name": "K8s Security Posture Review (GKE & AWS)",
+      "desc": "Comprehensive Kubernetes Security Posture Management review for GKE and new AWS clusters."
     },
     {
       "pri": "High",
-      "name": "Post-Migration Security Review of New EKS",
-      "desc": "Perform security validation and hardening of new AWS EKS cluster post-migration."
+      "name": "Post-Migration Security Review of EKS Cluster",
+      "desc": "Perform security validation and hardening of new AWS EKS cluster post migration."
     },
     {
       "pri": "Medium",
