@@ -1,14 +1,14 @@
 {
-  "generatedAt": "2026-07-22T06:07:34.136819+00:00",
+  "generatedAt": "2026-07-23T06:13:23.630080+00:00",
   "sprintNumber": "75",
   "sprintDates": "[20 July - 31 July]",
   "sheetName": "SPRINT 75 [20 July - 31 July]",
   "stats": {
-    "total": 22,
+    "total": 23,
     "done": 0,
     "inProgress": 3,
     "blocked": 0,
-    "notStarted": 19
+    "notStarted": 20
   },
   "pods": [
     {
@@ -96,22 +96,6 @@
         },
         {
           "pod": "engage",
-          "feature": "Vendor Dashboard for progress update",
-          "jira": "-",
-          "status": "To Do",
-          "assignee": "-",
-          "notes": ""
-        },
-        {
-          "pod": "engage",
-          "feature": "HITL QC Change",
-          "jira": "-",
-          "status": "To Do",
-          "assignee": "-",
-          "notes": ""
-        },
-        {
-          "pod": "engage",
           "feature": "[Enhancement] Auto QC S12 check",
           "jira": "-",
           "status": "To Do",
@@ -120,7 +104,7 @@
         },
         {
           "pod": "engage",
-          "feature": "Pre-annotation Acoustic tags changes",
+          "feature": "Vendor Dashboard for progress update",
           "jira": "-",
           "status": "To Do",
           "assignee": "-",
@@ -128,7 +112,23 @@
         },
         {
           "pod": "engage",
-          "feature": "[RnD] Speaker Id swap on preannotion",
+          "feature": "Annotators dashboard for progress update",
+          "jira": "-",
+          "status": "To Do",
+          "assignee": "-",
+          "notes": ""
+        },
+        {
+          "pod": "engage",
+          "feature": "HITL Multi-QC Change; Super QC role",
+          "jira": "-",
+          "status": "To Do",
+          "assignee": "-",
+          "notes": ""
+        },
+        {
+          "pod": "engage",
+          "feature": "Pre-annotation Acoustic tags changes",
           "jira": "-",
           "status": "To Do",
           "assignee": "-",
@@ -253,6 +253,14 @@
       "status": "To Do",
       "assignee": "Jaya Kesarwani",
       "notes": ""
+    },
+    {
+      "pod": "qa_releases",
+      "feature": "[RnD] Speaker Id swap on preannotion",
+      "jira": "-",
+      "status": "To Do",
+      "assignee": "-",
+      "notes": ""
     }
   ],
   "bandwidth": [
@@ -321,67 +329,67 @@
     {
       "pri": "High",
       "name": "Cloud CNAPP & Workload Protection Implementation",
-      "desc": "Implement CNAPP and deploy agents to 143 workloads."
+      "desc": "Implement CNAPP and deploy agents to 143 workloads for comprehensive protection."
     },
     {
       "pri": "High",
       "name": "Splunk Deployment & Log Onboarding",
-      "desc": "Procure and deploy Splunk with prioritized log ingestion."
+      "desc": "Procure and deploy Splunk with prioritized log ingestion for centralized monitoring."
     },
     {
       "pri": "High",
       "name": "MDM Deployment & Compliance Enforcement",
-      "desc": "Deploy MDM across corporate devices with policy enforcement."
+      "desc": "Deploy MDM across corporate devices to enforce security policies and compliance."
     },
     {
       "pri": "High",
       "name": "Build Security Operations Team",
-      "desc": "Hire and onboard required security roles."
+      "desc": "Hire and onboard essential security roles to establish a robust Security Operations Center."
     },
     {
       "pri": "High",
       "name": "Splunk Commercial & Legal Procurement",
-      "desc": "Complete commercial, financial and legal procurement cycle for Splunk."
+      "desc": "Complete the commercial, financial, and legal procurement cycle for Splunk licensing."
     },
     {
       "pri": "High",
       "name": "MDM Commercial & Licensing Procurement",
-      "desc": "Complete vendor selection and procurement cycle for MDM solution."
+      "desc": "Finalize vendor selection and complete the full procurement cycle for the MDM solution."
     },
     {
       "pri": "Medium",
       "name": "Procurement Governance & Vendor Management",
-      "desc": "Ensure structured governance for all security tool purchases."
+      "desc": "Establish structured governance for all security tool purchases and vendor relationships."
     },
     {
       "pri": "High",
       "name": "Cloudflare WAF Deployment for Critical Domains",
-      "desc": "Implement and tune WAF protection for humynlabs kgen kratos exlr8 domains."
+      "desc": "Implement and tune WAF protection for critical domains (humynlabs, kgen, kratos, exlr8)."
     },
     {
       "pri": "High",
       "name": "Remove Non-Critical Applications from Public Exposure",
-      "desc": "Reduce external attack surface across humynlabs kgen kratos exlr8."
+      "desc": "Reduce the external attack surface by removing non-critical apps from public exposure."
     },
     {
       "pri": "High",
-      "name": "Investigate Active Infections & Anomalies (AWS/GCP/CF)",
-      "desc": "Perform deep threat investigation across multi-cloud environment."
+      "name": "Investigate Active Infections & Anomalies",
+      "desc": "Perform deep threat investigation across AWS, GCP, and Cloudflare multi-cloud environments."
     },
     {
       "pri": "High",
-      "name": "Security Posture Review of GKE & New AWS Clusters",
-      "desc": "Conduct comprehensive Kubernetes security posture review for GCP GKE and new AWS clusters."
+      "name": "K8s Security Posture Review (GKE & EKS)",
+      "desc": "Conduct a comprehensive Kubernetes Security Posture Management review for GKE and new AWS EKS clusters."
     },
     {
       "pri": "High",
       "name": "Post-Migration Security Review of New EKS Cluster",
-      "desc": "Perform security validation and hardening of new AWS EKS cluster post migration."
+      "desc": "Perform security validation and hardening of the new AWS EKS cluster following its migration."
     },
     {
       "pri": "Medium",
-      "name": "Design & Plan Kubernetes Cluster Segregation Strategy",
-      "desc": "Design architecture for segregating workloads into multiple clusters to reduce blast radius."
+      "name": "Design K8s Cluster Segregation Strategy",
+      "desc": "Design architecture to segregate workloads into multiple Kubernetes clusters, reducing blast radius."
     }
   ]
 }
