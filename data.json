@@ -1,14 +1,14 @@
 {
-  "generatedAt": "2026-07-23T06:13:23.630080+00:00",
+  "generatedAt": "2026-07-24T06:07:01.150652+00:00",
   "sprintNumber": "75",
   "sprintDates": "[20 July - 31 July]",
   "sheetName": "SPRINT 75 [20 July - 31 July]",
   "stats": {
-    "total": 23,
-    "done": 0,
+    "total": 29,
+    "done": 3,
     "inProgress": 3,
     "blocked": 0,
-    "notStarted": 20
+    "notStarted": 23
   },
   "pods": [
     {
@@ -49,7 +49,15 @@
         {
           "pod": "engage",
           "feature": "Footer link changes",
-          "jira": "TECH-21296",
+          "jira": "TECH-21358",
+          "status": "In QA",
+          "assignee": "Vamsi Krishna",
+          "notes": ""
+        },
+        {
+          "pod": "engage",
+          "feature": "Admin for HL Datasets to allow dataset upload from admin fe",
+          "jira": "-",
           "status": "To Do",
           "assignee": "Kumaragurubaran Kanagaraj",
           "notes": ""
@@ -58,8 +66,8 @@
           "pod": "engage",
           "feature": "Full KYC Implementation across pages for Crypto Rewards Handling",
           "jira": "TECH-21296",
-          "status": "To Do",
-          "assignee": "Kumaragurubaran Kanagaraj",
+          "status": "In QA",
+          "assignee": "Namrata Kesarwani",
           "notes": ""
         },
         {
@@ -68,6 +76,38 @@
           "jira": "TECH-21298",
           "status": "To Do",
           "assignee": "Kumaragurubaran Kanagaraj",
+          "notes": ""
+        },
+        {
+          "pod": "engage",
+          "feature": "SEO title in Humyn Labs Blogs",
+          "jira": "TECH-21360",
+          "status": "Done",
+          "assignee": "Vamsi Krishna",
+          "notes": ""
+        },
+        {
+          "pod": "engage",
+          "feature": "Dynamo Index Optimisations",
+          "jira": "TECH-21359",
+          "status": "To Do",
+          "assignee": "Kumaragurubaran Kanagaraj",
+          "notes": ""
+        },
+        {
+          "pod": "engage",
+          "feature": "Audio Collection - Off shelf",
+          "jira": "TECH-21361",
+          "status": "To Do",
+          "assignee": "Shaurya Singh",
+          "notes": ""
+        },
+        {
+          "pod": "engage",
+          "feature": "Website Revamp",
+          "jira": "-",
+          "status": "To Do",
+          "assignee": "-",
           "notes": ""
         },
         {
@@ -89,79 +129,87 @@
         {
           "pod": "engage",
           "feature": "WER and LLM AutoQC for validation changes",
-          "jira": "-",
+          "jira": "HL-425",
           "status": "To Do",
-          "assignee": "-",
+          "assignee": "Pratik Singh",
           "notes": ""
         },
         {
           "pod": "engage",
           "feature": "[Enhancement] Auto QC S12 check",
-          "jira": "-",
+          "jira": "HL-426",
           "status": "To Do",
-          "assignee": "-",
+          "assignee": "Jaya Kesarwani",
           "notes": ""
         },
         {
           "pod": "engage",
           "feature": "Vendor Dashboard for progress update",
-          "jira": "-",
+          "jira": "HL-427",
           "status": "To Do",
-          "assignee": "-",
+          "assignee": "Shaurya Singh",
           "notes": ""
         },
         {
           "pod": "engage",
           "feature": "Annotators dashboard for progress update",
-          "jira": "-",
+          "jira": "HL-428",
           "status": "To Do",
-          "assignee": "-",
+          "assignee": "Shaurya Singh",
           "notes": ""
         },
         {
           "pod": "engage",
           "feature": "HITL Multi-QC Change; Super QC role",
-          "jira": "-",
+          "jira": "HL-429",
           "status": "To Do",
-          "assignee": "-",
+          "assignee": "Yogesh Kumar",
           "notes": ""
         },
         {
           "pod": "engage",
           "feature": "Pre-annotation Acoustic tags changes",
-          "jira": "-",
+          "jira": "HL-430",
           "status": "To Do",
-          "assignee": "-",
+          "assignee": "Nilesh Pawar",
           "notes": ""
         },
         {
           "pod": "engage",
           "feature": "[Enhancement] TXN orch: DB query optimization",
-          "jira": "-",
+          "jira": "HL-431",
           "status": "To Do",
-          "assignee": "-",
+          "assignee": "Yogesh Kumar",
           "notes": ""
         },
         {
           "pod": "engage",
           "feature": "[Feedback loop data] Collect the Golden Data in the system with client feedback",
-          "jira": "-",
+          "jira": "HL-432",
           "status": "To Do",
-          "assignee": "-",
+          "assignee": "Yogesh Kumar",
           "notes": ""
         },
         {
           "pod": "engage",
           "feature": "RL Languages - FT",
-          "jira": "-",
+          "jira": "HL-433",
           "status": "To Do",
-          "assignee": "-",
+          "assignee": "Yogesh Kumar",
           "notes": ""
         },
         {
           "pod": "engage",
           "feature": "Implement webhook auto retry in AutoQC",
           "jira": "HL-392",
+          "status": "To Do",
+          "assignee": "Jaya Kesarwani",
+          "notes": ""
+        },
+        {
+          "pod": "engage",
+          "feature": "Recovery queue for Validation",
+          "jira": "HL-434",
           "status": "To Do",
           "assignee": "Jaya Kesarwani",
           "notes": ""
@@ -276,14 +324,59 @@
     {
       "name": "Jaya",
       "pod": "engage",
-      "load": "light",
-      "taskCount": 2,
+      "load": "moderate",
+      "taskCount": 4,
+      "tasks": [],
+      "hasBlocker": false,
+      "blockerNote": ""
+    },
+    {
+      "name": "Yogesh",
+      "pod": "engage",
+      "load": "moderate",
+      "taskCount": 4,
       "tasks": [],
       "hasBlocker": false,
       "blockerNote": ""
     },
     {
       "name": "Vamsi",
+      "pod": "engage",
+      "load": "moderate",
+      "taskCount": 3,
+      "tasks": [],
+      "hasBlocker": false,
+      "blockerNote": ""
+    },
+    {
+      "name": "Shaurya",
+      "pod": "engage",
+      "load": "moderate",
+      "taskCount": 3,
+      "tasks": [],
+      "hasBlocker": false,
+      "blockerNote": ""
+    },
+    {
+      "name": "Namrata",
+      "pod": "engage",
+      "load": "light",
+      "taskCount": 1,
+      "tasks": [],
+      "hasBlocker": false,
+      "blockerNote": ""
+    },
+    {
+      "name": "Pratik",
+      "pod": "engage",
+      "load": "light",
+      "taskCount": 1,
+      "tasks": [],
+      "hasBlocker": false,
+      "blockerNote": ""
+    },
+    {
+      "name": "Nilesh",
       "pod": "engage",
       "load": "light",
       "taskCount": 1,
@@ -328,23 +421,23 @@
     },
     {
       "pri": "High",
-      "name": "Cloud CNAPP & Workload Protection Implementation",
+      "name": "Cloud CNAPP & Workload Protection",
       "desc": "Implement CNAPP and deploy agents to 143 workloads for comprehensive protection."
     },
     {
       "pri": "High",
       "name": "Splunk Deployment & Log Onboarding",
-      "desc": "Procure and deploy Splunk with prioritized log ingestion for centralized monitoring."
+      "desc": "Procure, deploy, and configure Splunk for prioritized log ingestion and analysis."
     },
     {
       "pri": "High",
       "name": "MDM Deployment & Compliance Enforcement",
-      "desc": "Deploy MDM across corporate devices to enforce security policies and compliance."
+      "desc": "Deploy MDM solution across corporate devices to enforce security policies and compliance."
     },
     {
       "pri": "High",
       "name": "Build Security Operations Team",
-      "desc": "Hire and onboard essential security roles to establish a robust Security Operations Center."
+      "desc": "Hire and onboard required security roles to establish an effective Security Operations Center."
     },
     {
       "pri": "High",
@@ -354,42 +447,42 @@
     {
       "pri": "High",
       "name": "MDM Commercial & Licensing Procurement",
-      "desc": "Finalize vendor selection and complete the full procurement cycle for the MDM solution."
+      "desc": "Complete vendor selection and procurement cycle for the MDM solution and licensing."
     },
     {
       "pri": "Medium",
       "name": "Procurement Governance & Vendor Management",
-      "desc": "Establish structured governance for all security tool purchases and vendor relationships."
+      "desc": "Ensure structured governance is in place for all security tool purchases and vendor management."
     },
     {
       "pri": "High",
       "name": "Cloudflare WAF Deployment for Critical Domains",
-      "desc": "Implement and tune WAF protection for critical domains (humynlabs, kgen, kratos, exlr8)."
+      "desc": "Implement and tune Cloudflare WAF protection for critical public-facing domains."
     },
     {
       "pri": "High",
-      "name": "Remove Non-Critical Applications from Public Exposure",
-      "desc": "Reduce the external attack surface by removing non-critical apps from public exposure."
+      "name": "Remove Non-Critical Apps from Public Exposure",
+      "desc": "Reduce external attack surface by removing non-critical applications from public exposure."
     },
     {
       "pri": "High",
-      "name": "Investigate Active Infections & Anomalies",
+      "name": "Investigate Multi-Cloud Infections & Anomalies",
       "desc": "Perform deep threat investigation across AWS, GCP, and Cloudflare multi-cloud environments."
     },
     {
       "pri": "High",
-      "name": "K8s Security Posture Review (GKE & EKS)",
-      "desc": "Conduct a comprehensive Kubernetes Security Posture Management review for GKE and new AWS EKS clusters."
+      "name": "Kubernetes Security Posture Review (GKE & AWS)",
+      "desc": "Perform comprehensive Kubernetes Security Posture Management review for GKE and new AWS clusters."
     },
     {
       "pri": "High",
       "name": "Post-Migration Security Review of New EKS Cluster",
-      "desc": "Perform security validation and hardening of the new AWS EKS cluster following its migration."
+      "desc": "Perform security validation and hardening of the new AWS EKS cluster post migration."
     },
     {
       "pri": "Medium",
-      "name": "Design K8s Cluster Segregation Strategy",
-      "desc": "Design architecture to segregate workloads into multiple Kubernetes clusters, reducing blast radius."
+      "name": "Design Kubernetes Cluster Segregation Strategy",
+      "desc": "Design architecture for segregating workloads into multiple clusters to reduce blast radius."
     }
   ]
 }
