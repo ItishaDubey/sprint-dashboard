@@ -1,14 +1,14 @@
 {
-  "generatedAt": "2026-07-26T06:18:39.303072+00:00",
+  "generatedAt": "2026-07-27T06:46:22.300756+00:00",
   "sprintNumber": "75",
   "sprintDates": "[20 July - 31 July]",
   "sheetName": "SPRINT 75 [20 July - 31 July]",
   "stats": {
     "total": 30,
-    "done": 3,
+    "done": 4,
     "inProgress": 3,
     "blocked": 0,
-    "notStarted": 24
+    "notStarted": 23
   },
   "pods": [
     {
@@ -90,7 +90,7 @@
           "pod": "engage",
           "feature": "Dynamo Index Optimisations",
           "jira": "TECH-21359",
-          "status": "To Do",
+          "status": "Done",
           "assignee": "Kumaragurubaran Kanagaraj",
           "notes": ""
         },
@@ -438,7 +438,7 @@
     },
     {
       "pri": "High",
-      "name": "Cloud CNAPP & Workload Protection",
+      "name": "Cloud CNAPP & Workload Protection Implementation",
       "desc": "Implement CNAPP and deploy agents to 143 workloads."
     },
     {
@@ -459,7 +459,7 @@
     {
       "pri": "High",
       "name": "Splunk Commercial & Legal Procurement",
-      "desc": "Complete commercial, financial, and legal procurement cycle for Splunk."
+      "desc": "Complete commercial, financial and legal procurement cycle for Splunk."
     },
     {
       "pri": "High",
@@ -474,32 +474,32 @@
     {
       "pri": "High",
       "name": "Cloudflare WAF Deployment for Critical Domains",
-      "desc": "Implement and tune WAF protection for humynlabs kgen kratos exlr8 domains."
+      "desc": "Implement and tune WAF protection for critical humynlabs, kgen, kratos, exlr8 domains."
     },
     {
       "pri": "High",
       "name": "Remove Non-Critical Apps from Public Exposure",
-      "desc": "Reduce external attack surface across humynlabs kgen kratos exlr8."
+      "desc": "Reduce external attack surface across humynlabs, kgen, kratos, exlr8."
     },
     {
       "pri": "High",
       "name": "Investigate Active Infections & Anomalies",
-      "desc": "Perform deep threat investigation across multi-cloud environment."
+      "desc": "Perform deep threat investigation across AWS, GCP, and Cloudflare multi-cloud environments."
     },
     {
       "pri": "High",
-      "name": "Kubernetes Security Posture Review",
-      "desc": "Perform comprehensive K8s Security Posture review for GKE and new AWS Clusters."
+      "name": "GKE & AWS Kubernetes Security Posture Review",
+      "desc": "Review existing GCP GKE and new AWS EKS clusters for comprehensive Kubernetes security posture."
     },
     {
       "pri": "High",
       "name": "Post-Migration Security Review of New EKS Cluster",
-      "desc": "Perform security validation and hardening of new AWS EKS cluster post migration."
+      "desc": "Perform security validation and hardening of the new AWS EKS cluster after migration."
     },
     {
       "pri": "Medium",
-      "name": "Design K8s Cluster Segregation Strategy",
-      "desc": "Design architecture for segregating workloads into multiple clusters to reduce blast radius."
+      "name": "Design Kubernetes Cluster Segregation Strategy",
+      "desc": "Design architecture to segregate workloads into multiple clusters to reduce blast radius."
     }
   ]
 }
