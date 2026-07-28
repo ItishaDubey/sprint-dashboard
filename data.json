@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-27T06:46:22.300756+00:00",
+  "generatedAt": "2026-07-28T06:06:06.440505+00:00",
   "sprintNumber": "75",
   "sprintDates": "[20 July - 31 July]",
   "sheetName": "SPRINT 75 [20 July - 31 July]",
@@ -474,22 +474,22 @@
     {
       "pri": "High",
       "name": "Cloudflare WAF Deployment for Critical Domains",
-      "desc": "Implement and tune WAF protection for critical humynlabs, kgen, kratos, exlr8 domains."
+      "desc": "Implement and tune WAF protection for humynlabs kgen kratos exlr8 domains."
     },
     {
       "pri": "High",
       "name": "Remove Non-Critical Apps from Public Exposure",
-      "desc": "Reduce external attack surface across humynlabs, kgen, kratos, exlr8."
+      "desc": "Reduce external attack surface across humynlabs kgen kratos exlr8."
     },
     {
       "pri": "High",
-      "name": "Investigate Active Infections & Anomalies",
-      "desc": "Perform deep threat investigation across AWS, GCP, and Cloudflare multi-cloud environments."
+      "name": "Investigate Active Infections & Multi-Cloud Anomalies",
+      "desc": "Perform deep threat investigation across AWS, GCP, and Cloudflare environments."
     },
     {
       "pri": "High",
-      "name": "GKE & AWS Kubernetes Security Posture Review",
-      "desc": "Review existing GCP GKE and new AWS EKS clusters for comprehensive Kubernetes security posture."
+      "name": "K8s Security Posture Review (GKE & AWS EKS)",
+      "desc": "Perform comprehensive Kubernetes Security Posture Management review for GKE and new AWS EKS clusters."
     },
     {
       "pri": "High",
@@ -498,8 +498,8 @@
     },
     {
       "pri": "Medium",
-      "name": "Design Kubernetes Cluster Segregation Strategy",
-      "desc": "Design architecture to segregate workloads into multiple clusters to reduce blast radius."
+      "name": "Design K8s Cluster Segregation Strategy",
+      "desc": "Design architecture for segregating workloads into multiple clusters to reduce blast radius."
     }
   ]
 }
