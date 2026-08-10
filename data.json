@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-09T04:41:53.835864+00:00",
+  "generatedAt": "2026-08-10T04:59:40.639756+00:00",
   "sprintNumber": "76",
   "sprintDates": "[3 Aug - 14 Aug]",
   "sheetName": "SPRINT 76 [3 Aug - 14 Aug]",
@@ -130,7 +130,7 @@
     {
       "pri": "High",
       "name": "Build Security Operations Team",
-      "desc": "Hire and onboard required security roles."
+      "desc": "Hire and onboard required security roles for security operations."
     },
     {
       "pri": "High",
@@ -144,7 +144,7 @@
     },
     {
       "pri": "Medium",
-      "name": "Procurement Governance & Vendor Mgmt",
+      "name": "Procurement Governance & Vendor Management",
       "desc": "Ensure structured governance for all security tool purchases."
     },
     {
@@ -164,12 +164,12 @@
     },
     {
       "pri": "High",
-      "name": "K8s Security Posture Review (GKE/EKS)",
-      "desc": "Perform comprehensive Kubernetes Security Posture Management review for GKE and new EKS clusters."
+      "name": "Security Posture Review: GKE & New AWS Clusters",
+      "desc": "Perform comprehensive Kubernetes Security Posture Management review for GKE & AWS Clusters."
     },
     {
       "pri": "High",
-      "name": "Post-Migration Security Review of New EKS",
+      "name": "Post-Migration Security Review of New EKS Cluster",
       "desc": "Perform security validation and hardening of new AWS EKS cluster post migration."
     },
     {
