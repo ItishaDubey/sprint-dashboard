@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-19T04:03:57.475884+00:00",
+  "generatedAt": "2026-08-20T04:03:44.152702+00:00",
   "sprintNumber": "77",
   "sprintDates": "[17 Aug - 28 Aug]",
   "sheetName": "SPRINT 77 [17 Aug - 28 Aug]",
@@ -114,7 +114,7 @@
     },
     {
       "pri": "High",
-      "name": "Cloud CNAPP & Workload Protection",
+      "name": "Cloud CNAPP & Workload Protection Implementation",
       "desc": "Implement CNAPP and deploy agents to 143 workloads."
     },
     {
@@ -150,31 +150,31 @@
     {
       "pri": "High",
       "name": "Cloudflare WAF Deployment for Critical Domains",
-      "desc": "Implement and tune WAF protection for specific critical domains."
+      "desc": "Implement and tune WAF protection for critical domains."
     },
     {
       "pri": "High",
-      "name": "Remove Public Exposure of Non-Critical Apps",
-      "desc": "Reduce external attack surface across multiple brands by removing public access."
+      "name": "Remove Non-Critical Apps from Public Exposure",
+      "desc": "Reduce external attack surface across all brands by removing public exposure."
     },
     {
       "pri": "High",
-      "name": "Investigate Multi-Cloud Infections & Anomalies",
-      "desc": "Perform deep threat investigation across AWS, GCP, and Cloudflare environments."
+      "name": "Investigate Active Infections & Anomalies",
+      "desc": "Perform deep threat investigation across multi-cloud environment (AWS, GCP, Cloudflare)."
     },
     {
       "pri": "High",
-      "name": "Kubernetes Security Posture Review (GKE & AWS)",
-      "desc": "Perform comprehensive KSPM review for existing GCP GKE and new AWS EKS clusters."
+      "name": "Security Posture Review of Kubernetes Clusters",
+      "desc": "Perform comprehensive Kubernetes Security Posture Management review for GCP GKE and new AWS EKS clusters."
     },
     {
       "pri": "High",
       "name": "Post-Migration Security Review of New EKS Cluster",
-      "desc": "Perform security validation and hardening of the new AWS EKS cluster post migration."
+      "desc": "Perform security validation and hardening of new AWS EKS cluster post migration."
     },
     {
       "pri": "Medium",
-      "name": "Kubernetes Cluster Segregation Strategy",
+      "name": "Design Kubernetes Cluster Segregation Strategy",
       "desc": "Design architecture for segregating workloads into multiple clusters to reduce blast radius."
     }
   ]
