@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-30T09:21:19.984315+00:00",
+  "generatedAt": "2026-08-31T09:56:02.458301+00:00",
   "sprintNumber": "78",
   "sprintDates": "[31 Aug-11 Sep]",
   "sheetName": "SPRINT 78 [31 Aug-11 Sep]",
@@ -114,7 +114,7 @@
     },
     {
       "pri": "High",
-      "name": "Cloud CNAPP & Workload Protection Implementation",
+      "name": "Cloud CNAPP & Workload Protection",
       "desc": "Implement CNAPP and deploy agents to 143 workloads."
     },
     {
@@ -134,13 +134,13 @@
     },
     {
       "pri": "High",
-      "name": "Splunk Commercial & Legal Procurement",
+      "name": "Splunk Procurement & Legal Review",
       "desc": "Complete commercial, financial, and legal procurement cycle for Splunk."
     },
     {
       "pri": "High",
-      "name": "MDM Commercial & Licensing Procurement",
-      "desc": "Complete vendor selection and procurement cycle for the MDM solution."
+      "name": "MDM Procurement & Licensing",
+      "desc": "Complete vendor selection and procurement cycle for MDM solution."
     },
     {
       "pri": "Medium",
@@ -149,32 +149,32 @@
     },
     {
       "pri": "High",
-      "name": "Cloudflare WAF Deployment for Critical Domains",
-      "desc": "Implement and tune WAF protection for critical domains across all brands."
+      "name": "Cloudflare WAF Deployment",
+      "desc": "Implement and tune WAF protection for critical domains across brands."
     },
     {
       "pri": "High",
-      "name": "Remove Non-Critical Apps from Public Exposure",
-      "desc": "Reduce external attack surface by removing non-critical applications from public exposure."
+      "name": "Reduce Public Application Exposure",
+      "desc": "Reduce external attack surface by removing non-critical apps from public exposure."
     },
     {
       "pri": "High",
-      "name": "Investigate Active Infections & Anomalies",
-      "desc": "Perform deep threat investigation across multi-cloud environments like AWS, GCP, and Cloudflare."
+      "name": "Investigate Multi-Cloud Infections & Anomalies",
+      "desc": "Perform deep threat investigation across AWS, GCP, and Cloudflare environments."
     },
     {
       "pri": "High",
-      "name": "K8s Security Posture Review (GKE & EKS)",
-      "desc": "Perform comprehensive Kubernetes security posture review for GKE and new AWS EKS clusters."
+      "name": "GKE & EKS Security Posture Review",
+      "desc": "Perform comprehensive Kubernetes Security Posture Management review for GKE and EKS clusters."
     },
     {
       "pri": "High",
-      "name": "Post-Migration Security Review of New EKS Cluster",
-      "desc": "Perform security validation and hardening of the new AWS EKS cluster post migration."
+      "name": "EKS Post-Migration Security Review",
+      "desc": "Perform security validation and hardening of the new AWS EKS cluster post-migration."
     },
     {
       "pri": "Medium",
-      "name": "Design K8s Cluster Segregation Strategy",
+      "name": "Kubernetes Cluster Segregation Strategy",
       "desc": "Design architecture for segregating workloads into multiple clusters to reduce blast radius."
     }
   ]
