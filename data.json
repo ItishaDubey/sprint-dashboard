@@ -1,8 +1,8 @@
 {
-  "generatedAt": "2026-09-02T08:00:18.868562+00:00",
+  "generatedAt": "2026-09-03T08:10:09.751682+00:00",
   "sprintNumber": "78",
-  "sprintDates": "[31 Aug-11 Sep]",
-  "sheetName": "SPRINT 78 [31 Aug-11 Sep]",
+  "sprintDates": "[7 Sep - 18 Sep]",
+  "sheetName": "SPRINT 78 [7 Sep - 18 Sep]",
   "stats": {
     "total": 0,
     "done": 0,
@@ -149,23 +149,23 @@
     },
     {
       "pri": "High",
-      "name": "Cloudflare WAF for Critical Domains",
-      "desc": "Implement and tune WAF protection for critical domains across all brands."
+      "name": "Cloudflare WAF Deployment for Critical Domains",
+      "desc": "Implement and tune WAF protection for humynlabs kgen kratos exlr8 domains."
     },
     {
       "pri": "High",
-      "name": "Remove Non-Critical Apps from Public Exposure",
-      "desc": "Reduce external attack surface across humynlabs, kgen, kratos, exlr8."
+      "name": "Remove Non-Critical Applications from Public Exposure",
+      "desc": "Reduce external attack surface across humynlabs kgen kratos exlr8."
     },
     {
       "pri": "High",
-      "name": "Investigate Active Infections & Anomalies",
-      "desc": "Perform deep threat investigation across multi-cloud environment (AWS, GCP, Cloudflare)."
+      "name": "Investigate Active Infections & Anomalies Across Clouds",
+      "desc": "Perform deep threat investigation across multi-cloud environment."
     },
     {
       "pri": "High",
-      "name": "Security Posture Review of GKE & AWS Clusters",
-      "desc": "Perform comprehensive Kubernetes Security Posture Management review for GKE and EKS."
+      "name": "Security Posture Review of GKE & New AWS Clusters",
+      "desc": "Perform comprehensive Kubernetes Security Posture Management review for GKE and AWS Clusters."
     },
     {
       "pri": "High",
@@ -174,7 +174,7 @@
     },
     {
       "pri": "Medium",
-      "name": "Design Kubernetes Cluster Segregation Strategy",
+      "name": "Design & Plan Kubernetes Cluster Segregation Strategy",
       "desc": "Design architecture for segregating workloads into multiple clusters to reduce blast radius."
     }
   ]
