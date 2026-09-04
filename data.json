@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-03T08:10:09.751682+00:00",
+  "generatedAt": "2026-09-04T08:05:06.118516+00:00",
   "sprintNumber": "78",
   "sprintDates": "[7 Sep - 18 Sep]",
   "sheetName": "SPRINT 78 [7 Sep - 18 Sep]",
@@ -114,7 +114,7 @@
     },
     {
       "pri": "High",
-      "name": "Cloud CNAPP & Workload Protection Implementation",
+      "name": "Cloud CNAPP & Workload Protection",
       "desc": "Implement CNAPP and deploy agents to 143 workloads."
     },
     {
@@ -135,7 +135,7 @@
     {
       "pri": "High",
       "name": "Splunk Commercial & Legal Procurement",
-      "desc": "Complete commercial, financial and legal procurement cycle for Splunk."
+      "desc": "Complete procurement cycle for Splunk, covering commercial, financial, and legal aspects."
     },
     {
       "pri": "High",
@@ -150,22 +150,22 @@
     {
       "pri": "High",
       "name": "Cloudflare WAF Deployment for Critical Domains",
-      "desc": "Implement and tune WAF protection for humynlabs kgen kratos exlr8 domains."
+      "desc": "Implement and tune WAF protection for critical domains across brands."
     },
     {
       "pri": "High",
-      "name": "Remove Non-Critical Applications from Public Exposure",
-      "desc": "Reduce external attack surface across humynlabs kgen kratos exlr8."
+      "name": "Remove Non-Critical Apps from Public Exposure",
+      "desc": "Reduce external attack surface by removing non-critical applications from public exposure."
     },
     {
       "pri": "High",
-      "name": "Investigate Active Infections & Anomalies Across Clouds",
-      "desc": "Perform deep threat investigation across multi-cloud environment."
+      "name": "Investigate Active Infections & Anomalies",
+      "desc": "Perform deep threat investigation across multi-cloud environment (AWS, GCP, Cloudflare)."
     },
     {
       "pri": "High",
-      "name": "Security Posture Review of GKE & New AWS Clusters",
-      "desc": "Perform comprehensive Kubernetes Security Posture Management review for GKE and AWS Clusters."
+      "name": "Kubernetes Security Posture Review",
+      "desc": "Perform comprehensive Kubernetes Security Posture Management review for GKE and new AWS clusters."
     },
     {
       "pri": "High",
@@ -174,7 +174,7 @@
     },
     {
       "pri": "Medium",
-      "name": "Design & Plan Kubernetes Cluster Segregation Strategy",
+      "name": "Design Kubernetes Cluster Segregation Strategy",
       "desc": "Design architecture for segregating workloads into multiple clusters to reduce blast radius."
     }
   ]
