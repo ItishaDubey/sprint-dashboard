@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-09T08:15:57.627282+00:00",
+  "generatedAt": "2026-09-10T08:16:12.372420+00:00",
   "sprintNumber": "78",
   "sprintDates": "[7 Sep - 18 Sep]",
   "sheetName": "SPRINT 78 [7 Sep - 18 Sep]",
@@ -115,12 +115,12 @@
     {
       "pri": "High",
       "name": "Cloud CNAPP & Workload Protection",
-      "desc": "Implement CNAPP and deploy agents to 143 workloads."
+      "desc": "Implement CNAPP and deploy agents to 143 cloud workloads."
     },
     {
       "pri": "High",
       "name": "Splunk Deployment & Log Onboarding",
-      "desc": "Procure and deploy Splunk with prioritized log ingestion."
+      "desc": "Procure and deploy Splunk for prioritized log ingestion."
     },
     {
       "pri": "High",
@@ -130,17 +130,17 @@
     {
       "pri": "High",
       "name": "Build Security Operations Team",
-      "desc": "Hire and onboard required security roles for the operations team."
+      "desc": "Hire and onboard required security roles for the SOC."
     },
     {
       "pri": "High",
-      "name": "Splunk Procurement",
-      "desc": "Complete commercial, financial, and legal procurement cycle for Splunk."
+      "name": "Splunk Commercial & Legal Procurement",
+      "desc": "Complete the commercial, financial, and legal procurement cycle for Splunk."
     },
     {
       "pri": "High",
-      "name": "MDM Procurement",
-      "desc": "Complete vendor selection and procurement cycle for MDM solution."
+      "name": "MDM Commercial & Licensing Procurement",
+      "desc": "Complete vendor selection and procurement cycle for the MDM solution."
     },
     {
       "pri": "Medium",
@@ -150,31 +150,31 @@
     {
       "pri": "High",
       "name": "Cloudflare WAF Deployment",
-      "desc": "Implement and tune WAF protection for critical domains across brands."
+      "desc": "Implement and tune WAF protection for critical domains."
     },
     {
       "pri": "High",
-      "name": "Remove Public App Exposure",
-      "desc": "Reduce external attack surface by removing non-critical apps from public exposure."
+      "name": "Remove Public Exposure of Non-Critical Apps",
+      "desc": "Reduce external attack surface by removing non-critical apps from public access."
     },
     {
       "pri": "High",
-      "name": "Investigate Active Infections & Anomalies",
-      "desc": "Perform deep threat investigation across multi-cloud environments (AWS, GCP, Cloudflare)."
+      "name": "Investigate Multi-Cloud Infections & Anomalies",
+      "desc": "Perform deep threat investigation across the multi-cloud environment."
     },
     {
       "pri": "High",
-      "name": "Kubernetes Security Posture Review",
-      "desc": "Perform comprehensive KSPM review for existing GCP GKE and new AWS clusters."
+      "name": "K8s Security Posture Review (GKE & AWS)",
+      "desc": "Perform comprehensive Kubernetes Security Posture Management review for clusters."
     },
     {
       "pri": "High",
       "name": "Post-Migration EKS Security Review",
-      "desc": "Perform security validation and hardening of new AWS EKS cluster post migration."
+      "desc": "Perform security validation and hardening of the new AWS EKS cluster post migration."
     },
     {
       "pri": "Medium",
-      "name": "Design K8s Cluster Segregation",
+      "name": "K8s Cluster Segregation Strategy",
       "desc": "Design architecture for segregating workloads into multiple clusters to reduce blast radius."
     }
   ]
