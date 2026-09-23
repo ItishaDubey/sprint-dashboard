@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-22T08:40:25.180371+00:00",
+  "generatedAt": "2026-09-23T08:42:42.633747+00:00",
   "sprintNumber": "21",
   "sprintDates": "Sep - 1 Oct]",
   "sheetName": "SPRINT 79[21 Sep - 1 Oct]",
@@ -159,13 +159,13 @@
     },
     {
       "pri": "High",
-      "name": "Investigate Multi-Cloud Infections & Anomalies",
+      "name": "Investigate Active Infections & Anomalies (Multi-cloud)",
       "desc": "Perform deep threat investigation across multi-cloud environment."
     },
     {
       "pri": "High",
-      "name": "Kubernetes Security Posture Review",
-      "desc": "Perform comprehensive K8s Security Posture Management review for GKE & new AWS Clusters."
+      "name": "K8s Security Posture Review (GKE & EKS)",
+      "desc": "Perform comprehensive Kubernetes Security Posture Management review."
     },
     {
       "pri": "High",
@@ -174,8 +174,8 @@
     },
     {
       "pri": "Medium",
-      "name": "Kubernetes Cluster Segregation Strategy",
-      "desc": "Design architecture for segregating workloads into multiple clusters to reduce blast radius."
+      "name": "Kubernetes Cluster Segregation Strategy Design",
+      "desc": "Design architecture for segregating workloads to reduce blast radius."
     }
   ]
 }
