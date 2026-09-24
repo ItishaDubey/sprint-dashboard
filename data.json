@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-23T08:42:42.633747+00:00",
+  "generatedAt": "2026-09-24T08:35:30.176012+00:00",
   "sprintNumber": "21",
   "sprintDates": "Sep - 1 Oct]",
   "sheetName": "SPRINT 79[21 Sep - 1 Oct]",
@@ -150,32 +150,32 @@
     {
       "pri": "High",
       "name": "Cloudflare WAF Deployment for Critical Domains",
-      "desc": "Implement and tune WAF protection for humynlabs kgen kratos exlr8 domains."
+      "desc": "Implement and tune WAF protection for specified critical domains."
     },
     {
       "pri": "High",
       "name": "Remove Non-Critical Apps from Public Exposure",
-      "desc": "Reduce external attack surface across humynlabs kgen kratos exlr8."
+      "desc": "Reduce external attack surface by removing non-critical apps from public exposure."
     },
     {
       "pri": "High",
-      "name": "Investigate Active Infections & Anomalies (Multi-cloud)",
-      "desc": "Perform deep threat investigation across multi-cloud environment."
+      "name": "Investigate Infections & Anomalies Across Multi-Cloud",
+      "desc": "Perform deep threat investigation across AWS, GCP, and Cloudflare environments."
     },
     {
       "pri": "High",
-      "name": "K8s Security Posture Review (GKE & EKS)",
-      "desc": "Perform comprehensive Kubernetes Security Posture Management review."
+      "name": "Security Posture Review of Kubernetes Clusters",
+      "desc": "Perform comprehensive KSPM review for existing GCP GKE and new AWS clusters."
     },
     {
       "pri": "High",
       "name": "Post-Migration Security Review of New EKS Cluster",
-      "desc": "Perform security validation and hardening of new AWS EKS cluster post migration."
+      "desc": "Perform security validation and hardening of new AWS EKS cluster post-migration."
     },
     {
       "pri": "Medium",
-      "name": "Kubernetes Cluster Segregation Strategy Design",
-      "desc": "Design architecture for segregating workloads to reduce blast radius."
+      "name": "Design Kubernetes Cluster Segregation Strategy",
+      "desc": "Design architecture for segregating workloads into multiple clusters to reduce blast radius."
     }
   ]
 }
