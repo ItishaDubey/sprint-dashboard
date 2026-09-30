@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-29T09:59:31.746016+00:00",
+  "generatedAt": "2026-09-30T09:50:53.010327+00:00",
   "sprintNumber": "21",
   "sprintDates": "Sep - 1 Oct]",
   "sheetName": "SPRINT 79[21 Sep - 1 Oct]",
@@ -114,7 +114,7 @@
     },
     {
       "pri": "High",
-      "name": "Cloud CNAPP & Workload Protection Implementation",
+      "name": "Cloud CNAPP & Workload Protection",
       "desc": "Implement CNAPP and deploy agents to 143 workloads."
     },
     {
@@ -149,23 +149,23 @@
     },
     {
       "pri": "High",
-      "name": "Cloudflare WAF Deployment for Critical Domains",
-      "desc": "Implement and tune WAF protection for humynlabs kgen kratos exlr8 domains."
+      "name": "Cloudflare WAF Deployment",
+      "desc": "Implement and tune WAF protection for critical domains."
     },
     {
       "pri": "High",
       "name": "Remove Non-Critical Apps from Public Exposure",
-      "desc": "Reduce external attack surface across humynlabs kgen kratos exlr8."
+      "desc": "Reduce external attack surface across multiple brands."
     },
     {
       "pri": "High",
-      "name": "Investigate Infections & Anomalies Multi-Cloud",
+      "name": "Investigate Active Infections & Anomalies",
       "desc": "Perform deep threat investigation across multi-cloud environment."
     },
     {
       "pri": "High",
-      "name": "K8s Security Posture Review (GKE & AWS EKS)",
-      "desc": "Comprehensive Kubernetes Security Posture Management review for GKE and new AWS Clusters."
+      "name": "K8s Security Posture Review (GKE & EKS)",
+      "desc": "Perform comprehensive Kubernetes Security Posture Management review."
     },
     {
       "pri": "High",
