@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-17T07:55:42.120219+00:00",
+  "generatedAt": "2026-10-18T08:11:01.080758+00:00",
   "sprintNumber": "?",
   "sprintDates": "SPRINT 80[5th Oct - 16th Oct]",
   "sheetName": "SPRINT 80[5th Oct - 16th Oct]",
@@ -150,31 +150,31 @@
     {
       "pri": "High",
       "name": "Cloudflare WAF Deployment for Critical Domains",
-      "desc": "Implement and tune WAF protection for critical domains across brands."
+      "desc": "Implement and tune WAF protection for humynlabs kgen kratos exlr8 domains."
     },
     {
       "pri": "High",
       "name": "Remove Non-Critical Apps from Public Exposure",
-      "desc": "Reduce external attack surface across all company brands."
+      "desc": "Reduce external attack surface across humynlabs kgen kratos exlr8."
     },
     {
       "pri": "High",
       "name": "Investigate Active Infections & Anomalies",
-      "desc": "Perform deep threat investigation across the multi-cloud environment."
+      "desc": "Perform deep threat investigation across multi-cloud environment."
     },
     {
       "pri": "High",
-      "name": "Kubernetes Cluster Security Posture Review",
-      "desc": "Perform comprehensive K8s Security Posture Management review for GKE and new AWS clusters."
+      "name": "Security Posture Review of GKE & AWS Clusters",
+      "desc": "Perform comprehensive Kubernetes Security Posture Management review for GKE and new AWS EKS clusters."
     },
     {
       "pri": "High",
       "name": "Post-Migration Security Review of New EKS Cluster",
-      "desc": "Perform security validation and hardening of the new AWS EKS cluster post migration."
+      "desc": "Perform security validation and hardening of new AWS EKS cluster post migration."
     },
     {
       "pri": "Medium",
-      "name": "Design Kubernetes Cluster Segregation Strategy",
+      "name": "Design & Plan K8s Cluster Segregation",
       "desc": "Design architecture for segregating workloads into multiple clusters to reduce blast radius."
     }
   ]
