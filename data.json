@@ -1,8 +1,8 @@
 {
-  "generatedAt": "2026-10-22T08:47:03.200804+00:00",
+  "generatedAt": "2026-10-23T08:41:48.659874+00:00",
   "sprintNumber": "?",
-  "sprintDates": "SPRINT 80[5th Oct - 16th Oct]",
-  "sheetName": "SPRINT 80[5th Oct - 16th Oct]",
+  "sprintDates": "SPRINT 81[19th Oct - 30th Oct]",
+  "sheetName": "SPRINT 81[19th Oct - 30th Oct]",
   "stats": {
     "total": 0,
     "done": 0,
@@ -106,5 +106,76 @@
   ],
   "announcements": [],
   "itemOverrides": [],
-  "devsecEpics": []
+  "devsecEpics": [
+    {
+      "pri": "High",
+      "name": "Endpoint Security Rollout Program",
+      "desc": "Deploy SentinelOne to 120 endpoints including pilot and full rollout."
+    },
+    {
+      "pri": "High",
+      "name": "Cloud CNAPP & Workload Protection",
+      "desc": "Implement CNAPP and deploy agents to 143 cloud workloads."
+    },
+    {
+      "pri": "High",
+      "name": "Splunk Deployment & Log Onboarding",
+      "desc": "Procure and deploy Splunk, onboarding prioritized security logs for monitoring."
+    },
+    {
+      "pri": "High",
+      "name": "MDM Deployment & Compliance Enforcement",
+      "desc": "Deploy MDM across corporate devices to enforce security policies and compliance."
+    },
+    {
+      "pri": "High",
+      "name": "Build Security Operations Team",
+      "desc": "Hire and onboard essential security roles to establish the Security Operations Team."
+    },
+    {
+      "pri": "High",
+      "name": "Splunk Commercial & Legal Procurement",
+      "desc": "Complete all commercial, financial, and legal procurement steps for Splunk."
+    },
+    {
+      "pri": "High",
+      "name": "MDM Commercial & Licensing Procurement",
+      "desc": "Finalize vendor selection and complete procurement for the MDM solution."
+    },
+    {
+      "pri": "Medium",
+      "name": "Procurement Governance & Vendor Mgmt",
+      "desc": "Establish structured governance for all security tool purchases and vendor management."
+    },
+    {
+      "pri": "High",
+      "name": "Cloudflare WAF for Critical Domains",
+      "desc": "Implement and tune Cloudflare WAF protection for critical public-facing domains."
+    },
+    {
+      "pri": "High",
+      "name": "Remove Non-Critical Apps from Public Exposure",
+      "desc": "Reduce external attack surface by removing non-critical applications from public exposure."
+    },
+    {
+      "pri": "High",
+      "name": "Investigate Multi-Cloud Infections & Anomalies",
+      "desc": "Perform deep threat investigations across AWS, GCP, and Cloudflare environments."
+    },
+    {
+      "pri": "High",
+      "name": "Kubernetes Security Posture Review",
+      "desc": "Conduct a comprehensive security posture review for existing GKE and new AWS EKS clusters."
+    },
+    {
+      "pri": "High",
+      "name": "Post-Migration EKS Security Review",
+      "desc": "Perform security validation and hardening of the new AWS EKS cluster post-migration."
+    },
+    {
+      "pri": "Medium",
+      "name": "Kubernetes Cluster Segregation Strategy",
+      "desc": "Design architecture for segregating workloads into multiple clusters to reduce blast radius."
+    }
+  ]
 }
