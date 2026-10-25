@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-24T08:16:44.089180+00:00",
+  "generatedAt": "2026-10-25T08:34:45.838414+00:00",
   "sprintNumber": "?",
   "sprintDates": "SPRINT 81[19th Oct - 30th Oct]",
   "sheetName": "SPRINT 81[19th Oct - 30th Oct]",
@@ -115,66 +115,66 @@
     {
       "pri": "High",
       "name": "Cloud CNAPP & Workload Protection",
-      "desc": "Implement CNAPP and deploy agents to 143 workloads."
+      "desc": "Implement CNAPP and deploy agents to 143 workloads for comprehensive protection."
     },
     {
       "pri": "High",
       "name": "Splunk Deployment & Log Onboarding",
-      "desc": "Procure and deploy Splunk with prioritized log ingestion."
+      "desc": "Procure and deploy Splunk with prioritized log ingestion for centralized logging."
     },
     {
       "pri": "High",
       "name": "MDM Deployment & Compliance Enforcement",
-      "desc": "Deploy MDM across corporate devices with policy enforcement."
+      "desc": "Deploy MDM across corporate devices to enforce security policies and compliance."
     },
     {
       "pri": "High",
       "name": "Build Security Operations Team",
-      "desc": "Hire and onboard required security roles."
+      "desc": "Hire and onboard required security roles to establish a robust SOC team."
     },
     {
       "pri": "High",
       "name": "Splunk Commercial & Legal Procurement",
-      "desc": "Complete commercial, financial and legal procurement cycle for Splunk."
+      "desc": "Complete the commercial, financial, and legal procurement cycle for Splunk."
     },
     {
       "pri": "High",
       "name": "MDM Commercial & Licensing Procurement",
-      "desc": "Complete vendor selection and procurement cycle for MDM solution."
+      "desc": "Complete vendor selection and procurement cycle for the MDM solution."
     },
     {
       "pri": "Medium",
       "name": "Procurement Governance & Vendor Management",
-      "desc": "Ensure structured governance for all security tool purchases."
+      "desc": "Ensure structured governance for all security tool purchases and vendor relationships."
     },
     {
       "pri": "High",
-      "name": "Cloudflare WAF Deployment",
+      "name": "Cloudflare WAF Deployment for Critical Domains",
       "desc": "Implement and tune WAF protection for critical domains across all brands."
     },
     {
       "pri": "High",
-      "name": "Reduce Public Application Exposure",
-      "desc": "Reduce external attack surface by removing non-critical apps from public exposure."
+      "name": "Remove Non-Critical Apps from Public Exposure",
+      "desc": "Reduce external attack surface by removing non-critical applications from public exposure."
     },
     {
       "pri": "High",
-      "name": "Investigate Multi-Cloud Anomalies",
-      "desc": "Perform deep threat investigation across AWS, GCP, and Cloudflare environments."
+      "name": "Investigate Multi-Cloud Infections & Anomalies",
+      "desc": "Perform deep threat investigation across the multi-cloud environment (AWS, GCP, Cloudflare)."
     },
     {
       "pri": "High",
-      "name": "Kubernetes Security Posture Review",
-      "desc": "Perform comprehensive Kubernetes Security Posture Management review for existing and new clusters."
+      "name": "Kubernetes Security Posture Review (GKE & AWS)",
+      "desc": "Perform comprehensive Kubernetes Security Posture Management review for GCP GKE and new AWS clusters."
     },
     {
       "pri": "High",
-      "name": "EKS Cluster Post-Migration Security Review",
-      "desc": "Perform security validation and hardening of new AWS EKS cluster post migration."
+      "name": "Post-Migration Security Review of New EKS Cluster",
+      "desc": "Perform security validation and hardening of the new AWS EKS cluster post-migration."
     },
     {
       "pri": "Medium",
-      "name": "Kubernetes Cluster Segregation Strategy",
+      "name": "Design Kubernetes Cluster Segregation Strategy",
       "desc": "Design architecture for segregating workloads into multiple clusters to reduce blast radius."
     }
   ]
