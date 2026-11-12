@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-11T11:15:47.823306+00:00",
+  "generatedAt": "2026-11-12T11:31:39.130300+00:00",
   "sprintNumber": "?",
   "sprintDates": "SPRINT 81[19th Oct - 30th Oct]",
   "sheetName": "SPRINT 81[19th Oct - 30th Oct]",
@@ -110,12 +110,12 @@
     {
       "pri": "High",
       "name": "Endpoint Security Rollout",
-      "desc": "Deploy SentinelOne to 120 endpoints, including pilot and full rollout."
+      "desc": "Deploy SentinelOne to 120 endpoints including pilot and full rollout."
     },
     {
       "pri": "High",
       "name": "Cloud CNAPP & Workload Protection",
-      "desc": "Implement CNAPP and deploy agents to 143 workloads for comprehensive protection."
+      "desc": "Implement CNAPP and deploy agents to 143 cloud workloads."
     },
     {
       "pri": "High",
@@ -125,21 +125,21 @@
     {
       "pri": "High",
       "name": "MDM Deployment & Compliance",
-      "desc": "Deploy MDM across corporate devices and enforce compliance policies."
+      "desc": "Deploy MDM across corporate devices with policy enforcement for security compliance."
     },
     {
       "pri": "High",
       "name": "Build Security Operations Team",
-      "desc": "Hire and onboard required security roles to establish a new SOC team."
+      "desc": "Hire and onboard required security roles to establish a functional SOC."
     },
     {
       "pri": "High",
-      "name": "Splunk Procurement Cycle",
-      "desc": "Complete commercial, financial, and legal procurement for Splunk deployment."
+      "name": "Splunk Commercial Procurement",
+      "desc": "Complete commercial, financial and legal procurement cycle for Splunk licensing."
     },
     {
       "pri": "High",
-      "name": "MDM Procurement Cycle",
+      "name": "MDM Commercial Procurement",
       "desc": "Complete vendor selection and procurement cycle for the MDM solution."
     },
     {
@@ -164,13 +164,13 @@
     },
     {
       "pri": "High",
-      "name": "Kubernetes Security Posture Review",
-      "desc": "Perform comprehensive KSPM review for existing GCP GKE and new AWS clusters."
+      "name": "K8s Security Posture Review",
+      "desc": "Review Kubernetes Security Posture for GKE and new AWS clusters."
     },
     {
       "pri": "High",
       "name": "EKS Post-Migration Security Review",
-      "desc": "Perform security validation and hardening of new AWS EKS cluster post-migration."
+      "desc": "Perform security validation and hardening of new AWS EKS cluster post migration."
     },
     {
       "pri": "Medium",
