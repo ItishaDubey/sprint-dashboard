@@ -1,8 +1,8 @@
 {
-  "generatedAt": "2026-11-16T11:48:19.302625+00:00",
-  "sprintNumber": "?",
-  "sprintDates": "SPRINT 81[19th Oct - 30th Oct]",
-  "sheetName": "SPRINT 81[19th Oct - 30th Oct]",
+  "generatedAt": "2026-11-17T12:07:56.230101+00:00",
+  "sprintNumber": "82",
+  "sprintDates": "[16th Nov-27th Nov]",
+  "sheetName": "Sprint 82 [16th Nov-27th Nov]",
   "stats": {
     "total": 0,
     "done": 0,
@@ -110,72 +110,72 @@
     {
       "pri": "High",
       "name": "Endpoint Security Rollout",
-      "desc": "Deploy SentinelOne to 120 endpoints, including pilot and full rollout."
+      "desc": "Deploy SentinelOne to 120 endpoints with pilot and full rollout."
     },
     {
       "pri": "High",
       "name": "Cloud CNAPP & Workload Protection",
-      "desc": "Implement CNAPP and deploy agents to 143 cloud workloads."
+      "desc": "Implement CNAPP and deploy agents to 143 cloud workloads for protection."
     },
     {
       "pri": "High",
       "name": "Splunk Deployment & Log Onboarding",
-      "desc": "Procure and deploy Splunk with prioritized log ingestion for monitoring."
+      "desc": "Procure and deploy Splunk for prioritized security log ingestion and analysis."
     },
     {
       "pri": "High",
       "name": "MDM Deployment & Compliance",
-      "desc": "Deploy MDM across corporate devices with policy enforcement."
+      "desc": "Deploy MDM across corporate devices to enforce security policies and compliance."
     },
     {
       "pri": "High",
       "name": "Build Security Operations Team",
-      "desc": "Hire and onboard required security roles to establish the SOC."
+      "desc": "Hire and onboard essential security roles to establish the Security Operations Team."
     },
     {
       "pri": "High",
       "name": "Splunk Commercial Procurement",
-      "desc": "Complete commercial, financial, and legal procurement cycle for Splunk."
+      "desc": "Complete the commercial and legal procurement cycle for the Splunk solution."
     },
     {
       "pri": "High",
       "name": "MDM Commercial Procurement",
-      "desc": "Complete vendor selection and procurement cycle for the MDM solution."
+      "desc": "Complete vendor selection and procurement for the MDM solution and licensing."
     },
     {
       "pri": "Medium",
-      "name": "Procurement Governance & Vendor Mgmt",
-      "desc": "Establish structured governance for all security tool purchases and renewals."
+      "name": "Procurement Governance & Vendor Management",
+      "desc": "Establish structured governance for all security tool purchases and vendor management."
     },
     {
       "pri": "High",
       "name": "Cloudflare WAF Deployment",
-      "desc": "Implement and tune WAF protection for critical public domains."
+      "desc": "Implement and tune Cloudflare WAF protection for critical public-facing domains."
     },
     {
       "pri": "High",
-      "name": "Reduce Public App Exposure",
-      "desc": "Reduce external attack surface by removing non-critical apps from public exposure."
+      "name": "Reduce Public Application Exposure",
+      "desc": "Reduce external attack surface by removing non-critical applications from public exposure."
     },
     {
       "pri": "High",
       "name": "Multi-Cloud Threat Investigation",
-      "desc": "Perform deep threat investigations across AWS, GCP, and Cloudflare environments."
+      "desc": "Perform deep threat investigation for active infections and anomalies across the multi-cloud environment."
     },
     {
       "pri": "High",
       "name": "Kubernetes Security Posture Review",
-      "desc": "Conduct comprehensive KSPM review for GKE and new AWS EKS clusters."
+      "desc": "Perform comprehensive security posture review for existing GKE and new AWS Kubernetes clusters."
     },
     {
       "pri": "High",
       "name": "Post-Migration EKS Security Review",
-      "desc": "Perform security validation and hardening of new AWS EKS cluster post-migration."
+      "desc": "Perform security validation and hardening of the new AWS EKS cluster post-migration."
     },
     {
       "pri": "Medium",
-      "name": "Kubernetes Cluster Segregation",
-      "desc": "Design architecture for segregating workloads into multiple clusters to reduce blast radius."
+      "name": "K8s Cluster Segregation Strategy",
+      "desc": "Design architecture for segregating workloads into multiple clusters to reduce the blast radius."
     }
   ]
 }
